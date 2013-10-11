@@ -24,7 +24,7 @@ package {
 	import starling.display.Stage;
 	import starling.textures.TextureAtlas;
 	
-	import ui.PlayerStats;
+	import ui.PlayerStatsUi;
 	
 	/**
 	 * @author Aymeric
@@ -64,7 +64,7 @@ package {
 			view.camera.allowZoom = true;
 			view.camera.setUp(hero, new Point(300, stage.stageHeight), new Rectangle(0, 0, stage.stageWidth, stage.stageHeight));
 			
-			this.addChild(new PlayerStats());
+			this.addChild(new PlayerStatsUi());
 		
 		}
 		

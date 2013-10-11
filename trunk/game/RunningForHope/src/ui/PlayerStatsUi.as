@@ -3,9 +3,9 @@ package ui
 	import citrus.core.starling.StarlingState;
 	import starling.text.TextField;
 	
-	public class PlayerStats extends StarlingState
+	public class PlayerStatsUi extends StarlingState
 	{
-		public function PlayerStats()
+		public function PlayerStatsUi()
 		{
 			super();
 			var scoreLabel:TextField = new TextField(80, 20, "Score:");
