@@ -5,11 +5,15 @@ package ui
 	
 	public class PlayerStatsUi extends StarlingState
 	{
+
+		private var scoreLabel:TextField;
+		private var healthLabel:TextField;
+		
 		public function PlayerStatsUi()
 		{
 			super();
-			var scoreLabel:TextField = new TextField(80, 20, "Score:");
-			var healthLabel:TextField = new TextField(80, 20, "Health:");
+			scoreLabel = new TextField(80, 20, "Score:");
+			healthLabel = new TextField(80, 20, "Health:");
 			scoreLabel.x = 40;
 			scoreLabel.y = 50;
 			healthLabel.x = 130;
