@@ -11,8 +11,6 @@ package objects
 		public function Box(name:String, params:Object = null)
 		{
 			super(name, params);
-			/*var texture:Texture = Assets.getTexture("Spritesheet", "crate");
-			this.view = texture;*/
 		}
 	}
 }

@@ -6,16 +6,16 @@ package {
 	
 	import starling.core.starling_internal;
 	
-	[SWF(backgroundColor="#00015F", frameRate="60")]
+	[SWF(backgroundColor="#00015F", frameRate="30")]
 	
 	/**
 	 * @author Aymeric
 	 */
-	public class Platformer extends StarlingCitrusEngine {
+	public class Main extends StarlingCitrusEngine {
 		
 	
 		
-		public function Platformer() {
+		public function Main() {
 			setUpStarling(true);
 			//addChild(new Stats());
 			state = new TiledMapGameState();	
