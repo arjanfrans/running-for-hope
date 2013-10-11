@@ -19,8 +19,12 @@ package {
 	
 	import objects.Box;
 	import objects.Luigi;
+	import objects.Token;
 	
+	import starling.display.Stage;
 	import starling.textures.TextureAtlas;
+	
+	import ui.PlayerStats;
 	
 	/**
 	 * @author Aymeric
@@ -34,7 +38,7 @@ package {
 		public function TiledMapGameState() {
 			super();
 			// Useful for not forgetting to import object from the Level Editor
-			var objects:Array = [Luigi, Platform, Box, MovingPlatform];
+			var objects:Array = [Luigi, Platform, Box, MovingPlatform, Token];
 			
 		}
 		
@@ -42,7 +46,7 @@ package {
 		override public function initialize():void {	
 			super.initialize();
 			new Background(this);
-
+			this._ce.stage.frameRate = 60;
 			var napePhysics:Nape = new Nape("nape");
 			napePhysics.visible = true; //Debug view
 			add(napePhysics);
@@ -59,6 +63,9 @@ package {
 			
 			view.camera.allowZoom = true;
 			view.camera.setUp(hero, new Point(300, stage.stageHeight), new Rectangle(0, 0, stage.stageWidth, stage.stageHeight));
+			
+			this.addChild(new PlayerStats());
+		
 		}
 		
 		/**
