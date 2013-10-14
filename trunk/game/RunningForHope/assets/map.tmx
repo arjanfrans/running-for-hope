@@ -18,6 +18,12 @@
    </properties>
   </tile>
  </tileset>
+ <objectgroup name="background" width="100" height="23">
+  <properties>
+   <property name="layer1" value="SkyBg"/>
+   <property name="layer2" value="MountainBg"/>
+  </properties>
+ </objectgroup>
  <layer name="platform" width="100" height="23">
   <data>
    <tile gid="0"/>

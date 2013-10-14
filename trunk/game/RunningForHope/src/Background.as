@@ -5,8 +5,9 @@ package
 	public class Background extends CitrusSprite
 	{
 		private var gameState:TiledMapGameState;
+
 		
-		public function Background(gameState:TiledMapGameState, params:Object=null)
+		public function Background(gameState:TiledMapGameState, layers:Vector.<BackgroundLayer>, params:Object=null)
 		{
 			super("background", params);
 			this.gameState = gameState;

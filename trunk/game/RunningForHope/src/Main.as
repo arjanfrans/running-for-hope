@@ -13,12 +13,12 @@ package {
 	 */
 	public class Main extends StarlingCitrusEngine {
 		
-	
-		
 		public function Main() {
+			this.stage.frameRate = Config.INTERNAL_FPS;
 			setUpStarling(true);
 			//addChild(new Stats());
-			state = new TiledMapGameState();	
+			state = new TiledMapGameState();
+			
 		}
 	}
 }
