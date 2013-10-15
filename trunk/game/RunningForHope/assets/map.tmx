@@ -18,12 +18,6 @@
    </properties>
   </tile>
  </tileset>
- <objectgroup name="background" width="100" height="23">
-  <properties>
-   <property name="layer1" value="SkyBg"/>
-   <property name="layer2" value="MountainBg"/>
-  </properties>
- </objectgroup>
  <layer name="platform" width="100" height="23">
   <data>
    <tile gid="0"/>
@@ -2402,6 +2396,12 @@
   <object name="token" type="objects.Token" x="464" y="272" width="16" height="16">
    <properties>
     <property name="texture" value="token"/>
+   </properties>
+  </object>
+  <object name="background" type="citrus.core.CitrusObject" x="0" y="-80" width="96" height="64">
+   <properties>
+    <property name="layer1" value="SkyBg"/>
+    <property name="layer2" value="MountainBg"/>
    </properties>
   </object>
  </objectgroup>
