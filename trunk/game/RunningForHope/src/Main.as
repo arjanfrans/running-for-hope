@@ -4,7 +4,11 @@ package {
 	
 	import debug.Stats;
 	
+	import flash.geom.Rectangle;
+	
 	import starling.core.starling_internal;
+	import starling.events.Event;
+	import starling.events.ResizeEvent;
 	
 	[SWF(backgroundColor="#00015F", frameRate="30")]
 	
@@ -18,7 +22,9 @@ package {
 			setUpStarling(true);
 			//addChild(new Stats());
 			state = new TiledMapGameState();
+			trace(this.width);
 			
-		}
+		}		
+		
 	}
 }
