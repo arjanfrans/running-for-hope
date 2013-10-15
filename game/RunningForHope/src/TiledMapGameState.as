@@ -35,7 +35,7 @@ package {
 		private var hero:Luigi;
 		private var mapObjects:Array;
 		private var sTextureAtlas:TextureAtlas;
-
+		
 		public function TiledMapGameState() {
 			super();
 			// Useful for not forgetting to import object from the Level Editor
@@ -49,13 +49,12 @@ package {
 			
 			var map:XML = Assets.getTmxMap("Level1");
 			var tmx:TmxMap = new TmxMap(map);
-		/*	loadBackground(tmx);*/
-			new Background(this, null);
-			this._ce.stage.frameRate = 60;
+			
+			loadBackground(tmx);
+			
 			var napePhysics:Nape = new Nape("nape");
 			napePhysics.visible = true; //Debug view
 			add(napePhysics);
-			
 			
 			
 			
@@ -69,17 +68,22 @@ package {
 			view.camera.setUp(hero, new Point(300, stage.stageHeight), new Rectangle(0, 0, stage.stageWidth, stage.stageHeight));
 			
 			this.addChild(new PlayerStatsUi());
-		
+			
 		}
 		
+		/**
+		 * Load the background data from the object named "background" in the tmx file.
+		 * */
 		private function loadBackground(tmx:TmxMap):void {
 			var bgLayers:Vector.<BackgroundLayer> = new Vector.<BackgroundLayer>();
-			var layerProperty:TmxPropertySet = tmx.getLayer("background").properties;
-			if(layerProperty.hasOwnProperty("layer1")) {
-				bgLayers.push(new BackgroundLayer(layerProperty.layer1, true, true));
-			}
-			if(layerProperty.hasOwnProperty("layer2")) {
-				bgLayers.push(new BackgroundLayer(layerProperty.layer2, true, false));
+			for each (var group:TmxObjectGroup in tmx.objectGroups) {
+				for each (var objectTmx:TmxObject in group.objects) {
+					if(objectTmx.name == "background") {						
+						bgLayers.push(new BackgroundLayer(objectTmx.custom["layer1"], true, true));
+						bgLayers.push(new BackgroundLayer(objectTmx.custom["layer2"], false, false));
+					}
+				}
+				
 			}
 			this.add(new Background(this, bgLayers));
 		}
