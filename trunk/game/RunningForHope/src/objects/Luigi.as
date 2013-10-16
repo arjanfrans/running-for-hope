@@ -108,6 +108,7 @@ package objects
 					trace(_toutchingWall);
 					if(_toutchingWall) {
 						//Do wall jumping here??
+						velocity.y = -jumpHeight;
 					}
 					else {
 						velocity.y -= jumpAcceleration;
@@ -159,19 +160,22 @@ package objects
 					onGiveDamage.dispatch();
 				}
 			}
-			
+			_toutchingWall = false;
 
-			if (callback.arbiters.length > 0 && callback.arbiters.at(0).collisionArbiter) {
+			if (callback.arbiters.length > 0 && callback.arbiters.at(0).collisionArbiter.contacts) {
 				
 				var collisionAngle:Number = callback.arbiters.at(0).collisionArbiter.normal.angle * 180 / Math.PI;
 				
 				if ((collisionAngle > 45 && collisionAngle < 135) || (collisionAngle > -30 && collisionAngle < 10) || collisionAngle == -90)
 				{
-					_toutchingWall = false;
+					
+					
 					if (collisionAngle > 1 || collisionAngle < -1) {
 						//we don't want the Hero to be set up as onGround if it touches a cloud.
-						if (collider is Platform && (collider as Platform).oneWay && collisionAngle == -90)
+						if (collider is Platform && (collider as Platform).oneWay && collisionAngle == -90) {
+							_toutchingWall = true;
 							return;
+						}
 						
 						_groundContacts.push(collider.body);
 						_onGround = true;
