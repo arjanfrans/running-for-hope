@@ -132,8 +132,8 @@ package objects
 				if (_touchingWall && _ce.input.isDoing("jump", inputChannel) && !_onGround && velocity.y < 50 && Math.abs(oldVelocity.x) > 50 && !jump_triggered)
 				{
 					//WALL JUMPING
-					//Do wall jumping here??
-					velocity.y = (velocity.y > 0) ? (velocity.y * 0.66) : Math.max(velocity.y * 1.5, -jumpHeight);
+					//Do wall jumping here??//(velocity.y > 0) ? (velocity.y * 0.66) : 
+					velocity.y = Math.max(velocity.y - 200, -jumpHeight);
 					_touchingWall = false;
 					velocity.x = (oldVelocity.x > 0) ? -150 : 150;
 					jump_triggered = true;
