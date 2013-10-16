@@ -53,7 +53,7 @@ package objects
 		{
 			super(name, params);
 			var ta:TextureAtlas = Assets.getAtlas("LuigiAnimation");
-			seq = new AnimationSequence(ta, ["walk", "idle", "duck", "hurt", "jump"], "idle", 60);
+			seq = new AnimationSequence(ta, ["walk", "idle", "duck", "hurt", "jump"], "idle", 30);
 			this.texture_height = this.height;
 			this.texture_height_duck = seq.mcSequences["duck"].height;
 			this.view = seq;
@@ -61,6 +61,8 @@ package objects
 			this._shape = normalShape;
 			maxVelocity = 130;
 			acceleration = 20;
+			this.jumpAcceleration = 5;
+			this.jumpHeight = 150;
 		}		
 				
 		override public function update(timeDelta:Number):void
@@ -127,11 +129,11 @@ package objects
 					jump_triggered = true;
 				}
 				
-				if (_touchingWall && _ce.input.isDoing("jump", inputChannel) && !_onGround && velocity.y < -50 && Math.abs(oldVelocity.x) > 50 && !jump_triggered)
+				if (_touchingWall && _ce.input.isDoing("jump", inputChannel) && !_onGround && velocity.y < 50 && Math.abs(oldVelocity.x) > 50 && !jump_triggered)
 				{
 					//WALL JUMPING
 					//Do wall jumping here??
-					velocity.y = Math.max(velocity.y * 1.5, -jumpHeight);
+					velocity.y = (velocity.y > 0) ? (velocity.y * 0.66) : Math.max(velocity.y * 1.5, -jumpHeight);
 					_touchingWall = false;
 					velocity.x = (oldVelocity.x > 0) ? -150 : 150;
 					jump_triggered = true;
@@ -159,7 +161,7 @@ package objects
 			Starling.juggler.add(new DelayedCall(function(x:Number, y:Number):void {
 				oldVelocity.x = x;
 				oldVelocity.y = y;
-			}, 0.2, [_body.velocity.x, _body.velocity.y]));
+			}, 0.4, [_body.velocity.x, _body.velocity.y]));
 			
 		}
 		

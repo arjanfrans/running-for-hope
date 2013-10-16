@@ -20,10 +20,7 @@ package {
 		public function Main() {
 			this.stage.frameRate = Config.INTERNAL_FPS;
 			setUpStarling(true);
-			//addChild(new Stats());
 			state = new TiledMapGameState();
-			trace(this.width);
-			
 		}		
 		
 	}
