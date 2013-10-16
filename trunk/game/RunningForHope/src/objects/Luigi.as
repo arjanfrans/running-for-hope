@@ -25,7 +25,11 @@ package objects
 	import nape.shape.Shape;
 	import nape.shape.ValidationResult;
 	
+	import starling.animation.DelayedCall;
+	import starling.animation.Juggler;
+	import starling.core.starling_internal;
 	import starling.textures.TextureAtlas;
+	import starling.core.Starling;
 	
 	public class Luigi extends CustomHero
 	{
@@ -39,7 +43,11 @@ package objects
 		private const angular_dampening:Number = 20;
 		private const linear_dampening:Number = 20;
 		private var wall:NapePhysicsObject;
-		private var _toutchingWall:Boolean = false;
+		
+		private var _touchingWall:Boolean = false;
+		private var air_acceleration:Number =  5;
+		private var jump_triggered:Boolean = false;
+		private var oldVelocity:Vec2 = new Vec2()
 		
 		public function Luigi(name:String, params:Object=null)
 		{
@@ -51,7 +59,8 @@ package objects
 			this.view = seq;
 			normalShape = new Polygon(Polygon.box(this.width, this.height), _material);
 			this._shape = normalShape;
-			//this.acceleration = 3;
+			maxVelocity = 130;
+			acceleration = 20;
 		}		
 				
 		override public function update(timeDelta:Number):void
@@ -66,19 +75,34 @@ package objects
 				var moveKeyPressed:Boolean = false;
 				
 				_ducking = (_ce.input.isDoing("duck", inputChannel) && _onGround && canDuck);
+				if(_ce.input.justDid("jump", inputChannel)) jump_triggered = false;
 				
 				if (_ce.input.isDoing("right", inputChannel)  && !_ducking)
 				{
-					//velocity.addeq(getSlopeBasedMoveAngle());
-					velocity.x += acceleration;
-					moveKeyPressed = true;
+					if(_onGround) {
+						//velocity.addeq(getSlopeBasedMoveAngle());
+						velocity.x += acceleration;
+						moveKeyPressed = true;
+					}
+					else {
+						//velocity.addeq(getSlopeBasedMoveAngle());
+						velocity.x += air_acceleration;
+						moveKeyPressed = true;
+					}
 				}
 				
 				if (_ce.input.isDoing("left", inputChannel) && !_ducking)
 				{
-					//velocity.subeq(getSlopeBasedMoveAngle());
-					velocity.x -= acceleration;
-					moveKeyPressed = true;
+					if(_onGround) {
+						//velocity.subeq(getSlopeBasedMoveAngle());
+						velocity.x -= acceleration;
+						moveKeyPressed = true;
+					}
+					else {
+						//velocity.subeq(getSlopeBasedMoveAngle());
+						velocity.x -= air_acceleration;
+						moveKeyPressed = true;
+					}
 				}
 				
 				//If player just started moving the hero this tick.
@@ -100,19 +124,17 @@ package objects
 				{
 					velocity.y = -jumpHeight;
 					onJump.dispatch();
+					jump_triggered = true;
 				}
 				
-				if (_ce.input.isDoing("jump", inputChannel) && !_onGround && velocity.y < 0)
+				if (_touchingWall && _ce.input.isDoing("jump", inputChannel) && !_onGround && velocity.y < -50 && Math.abs(oldVelocity.x) > 50 && !jump_triggered)
 				{
 					//WALL JUMPING
-					trace(_toutchingWall);
-					if(_toutchingWall) {
-						//Do wall jumping here??
-						velocity.y = -jumpHeight;
-					}
-					else {
-						velocity.y -= jumpAcceleration;
-					}
+					//Do wall jumping here??
+					velocity.y = Math.max(velocity.y * 1.5, -jumpHeight);
+					_touchingWall = false;
+					velocity.x = (oldVelocity.x > 0) ? -150 : 150;
+					jump_triggered = true;
 				}
 			
 				
@@ -133,6 +155,11 @@ package objects
 			}
 			damping();
 			updateAnimation();
+			
+			Starling.juggler.add(new DelayedCall(function(x:Number, y:Number):void {
+				oldVelocity.x = x;
+				oldVelocity.y = y;
+			}, 0.2, [_body.velocity.x, _body.velocity.y]));
 			
 		}
 		
@@ -160,20 +187,18 @@ package objects
 					onGiveDamage.dispatch();
 				}
 			}
-			_toutchingWall = false;
+			_touchingWall = false;
 
 			if (callback.arbiters.length > 0 && callback.arbiters.at(0).collisionArbiter) {
 				
 				var collisionAngle:Number = callback.arbiters.at(0).collisionArbiter.normal.angle * 180 / Math.PI;
 				
-				if ((collisionAngle > 45 && collisionAngle < 135) || (collisionAngle > -30 && collisionAngle < 10) || collisionAngle == -90)
+				//trace(collisionAngle);
+				if ((collisionAngle > 45 && collisionAngle < 135) || collisionAngle == -90)
 				{
-					
-					
 					if (collisionAngle > 1 || collisionAngle < -1) {
 						//we don't want the Hero to be set up as onGround if it touches a cloud.
 						if (collider is Platform && (collider as Platform).oneWay && collisionAngle == -90) {
-							_toutchingWall = true;
 							return;
 						}
 						
@@ -185,7 +210,7 @@ package objects
 				else {
 					//TODO this doesn't work if you come in from the left!!!!!!!
 					//If not, the collision is a wall
-					_toutchingWall = true;
+					_touchingWall = true;
 				}
 			}
 		}
