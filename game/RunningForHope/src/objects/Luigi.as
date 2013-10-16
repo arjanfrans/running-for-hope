@@ -7,6 +7,8 @@ package objects
 	import citrus.physics.nape.NapeUtils;
 	import citrus.view.starlingview.AnimationSequence;
 	
+	import flash.ui.Keyboard;
+	
 	import nape.callbacks.InteractionCallback;
 	import nape.callbacks.PreCallback;
 	import nape.callbacks.PreFlag;
@@ -22,7 +24,6 @@ package objects
 	import nape.shape.Polygon;
 	import nape.shape.Shape;
 	import nape.shape.ValidationResult;
-	import flash.ui.Keyboard;
 	
 	import starling.textures.TextureAtlas;
 	
@@ -106,9 +107,7 @@ package objects
 					//WALL JUMPING
 					trace(_toutchingWall);
 					if(_toutchingWall) {
-						if(_ce.input.isDown(Keyboard.SPACE)) {
-							//???????
-						}
+						//Do wall jumping here??
 					}
 					else {
 						velocity.y -= jumpAcceleration;
@@ -180,6 +179,7 @@ package objects
 					}
 				}
 				else {
+					//TODO this doesn't work if you come in from the left!!!!!!!
 					//If not, the collision is a wall
 					_toutchingWall = true;
 				}
