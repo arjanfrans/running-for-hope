@@ -162,7 +162,7 @@ package objects
 			}
 			_toutchingWall = false;
 
-			if (callback.arbiters.length > 0 && callback.arbiters.at(0).collisionArbiter.contacts) {
+			if (callback.arbiters.length > 0 && callback.arbiters.at(0).collisionArbiter) {
 				
 				var collisionAngle:Number = callback.arbiters.at(0).collisionArbiter.normal.angle * 180 / Math.PI;
 				
