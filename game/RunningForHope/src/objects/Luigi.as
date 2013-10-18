@@ -218,10 +218,10 @@ package objects
 		}
 		
 		private function damping():void {
-/*			_body.velocity.muleq(Math.pow(linear_dampening, 0));
-			_body.angularVel *= Math.pow(angular_dampening, 0);*/
+			_body.velocity.muleq(Math.pow(linear_dampening, 1/30));
+			_body.angularVel *= Math.pow(angular_dampening, 1/30);
 		}
-		
+		 
 		
 		override protected function createShape():void
 		{
