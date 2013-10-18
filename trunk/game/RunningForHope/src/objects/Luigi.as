@@ -218,8 +218,8 @@ package objects
 		}
 		
 		private function damping():void {
-			_body.velocity.muleq(Math.pow(linear_dampening, 1/this._ce.stage.frameRate));
-			_body.angularVel *= Math.pow(angular_dampening, 1/this._ce.stage.frameRate);
+/*			_body.velocity.muleq(Math.pow(linear_dampening, 0));
+			_body.angularVel *= Math.pow(angular_dampening, 0);*/
 		}
 		
 		
