@@ -45,7 +45,7 @@ package objects
 		private var wall:NapePhysicsObject;
 		
 		private var _touchingWall:Boolean = false;
-		private var air_acceleration:Number =  5;
+		private var air_acceleration:Number =  20;
 		private var jump_triggered:Boolean = false;
 		private var oldVelocity:Vec2 = new Vec2()
 		
@@ -61,8 +61,11 @@ package objects
 			this._shape = normalShape;
 			maxVelocity = 130;
 			acceleration = 20;
+			
 			this.jumpAcceleration = 5;
 			this.jumpHeight = 150;
+			this._staticFriction = 3;
+			this._dynamicFriction = 3;
 		}		
 				
 		override public function update(timeDelta:Number):void
