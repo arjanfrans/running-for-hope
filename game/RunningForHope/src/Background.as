@@ -1,8 +1,10 @@
 package
 {
+	import citrus.core.CitrusObject;
+	import citrus.core.starling.StarlingState;
 	import citrus.objects.CitrusSprite;
 	
-	public class Background extends CitrusSprite
+	public class Background extends CitrusObject
 	{
 		private var gameState:TiledMapGameState;
 
