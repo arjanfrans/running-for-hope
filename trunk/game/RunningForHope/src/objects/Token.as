@@ -17,6 +17,7 @@ package objects
 			
 			if (_collectorClass && NapeUtils.CollisionGetOther(this, interactionCallback) is _collectorClass) {
 				kill = true;
+				PlayerStats.addToken();
 				//update the UI???
 			}
 				
