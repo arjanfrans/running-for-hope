@@ -2407,7 +2407,7 @@
   <object type="citrus.objects.platformer.nape.Platform" x="48" y="176" width="16" height="176"/>
   <object type="citrus.objects.platformer.nape.Platform" x="112" y="288" width="64" height="16"/>
   <object type="citrus.objects.platformer.nape.Platform" x="608" y="144" width="16" height="144"/>
-  <object type="citrus.objects.platformer.nape.Platform" x="400" y="96" width="16" height="224"/>
-  <object type="citrus.objects.platformer.nape.Platform" x="320" y="176" width="16" height="144"/>
+  <object type="citrus.objects.platformer.nape.Platform" x="400" y="96" width="16" height="144"/>
+  <object type="citrus.objects.platformer.nape.Platform" x="304" y="176" width="16" height="144"/>
  </objectgroup>
 </map>

@@ -1,5 +1,7 @@
 package
 {
+	import ui.PlayerStatsUi;
+
 	public class PlayerStats
 	{
 		public static var tokens:Number = 0;
@@ -7,7 +9,18 @@ package
 		
 		public function PlayerStats()
 		{
-			//I dont think this should be static?
+			
 		}
+		
+		public static function addToken():void {
+			tokens++;
+			PlayerStatsUi.updateUi();
+		}
+		
+		public static function decreaseHealth():void {
+			health--;
+			PlayerStatsUi.updateUi();
+		}
+		
 	}
 }

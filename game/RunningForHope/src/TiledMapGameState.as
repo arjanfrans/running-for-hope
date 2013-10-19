@@ -48,6 +48,7 @@ package {
 			super();
 			// Useful for not forgetting to import object from the Level Editor
 			var objects:Array = [Luigi, Platform, Box, MovingPlatform, Token];
+			this._ce.stage.scaleMode = "noScale";
 			
 		}
 		
@@ -76,13 +77,15 @@ package {
 			var w:Number = VIRTUAL_WIDTH * scale;
 			var h:Number = VIRTUAL_HEIGHT * scale;
 			view.camera.bounds = new Rectangle(crop.x, crop.y, w, h);*/
-	/*		var w:Number = this._ce.width;
-			var h:Number = this._ce.height;
+/*			var w:Number = event.width;
+			var h:Number = event.height;
+			view.camera.cameraLensWidth = w;
+			view.camera.cameraLensHeight = h;
 			view.camera.cameraLensWidth = w;
 			view.camera.cameraLensHeight = h;
 			view.camera.offset.x = w * 0.5;
-			view.camera.offset.y = h * 0.5;
-			//view.camera.zoomFit(700, 700);
+			view.camera.offset.y = h ;//* 0.5;
+			trace(h);
 			view.camera.setZoom(event.width / this._ce.width );*/
 		}		
 		
@@ -106,6 +109,7 @@ package {
 			
 			initObjectTextures(tmx);
 			
+			view.camera.easing = new Point(1, 1);
 			view.camera.allowZoom = true;
 			view.camera.setUp(hero, new Point(300, stage.stageHeight), new Rectangle(0, 0, stage.stageWidth, stage.stageHeight));
 			this.addChild(new PlayerStatsUi());

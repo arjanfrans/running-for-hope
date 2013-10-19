@@ -1,13 +1,14 @@
 package ui
 {
 	import citrus.core.starling.StarlingState;
+	
 	import starling.text.TextField;
 	
 	public class PlayerStatsUi extends StarlingState
 	{
 
-		private var scoreLabel:TextField;
-		private var healthLabel:TextField;
+		private static var scoreLabel:TextField;
+		private static var healthLabel:TextField;
 		
 		public function PlayerStatsUi()
 		{
@@ -20,6 +21,11 @@ package ui
 			healthLabel.y = 50;
 			this.addChild(scoreLabel);
 			this.addChild(healthLabel);
+		}
+		
+		public static function updateUi():void {
+			scoreLabel.text = "Score: " + PlayerStats.tokens;
+			healthLabel.text = "Health: " + PlayerStats.health;
 		}
 	}
 }
