@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with TexturePacker http://www.codeandweb.com/texturepacker -->
-<!-- $TexturePacker:SmartUpdate:4f07ccb2ff13b0d0f2ce2bb87f87cbd0:1/1$ -->
+<!-- Created with TexturePacker http://www.codeandweb.com/texturepacker-->
+<!-- $TexturePacker:SmartUpdate:c8feb1645cb9d4bae6719653f95616d1:1/1$ -->
 <TextureAtlas imagePath="spritesheet.png">
-	<SubTexture name="brick" x="2" y="2" width="16" height="16" />
-	<SubTexture name="brick_empty" x="22" y="2" width="16"
-		height="16" />
-	<SubTexture name="crate" x="42" y="2" width="32" height="32" />
-	<SubTexture name="grass_center" x="78" y="2" width="16"
-		height="16" />
-	<SubTexture name="moving_platform" x="2" y="38" width="48"
-		height="16" />
-	<SubTexture name="token" x="54" y="38" width="16" height="16" />
+    <SubTexture name="0" x="2" y="2" width="16" height="16"/>
+    <SubTexture name="1" x="22" y="2" width="16" height="16"/>
+    <SubTexture name="brick" x="42" y="2" width="16" height="16"/>
+    <SubTexture name="brick_empty" x="62" y="2" width="16" height="16"/>
+    <SubTexture name="crate" x="82" y="2" width="32" height="32"/>
+    <SubTexture name="grass_center" x="2" y="38" width="16" height="16"/>
+    <SubTexture name="moving_platform" x="22" y="38" width="48" height="16"/>
+    <SubTexture name="slope_left_1" x="74" y="38" width="16" height="8" frameX="0" frameY="-8" frameWidth="16" frameHeight="16"/>
+    <SubTexture name="slope_left_2" x="94" y="38" width="16" height="16"/>
+    <SubTexture name="slope_right_1" x="2" y="58" width="16" height="8" frameX="0" frameY="-8" frameWidth="16" frameHeight="16"/>
+    <SubTexture name="slope_right_2" x="22" y="58" width="16" height="16"/>
+    <SubTexture name="token" x="42" y="58" width="16" height="16"/>
+    <SubTexture name="water" x="62" y="58" width="16" height="16"/>
+    <SubTexture name="water_wave_1" x="82" y="58" width="16" height="16"/>
+    <SubTexture name="water_wave_2" x="102" y="58" width="16" height="16"/>
 </TextureAtlas>

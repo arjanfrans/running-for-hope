@@ -1,9 +1,8 @@
-package  {
+package game.objects  {
 	
 	import citrus.objects.CitrusSprite;
 	import citrus.objects.platformer.awayphysics.Hero;
 	
-	import objects.Luigi;
 	
 	import starling.display.Image;
 	import starling.display.Sprite;
@@ -18,23 +17,28 @@ package  {
 	{
 		private var layerSprite:Sprite;
 
+		private var img:Image;
+
 		public function BackgroundLayer(name:String, stretchX:Boolean = false, stretchY:Boolean = false, 
 										x:Number = 0, y:Number = 0, params:Object = null)
 		{
 			super(name, params);
 			layerSprite = new Sprite();
-			var img:Image = new Image(Assets.getBackground(name));
+			img = new Image(Assets.getBackground(name));
 			img.x = x;
 			img.y = y;
-			if(stretchX) {
-				img.width = _ce.stage.stage.width;
-				trace(_ce.stage.stage.width);
-			}
-			if(stretchY) {
-				img.height = _ce.stage.stageHeight;
-			}
+			updateSize();
 			layerSprite.addChild(img);
 			this.view = layerSprite;
+			
 		}
+		
+		public function updateSize():void
+		{
+			img.width = _ce.stage.stage.width;
+			img.height = _ce.stage.stageHeight;
+		}
+		
+		
 	}
 }

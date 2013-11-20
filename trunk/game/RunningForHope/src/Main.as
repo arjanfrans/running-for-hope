@@ -1,27 +1,19 @@
 package {
 	
+	import citrus.core.citrus_internal;
 	import citrus.core.starling.StarlingCitrusEngine;
 	
-	import debug.Stats;
+	import game.GameState;
 	
-	import flash.geom.Rectangle;
-	
-	import starling.core.starling_internal;
-	import starling.events.Event;
-	import starling.events.ResizeEvent;
-	
-	[SWF(backgroundColor="#00015F", frameRate="30")]
-	
-	/**
-	 * @author Aymeric
-	 */
+	import ui.PlayerStatsUi;
+
+	[SWF(backgroundColor="#000000", wmode="direct", width="512", height="448", frameRate="30")]
 	public class Main extends StarlingCitrusEngine {
 		
 		public function Main() {
 			this.stage.frameRate = Config.INTERNAL_FPS;
-			setUpStarling(true);
-			state = new TiledMapGameState();
-		}		
-		
+			setUpStarling(Config.DEBUG_MODE);
+			state = new GameState();
+		}	
 	}
 }

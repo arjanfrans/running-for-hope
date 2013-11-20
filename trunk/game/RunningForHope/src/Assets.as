@@ -6,6 +6,9 @@ package  {
 	import starling.textures.Texture;
 	import starling.textures.TextureAtlas;
 	
+	/**
+	 * All the game assets are accesed through this class
+	 */
 	public class Assets
 	{	
 		
