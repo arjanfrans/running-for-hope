@@ -18,6 +18,11 @@ package citrus {
 	import flash.utils.setTimeout;
 	
 	/**
+	 * Note: This is a copy of the citrus engine Hero! The update method is changed, 
+	 * the update code has to be implemented in the subclass.
+	 * 
+	 * 
+	 * 
 	 * This is a common, simple, yet solid implementation of a side-scrolling Hero. 
 	 * The hero can run, jump, get hurt, and kill enemies. It dispatches signals
 	 * when significant events happen. The game state's logic should listen for those signals
@@ -423,7 +428,9 @@ package citrus {
 			
 			//var walkingSpeed:Number = getWalkingSpeed();
 			var walkingSpeed:Number = _body.velocity.x; // this won't work long term!
-			
+			if(_ducking) {
+				_animation = "duck";
+			}
 			if (_hurt)
 				_animation = "hurt";
 				

@@ -3,6 +3,7 @@ package ui
 	import citrus.core.starling.StarlingState;
 	
 	import starling.text.TextField;
+	import game.PlayerStats;
 	
 	public class PlayerStatsUi extends StarlingState
 	{
@@ -13,8 +14,8 @@ package ui
 		public function PlayerStatsUi()
 		{
 			super();
-			scoreLabel = new TextField(80, 20, "Score:");
-			healthLabel = new TextField(80, 20, "Health:");
+			scoreLabel = new TextField(80, 20, "Score: " + PlayerStats.tokens);
+			healthLabel = new TextField(80, 20, "Health: " + PlayerStats.health);
 			scoreLabel.x = 40;
 			scoreLabel.y = 50;
 			healthLabel.x = 130;
@@ -23,6 +24,9 @@ package ui
 			this.addChild(healthLabel);
 		}
 		
+		/**
+		 * Update de HUD.
+		 */
 		public static function updateUi():void {
 			scoreLabel.text = "Score: " + PlayerStats.tokens;
 			healthLabel.text = "Health: " + PlayerStats.health;

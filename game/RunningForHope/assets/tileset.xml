@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with TexturePacker http://www.codeandweb.com/texturepacker -->
-<!-- $TexturePacker:SmartUpdate:b0595f4797d25b13a006bb753dd3838b:1/1$ -->
+<!-- Created with TexturePacker http://www.codeandweb.com/texturepacker-->
+<!-- $TexturePacker:SmartUpdate:a3851b257ae05fb54a04c38c8800f497:1/1$ -->
 <TextureAtlas imagePath="tileset.png">
-	<SubTexture name="brick" x="2" y="42" width="16" height="16" />
-	<SubTexture name="brick_empty" x="2" y="22" width="16"
-		height="16" />
-	<SubTexture name="grass_center" x="2" y="2" width="16"
-		height="16" />
+    <SubTexture name="0" x="0" y="0" width="16" height="16"/>
+    <SubTexture name="1" x="18" y="0" width="16" height="16"/>
+    <SubTexture name="brick" x="36" y="0" width="16" height="16"/>
+    <SubTexture name="brick_empty" x="54" y="0" width="16" height="16"/>
+    <SubTexture name="grass_center" x="72" y="0" width="16" height="16"/>
+    <SubTexture name="slope_left_1" x="90" y="0" width="16" height="16"/>
+    <SubTexture name="slope_left_2" x="108" y="0" width="16" height="16"/>
+    <SubTexture name="slope_right_1" x="0" y="18" width="16" height="16"/>
+    <SubTexture name="slope_right_2" x="18" y="18" width="16" height="16"/>
+    <SubTexture name="water" x="36" y="18" width="16" height="16"/>
+    <SubTexture name="water_wave_1" x="54" y="18" width="16" height="16"/>
+    <SubTexture name="water_wave_2" x="72" y="18" width="16" height="16"/>
 </TextureAtlas>
