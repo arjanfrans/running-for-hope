@@ -24,8 +24,15 @@ package  {
 		[Embed(source="../assets/characters/luigi.png")]
 		private static const LuigiAnimationPng:Class;
 		
+		[Embed(source="../assets/menus/interface.xml", mimeType="application/octet-stream")]
+		private static const InterfaceXml:Class;
+		
+		[Embed(source="../assets/menus/interface.png")]
+		private static const InterfacePng:Class;
+		
 		[Embed(source="../assets/backgrounds/blue_sky.png")]
 		private static const SkyBg:Class;
+		
 		[Embed(source="../assets/backgrounds/big_mountain.png")]
 		private static const MountainBg:Class;
 		
@@ -52,7 +59,9 @@ package  {
 		{
 			if(gameTextures[name] == null)
 			{
-				var texture:Texture = Texture.fromBitmap(create(name + "Png") as Bitmap);
+				var obj:Object = create(name + "Png");
+				var bmp:Bitmap = obj as Bitmap;
+				var texture:Texture = Texture.fromBitmap(bmp);
 				var xml:XML = XML(create(name + "Xml"));
 				gameTextures[name] = new TextureAtlas(texture, xml);
 			}
@@ -61,13 +70,12 @@ package  {
 		
 		public static function getTexture(atlasName:String, name:String):Texture
 		{
-			return gameTextures[atlasName].getTexture(name);
+			return getAtlas(atlasName).getTexture(name);
 		}
 		
 		private static function create(name:String):Object
 		{
-			var textureClass:Class = Assets;
-			return new textureClass[name];
+			return new Assets[name]();
 		}
 	}
 }
