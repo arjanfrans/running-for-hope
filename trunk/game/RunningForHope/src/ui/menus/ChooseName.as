@@ -1,17 +1,20 @@
-package menus.screens
+package ui.menus
 {
 	import flash.text.*;
 	
 	import game.GameState;
 	
+	import model.Model;
+	import model.Player;
+	
 	import starling.core.Starling;
 	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.events.Event;
+	import starling.events.KeyboardEvent;
 	import starling.text.TextField;
 	import starling.textures.Texture;
 	import starling.utils.HAlign;
-	import starling.events.KeyboardEvent;
 	
 	public class ChooseName extends Sprite
 	{
@@ -45,6 +48,7 @@ package menus.screens
 			name_input.y = 253;
 			Starling.current.nativeOverlay.addChild(name_input);
 			
+			// Focus on the name input
 			Starling.current.nativeStage.focus = name_input;
 			name_input.text = " ";
 			name_input.setSelection(1, 1);
@@ -70,7 +74,7 @@ package menus.screens
 		{
 			if (e.keyCode == 13 && name_input.text.replace(/\s+/gi, "").length > 0 ) {
 				Starling.current.nativeOverlay.removeChild(name_input);
-				//Game.player_name(name_input.text);
+				Main.getModel().player().name = name_input.text;
 				Main.setState(new GameState());
 			}
 		}

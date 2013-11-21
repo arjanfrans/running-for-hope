@@ -1,4 +1,4 @@
-package menus.screens
+package ui.menus
 {
 	import citrus.core.starling.StarlingCitrusEngine;
 	import citrus.core.starling.StarlingState;
