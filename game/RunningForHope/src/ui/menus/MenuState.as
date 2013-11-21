@@ -13,12 +13,10 @@ package ui.menus
 	public class MenuState extends StarlingState
 	{
 		private static var _this:MenuState;
-		private var main:StarlingCitrusEngine;
 		
-		public function MenuState(main:StarlingCitrusEngine)
+		public function MenuState()
 		{
 			_this = this;
-			this.main = main; 
 			super();
 		}
 		
