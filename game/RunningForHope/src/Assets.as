@@ -33,11 +33,20 @@ package  {
 		[Embed(source="../assets/backgrounds/blue_sky.png")]
 		private static const SkyBg:Class;
 		
+		[Embed(source="../assets/backgrounds/small_mountain.png")]
+		private static const SmallMountainBg:Class;
+		
 		[Embed(source="../assets/backgrounds/big_mountain.png")]
 		private static const MountainBg:Class;
 		
 		[Embed(source="../assets/map.tmx", mimeType="application/octet-stream")]
 		private static const Level1Map:Class;
+		
+		[Embed(source="../assets/map1.tmx", mimeType="application/octet-stream")]
+		private static const Level2Map:Class;
+		
+		[Embed(source="../assets/map2.tmx", mimeType="application/octet-stream")]
+		private static const Level3Map:Class;
 		
 		private static var gameTextures:Dictionary = new Dictionary();
 		private static var gameMaps:Dictionary = new Dictionary();
