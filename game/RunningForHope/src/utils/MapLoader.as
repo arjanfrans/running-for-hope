@@ -1,6 +1,7 @@
 package utils
 {
 	import citrus.core.CitrusObject;
+	import citrus.objects.CitrusSprite;
 	import citrus.objects.NapePhysicsObject;
 	import citrus.utils.objectmakers.tmx.TmxMap;
 	import citrus.utils.objectmakers.tmx.TmxObject;
@@ -8,6 +9,7 @@ package utils
 	
 	import flash.utils.Dictionary;
 	import flash.utils.getDefinitionByName;
+	
 	import game.GameState;
 	import game.objects.Background;
 	import game.objects.BackgroundLayer;
@@ -56,8 +58,7 @@ package utils
 							var objVect:Vector.<CitrusObject> = state.getObjectsByType(objectClass);
 							for each(var obj:CitrusObject in objVect) {
 								if(obj is NapePhysicsObject) {
-									var napeObj:NapePhysicsObject = obj as NapePhysicsObject;
-									napeObj.view = Assets.getTexture("Spritesheet", textureName);
+									(obj as NapePhysicsObject).view = Assets.getTexture("Spritesheet", textureName);
 								}
 							}
 						}

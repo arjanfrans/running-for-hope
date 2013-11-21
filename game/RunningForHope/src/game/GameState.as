@@ -1,24 +1,23 @@
 package game {
 	
 	import citrus.core.starling.StarlingState;
-	import citrus.objects.CitrusSprite;
 	import citrus.objects.platformer.nape.MovingPlatform;
 	import citrus.objects.platformer.nape.Platform;
+	import citrus.objects.vehicle.nape.Nugget;
 	import citrus.physics.nape.Nape;
 	import citrus.utils.objectmakers.ObjectMakerStarling;
 	import citrus.utils.objectmakers.tmx.TmxMap;
 	
+	import flash.display.MovieClip;
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
+	import flash.system.LoaderContext;
 	
-	import game.objects.Background;
-	import game.objects.Box;
-	import game.objects.Luigi;
-	import game.objects.Token;
-	import game.objects.platforms.Water;
-	import game.objects.sensors.FallSensor;
+	import game.objects.*;
+	import game.objects.platforms.*;
+	import game.objects.sensors.*;
 	
 	import nape.geom.Vec2;
 	
@@ -42,25 +41,28 @@ package game {
 		private var tmx:TmxMap;
 		private var background:Background;
 		
+		private var _levelObjectsMC:MovieClip;
+		private var _level:Number;
+		
 		//Size of tiles in pixels
 		public static const BLOCK_SIZE:int = 16; 
 		
 		
-		public function GameState() {
+		public function GameState(level:Number=0) {
 			super();
-			
+			_level = level;
 			//Objects which can be found in a map
-			var objects:Array = [CitrusSprite, Luigi, FallSensor, Platform, Box, MovingPlatform, Token, Water];
+			var objects:Array = [Luigi, FallSensor, EndLevelSensor, Platform, Box, MovingPlatform, Token, Water];
 
-			this._ce.stage.align = StageAlign.TOP_LEFT;
-			this._ce.stage.scaleMode = StageScaleMode.NO_SCALE;
+			_ce.stage.align = StageAlign.TOP_LEFT;
+			_ce.stage.scaleMode = StageScaleMode.NO_SCALE;
 		}	
 		
 		override public function initialize():void {	
 			super.initialize();
 			stage.addEventListener(starling.events.ResizeEvent.RESIZE, onResize);
 			
-			var map:XML = Assets.getTmxMap("Level1");
+			var map:XML = Assets.getTmxMap("Level" + _level);
 			tmx = new TmxMap(map);
 			
 			background = utils.MapLoader.loadBackground(this, tmx);
