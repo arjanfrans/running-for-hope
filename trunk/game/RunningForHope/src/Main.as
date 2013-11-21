@@ -28,8 +28,8 @@ package {
 			_model = new Model();
 			this.stage.frameRate = Config.INTERNAL_FPS;
 			setUpStarling(Config.DEBUG_MODE);
-			//state = new MenuState(this);
-			state = new GameState();
+			state = new MenuState(this);
+			//state = new GameState(_level);
 		}
 		
 		public static function getModel():Model

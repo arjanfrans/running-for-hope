@@ -1,8 +1,10 @@
 package  {
 	
 	import flash.display.Bitmap;
+	import flash.display.MovieClip;
 	import flash.utils.Dictionary;
 	
+	import starling.display.MovieClip;
 	import starling.textures.Texture;
 	import starling.textures.TextureAtlas;
 	
@@ -39,14 +41,15 @@ package  {
 		[Embed(source="../assets/backgrounds/big_mountain.png")]
 		private static const MountainBg:Class;
 		
-		[Embed(source="../assets/map.tmx", mimeType="application/octet-stream")]
-		private static const Level1Map:Class;
+		[Embed(source="../assets/map0.tmx", mimeType="application/octet-stream")]
+		private static const Level0Map:Class;
 		
 		[Embed(source="../assets/map1.tmx", mimeType="application/octet-stream")]
-		private static const Level2Map:Class;
+		private static const Level1Map:Class;
 		
 		[Embed(source="../assets/map2.tmx", mimeType="application/octet-stream")]
-		private static const Level3Map:Class;
+		private static const Level2Map:Class;
+		
 		
 		private static var gameTextures:Dictionary = new Dictionary();
 		private static var gameMaps:Dictionary = new Dictionary();
@@ -59,7 +62,9 @@ package  {
 			return gameMaps[name];
 		}
 		
-		public static function getBackground(name:String):Texture {
+		
+		public static function getBackground(name:String):Texture
+		{
 			var t:Texture = Texture.fromBitmap(create(name) as Bitmap);
 			return t;
 		}
