@@ -1,4 +1,4 @@
-package menus.buttons
+package ui.buttons
 {
 	import flash.geom.Rectangle;
 	import starling.display.Button;

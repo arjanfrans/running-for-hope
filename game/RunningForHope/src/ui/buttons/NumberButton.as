@@ -1,4 +1,4 @@
-package menus.buttons
+package ui.buttons
 {
 	import citrus.core.CitrusEngine;
 	import citrus.input.Input;

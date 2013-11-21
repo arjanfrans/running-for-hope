@@ -1,6 +1,6 @@
-package menus.screens
+package ui.menus
 {
-	import menus.buttons.NumberButton;
+	import ui.buttons.NumberButton;
 	
 	import starling.display.Button;
 	import starling.display.Sprite;

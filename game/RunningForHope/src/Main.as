@@ -6,7 +6,7 @@ package {
 	
 	import game.GameState;
 	
-	import menus.screens.MenuState;
+	import model.Model;
 	
 	import starling.core.Starling;
 	import starling.display.Image;
@@ -14,18 +14,26 @@ package {
 	import starling.textures.Texture;
 	
 	import ui.PlayerStatsUi;
+	import ui.menus.MenuState;
 
 	[SWF(backgroundColor="#000000", wmode="direct", width="800", height="600", frameRate="30")]
 	public class Main extends StarlingCitrusEngine {
 		
 		private static var _this:Main;
 		private var _level:int = 0;
+		private var _model:Model;
 		
 		public function Main() {
 			_this = this;
+			_model = new Model();
 			this.stage.frameRate = Config.INTERNAL_FPS;
 			setUpStarling(Config.DEBUG_MODE);
 			state = new MenuState(this);
+		}
+		
+		public static function getModel():Model
+		{
+			return _this._model;
 		}
 		
 		public static function setState(state:StarlingState):void

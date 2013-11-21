@@ -1,24 +1,31 @@
 package game.objects
 {
+	import avmplus.getQualifiedClassName;
+	import avmplus.getQualifiedSuperclassName;
+	
 	import citrus.CustomHero;
 	import citrus.objects.NapePhysicsObject;
 	import citrus.objects.platformer.nape.Platform;
+	import citrus.objects.platformer.simple.StaticObject;
 	import citrus.physics.nape.NapeUtils;
 	import citrus.view.starlingview.AnimationSequence;
 	
 	import flash.ui.Keyboard;
+	import flash.utils.describeType;
 	
 	import game.GameState;
 	import game.PlayerStats;
 	
 	import nape.callbacks.InteractionCallback;
 	import nape.geom.Vec2;
+	import nape.phys.Body;
 	import nape.shape.Polygon;
+	import nape.shape.Shape;
 	
 	import starling.animation.DelayedCall;
 	import starling.core.Starling;
 	import starling.textures.TextureAtlas;
-	import nape.shape.Shape;
+	import model.Model;
 	
 	public class Luigi extends CustomHero
 	{
@@ -28,6 +35,8 @@ package game.objects
 		private const linear_dampening:Number = 2;
 		private var air_acceleration:Number =  8;
 		private var oldVelocity:Vec2 = new Vec2();
+		
+		private var safe_respawn:Vec2;
 		
 		private var _touchingWall:Boolean = false;
 		private var jump_triggered:Boolean = false;
@@ -71,6 +80,12 @@ package game.objects
 		{
 			super.update(timeDelta);
 			var velocity:Vec2 = _body.velocity;
+			
+			// If on a safe ground tile (static), save it for possible respawns
+			var groundBody:Body =  this._groundContacts[0] as Body;
+			if(_onGround && groundBody != null && groundBody.isStatic()) {
+				safe_respawn = new Vec2(x, y);
+			}
 			
 			if (controlsEnabled) {
 				var moveKeyPressed:Boolean = false;
@@ -119,8 +134,8 @@ package game.objects
 				if (_touchingWall && _ce.input.isDoing("jump", inputChannel) && !_onGround && velocity.y < 50 && Math.abs(oldVelocity.x) > 50 && !jump_triggered)
 				{
 					velocity.y = Math.max(velocity.y - 200, -jumpHeight);
-					_touchingWall = false;
 					velocity.x = (oldVelocity.x > 0) ? -150 : 150;
+					_touchingWall = false;
 					jump_triggered = true;
 				}
 				
@@ -144,12 +159,16 @@ package game.objects
 			Starling.juggler.add(new DelayedCall(function(x:Number, y:Number):void {
 				oldVelocity.x = x;
 				oldVelocity.y = y;
-			}, 0.4, [_body.velocity.x, _body.velocity.y]));
+			}, 0.3, [_body.velocity.x, _body.velocity.y]));
 			
 			if(isDead()) {
-				PlayerStats.tokens = 0;
-				PlayerStats.decreaseHealth();
-				_ce.state = new GameState();
+				var m:Model = Main.getModel();
+				m.lifes--;
+				velocity.x = 0;
+				velocity.y = 0;
+				x = safe_respawn.x;
+				y = safe_respawn.y;
+				dead = false;
 			}
 			
 			updateAnimation();

@@ -1,7 +1,7 @@
-package menus.screens
+package ui.menus
 {
 	import starling.display.Sprite;
-	import menus.buttons.NumberButton;
+	import ui.buttons.NumberButton;
 	import game.GameState;
 	
 	public class ChooseGender extends Sprite
