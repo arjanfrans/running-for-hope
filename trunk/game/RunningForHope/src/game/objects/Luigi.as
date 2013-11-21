@@ -84,7 +84,9 @@ package game.objects
 			// If on a safe ground tile (static), save it for possible respawns
 			var groundBody:Body =  this._groundContacts[0] as Body;
 			if(_onGround && groundBody != null && groundBody.isStatic()) {
-				safe_respawn = new Vec2(x, y);
+				Starling.juggler.add(new DelayedCall(function(x:Number, y:Number):void {
+					safe_respawn = new Vec2(x, y);
+				}, 1, [x, y]));
 			}
 			
 			if (controlsEnabled) {
@@ -161,7 +163,7 @@ package game.objects
 				oldVelocity.y = y;
 			}, 0.3, [_body.velocity.x, _body.velocity.y]));
 			
-			if(isDead()) {
+			if(_dead) {
 				var m:Model = Main.getModel();
 				m.lifes--;
 				velocity.x = 0;
@@ -271,13 +273,8 @@ package game.objects
 		/**
 		 * Check if the hero is dead
 		 */
-		public function isDead():Boolean
+		public function get dead():Boolean
 		{
-			//TODO change the height on which the Hero dies to something reliable. 
-			//stageHeight changes at resize which causes problems
-			if(this.y > _ce.stage.stageHeight) {
-				return true;
-			}
 			return _dead;
 		}
 		

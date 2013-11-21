@@ -1,7 +1,10 @@
 package game {
 	
+	import citrus.core.starling.StarlingState;
+	import citrus.objects.CitrusSprite;
 	import citrus.objects.platformer.nape.MovingPlatform;
 	import citrus.objects.platformer.nape.Platform;
+	import citrus.physics.nape.Nape;
 	import citrus.utils.objectmakers.ObjectMakerStarling;
 	import citrus.utils.objectmakers.tmx.TmxMap;
 	
@@ -15,6 +18,7 @@ package game {
 	import game.objects.Luigi;
 	import game.objects.Token;
 	import game.objects.platforms.Water;
+	import game.objects.sensors.FallSensor;
 	
 	import nape.geom.Vec2;
 	
@@ -24,8 +28,6 @@ package game {
 	import ui.PlayerStatsUi;
 	
 	import utils.MapLoader;
-	import citrus.core.starling.StarlingState;
-	import citrus.physics.nape.Nape;
 	
 	/**
 	 * The main game state, this is where the gameplay happens. The level gets setup here.
@@ -48,7 +50,7 @@ package game {
 			super();
 			
 			//Objects which can be found in a map
-			var objects:Array = [Luigi, Platform, Box, MovingPlatform, Token, Water];
+			var objects:Array = [CitrusSprite, Luigi, FallSensor, Platform, Box, MovingPlatform, Token, Water];
 
 			this._ce.stage.align = StageAlign.TOP_LEFT;
 			this._ce.stage.scaleMode = StageScaleMode.NO_SCALE;
@@ -73,7 +75,6 @@ package game {
 
 			add(napePhysics);
 			
-			
 			ObjectMakerStarling.FromTiledMap(map, Assets.getAtlas("Spritesheet"));     
 			
 			hero = getObjectByName("hero") as Luigi;
@@ -94,7 +95,7 @@ package game {
 		 * Update the game dimensions/size/zoom when a resize of the screen is done.
 		 */
 		private function onResize(event:ResizeEvent):void
-		{		
+		{	
 			var width:Number = event.width;
 			var height:Number = event.height;
 			var newWidth:Number = width;
@@ -144,6 +145,8 @@ package game {
 			
 			//TODO scaling down too small will cause the game to crash/not work as it should
 		}	
+		
+
 		
 	}
 }

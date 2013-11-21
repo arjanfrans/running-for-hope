@@ -20,8 +20,6 @@ package game.objects.platforms
 			this._beginContactCallEnabled = true;	
 		}
 		
-		
-		
 		/**
 		 * Function when this object is contacted
 		 */
@@ -38,7 +36,7 @@ package game.objects.platforms
 		
 		
 		/**
-		 * Overrided from parten. 'Fluid' properties for water are added
+		 * Overrided from parent. 'Fluid' properties for water are added
 		 */
 		override protected function createShape():void
 		{
