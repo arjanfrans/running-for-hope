@@ -14,7 +14,9 @@ package model
 		{
 			_player = new Player();
 			_levels = new <Level>[
-				new Level("Level 1", "Level1")
+				new Level("Level 1", "Level0"),
+				new Level("Level 2", "Level1"),
+				new Level("Level 3", "Level2")
 			]; 
 		}
 		
