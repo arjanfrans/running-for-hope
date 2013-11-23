@@ -18,7 +18,7 @@ package
 			this.loader = new Loader();
 			this.loader.contentLoaderInfo.addEventListener(Event.COMPLETE, onLoad);
 			this.loader.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, loaderIOErrorHandler);
-			this.loader.load(new URLRequest("../assets/map" + Main.getModel().level + ".swf"));
+			this.loader.load(new URLRequest("levels/map" + Main.getModel().level + ".swf"));
 		}
 		
 		protected function onLoad(event:Event):void {
