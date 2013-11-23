@@ -8,11 +8,14 @@ package game {
 	import citrus.utils.objectmakers.ObjectMakerStarling;
 	import citrus.utils.objectmakers.tmx.TmxMap;
 	
+	import flash.display.Loader;
 	import flash.display.MovieClip;
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
+	import flash.events.Event;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
+	import flash.net.URLRequest;
 	import flash.system.LoaderContext;
 	
 	import game.objects.*;
@@ -40,12 +43,14 @@ package game {
 		private const VIRTUAL_HEIGHT:int = 448;
 		private const ASPECT_RATIO:Number = VIRTUAL_WIDTH / VIRTUAL_HEIGHT;
 		
+		public static const BLOCK_SIZE:int = 16; //Size of tiles in pixels
+
 		private var hero:Luigi;
 		private var tmx:TmxMap;
 		private var background:Background;
 		
-		//Size of tiles in pixels
-		public static const BLOCK_SIZE:int = 16; 
+		private var loader:Loader;
+
 		
 		public function GameState() {
 			super();
@@ -54,16 +59,11 @@ package game {
 
 			_ce.stage.align = StageAlign.TOP_LEFT;
 			_ce.stage.scaleMode = StageScaleMode.NO_SCALE;
-		}	
+		}
 		
 		override public function initialize():void {	
 			super.initialize();
 			stage.addEventListener(starling.events.ResizeEvent.RESIZE, onResize);
-			
-			var level:Level = Main.getModel().getLevel(); 
-			tmx = level.tmx();
-			
-			background = utils.MapLoader.loadBackground(this, tmx);
 			
 			var napePhysics:Nape = new Nape("nape");
 			if(Config.DEBUG_MODE) napePhysics.visible = true;
@@ -75,20 +75,45 @@ package game {
 
 			add(napePhysics);
 			
-			ObjectMakerStarling.FromTiledMap(level.map(), Assets.getAtlas("Spritesheet"));     
+			loadFlash();
+			//loadTmx();
 			
 			hero = getObjectByName("hero") as Luigi;
-			
-			utils.MapLoader.loadObjectTextures(this, tmx);
 			
 			view.camera.easing = new Point(1, 1);
 			view.camera.allowZoom = true;
 			view.camera.setUp(hero, new Point(_ce.stage.width/2, _ce.stage.height/2), new Rectangle(0, 0, tmx.width * BLOCK_SIZE, tmx.height * BLOCK_SIZE));
 			
 			this.addChild(new PlayerStatsUi()); //Add the HUD
-			
 			//Resize at start, to scale everything properly
 			onResize(new ResizeEvent("init", Starling.current.nativeStage.stageWidth, Starling.current.nativeStage.stageHeight));
+		}
+		
+		/**
+		 * Load a level from a flash file
+		 */
+		private function loadFlash():void
+		{
+			var level:Level = Main.getModel().getLevel(); 
+			
+			ObjectMakerStarling.FromMovieClip(level.flashLevel, Assets.getAtlas("Spritesheet"));
+			
+			utils.MapLoader.loadObjectTextures(this, tmx);
+		}
+		
+		/**
+		 * Load a level from a tmx file
+		 */
+		private function loadTmx():void
+		{
+			var level:Level = Main.getModel().getLevel(); 
+			tmx = level.tmx();
+			
+			background = utils.MapLoader.loadBackground(this, tmx);
+			
+			ObjectMakerStarling.FromTiledMap(level.map(), Assets.getAtlas("Spritesheet"));    
+			
+			utils.MapLoader.loadObjectTextures(this, tmx);
 		}
 		
 		/**

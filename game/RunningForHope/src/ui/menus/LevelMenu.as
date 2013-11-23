@@ -42,7 +42,7 @@ package ui.menus
 			
 			// Add buttons for each level
 			var m:Model = Main.getModel();
-			var numLevels = m.numLevels();
+			var numLevels:int = m.numLevels();
 			for (var i:int = 0; i < numLevels; i++) {
 				var level:Level = m.getLevel(i); 
 				var button:NumberButton = new NumberButton(Assets.getTexture("Interface", "btnGeneric"), i + 1, level.name, callbackWrapper, 250);

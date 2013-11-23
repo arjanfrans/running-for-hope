@@ -7,6 +7,7 @@ package  {
 	import starling.display.MovieClip;
 	import starling.textures.Texture;
 	import starling.textures.TextureAtlas;
+	import flash.display.Loader;
 	
 	/**
 	 * All the game assets are accesed through this class
@@ -53,6 +54,7 @@ package  {
 		
 		private static var gameTextures:Dictionary = new Dictionary();
 		private static var gameMaps:Dictionary = new Dictionary();
+				
 		
 		public static function getTmxMap(name:String):XML
 		{
@@ -61,6 +63,7 @@ package  {
 			}
 			return gameMaps[name];
 		}
+		
 		
 		
 		public static function getBackground(name:String):Texture
