@@ -24,6 +24,11 @@ package model
 			_name = name;
 		}
 		
+		public function map():XML
+		{
+			return _tmx;
+		}
+		
 		public function tmx():TmxMap
 		{
 			if(_tmx == null) _tmx = Assets.getTmxMap(_tmxName);

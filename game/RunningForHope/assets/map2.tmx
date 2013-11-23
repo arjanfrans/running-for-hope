@@ -4770,5 +4770,10 @@
    </properties>
   </object>
   <object name="fall" type="game.objects.sensors.FallSensor" x="-160" y="304" width="1792" height="16"/>
+  <object type="game.objects.sensors.EndLevelSensor" x="1248" y="224" width="32" height="64">
+   <properties>
+    <property name="nextLevel" value="3"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>
