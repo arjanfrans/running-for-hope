@@ -1,10 +1,12 @@
 package model
 {
+	import citrus.core.CitrusEngine;
+	
 	public class Model
 	{
 		private var _level:int = 0;
 		private var _points:int = 0;
-		private var _time:int = 0;
+		private var _time:Number = 0;
 		private var _lifes:int = 4;
 		private var _player:Player;
 		
@@ -23,6 +25,8 @@ package model
 		public function set level(level:int):void
 		{
 			_level = level;
+			_points = 0;
+			_time = 0;
 		}
 		
 		public function numLevels():int
@@ -41,6 +45,16 @@ package model
 			return _level;
 		}
 		
+		public function set pause(b:Boolean):void
+		{
+			CitrusEngine.getInstance().playing = !b;
+		}
+		
+		public function get pause():Boolean
+		{
+			return !CitrusEngine.getInstance().playing;
+		}
+		
 		public function set points(points:int):void
 		{
 			_points = points;
@@ -51,12 +65,12 @@ package model
 			return _points;
 		}
 		
-		public function set time(time:int):void
+		public function set time(time:Number):void
 		{
 			_time = time;
 		}
 		
-		public function get time():int
+		public function get time():Number
 		{
 			return _time;
 		}

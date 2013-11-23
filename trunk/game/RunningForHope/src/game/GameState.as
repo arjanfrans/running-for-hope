@@ -19,8 +19,11 @@ package game {
 	import game.objects.platforms.*;
 	import game.objects.sensors.*;
 	
+	import model.Level;
+	
 	import nape.geom.Vec2;
 	
+	import starling.animation.DelayedCall;
 	import starling.core.Starling;
 	import starling.events.ResizeEvent;
 	
@@ -41,16 +44,11 @@ package game {
 		private var tmx:TmxMap;
 		private var background:Background;
 		
-		private var _levelObjectsMC:MovieClip;
-		private var _level:Number;
-		
 		//Size of tiles in pixels
 		public static const BLOCK_SIZE:int = 16; 
 		
-		
-		public function GameState(level:Number=0) {
+		public function GameState() {
 			super();
-			_level = level;
 			//Objects which can be found in a map
 			var objects:Array = [Luigi, FallSensor, EndLevelSensor, Platform, Box, MovingPlatform, Token, Water];
 
@@ -62,8 +60,8 @@ package game {
 			super.initialize();
 			stage.addEventListener(starling.events.ResizeEvent.RESIZE, onResize);
 			
-			var map:XML = Assets.getTmxMap("Level" + _level);
-			tmx = new TmxMap(map);
+			var level:Level = Main.getModel().getLevel(); 
+			tmx = level.tmx();
 			
 			background = utils.MapLoader.loadBackground(this, tmx);
 			
@@ -77,7 +75,7 @@ package game {
 
 			add(napePhysics);
 			
-			ObjectMakerStarling.FromTiledMap(map, Assets.getAtlas("Spritesheet"));     
+			ObjectMakerStarling.FromTiledMap(level.map(), Assets.getAtlas("Spritesheet"));     
 			
 			hero = getObjectByName("hero") as Luigi;
 			
@@ -148,7 +146,11 @@ package game {
 			//TODO scaling down too small will cause the game to crash/not work as it should
 		}	
 		
-
-		
+		override public function update(timeDelta:Number):void
+		{
+			if(!Main.getModel().pause) Main.getModel().time += timeDelta;
+			trace(Main.getModel().time);
+			super.update(timeDelta);
+		}
 	}
 }
