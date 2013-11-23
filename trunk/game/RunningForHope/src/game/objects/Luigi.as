@@ -16,6 +16,8 @@ package game.objects
 	import game.GameState;
 	import game.PlayerStats;
 	
+	import model.Model;
+	
 	import nape.callbacks.InteractionCallback;
 	import nape.geom.Vec2;
 	import nape.phys.Body;
@@ -25,7 +27,6 @@ package game.objects
 	import starling.animation.DelayedCall;
 	import starling.core.Starling;
 	import starling.textures.TextureAtlas;
-	import model.Model;
 	
 	public class Luigi extends CustomHero
 	{
@@ -268,6 +269,16 @@ package game.objects
 			if (prevAnimation != _animation) {
 				onAnimationChange.dispatch();
 			}
+		}
+		
+		override public function get animation():String
+		{
+			return _animation;
+		}
+		
+		public function set animation(animation:String):void
+		{
+			_animation = animation;
 		}
 		
 		/**
