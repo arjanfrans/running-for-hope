@@ -1,9 +1,13 @@
 package game.objects
 {
 	import citrus.objects.platformer.nape.Coin;
-	import nape.callbacks.InteractionCallback;
 	import citrus.physics.nape.NapeUtils;
+	
 	import game.PlayerStats;
+	
+	import nape.callbacks.InteractionCallback;
+	
+	import ui.PlayerStatsUi;
 	
 	public class Token extends Coin
 	{
@@ -21,7 +25,8 @@ package game.objects
 			
 			if (_collectorClass && NapeUtils.CollisionGetOther(this, interactionCallback) is _collectorClass) {
 				kill = true;
-				PlayerStats.addToken();
+				Main.getModel().points++;
+				PlayerStatsUi.updateUi();
 			}
 				
 		}

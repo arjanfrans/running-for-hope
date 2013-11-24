@@ -30,7 +30,8 @@ package game.objects.sensors
 			var collider:NapePhysicsObject = NapeUtils.CollisionGetOther(this, interactionCallback);
 			
 			if (collider is Luigi) {
-				// TODO: Submit score
+				Main.getModel().getLevel().highscores().submitScore();
+				
 				if(++Main.getModel().level >= Main.getModel().numLevels()) {
 					Main.setState(new MenuState());
 					return;

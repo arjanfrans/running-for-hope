@@ -23,16 +23,19 @@ package
 		}
 		
 		protected function onLoad(event:Event):void {
-			Main.getModel().getLevel(Main.getModel().level).flashLevel = event.target.loader.content;
+			Main.getModel().getLevel().flashLevel = event.target.loader.content;
 			Main.setState(new GameState());
 			loader.removeEventListener(Event.COMPLETE, onLoad);
 			loader.unloadAndStop(true);
 		}
 		
 		protected function loaderIOErrorHandler(errorEvent:IOErrorEvent):void{
-			
 			trace("ioErrorHandler: " + errorEvent);
 			
+			Main.setState(new GameState());
+			
+			loader.removeEventListener(Event.COMPLETE, onLoad);
+			loader.unloadAndStop(true);
 		}
 	}
 }
