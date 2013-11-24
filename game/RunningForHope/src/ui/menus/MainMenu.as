@@ -54,7 +54,7 @@ package ui.menus
 		
 		private function levelHighscores(level:int):void
 		{
-			
+			MenuState.openMenu(new HighScoreView(level));
 		}
 		
 	}

@@ -28,6 +28,9 @@ package game.objects
 	import starling.core.Starling;
 	import starling.textures.TextureAtlas;
 	
+	import ui.PlayerStatsUi;
+	import ui.menus.MenuState;
+	
 	public class Luigi extends CustomHero
 	{
 		protected static var seq:AnimationSequence;
@@ -164,14 +167,18 @@ package game.objects
 				oldVelocity.y = y;
 			}, 0.3, [_body.velocity.x, _body.velocity.y]));
 			
+			// Handle being dead
 			if(_dead) {
 				var m:Model = Main.getModel();
-				m.lifes--;
+				if(m.lifes-- < 1) {
+					Main.setState(new MenuState());
+				}
 				velocity.x = 0;
 				velocity.y = 0;
 				x = safe_respawn.x;
 				y = safe_respawn.y;
 				dead = false;
+				PlayerStatsUi.updateUi();
 			}
 			
 			updateAnimation();

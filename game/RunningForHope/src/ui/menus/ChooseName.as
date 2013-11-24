@@ -75,7 +75,7 @@ package ui.menus
 			if (e.keyCode == 13 && name_input.text.replace(/\s+/gi, "").length > 0 ) {
 				Starling.current.nativeOverlay.removeChild(name_input);
 				Main.getModel().player().name = name_input.text;
-				Main.setState(new LevelLoaderState());
+				Main.setState(new GameState());
 			}
 		}
 	}

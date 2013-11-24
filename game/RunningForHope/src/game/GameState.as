@@ -5,6 +5,7 @@ package game {
 	import citrus.objects.platformer.nape.Platform;
 	import citrus.objects.vehicle.nape.Nugget;
 	import citrus.physics.nape.Nape;
+	import citrus.utils.objectmakers.ObjectMaker2D;
 	import citrus.utils.objectmakers.ObjectMakerStarling;
 	import citrus.utils.objectmakers.tmx.TmxMap;
 	
@@ -13,6 +14,7 @@ package game {
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
 	import flash.events.Event;
+	import flash.events.IOErrorEvent;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	import flash.net.URLRequest;
@@ -39,11 +41,11 @@ package game {
 	 */
 	public class GameState extends StarlingState {
 		
-		private const VIRTUAL_WIDTH:int = 512;
-		private const VIRTUAL_HEIGHT:int = 448;
+		private const VIRTUAL_WIDTH:int = 800;
+		private const VIRTUAL_HEIGHT:int = 600;
 		private const ASPECT_RATIO:Number = VIRTUAL_WIDTH / VIRTUAL_HEIGHT;
 		
-		public static const BLOCK_SIZE:int = 16; //Size of tiles in pixels
+		public static const BLOCK_SIZE:int = 32; //Size of tiles in pixels
 
 		private var hero:Luigi;
 		private var tmx:TmxMap;
@@ -57,30 +59,28 @@ package game {
 			//Objects which can be found in a map
 			var objects:Array = [Luigi, FallSensor, EndLevelSensor, Platform, Box, MovingPlatform, Token, Water];
 
-			_ce.stage.align = StageAlign.TOP_LEFT;
-			_ce.stage.scaleMode = StageScaleMode.NO_SCALE;
+			//_ce.stage.align = StageAlign.TOP_LEFT;
+			//_ce.stage.scaleMode = StageScaleMode.NO_SCALE;
+			trace("Constructor");
 		}
 		
 		override public function initialize():void {	
+			trace("Init");
 			super.initialize();
-			stage.addEventListener(starling.events.ResizeEvent.RESIZE, onResize);
 			
 			var napePhysics:Nape = new Nape("nape");
 			if(Config.DEBUG_MODE) napePhysics.visible = true;
+			add(napePhysics);
 			
 			/* Adjust timeStep to match framerate, so 30 or 60 fps will act the same
 			napePhysics.timeStep = 1/Config.INTERNAL_FPS;
 			trace(napePhysics.timeStep);
 			*/
 
-			add(napePhysics);
-			
 			loadFlash();
 			//loadTmx();
 			
 			this.addChild(new PlayerStatsUi()); //Add the HUD
-			//Resize at start, to scale everything properly
-			onResize(new ResizeEvent("init", Starling.current.nativeStage.stageWidth, Starling.current.nativeStage.stageHeight));
 		}
 		
 		/**
@@ -88,16 +88,38 @@ package game {
 		 */
 		private function loadFlash():void
 		{
-			var level:Level = Main.getModel().getLevel(); 
-			ObjectMakerStarling.FromMovieClip(level.flashLevel, Assets.getAtlas("Spritesheet"));
-
-			hero = getObjectByName("Hero") as Luigi;
-
-			view.camera.easing = new Point(1, 1);
-			view.camera.allowZoom = true;
-			view.camera.setUp(hero, new Point(_ce.stage.width/2, _ce.stage.height/2), new Rectangle(0, 0, level.flashLevel.width, level.flashLevel.height));
+			trace("loadFlash");
+			this.loader = new Loader();
+			this.loader.contentLoaderInfo.addEventListener(Event.COMPLETE, initFlash);
+			this.loader.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, flashFailed);
+			this.loader.load(new URLRequest("levels/map" + Main.getModel().level + ".swf"));
 			
-			//utils.MapLoader.loadObjectTextures(this, tmx);
+		}
+		
+		private function initFlash(e:Event):void
+		{
+			trace("initFlash");
+			var flashLevel:MovieClip = e.target.loader.content;
+			//ObjectMaker2D.FromMovieClip(flashLevel);
+			ObjectMakerStarling.FromMovieClip(flashLevel, Assets.getAtlas("Spritesheet"));
+			
+			
+			hero = getObjectByName("Hero") as Luigi;
+			
+			view.camera.allowZoom = true;
+			view.camera.easing = new Point(1, 1);
+			view.camera.setUp(hero, new Point(_ce.stage.width/2, _ce.stage.height/2), new Rectangle(0, 0, flashLevel.width * 2, flashLevel.height * 2));
+			
+			stage.addEventListener(starling.events.ResizeEvent.RESIZE, onResize);
+			onResize(new ResizeEvent("init", Starling.current.nativeStage.stageWidth, Starling.current.nativeStage.stageHeight));
+			
+			loader.removeEventListener(Event.COMPLETE, initFlash);
+			loader.unloadAndStop(true);
+		}
+		
+		private function flashFailed(e:IOErrorEvent):void
+		{
+			trace("ioErrorHandler: " + e);
 		}
 		
 		/**
@@ -105,6 +127,7 @@ package game {
 		 */
 		private function loadTmx():void
 		{
+			trace("TMX");
 			var level:Level = Main.getModel().getLevel(); 
 			tmx = level.tmx();
 			
@@ -119,6 +142,9 @@ package game {
 			view.camera.easing = new Point(1, 1);
 			view.camera.allowZoom = true;
 			view.camera.setUp(hero, new Point(_ce.stage.width/2, _ce.stage.height/2), new Rectangle(0, 0, tmx.width * BLOCK_SIZE, tmx.height * BLOCK_SIZE));
+
+			stage.addEventListener(starling.events.ResizeEvent.RESIZE, onResize);
+			onResize(new ResizeEvent("init", Starling.current.nativeStage.stageWidth, Starling.current.nativeStage.stageHeight));
 		}
 		
 		/**
@@ -126,6 +152,7 @@ package game {
 		 */
 		private function onResize(event:ResizeEvent):void
 		{	
+			/*
 			var width:Number = event.width;
 			var height:Number = event.height;
 			var newWidth:Number = width;
@@ -174,6 +201,7 @@ package game {
 			view.camera.reset();
 			
 			//TODO scaling down too small will cause the game to crash/not work as it should
+			*/
 		}	
 		
 		override public function update(timeDelta:Number):void

@@ -50,7 +50,7 @@ package ui.menus
 				button.y = 150 + (i * 75);
 				addChild(button);
 				
-				var highscoreTextField:TextField = new TextField(470, 50, "Highscore: To be added", "Arial", 15);
+				var highscoreTextField:TextField = new TextField(470, 50, "Highscore: " + level.highscores().getHighScore(0).toString(), "Arial", 15);
 				highscoreTextField.hAlign = HAlign.LEFT;
 				highscoreTextField.x = 320;
 				highscoreTextField.y = 162 + (i * 75);

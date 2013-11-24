@@ -14,8 +14,8 @@ package ui
 		public function PlayerStatsUi()
 		{
 			super();
-			scoreLabel = new TextField(80, 20, "Score: " + PlayerStats.tokens);
-			healthLabel = new TextField(80, 20, "Health: " + PlayerStats.health);
+			scoreLabel = new TextField(80, 20, "Score: " + Main.getModel().points);
+			healthLabel = new TextField(80, 20, "Health: " + Main.getModel().lifes);
 			scoreLabel.x = 40;
 			scoreLabel.y = 50;
 			healthLabel.x = 130;
@@ -28,8 +28,8 @@ package ui
 		 * Update de HUD.
 		 */
 		public static function updateUi():void {
-			scoreLabel.text = "Score: " + PlayerStats.tokens;
-			healthLabel.text = "Health: " + PlayerStats.health;
+			scoreLabel.text = "Score: " + Main.getModel().points;
+			healthLabel.text = "Health: " + Main.getModel().lifes;
 		}
 	}
 }
