@@ -1,25 +1,15 @@
 package game {
 	
 	import citrus.core.starling.StarlingState;
-	import citrus.objects.platformer.nape.MovingPlatform;
-	import citrus.objects.platformer.nape.Platform;
-	import citrus.objects.vehicle.nape.Nugget;
+	import citrus.objects.platformer.nape.*;
 	import citrus.physics.nape.Nape;
-	import citrus.objects.platformer.nape.Hero;
-	import citrus.utils.objectmakers.ObjectMaker2D;
 	import citrus.utils.objectmakers.ObjectMakerStarling;
-	import citrus.utils.objectmakers.tmx.TmxMap;
 	
-	import flash.display.Loader;
 	import flash.display.MovieClip;
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
-	import flash.events.Event;
-	import flash.events.IOErrorEvent;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
-	import flash.net.URLRequest;
-	import flash.system.LoaderContext;
 	
 	import game.objects.*;
 	import game.objects.platforms.*;
@@ -29,13 +19,10 @@ package game {
 	
 	import nape.geom.Vec2;
 	
-	import starling.animation.DelayedCall;
 	import starling.core.Starling;
 	import starling.events.ResizeEvent;
 	
 	import ui.PlayerStatsUi;
-	
-	import utils.MapLoader;
 	
 	/**
 	 * The main game state, this is where the gameplay happens. The level gets setup here.
@@ -46,27 +33,19 @@ package game {
 		private const VIRTUAL_HEIGHT:int = 600;
 		private const ASPECT_RATIO:Number = VIRTUAL_WIDTH / VIRTUAL_HEIGHT;
 		
-		public static const BLOCK_SIZE:int = 32; //Size of tiles in pixels
-
 		private var hero:Luigi;
-		private var tmx:TmxMap;
 		private var background:Background;
-		
-		private var loader:Loader;
-
 		
 		public function GameState() {
 			super();
 			//Objects which can be found in a map
-			var objects:Array = [Luigi, FallSensor, EndLevelSensor, Platform, Box, MovingPlatform, Token, Water];
+			var objects:Array = [Luigi, FallSensor, EndLevelSensor, DialogSensor, Platform, Box, MovingPlatform, Token, Water];
 
-			//_ce.stage.align = StageAlign.TOP_LEFT;
-			//_ce.stage.scaleMode = StageScaleMode.NO_SCALE;
-			trace("Constructor");
+			_ce.stage.align = StageAlign.TOP_LEFT;
+			_ce.stage.scaleMode = StageScaleMode.NO_SCALE;
 		}
 		
 		override public function initialize():void {	
-			trace("Init");
 			super.initialize();
 			
 			var napePhysics:Nape = new Nape("nape");
@@ -77,73 +56,19 @@ package game {
 			napePhysics.timeStep = 2*(1/Config.INTERNAL_FPS);
 
 
-			loadFlash();
-			//loadTmx();
-			
+			Main.getModel().getLevel().load(initFlash, true);
 			this.addChild(new PlayerStatsUi()); //Add the HUD
 		}
 		
-		/**
-		 * Load a level from a flash file
-		 */
-		private function loadFlash():void
+		private function initFlash(flashLevel:MovieClip):void
 		{
-			trace("loadFlash");
-			this.loader = new Loader();
-			this.loader.contentLoaderInfo.addEventListener(Event.COMPLETE, initFlash);
-			this.loader.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, flashFailed);
-			this.loader.load(new URLRequest("levels/map" + Main.getModel().level + ".swf"));
-			
-		}
-		
-		private function initFlash(e:Event):void
-		{
-			trace("initFlash");
-			var flashLevel:MovieClip = e.target.loader.content;
-			//ObjectMaker2D.FromMovieClip(flashLevel);
+			var level:Level = Main.getModel().getLevel();
 			ObjectMakerStarling.FromMovieClip(flashLevel, Assets.getAtlas("Spritesheet"));
-			
 			hero = getObjectByName("Hero") as Luigi;
-			
 			view.camera.allowZoom = true;
 			view.camera.easing = new Point(1, 1);
-			view.camera.setUp(hero, new Point(_ce.stage.width/2, _ce.stage.height/2), new Rectangle(0, 0, flashLevel.width * 2, flashLevel.height * 2));
+			view.camera.setUp(hero, new Point(_ce.stage.width/2, _ce.stage.height/2), new Rectangle(0, 0, level.width, level.height));
 			
-			trace(_ce.stage.width, Starling.current.nativeStage.stageWidth, flashLevel.width, flashLevel.height);
-			
-			loader.removeEventListener(Event.COMPLETE, initFlash);
-			loader.unloadAndStop(true);
-			
-			stage.addEventListener(starling.events.ResizeEvent.RESIZE, onResize);
-			onResize(new ResizeEvent("init", Starling.current.nativeStage.stageWidth, Starling.current.nativeStage.stageHeight));
-		}
-		
-		private function flashFailed(e:IOErrorEvent):void
-		{
-			trace("ioErrorHandler: " + e);
-		}
-		
-		/**
-		 * Load a level from a tmx file
-		 */
-		private function loadTmx():void
-		{
-			trace("TMX");
-			var level:Level = Main.getModel().getLevel(); 
-			tmx = level.tmx();
-			
-			background = utils.MapLoader.loadBackground(this, tmx);
-			
-			ObjectMakerStarling.FromTiledMap(level.map(), Assets.getAtlas("Spritesheet"));    
-			
-			utils.MapLoader.loadObjectTextures(this, tmx);
-			
-			hero = getObjectByName("hero") as Luigi;
-			
-			view.camera.easing = new Point(1, 1);
-			view.camera.allowZoom = true;
-			view.camera.setUp(hero, new Point(_ce.stage.width/2, _ce.stage.height/2), new Rectangle(0, 0, tmx.width * BLOCK_SIZE, tmx.height * BLOCK_SIZE));
-
 			stage.addEventListener(starling.events.ResizeEvent.RESIZE, onResize);
 			onResize(new ResizeEvent("init", Starling.current.nativeStage.stageWidth, Starling.current.nativeStage.stageHeight));
 		}
