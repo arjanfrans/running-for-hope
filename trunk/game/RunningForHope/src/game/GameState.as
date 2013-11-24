@@ -78,12 +78,6 @@ package game {
 			loadFlash();
 			//loadTmx();
 			
-			hero = getObjectByName("hero") as Luigi;
-			
-			view.camera.easing = new Point(1, 1);
-			view.camera.allowZoom = true;
-			view.camera.setUp(hero, new Point(_ce.stage.width/2, _ce.stage.height/2), new Rectangle(0, 0, tmx.width * BLOCK_SIZE, tmx.height * BLOCK_SIZE));
-			
 			this.addChild(new PlayerStatsUi()); //Add the HUD
 			//Resize at start, to scale everything properly
 			onResize(new ResizeEvent("init", Starling.current.nativeStage.stageWidth, Starling.current.nativeStage.stageHeight));
@@ -95,10 +89,15 @@ package game {
 		private function loadFlash():void
 		{
 			var level:Level = Main.getModel().getLevel(); 
-			
 			ObjectMakerStarling.FromMovieClip(level.flashLevel, Assets.getAtlas("Spritesheet"));
+
+			hero = getObjectByName("Hero") as Luigi;
+
+			view.camera.easing = new Point(1, 1);
+			view.camera.allowZoom = true;
+			view.camera.setUp(hero, new Point(_ce.stage.width/2, _ce.stage.height/2), new Rectangle(0, 0, level.flashLevel.width, level.flashLevel.height));
 			
-			utils.MapLoader.loadObjectTextures(this, tmx);
+			//utils.MapLoader.loadObjectTextures(this, tmx);
 		}
 		
 		/**
@@ -114,6 +113,12 @@ package game {
 			ObjectMakerStarling.FromTiledMap(level.map(), Assets.getAtlas("Spritesheet"));    
 			
 			utils.MapLoader.loadObjectTextures(this, tmx);
+			
+			hero = getObjectByName("hero") as Luigi;
+			
+			view.camera.easing = new Point(1, 1);
+			view.camera.allowZoom = true;
+			view.camera.setUp(hero, new Point(_ce.stage.width/2, _ce.stage.height/2), new Rectangle(0, 0, tmx.width * BLOCK_SIZE, tmx.height * BLOCK_SIZE));
 		}
 		
 		/**
@@ -160,7 +165,7 @@ package game {
 			Starling.current.viewPort = viewPortRectangle;
 			
 			//TODO background scaling doesn't work properly
-			background.updateSize();
+			//background.updateSize();
 			
 			view.camera.cameraLensWidth = newWidth;
 			view.camera.cameraLensHeight = newHeight;
@@ -174,7 +179,6 @@ package game {
 		override public function update(timeDelta:Number):void
 		{
 			if(!Main.getModel().pause) Main.getModel().time += timeDelta;
-			trace(Main.getModel().time);
 			super.update(timeDelta);
 		}
 	}

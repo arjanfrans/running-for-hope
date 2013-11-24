@@ -3,6 +3,7 @@ package
 	import citrus.core.starling.StarlingState;
 	
 	import flash.display.Loader;
+	import flash.display.MovieClip;
 	import flash.events.Event;
 	import flash.events.IOErrorEvent;
 	import flash.net.URLRequest;
@@ -22,8 +23,8 @@ package
 		}
 		
 		protected function onLoad(event:Event):void {
+			Main.getModel().getLevel(Main.getModel().level).flashLevel = event.target.loader.content;
 			Main.setState(new GameState());
-			
 			loader.removeEventListener(Event.COMPLETE, onLoad);
 			loader.unloadAndStop(true);
 		}
