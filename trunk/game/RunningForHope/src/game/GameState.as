@@ -73,10 +73,9 @@ package game {
 			if(Config.DEBUG_MODE) napePhysics.visible = true;
 			add(napePhysics);
 			
-			/* Adjust timeStep to match framerate, so 30 or 60 fps will act the same
-			napePhysics.timeStep = 1/Config.INTERNAL_FPS;
-			trace(napePhysics.timeStep);
-			*/
+			/* Adjust timeStep to match framerate, so 30 or 60 fps will act the same			*/
+			napePhysics.timeStep = 2*(1/Config.INTERNAL_FPS);
+
 
 			loadFlash();
 			//loadTmx();
@@ -108,7 +107,7 @@ package game {
 			
 			view.camera.allowZoom = true;
 			view.camera.easing = new Point(1, 1);
-			view.camera.setUp(hero, new Point(_ce.stage.width/2, _ce.stage.height/2), new Rectangle(0, 0, flashLevel.width, flashLevel.height));
+			view.camera.setUp(hero, new Point(_ce.stage.width/2, _ce.stage.height/2), new Rectangle(0, 0, flashLevel.width * 2, flashLevel.height * 2));
 			
 			trace(_ce.stage.width, Starling.current.nativeStage.stageWidth, flashLevel.width, flashLevel.height);
 			
