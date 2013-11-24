@@ -5,6 +5,7 @@ package game {
 	import citrus.objects.platformer.nape.Platform;
 	import citrus.objects.vehicle.nape.Nugget;
 	import citrus.physics.nape.Nape;
+	import citrus.objects.platformer.nape.Hero;
 	import citrus.utils.objectmakers.ObjectMaker2D;
 	import citrus.utils.objectmakers.ObjectMakerStarling;
 	import citrus.utils.objectmakers.tmx.TmxMap;
@@ -103,18 +104,19 @@ package game {
 			//ObjectMaker2D.FromMovieClip(flashLevel);
 			ObjectMakerStarling.FromMovieClip(flashLevel, Assets.getAtlas("Spritesheet"));
 			
-			
 			hero = getObjectByName("Hero") as Luigi;
 			
 			view.camera.allowZoom = true;
 			view.camera.easing = new Point(1, 1);
-			view.camera.setUp(hero, new Point(_ce.stage.width/2, _ce.stage.height/2), new Rectangle(0, 0, flashLevel.width * 2, flashLevel.height * 2));
+			view.camera.setUp(hero, new Point(_ce.stage.width/2, _ce.stage.height/2), new Rectangle(0, 0, flashLevel.width, flashLevel.height));
 			
-			stage.addEventListener(starling.events.ResizeEvent.RESIZE, onResize);
-			onResize(new ResizeEvent("init", Starling.current.nativeStage.stageWidth, Starling.current.nativeStage.stageHeight));
+			trace(_ce.stage.width, Starling.current.nativeStage.stageWidth, flashLevel.width, flashLevel.height);
 			
 			loader.removeEventListener(Event.COMPLETE, initFlash);
 			loader.unloadAndStop(true);
+			
+			stage.addEventListener(starling.events.ResizeEvent.RESIZE, onResize);
+			onResize(new ResizeEvent("init", Starling.current.nativeStage.stageWidth, Starling.current.nativeStage.stageHeight));
 		}
 		
 		private function flashFailed(e:IOErrorEvent):void
@@ -152,7 +154,6 @@ package game {
 		 */
 		private function onResize(event:ResizeEvent):void
 		{	
-			/*
 			var width:Number = event.width;
 			var height:Number = event.height;
 			var newWidth:Number = width;
@@ -201,7 +202,6 @@ package game {
 			view.camera.reset();
 			
 			//TODO scaling down too small will cause the game to crash/not work as it should
-			*/
 		}	
 		
 		override public function update(timeDelta:Number):void
