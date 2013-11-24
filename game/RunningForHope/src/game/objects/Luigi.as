@@ -66,7 +66,7 @@ package game.objects
 			maxVelocity = 130;
 			acceleration = 20;
 			jumpAcceleration = 10;
-			jumpHeight = 600;
+			jumpHeight = 400;
 		}	
 		
 		override protected function createShape():void
