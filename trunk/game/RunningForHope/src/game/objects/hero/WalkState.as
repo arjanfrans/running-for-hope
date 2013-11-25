@@ -27,7 +27,7 @@ package game.objects.hero
 			if (input.isDoing("left", _hero.inputChannel)) {
 				velocity.x -= _hero.acceleration;
 			}
-				
+			
 			if (_hero.onGround && input.justDid("jump", _hero.inputChannel)){
 				velocity.y = -_hero.jumpHeight;
 				_hero.onJump.dispatch();

@@ -69,8 +69,9 @@ package ui.buttons
 			stage.addEventListener(Event.REMOVED, destroy);
 		}
 		
-		private function destroy():void
+		private function destroy(e:Event):void
 		{
+			if(e.target != this) return;
 			stage.removeEventListener(KeyboardEvent.KEY_UP, keyboardHandler);
 			stage.removeEventListener(Event.REMOVED, destroy);
 		}
