@@ -16,7 +16,7 @@ package game {
 	import game.objects.sensors.*;
 	
 	import model.Level;
-	
+	import citrus.CustomSprite;
 	import nape.geom.Vec2;
 	
 	import starling.core.Starling;
@@ -35,14 +35,13 @@ package game {
 		private const ASPECT_RATIO:Number = VIRTUAL_WIDTH / VIRTUAL_HEIGHT;
 		
 		private var hero:Luigi;
-		private var background:SizableSprite;
 		private var playerStatsUi:PlayerStatsUi;
 		private var pauseMenu:PauseMenu = null;
 		
 		public function GameState() {
 			super();
 			//Objects which can be found in a map
-			var objects:Array = [Luigi, FallSensor, EndLevelSensor, DialogSensor, Platform, Box, MovingPlatform, Token, Water];
+			var objects:Array = [Luigi, CustomSprite, FallSensor, EndLevelSensor, DialogSensor, Platform, Box, MovingPlatform, Token, Water];
 
 			_ce.stage.align = StageAlign.TOP_LEFT;
 			_ce.stage.scaleMode = StageScaleMode.NO_SCALE;
