@@ -24,6 +24,7 @@ package model
 		private var _objects:Vector.<String>;
 		private var _dialog:DialogLibrary;
 		private var _dialogInit:Function = null;
+		private var _flashLevel:MovieClip;
 		
 		public function Level(name:String, file:String, dialogInit:Function = null)
 		{
@@ -41,7 +42,7 @@ package model
 			_objects = new Vector.<String>(); 
 			var loader:Loader = new Loader();
 			loader.contentLoaderInfo.addEventListener(Event.COMPLETE, function(e:Event):void {
-				var _flashLevel:MovieClip = e.target.loader.content;
+				_flashLevel = e.target.loader.content;
 				_width = _flashLevel.loaderInfo.width;
 				_height = _flashLevel.loaderInfo.height;
 				_maxPoints = 0;
@@ -53,6 +54,11 @@ package model
 				loader.unloadAndStop(true);
 			});
 			loader.load(new URLRequest("levels/" + _file + ".swf"));
+		}
+		
+		public function get flashLevel():MovieClip
+		{
+			return _flashLevel;
 		}
 		
 		public function initDialog():void

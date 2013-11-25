@@ -13,15 +13,14 @@ package ui.hud {
 		public function HeartsBar() {
 			fullHeart =  Assets.getTexture("Spritesheet", "token");
 			emptyHeart = Assets.getTexture("Spritesheet", "water");
-			
 			numLife = 0;
+			update();
 		}
 		
 		
 		
 		public function update():void
 		{
-			
 			var lives:int = Main.getModel().lifes;
 			
 			if (lives == numLife) {

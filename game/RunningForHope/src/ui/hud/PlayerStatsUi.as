@@ -15,8 +15,9 @@ package ui.hud {
 		private var scoreLabel:TextField;
 		private var healthLabel:TextField;
 		private var heartsBar:HeartsBar;
+		private var menuCallback:Function;
 		
-		public function PlayerStatsUi() {
+		public function PlayerStatsUi(menuCallback:Function) {
 			super();
 			scoreLabel = new TextField(80, 20, "Score: " + Main.getModel().points);
 			healthLabel = new TextField(80, 20, "Health: " + Main.getModel().lifes);
@@ -25,24 +26,21 @@ package ui.hud {
 			healthLabel.x = 130;
 			healthLabel.y = 50;
 			this.addChild(new Quad(800, 100));
-			
-			
+			this.menuCallback = menuCallback;
 			this.addChild(scoreLabel);
 			this.addChild(healthLabel);
 			this.addChild(
 				new NumberButton(
 					Assets.getTexture("Interface", "btnGeneric")
-					, 1
+					, 0
 					, "Main Menu"
-					, menuButtonCallBack
+					, menuCallback
 					, 100
 					, 0x000000
 				)
 			);
 			heartsBar = new HeartsBar();
 			this.addChild(heartsBar);
-			heartsBar.update();
-			
 		}
 		
 		/**
@@ -52,11 +50,6 @@ package ui.hud {
 			scoreLabel.text = "Score: " + Main.getModel().points;
 			healthLabel.text = "Health: " + Main.getModel().lifes;
 			heartsBar.update();
-		}
-		
-		private function menuButtonCallBack():void {
-			
-			Main.setState(new MenuState());
 		}
 	}
 }
