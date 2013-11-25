@@ -1,6 +1,8 @@
 package game.objects.sensors
 {
 	import citrus.core.CitrusEngine;
+	import citrus.core.starling.StarlingState;
+	import citrus.objects.CitrusSprite;
 	import citrus.objects.NapePhysicsObject;
 	import citrus.objects.platformer.nape.Coin;
 	import citrus.objects.platformer.nape.Sensor;
@@ -14,7 +16,6 @@ package game.objects.sensors
 	import ui.dialog.DialogView;
 	import ui.menus.MainMenu;
 	import ui.menus.MenuState;
-	import citrus.core.starling.StarlingState;
 	
 	public class DialogSensor extends Coin
 	{
@@ -23,7 +24,11 @@ package game.objects.sensors
 		{
 			super(name, params);
 			this.collectorClass = "game.objects.Luigi";
-			if(params != null && params["dialogName"] != null) dialogName = params["dialogName"];
+			if(params != null) {
+				if(params["dialogName"] != null) dialogName = params["dialogName"];
+				if(params["view"] != null) this.view = new CitrusSprite(params["view"], params);
+				trace(params["view"]);
+			}
 		}
 		
 		/**

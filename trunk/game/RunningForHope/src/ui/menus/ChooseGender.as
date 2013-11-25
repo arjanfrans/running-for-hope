@@ -24,13 +24,13 @@ package ui.menus
 		
 		private function btnGirl():void
 		{
-			//Game.player_gender("f");
+			Main.getModel().player().gender = "Female";
 			MenuState.openMenu(new ChooseName());
 		}
 		
 		private function btnBoy():void
 		{
-			//Game.player_gender("m");
+			Main.getModel().player().gender = "Male";
 			MenuState.openMenu(new ChooseName());
 		}
 	}

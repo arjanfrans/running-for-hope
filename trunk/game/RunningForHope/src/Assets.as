@@ -28,11 +28,11 @@ package  {
 		[Embed(source="../assets/characters/luigi.png")]
 		private static const LuigiAnimationPng:Class;
 		
-		[Embed(source="../assets/characters/dialog.xml", mimeType="application/octet-stream")]
-		private static const DialogXml:Class;
+		[Embed(source="../assets/characters/StaticCharacters.xml", mimeType="application/octet-stream")]
+		private static const CharactersXml:Class;
 		
-		[Embed(source="../assets/characters/dialog.png")]
-		private static const DialogPng:Class;
+		[Embed(source="../assets/characters/StaticCharacters.png")]
+		private static const CharactersPng:Class;
 		
 		[Embed(source="../assets/menus/interface.xml", mimeType="application/octet-stream")]
 		private static const InterfaceXml:Class;
@@ -48,16 +48,6 @@ package  {
 		
 		[Embed(source="../assets/backgrounds/big_mountain.png")]
 		private static const MountainBg:Class;
-		
-		[Embed(source="../assets/map0.tmx", mimeType="application/octet-stream")]
-		private static const Level0Map:Class;
-		
-		[Embed(source="../assets/map1.tmx", mimeType="application/octet-stream")]
-		private static const Level1Map:Class;
-		
-		[Embed(source="../assets/map2.tmx", mimeType="application/octet-stream")]
-		private static const Level2Map:Class;
-		
 		
 		private static var gameTextures:Dictionary = new Dictionary();
 		private static var gameMaps:Dictionary = new Dictionary();

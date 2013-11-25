@@ -154,7 +154,7 @@ package game.objects
 			//var velocity:Vec2 = _body.velocity;
 			
 			_state.update(timeDelta, _body.velocity, _ce.input);
-			trace(_state);
+			//trace(_state);
 			// If on a safe ground tile (static), save it for possible respawns
 /*			var groundBody:Body =  this._groundContacts[0] as Body;
 			if(_onGround && groundBody != null && groundBody.isStatic()) {
