@@ -3,7 +3,7 @@ package
 	public class Config
 	{
 		public static const INTERNAL_FPS:int = 30;
-		public static const DEBUG_MODE:Boolean = false;
+		public static const DEBUG_MODE:Boolean = true;
 		public static const LIFES:int = 4;		
 		/**
 		 * Wheter you keep a ratio on the game view. If true, black borders will be added around the view.

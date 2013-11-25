@@ -14,6 +14,7 @@ package citrus {
 	import nape.callbacks.InteractionCallback;
 	import nape.dynamics.InteractionFilter;
 	import nape.geom.Vec2;
+	import nape.phys.Material;
 	
 	import org.osflash.signals.Signal;
 	
@@ -156,6 +157,26 @@ package citrus {
 			onAnimationChange = new Signal();
 		}
 		
+		public function get ducking():Boolean
+		{
+			return _ducking;
+		}
+
+		public function set ducking(value:Boolean):void
+		{
+			_ducking = value;
+		}
+
+		public function get groundContacts():Array
+		{
+			return _groundContacts;
+		}
+
+		public function set groundContacts(value:Array):void
+		{
+			_groundContacts = value;
+		}
+
 		public function get playerMovingHero():Boolean
 		{
 			return _playerMovingHero;
@@ -479,6 +500,11 @@ package citrus {
 		public function set inverted(inverted:Boolean):void
 		{
 			_inverted = inverted;
+		}
+		
+		public function get material():Material
+		{
+			return _material;
 		}
 		
 		

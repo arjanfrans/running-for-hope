@@ -15,8 +15,11 @@ package game.objects
 	
 	import game.GameState;
 	import game.PlayerStats;
+	import game.objects.hero.DuckingState;
 	import game.objects.hero.IdleState;
+	import game.objects.hero.JumpState;
 	import game.objects.hero.LuigiState;
+	import game.objects.hero.WalkState;
 	
 	import model.Model;
 	
@@ -32,8 +35,6 @@ package game.objects
 	
 	import ui.PlayerStatsUi;
 	import ui.menus.MenuState;
-	import game.objects.hero.JumpState;
-	import game.objects.hero.WalkState;
 	
 	public class Luigi extends CustomHero
 	{
@@ -42,25 +43,26 @@ package game.objects
 		private const angular_dampening:Number = 2;
 		private const linear_dampening:Number = 2;
 		public var air_acceleration:Number =  8;
-		private var oldVelocity:Vec2 = new Vec2();
+		private var _oldVelocity:Vec2 = new Vec2();
 		
-		private var safe_respawn:Vec2;
+		private var _safe_respawn:Vec2;
 		
 		private var _touchingWall:Boolean = false;
-		private var jump_triggered:Boolean = false;
+		private var _jump_triggered:Boolean = false;
 		private var _dead:Boolean = false;		
 		
 		private var texture_height:Number;
 		private var texture_height_duck:Number;
 		private var duck_trigger:Boolean;
 		
-		private var normal_shape:Shape;
-		private var ducking_shape:Shape;
+		private var _normal_shape:Shape;
+		private var _ducking_shape:Shape;
 		private var _state:LuigiState;
 		
 		public var idleState:IdleState;
 		public var jumpState:JumpState;
 		public var walkState:WalkState;
+		public var duckingState:LuigiState;
 		
 		public function Luigi(name:String, params:Object=null)
 		{
@@ -74,6 +76,7 @@ package game.objects
 			idleState = new IdleState(this);
 			jumpState = new JumpState(this);
 			walkState = new WalkState(this);
+			duckingState = new DuckingState(this);
 			
 			_state = idleState;
 			
@@ -84,6 +87,66 @@ package game.objects
 			
 		}	
 		
+		public function get normal_shape():Shape
+		{
+			return _normal_shape;
+		}
+
+		public function set normal_shape(value:Shape):void
+		{
+			_normal_shape = value;
+		}
+
+		public function get ducking_shape():Shape
+		{
+			return _ducking_shape;
+		}
+
+		public function set ducking_shape(value:Shape):void
+		{
+			_ducking_shape = value;
+		}
+
+		public function get jump_triggered():Boolean
+		{
+			return _jump_triggered;
+		}
+
+		public function set jump_triggered(value:Boolean):void
+		{
+			_jump_triggered = value;
+		}
+
+		public function get safe_respawn():Vec2
+		{
+			return _safe_respawn;
+		}
+
+		public function set safe_respawn(value:Vec2):void
+		{
+			_safe_respawn = value;
+		}
+
+		public function get oldVelocity():Vec2
+		{
+			return _oldVelocity;
+		}
+
+		public function set oldVelocity(value:Vec2):void
+		{
+			_oldVelocity = value;
+		}
+
+		public function get touchingWall():Boolean
+		{
+			return _touchingWall;
+		}
+
+		public function set touchingWall(value:Boolean):void
+		{
+			_touchingWall = value;
+		}
+
 		override protected function createShape():void
 		{
 			super.createShape();
@@ -98,10 +161,9 @@ package game.objects
 		override public function update(timeDelta:Number):void
 		{
 			super.update(timeDelta);
-			var velocity:Vec2 = _body.velocity;
+			//var velocity:Vec2 = _body.velocity;
 			
 			_state.update(timeDelta, _body.velocity, _ce.input);
-			_state.updateAnimation();
 			// If on a safe ground tile (static), save it for possible respawns
 /*			var groundBody:Body =  this._groundContacts[0] as Body;
 			if(_onGround && groundBody != null && groundBody.isStatic()) {
@@ -183,6 +245,7 @@ package game.objects
 				oldVelocity.x = x;
 				oldVelocity.y = y;
 			}, 0.3, [_body.velocity.x, _body.velocity.y]));
+			*/
 			
 			// Handle being dead
 			if(_dead) {
@@ -198,7 +261,7 @@ package game.objects
 				PlayerStatsUi.updateUi();
 			}
 			
-			updateAnimation();*/
+			updateAnimation();
 		}
 		
 		/**
@@ -259,37 +322,9 @@ package game.objects
 		override protected function updateAnimation():void 
 		{
 			var prevAnimation:String = _animation;
-			var walkingSpeed:Number = _body.velocity.x;
-			
-			if(_hurt) {
-				_animation = "hurt";
-			}
-			else if (!_onGround) {
-				_animation = "jump";
-				
-				if (walkingSpeed < -acceleration) {
-					_inverted = true;
-				}
-				else if (walkingSpeed > acceleration) {
-					_inverted = false;
-				}
-			} else if (_ducking && _onGround) {
-				_animation = "duck";
-			}
-			else {
-				if (walkingSpeed < -acceleration) {
-					_inverted = true;
-					_animation = "walk";
-				} else if (walkingSpeed > acceleration) {
-					_inverted = false;
-					_animation = "walk";
-					
-				}
-				else {
-					_animation = "idle";
-				}
-			}
-			
+			_inverted =  _body.velocity.x < -acceleration ? true : false;
+			_state.updateAnimation();
+
 			if (prevAnimation != _animation) {
 				onAnimationChange.dispatch();
 			}
