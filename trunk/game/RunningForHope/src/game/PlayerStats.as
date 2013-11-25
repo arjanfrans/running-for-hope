@@ -1,6 +1,6 @@
 package game
 {
-	import ui.PlayerStatsUi;
+	import ui.hud.PlayerStatsUi;
 
 	/**
 	 * This class has some static variables, which keep the lives and score of the player.

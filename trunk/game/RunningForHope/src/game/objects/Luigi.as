@@ -33,7 +33,7 @@ package game.objects
 	import starling.core.Starling;
 	import starling.textures.TextureAtlas;
 	
-	import ui.PlayerStatsUi;
+	import ui.hud.PlayerStatsUi;
 	import ui.menus.MenuState;
 	
 	public class Luigi extends CustomHero
@@ -250,7 +250,6 @@ package game.objects
 				x = safe_respawn.x;
 				y = safe_respawn.y;
 				dead = false;
-				PlayerStatsUi.updateUi();
 			}
 			
 			updateAnimation();

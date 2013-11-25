@@ -13,7 +13,7 @@ package {
 	import starling.display.Sprite;
 	import starling.textures.Texture;
 	
-	import ui.PlayerStatsUi;
+	import ui.hud.PlayerStatsUi;
 	import ui.menus.MenuState;
 	import citrus.core.IState;
 	
