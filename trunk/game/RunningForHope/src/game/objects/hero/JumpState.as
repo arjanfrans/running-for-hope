@@ -24,6 +24,11 @@ package game.objects.hero
 			_hero = hero;
 		}
 		
+		public function init():void
+		{
+			_hero.onJump.dispatch();
+		}
+		
 		public function update(timeDelta:Number, velocity:Vec2, input:Input):void
 		{
 			var groundBody:Body =  _hero.groundContacts[0] as Body;
@@ -36,19 +41,17 @@ package game.objects.hero
 			if (_hero.controlsEnabled) {
 				var moveKeyPressed:Boolean = false;
 				
-				_hero.ducking = (input.isDoing("duck", _hero.inputChannel) && _hero.onGround && _hero.canDuck);
-				
 				if(input.justDid("jump", _hero.inputChannel)) jump_triggered = false;
 				
-				if (input.isDoing("right", _hero.inputChannel)  && !_hero.ducking)
+				if (input.isDoing("right", _hero.inputChannel))
 				{
-					velocity.x += _hero.onGround ? _hero.acceleration : _hero.air_acceleration;
+					velocity.x += _hero.acceleration;
 					moveKeyPressed = true;
 				}
 				
-				if (input.isDoing("left", _hero.inputChannel) && !_hero.ducking)
+				if (input.isDoing("left", _hero.inputChannel))
 				{
-					velocity.x -= _hero.onGround ? _hero.acceleration : _hero.air_acceleration;
+					velocity.x -= _hero.air_acceleration;
 					moveKeyPressed = true;
 				}
 				
@@ -67,7 +70,7 @@ package game.objects.hero
 					_hero.material.staticFriction = _hero.staticFriction;
 				}
 				
-				if (_hero.onGround && input.justDid("jump", _hero.inputChannel) && !_hero.ducking)
+				if (_hero.onGround && input.justDid("jump", _hero.inputChannel))
 				{
 					velocity.y = -_hero.jumpHeight;
 					_hero.onJump.dispatch();

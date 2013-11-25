@@ -16,6 +16,11 @@ package game.objects.hero
 			_hero = hero;
 		}
 		
+		public function init():void
+		{
+			
+		}
+		
 		public function update(timeDelta:Number, velocity:Vec2, input:Input):void
 		{
 			var groundBody:Body =  _hero.groundContacts[0] as Body;
@@ -62,14 +67,12 @@ package game.objects.hero
 				
 				if (input.justDid("duck", _hero.inputChannel))
 				{
-					_hero.ducking = true;
 					_hero.state = _hero.duckingState;
 				}
 				
 				if (_hero.onGround && input.justDid("jump", _hero.inputChannel) && !_hero.ducking)
 				{
 					velocity.y = -_hero.jumpHeight;
-					_hero.onJump.dispatch();
 					_hero.state = _hero.jumpState;
 				}				
 				
