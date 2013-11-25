@@ -78,15 +78,6 @@ package ui.dialog
 			dialogBg.y = -5;
 			addChild(dialogBg);
 			
-			/*
-			var stylesheet:StyleSheet = new StyleSheet();
-			stylesheet.setStyle("body", { fontFamily: 'Verdana', fontSize: '12' } );
-			stylesheet.setStyle(".person", { fontWeight: 'bold' } );
-			stylesheet.setStyle(".self", { color: '#336699', align: 'left' } );
-			stylesheet.setStyle(".other", { color: '#990000', align: 'right' } );
-			stylesheet.setStyle(".message", { margin: '5px', padding: '5px', border: 'solid #999 1px' } );
-			*/
-			
 			textArea = new TextField();
 			textArea.wordWrap = true;
 			textArea.width = 460;
@@ -94,7 +85,6 @@ package ui.dialog
 			textArea.x = 170;
 			textArea.y = 35;
 			textArea.multiline = true;
-			//textArea.styleSheet = stylesheet;
 			
 			if (chat.root != null) addMessage(chat.root, chat.partner_name);
 			Starling.current.nativeOverlay.addChild(textArea);

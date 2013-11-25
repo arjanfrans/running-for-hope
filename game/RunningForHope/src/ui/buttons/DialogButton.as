@@ -34,6 +34,7 @@ package ui.buttons
 			addChild(actionText);
 			
 			if(callback != null) {
+				addEventListener(Event.REMOVED_FROM_STAGE, destroy);
 				addEventListener(Event.ADDED_TO_STAGE, init);
 				addEventListener(Event.TRIGGERED, function():void { callback(btn); } );
 			}
@@ -42,14 +43,11 @@ package ui.buttons
 		private function init():void
 		{
 			stage.addEventListener(KeyboardEvent.KEY_UP, keyboardHandler);
-			stage.addEventListener(Event.REMOVED, destroy);
 		}
 		
 		private function destroy(e:Event):void
 		{
-			if(e.target != this) return;
 			stage.removeEventListener(KeyboardEvent.KEY_UP, keyboardHandler);
-			stage.removeEventListener(Event.REMOVED, destroy);
 		}
 		
 		private function keyboardHandler(e:KeyboardEvent):void
