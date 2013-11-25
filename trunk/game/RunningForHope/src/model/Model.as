@@ -1,6 +1,7 @@
 package model
 {
 	import citrus.core.CitrusEngine;
+	import levels.dialog.Level3Dialog;
 	
 	public class Model
 	{
@@ -15,11 +16,12 @@ package model
 		public function Model()
 		{
 			_player = new Player();
-			_levels = new <Level>[
-				new Level("Level 1", "map0"),
-				new Level("Level 2", "map1"),
-				new Level("Level 3", "map2")
-			]; 
+			
+			var level1:Level = new Level("Level 1", "map0");
+			var level2:Level = new Level("Level 2", "map1");
+			var level3:Level = new Level("Level 3", "map2", Level3Dialog.load);
+			
+			_levels = new <Level>[ level1, level2, level3 ];
 		}
 		
 		public function set level(level:int):void

@@ -1,13 +1,14 @@
 package  {
 	
 	import flash.display.Bitmap;
+	import flash.display.Loader;
 	import flash.display.MovieClip;
 	import flash.utils.Dictionary;
 	
+	import starling.display.Image;
 	import starling.display.MovieClip;
 	import starling.textures.Texture;
 	import starling.textures.TextureAtlas;
-	import flash.display.Loader;
 	
 	/**
 	 * All the game assets are accesed through this class
@@ -26,6 +27,12 @@ package  {
 		
 		[Embed(source="../assets/characters/luigi.png")]
 		private static const LuigiAnimationPng:Class;
+		
+		[Embed(source="../assets/characters/dialog.xml", mimeType="application/octet-stream")]
+		private static const DialogXml:Class;
+		
+		[Embed(source="../assets/characters/dialog.png")]
+		private static const DialogPng:Class;
 		
 		[Embed(source="../assets/menus/interface.xml", mimeType="application/octet-stream")]
 		private static const InterfaceXml:Class;
@@ -88,6 +95,11 @@ package  {
 		public static function getTexture(atlasName:String, name:String):Texture
 		{
 			return getAtlas(atlasName).getTexture(name);
+		}
+		
+		public static function getImage(atlasName:String, name:String):Image
+		{
+			return new Image(getTexture(atlasName, name));
 		}
 		
 		private static function create(name:String):Object

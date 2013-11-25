@@ -10,6 +10,8 @@ package model
 	
 	import game.objects.Token;
 	
+	import model.dialog.DialogLibrary;
+	
 	public class Level
 	{
 		private var _name:String;
@@ -20,11 +22,15 @@ package model
 		private var _width:int;
 		private var _height:int;
 		private var _objects:Vector.<String>;
+		private var _dialog:DialogLibrary;
+		private var _dialogInit:Function = null;
 		
-		public function Level(name:String, file:String)
+		public function Level(name:String, file:String, dialogInit:Function = null)
 		{
 			_name = name;
 			_file = file;
+			_dialog = new DialogLibrary();
+			_dialogInit = dialogInit;
 			_highscores = new Highscores(this);
 			initMetadata();
 		}
@@ -47,6 +53,11 @@ package model
 				loader.unloadAndStop(true);
 			});
 			loader.load(new URLRequest("levels/" + _file + ".swf"));
+		}
+		
+		public function initDialog():void
+		{
+			if(_dialogInit != null) _dialogInit();
 		}
 		
 		public function load(callback:Function = null, reload:Boolean = false):void
@@ -80,6 +91,16 @@ package model
 		public function set name(name:String):void
 		{
 			_name = name;
+		}
+		
+		public function get dialog():DialogLibrary
+		{
+			return _dialog;
+		}
+		
+		public function set dialog(dialog:DialogLibrary):void
+		{
+			_dialog = dialog;
 		}
 		
 		public function highscores():Highscores
