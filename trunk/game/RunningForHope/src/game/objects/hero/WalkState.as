@@ -63,7 +63,6 @@ package game.objects.hero
 			if (input.justDid("jump", _hero.inputChannel) && !_hero.ducking)
 			{
 				velocity.y = -_hero.jumpHeight;
-				_hero.onJump.dispatch();
 				_hero.state = _hero.jumpState;
 			}
 			

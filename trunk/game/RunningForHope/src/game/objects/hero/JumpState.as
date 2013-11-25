@@ -55,6 +55,8 @@ package game.objects.hero
 				moveKeyPressed = true;
 			}
 			
+			
+			
 			//If player just started moving the hero this tick.
 			if (moveKeyPressed && !_hero.playerMovingHero)
 			{
@@ -79,7 +81,11 @@ package game.objects.hero
 				jump_triggered = true;
 			}
 			
-			if(_hero.onGround && !input.isDoing("jump", _hero.inputChannel)) {
+			if (_hero.onGround && !input.isDoing("jump", _hero.inputChannel) && (input.isDoing("right", _hero.inputChannel) || input.isDoing("left", _hero.inputChannel))) {
+				_hero.state = _hero.walkState;
+				moveKeyPressed = true;
+			}
+			else if(_hero.onGround && !input.isDoing("jump", _hero.inputChannel)) {
 				_hero.state = _hero.idleState;
 			}
 			
@@ -99,7 +105,6 @@ package game.objects.hero
 		
 		public function updateAnimation():void
 		{
-			trace(_hero.animation);
 			_hero.animation = "jump";
 		}
 		

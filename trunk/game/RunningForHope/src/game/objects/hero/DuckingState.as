@@ -39,6 +39,18 @@ package game.objects.hero
 			
 			var moveKeyPressed:Boolean = false;
 			
+			if (input.justDid("right", _hero.inputChannel) || input.justDid("left", _hero.inputChannel)) {
+				_hero.body.shapes.remove(_hero.ducking_shape);
+				_hero.body.shapes.add(_hero.normal_shape);
+				_hero.state = _hero.walkState;
+				moveKeyPressed = true;
+			}
+			else if(!input.isDoing("duck", _hero.inputChannel)) {
+					_hero.body.shapes.remove(_hero.ducking_shape);
+					_hero.body.shapes.add(_hero.normal_shape);
+					
+					_hero.state = _hero.idleState;
+			}
 			
 			//If player just started moving the hero this tick.
 			if (moveKeyPressed && !_hero.playerMovingHero)
@@ -55,11 +67,8 @@ package game.objects.hero
 				_hero.material.staticFriction = _hero.staticFriction;
 			}
 			
-			if(!input.isDoing("duck", _hero.inputChannel)) {
-				_hero.body.shapes.remove(_hero.ducking_shape);
-				_hero.body.shapes.add(_hero.normal_shape);
-				_hero.state = _hero.idleState;
-			}
+			
+			
 			//Cap velocities
 			if (velocity.x > (_hero.maxVelocity))
 				velocity.x = _hero.maxVelocity;
@@ -69,7 +78,6 @@ package game.objects.hero
 		
 		public function updateAnimation():void
 		{
-			_hero.inverted =  _hero.body.velocity.x < -_hero.acceleration ? true : false;
 			_hero.animation = "duck";
 		}
 	}
