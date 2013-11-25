@@ -27,6 +27,7 @@ package game.objects.hero
 		public function init():void
 		{
 			_hero.onJump.dispatch();
+			jump_triggered = true;
 		}
 		
 		public function update(timeDelta:Number, velocity:Vec2, input:Input):void
@@ -38,65 +39,56 @@ package game.objects.hero
 				}, 1, [_hero.x, _hero.y]));
 			}
 			
-			if (_hero.controlsEnabled) {
-				var moveKeyPressed:Boolean = false;
-				
-				if(input.justDid("jump", _hero.inputChannel)) jump_triggered = false;
-				
-				if (input.isDoing("right", _hero.inputChannel))
-				{
-					velocity.x += _hero.acceleration;
-					moveKeyPressed = true;
-				}
-				
-				if (input.isDoing("left", _hero.inputChannel))
-				{
-					velocity.x -= _hero.air_acceleration;
-					moveKeyPressed = true;
-				}
-				
-				//If player just started moving the hero this tick.
-				if (moveKeyPressed && !_hero.playerMovingHero)
-				{
-					_hero.playerMovingHero = true;
-					_hero.material.dynamicFriction = 0; //Take away friction so he can accelerate.
-					_hero.material.staticFriction = 0;
-				}
-					//Player just stopped moving the hero this tick.
-				else if (!moveKeyPressed && _hero.playerMovingHero)
-				{
-					_hero.playerMovingHero = false;
-					_hero.material.dynamicFriction = _hero.dynamicFriction; //Add friction so that he stops running
-					_hero.material.staticFriction = _hero.staticFriction;
-				}
-				
-				if (_hero.onGround && input.justDid("jump", _hero.inputChannel))
-				{
-					velocity.y = -_hero.jumpHeight;
-					_hero.onJump.dispatch();
-					jump_triggered = true;
-				}
-				
-				//Wall jumping
-				if (_hero.touchingWall && input.isDoing("jump", _hero.inputChannel) && !_hero.onGround && velocity.y < 50 && Math.abs(_hero.oldVelocity.x) > 50 && !jump_triggered)
-				{
-					velocity.y = Math.max(velocity.y - 200, -_hero.jumpHeight);
-					velocity.x = (_hero.oldVelocity.x > 0) ? -150 : 150;
-					_hero.touchingWall = false;
-					jump_triggered = true;
-				}
-				
-				if(_hero.onGround && !input.isDoing("jump", _hero.inputChannel)) {
-					_hero.state = _hero.idleState;
-				}
-				
-				
-				//Cap velocities
-				if (velocity.x > (_hero.maxVelocity))
-					velocity.x = _hero.maxVelocity;
-				else if (velocity.x < (-_hero.maxVelocity))
-					velocity.x = -_hero.maxVelocity;
+			var moveKeyPressed:Boolean = false;
+			
+			if(input.justDid("jump", _hero.inputChannel)) jump_triggered = false;
+			
+			if (input.isDoing("right", _hero.inputChannel))
+			{
+				velocity.x += _hero.acceleration;
+				moveKeyPressed = true;
 			}
+			
+			if (input.isDoing("left", _hero.inputChannel))
+			{
+				velocity.x -= _hero.air_acceleration;
+				moveKeyPressed = true;
+			}
+			
+			//If player just started moving the hero this tick.
+			if (moveKeyPressed && !_hero.playerMovingHero)
+			{
+				_hero.playerMovingHero = true;
+				_hero.material.dynamicFriction = 0; //Take away friction so he can accelerate.
+				_hero.material.staticFriction = 0;
+			}
+				//Player just stopped moving the hero this tick.
+			else if (!moveKeyPressed && _hero.playerMovingHero)
+			{
+				_hero.playerMovingHero = false;
+				_hero.material.dynamicFriction = _hero.dynamicFriction; //Add friction so that he stops running
+				_hero.material.staticFriction = _hero.staticFriction;
+			}
+			
+			//Wall jumping
+			if (_hero.touchingWall && input.isDoing("jump", _hero.inputChannel) && !_hero.onGround && velocity.y < 50 && Math.abs(_hero.oldVelocity.x) > 50 && !jump_triggered)
+			{
+				velocity.y = Math.max(velocity.y - 200, -_hero.jumpHeight);
+				velocity.x = (_hero.oldVelocity.x > 0) ? -150 : 150;
+				_hero.touchingWall = false;
+				jump_triggered = true;
+			}
+			
+			if(_hero.onGround && !input.isDoing("jump", _hero.inputChannel)) {
+				_hero.state = _hero.idleState;
+			}
+			
+			
+			//Cap velocities
+			if (velocity.x > (_hero.maxVelocity))
+				velocity.x = _hero.maxVelocity;
+			else if (velocity.x < (-_hero.maxVelocity))
+				velocity.x = -_hero.maxVelocity;
 			
 			//Track previous velocity, necessary for wall jumping.
 			Starling.juggler.add(new DelayedCall(function(x:Number, y:Number):void {
