@@ -1,9 +1,17 @@
 package game.objects.hero
 {
 	import citrus.input.Input;
+	
 	import game.objects.Luigi;
+	
 	import nape.geom.Vec2;
-
+	
+	import starling.animation.DelayedCall;
+	import starling.core.Starling;
+	import nape.phys.Body;
+	import model.Model;
+	import ui.menus.MenuState;
+	
 	public class JumpState implements LuigiState
 	{
 		private var _hero:Luigi;
@@ -15,32 +23,85 @@ package game.objects.hero
 		
 		public function update(timeDelta:Number, velocity:Vec2, input:Input):void
 		{
-			
-			
-			if (input.isDoing("right", _hero.inputChannel)) {
-				velocity.x += _hero.air_acceleration;
+			var groundBody:Body =  _hero.groundContacts[0] as Body;
+			if(_hero.onGround && groundBody != null && groundBody.isStatic()) {
+				Starling.juggler.add(new DelayedCall(function(x:Number, y:Number):void {
+					_hero.safe_respawn = new Vec2(x, y);
+				}, 1, [_hero.x, _hero.y]));
 			}
 			
-			if (input.isDoing("left", _hero.inputChannel))
-			{
-				velocity.x -= _hero.air_acceleration;
+			if (_hero.controlsEnabled) {
+				var moveKeyPressed:Boolean = false;
+				
+				_hero.ducking = (input.isDoing("duck", _hero.inputChannel) && _hero.onGround && _hero.canDuck);
+				
+				if(input.justDid("jump", _hero.inputChannel)) _hero.jump_triggered = false;
+				
+				if (input.isDoing("right", _hero.inputChannel)  && !_hero.ducking)
+				{
+					velocity.x += _hero.onGround ? _hero.acceleration : _hero.air_acceleration;
+					moveKeyPressed = true;
+				}
+				
+				if (input.isDoing("left", _hero.inputChannel) && !_hero.ducking)
+				{
+					velocity.x -= _hero.onGround ? _hero.acceleration : _hero.air_acceleration;
+					moveKeyPressed = true;
+				}
+				
+				//If player just started moving the hero this tick.
+				if (moveKeyPressed && !_hero.playerMovingHero)
+				{
+					_hero.playerMovingHero = true;
+					_hero.material.dynamicFriction = 0; //Take away friction so he can accelerate.
+					_hero.material.staticFriction = 0;
+				}
+					//Player just stopped moving the hero this tick.
+				else if (!moveKeyPressed && _hero.playerMovingHero)
+				{
+					_hero.playerMovingHero = false;
+					_hero.material.dynamicFriction = _hero.dynamicFriction; //Add friction so that he stops running
+					_hero.material.staticFriction = _hero.staticFriction;
+				}
+				
+				if (_hero.onGround && input.justDid("jump", _hero.inputChannel) && !_hero.ducking)
+				{
+					velocity.y = -_hero.jumpHeight;
+					_hero.onJump.dispatch();
+					_hero.jump_triggered = true;
+				}
+				
+				//Wall jumping
+				if (_hero.touchingWall && input.isDoing("jump", _hero.inputChannel) && !_hero.onGround && velocity.y < 50 && Math.abs(_hero.oldVelocity.x) > 50 && !_hero.jump_triggered)
+				{
+					velocity.y = Math.max(velocity.y - 200, -_hero.jumpHeight);
+					velocity.x = (_hero.oldVelocity.x > 0) ? -150 : 150;
+					_hero.touchingWall = false;
+					_hero.jump_triggered = true;
+				}
+				
+				if(_hero.onGround && !input.isDoing("jump", _hero.inputChannel)) {
+					_hero.state = _hero.idleState;
+				}
+				
+				
+				//Cap velocities
+				if (velocity.x > (_hero.maxVelocity))
+					velocity.x = _hero.maxVelocity;
+				else if (velocity.x < (-_hero.maxVelocity))
+					velocity.x = -_hero.maxVelocity;
 			}
 			
-			if (velocity.x > (_hero.maxVelocity))
-			velocity.x = _hero.maxVelocity;
-			else if (velocity.x < (-_hero.maxVelocity))
-			velocity.x = -_hero.maxVelocity;
-			
-			
-			if(_hero.onGround) {
-				_hero.state = _hero.idleState;
-			}
-						
+			//Track previous velocity, necessary for wall jumping.
+			Starling.juggler.add(new DelayedCall(function(x:Number, y:Number):void {
+				_hero.oldVelocity.x = x;
+				_hero.oldVelocity.y = y;
+			}, 0.3, [_hero.body.velocity.x, _hero.body.velocity.y]));
 		}
 		
 		public function updateAnimation():void
 		{
-			_hero.inverted =  _hero.body.velocity.x < -_hero.acceleration ? true : false;
+			trace(_hero.animation);
 			_hero.animation = "jump";
 		}
 		
