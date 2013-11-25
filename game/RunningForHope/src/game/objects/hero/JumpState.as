@@ -18,7 +18,6 @@ package game.objects.hero
 	{
 		private var _hero:Luigi;
 		private var jump_triggered:Boolean;
-		private var in_air:Boolean;
 		
 		public function JumpState(hero:Luigi)
 		{
@@ -29,7 +28,6 @@ package game.objects.hero
 		{
 			_hero.onJump.dispatch();
 			jump_triggered = true;
-			in_air = true;
 		}
 		
 		public function update(timeDelta:Number, velocity:Vec2, input:Input):void
@@ -57,13 +55,14 @@ package game.objects.hero
 				moveKeyPressed = true;
 			}
 			
-			if (_hero.onGround && in_air && !jump_triggered && (input.isDoing("right", _hero.inputChannel) || input.isDoing("left", _hero.inputChannel))) {
+			if (_hero.onGround && !input.isDoing("jump", _hero.inputChannel) && (input.isDoing("right", _hero.inputChannel) || input.isDoing("left", _hero.inputChannel))) {
 				_hero.state = _hero.walkState;
 				moveKeyPressed = true;
 			}
-			else if(_hero.onGround && in_air && !jump_triggered) {
+			else if(_hero.onGround && !input.isDoing("jump", _hero.inputChannel)) {
 				_hero.state = _hero.idleState;
 			}
+			
 			
 			//If player just started moving the hero this tick.
 			if (moveKeyPressed && !_hero.playerMovingHero)
@@ -89,7 +88,7 @@ package game.objects.hero
 				jump_triggered = true;
 			}
 			
-
+			
 			
 			
 			//Cap velocities
