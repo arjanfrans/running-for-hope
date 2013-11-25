@@ -323,6 +323,7 @@ package game.objects
 		public function set state(state:LuigiState):void
 		{
 			_state = state;
+			_state.init();
 		}
 		
 		override public function get animation():String

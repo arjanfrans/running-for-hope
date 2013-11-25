@@ -21,11 +21,16 @@ package game.objects.hero
 			_hero = hero;
 		}
 		
+		public function init():void
+		{
+			_hero.body.shapes.remove(_hero.normal_shape);
+			_hero.body.shapes.add(_hero.ducking_shape);
+		}
+		
 		public function update(timeDelta:Number, velocity:Vec2, input:Input):void
 		{
 			var groundBody:Body =  _hero.groundContacts[0] as Body;
-			_hero.body.shapes.remove(_hero.normal_shape);
-			_hero.body.shapes.add(_hero.ducking_shape);
+			
 			if(_hero.onGround && groundBody != null && groundBody.isStatic()) {
 				Starling.juggler.add(new DelayedCall(function(x:Number, y:Number):void {
 					_hero.safe_respawn = new Vec2(x, y);

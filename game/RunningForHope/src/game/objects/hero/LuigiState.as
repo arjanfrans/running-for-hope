@@ -8,5 +8,7 @@ package game.objects.hero
 		function update(timeDelta:Number, velocity:Vec2, input:Input):void;
 		
 		function updateAnimation():void;
+		
+		function init():void;
 	}
 }
