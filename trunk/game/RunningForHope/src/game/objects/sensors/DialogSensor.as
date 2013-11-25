@@ -24,10 +24,9 @@ package game.objects.sensors
 		{
 			super(name, params);
 			this.collectorClass = "game.objects.Luigi";
+			
 			if(params != null) {
 				if(params["dialogName"] != null) dialogName = params["dialogName"];
-				if(params["view"] != null) this.view = new CitrusSprite(params["view"], params);
-				trace(params["view"]);
 			}
 		}
 		
