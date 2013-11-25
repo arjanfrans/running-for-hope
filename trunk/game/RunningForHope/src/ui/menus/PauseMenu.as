@@ -1,21 +1,18 @@
 package ui.menus
 {
-	import citrus.core.CitrusObject;
 	import citrus.objects.NapePhysicsObject;
-	import citrus.physics.nape.Nape;
 	
 	import flash.display.DisplayObject;
 	import flash.display.MovieClip;
 	
 	import game.GameState;
-	import game.objects.Box;
 	
-	import nape.phys.Body;
-	
+	import starling.core.Starling;
 	import starling.display.Sprite;
+	import starling.events.Event;
+	import starling.events.ResizeEvent;
 	
 	import ui.buttons.NumberButton;
-	
 	public class PauseMenu extends Sprite
 	{
 		private var state:GameState;
@@ -48,7 +45,25 @@ package ui.menus
 			btnMainMenu.x = 256;
 			btnMainMenu.y = 402;
 			addChild(btnMainMenu);
+			
+			addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
 		}
+		
+		private function onAddedToStage(event:Event):void
+		{
+			stage.addEventListener(Event.RESIZE, onResize);
+			onResize(new ResizeEvent("init", Starling.current.nativeStage.stageWidth, Starling.current.nativeStage.stageHeight));
+		}
+		
+		/**
+		 * Resize the sprite to window
+		 */
+		private function onResize(event:ResizeEvent):void
+		{
+			this.width = event.width;
+			this.height =  event.height;
+		}
+		
 		
 		private function continueGame():void
 		{

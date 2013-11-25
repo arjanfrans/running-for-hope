@@ -9,7 +9,10 @@ package ui.menus
 	import starling.text.TextField;
 	import citrus.core.CitrusEngine;
 	import citrus.input.Input;
-	
+	import starling.core.Starling;
+	import starling.events.ResizeEvent;
+	import flash.geom.Rectangle;
+
 	public class MenuState extends StarlingState
 	{
 		private static var _this:MenuState;
@@ -24,6 +27,8 @@ package ui.menus
 			super.initialize();
 
 			openMenu();
+			stage.addEventListener(starling.events.ResizeEvent.RESIZE, onResize);
+			onResize(new ResizeEvent("init", Starling.current.nativeStage.stageWidth, Starling.current.nativeStage.stageHeight));
 		};
 		
 		public static function openMenu(menu:Sprite = null):void {
@@ -43,6 +48,26 @@ package ui.menus
 			titleTextField.y = title_y;
 			titleTextField.color = 0xFFFFFFFF;
 			_this.addChild(titleTextField);
+		}
+		
+		/**
+		 * Resize the sprite to window
+		 */
+		private function onResize(event:ResizeEvent):void
+		{
+			
+			var newWidth:Number = event.width;
+			var newHeight:Number = event.height;
+			this.width = newWidth;
+			this.height = newHeight;
+	
+			var viewPortRectangle:Rectangle = new Rectangle();
+			viewPortRectangle.width = newWidth;
+			viewPortRectangle.height = newHeight;
+			
+			Starling.current.stage.stageWidth = newWidth;
+			Starling.current.stage.stageHeight = newHeight;
+			Starling.current.viewPort = viewPortRectangle;
 		}
 	}
 }
