@@ -1,20 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with TexturePacker http://www.codeandweb.com/texturepacker-->
-<!-- $TexturePacker:SmartUpdate:97f53ba03dcf3eaf2268bf9916974e14:1/1$ -->
+<!-- $TexturePacker:SmartUpdate:3ba02d83f06815611704bb5a772aa690:1/1$ -->
 <TextureAtlas imagePath="spritesheet.png">
     <SubTexture name="0" x="2" y="2" width="32" height="32"/>
     <SubTexture name="1" x="38" y="2" width="32" height="32"/>
     <SubTexture name="brick" x="74" y="2" width="32" height="32"/>
     <SubTexture name="brick_empty" x="110" y="2" width="32" height="32"/>
     <SubTexture name="crate" x="146" y="2" width="64" height="64"/>
-    <SubTexture name="grass_center" x="214" y="2" width="32" height="32"/>
-    <SubTexture name="moving_platform" x="2" y="70" width="96" height="32"/>
-    <SubTexture name="slope_left_1" x="102" y="70" width="32" height="16" frameX="0" frameY="-16" frameWidth="32" frameHeight="32"/>
-    <SubTexture name="slope_left_2" x="138" y="70" width="32" height="32"/>
-    <SubTexture name="slope_right_1" x="174" y="70" width="32" height="16" frameX="0" frameY="-16" frameWidth="32" frameHeight="32"/>
-    <SubTexture name="slope_right_2" x="210" y="70" width="32" height="32"/>
-    <SubTexture name="token" x="2" y="106" width="32" height="32"/>
-    <SubTexture name="water" x="38" y="106" width="32" height="32"/>
-    <SubTexture name="water_wave_1" x="74" y="106" width="32" height="32"/>
-    <SubTexture name="water_wave_2" x="110" y="106" width="32" height="32"/>
+    <SubTexture name="dialog" x="214" y="2" width="154" height="476" frameX="-1" frameY="-2" frameWidth="256" frameHeight="512"/>
+    <SubTexture name="goomba" x="372" y="2" width="16" height="16"/>
+    <SubTexture name="grass_center" x="392" y="2" width="32" height="32"/>
+    <SubTexture name="hope_small" x="428" y="2" width="28" height="95"/>
+    <SubTexture name="luig_walk_2" x="460" y="2" width="50" height="96"/>
+    <SubTexture name="luig_walk_3" x="514" y="2" width="51" height="96"/>
+    <SubTexture name="luigi" x="569" y="2" width="96" height="240" frameX="0" frameY="0" frameWidth="128" frameHeight="256"/>
+    <SubTexture name="luigi_duck_1" x="669" y="2" width="35" height="48"/>
+    <SubTexture name="luigi_jump_1" x="514" y="2" width="51" height="96"/>
+    <SubTexture name="luigi_walk_1" x="708" y="2" width="43" height="96"/>
+    <SubTexture name="moving_platform" x="755" y="2" width="96" height="32"/>
+    <SubTexture name="slope_left_1" x="855" y="2" width="32" height="16" frameX="0" frameY="-16" frameWidth="32" frameHeight="32"/>
+    <SubTexture name="slope_left_2" x="891" y="2" width="32" height="32"/>
+    <SubTexture name="slope_right_1" x="927" y="2" width="32" height="16" frameX="0" frameY="-16" frameWidth="32" frameHeight="32"/>
+    <SubTexture name="slope_right_2" x="963" y="2" width="32" height="32"/>
+    <SubTexture name="token" x="2" y="482" width="32" height="32"/>
+    <SubTexture name="water" x="38" y="482" width="32" height="32"/>
+    <SubTexture name="water_wave_1" x="74" y="482" width="32" height="32"/>
+    <SubTexture name="water_wave_2" x="110" y="482" width="32" height="32"/>
 </TextureAtlas>
