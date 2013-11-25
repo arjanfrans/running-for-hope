@@ -7,7 +7,7 @@ package game.objects
 	
 	import nape.callbacks.InteractionCallback;
 	
-	import ui.PlayerStatsUi;
+	import ui.hud.PlayerStatsUi;
 	
 	public class Token extends Coin
 	{
@@ -26,7 +26,6 @@ package game.objects
 			if (_collectorClass && NapeUtils.CollisionGetOther(this, interactionCallback) is _collectorClass) {
 				kill = true;
 				Main.getModel().points++;
-				PlayerStatsUi.updateUi();
 			}
 				
 		}
