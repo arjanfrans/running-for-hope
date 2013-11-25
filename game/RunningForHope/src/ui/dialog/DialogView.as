@@ -13,8 +13,10 @@ package ui.dialog
 	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.events.Event;
+	import starling.events.ResizeEvent;
 	import starling.utils.HAlign;
 	import starling.utils.VAlign;
+	
 	import ui.buttons.DialogButton;
 	
 	/**
@@ -97,6 +99,18 @@ package ui.dialog
 			options.y = 460;
 			addChild(options);
 			showOptions();
+			
+			stage.addEventListener(Event.RESIZE, onResize);
+			onResize(new ResizeEvent("init", Starling.current.nativeStage.stageWidth, Starling.current.nativeStage.stageHeight));
+		}
+		
+		/**
+		 * Resize the sprite to window
+		 */
+		private function onResize(event:ResizeEvent):void
+		{
+			this.width = event.width;
+			this.height =  event.height;
 		}
 		
 		private function showOptions():void
