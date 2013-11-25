@@ -1,10 +1,14 @@
 package citrus {
 	
 	import citrus.objects.NapePhysicsObject;
-	import citrus.physics.PhysicsCollisionCategories;
-	import citrus.physics.nape.NapeUtils;
 	import citrus.objects.platformer.nape.Enemy;
 	import citrus.objects.platformer.nape.Platform;
+	import citrus.physics.PhysicsCollisionCategories;
+	import citrus.physics.nape.NapeUtils;
+	
+	import flash.utils.clearTimeout;
+	import flash.utils.getDefinitionByName;
+	import flash.utils.setTimeout;
 	
 	import nape.callbacks.CbType;
 	import nape.callbacks.InteractionCallback;
@@ -12,10 +16,6 @@ package citrus {
 	import nape.geom.Vec2;
 	
 	import org.osflash.signals.Signal;
-	
-	import flash.utils.clearTimeout;
-	import flash.utils.getDefinitionByName;
-	import flash.utils.setTimeout;
 	
 	/**
 	 * Note: This is a copy of the citrus engine Hero! The update method is changed, 
@@ -156,6 +156,16 @@ package citrus {
 			onAnimationChange = new Signal();
 		}
 		
+		public function get playerMovingHero():Boolean
+		{
+			return _playerMovingHero;
+		}
+
+		public function set playerMovingHero(value:Boolean):void
+		{
+			_playerMovingHero = value;
+		}
+
 		override protected function createConstraint():void {
 			
 			super.createConstraint();
@@ -465,5 +475,14 @@ package citrus {
 				onAnimationChange.dispatch();
 			
 		}
+		
+		public function set inverted(inverted:Boolean):void
+		{
+			_inverted = inverted;
+		}
+		
+		
 	}
+	
+	
 }

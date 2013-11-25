@@ -15,6 +15,8 @@ package game.objects
 	
 	import game.GameState;
 	import game.PlayerStats;
+	import game.objects.hero.IdleState;
+	import game.objects.hero.LuigiState;
 	
 	import model.Model;
 	
@@ -30,6 +32,8 @@ package game.objects
 	
 	import ui.PlayerStatsUi;
 	import ui.menus.MenuState;
+	import game.objects.hero.JumpState;
+	import game.objects.hero.WalkState;
 	
 	public class Luigi extends CustomHero
 	{
@@ -37,7 +41,7 @@ package game.objects
 		
 		private const angular_dampening:Number = 2;
 		private const linear_dampening:Number = 2;
-		private var air_acceleration:Number =  8;
+		public var air_acceleration:Number =  8;
 		private var oldVelocity:Vec2 = new Vec2();
 		
 		private var safe_respawn:Vec2;
@@ -52,6 +56,11 @@ package game.objects
 		
 		private var normal_shape:Shape;
 		private var ducking_shape:Shape;
+		private var _state:LuigiState;
+		
+		public var idleState:IdleState;
+		public var jumpState:JumpState;
+		public var walkState:WalkState;
 		
 		public function Luigi(name:String, params:Object=null)
 		{
@@ -62,11 +71,17 @@ package game.objects
 			
 			texture_height = this.height;
 			texture_height_duck = seq.mcSequences["duck"].height;
+			idleState = new IdleState(this);
+			jumpState = new JumpState(this);
+			walkState = new WalkState(this);
+			
+			_state = idleState;
 			
 			maxVelocity = 130;
 			acceleration = 20;
 			jumpAcceleration = 10;
 			jumpHeight = 400;
+			
 		}	
 		
 		override protected function createShape():void
@@ -85,8 +100,10 @@ package game.objects
 			super.update(timeDelta);
 			var velocity:Vec2 = _body.velocity;
 			
+			_state.update(timeDelta, _body.velocity, _ce.input);
+			_state.updateAnimation();
 			// If on a safe ground tile (static), save it for possible respawns
-			var groundBody:Body =  this._groundContacts[0] as Body;
+/*			var groundBody:Body =  this._groundContacts[0] as Body;
 			if(_onGround && groundBody != null && groundBody.isStatic()) {
 				Starling.juggler.add(new DelayedCall(function(x:Number, y:Number):void {
 					safe_respawn = new Vec2(x, y);
@@ -181,7 +198,7 @@ package game.objects
 				PlayerStatsUi.updateUi();
 			}
 			
-			updateAnimation();
+			updateAnimation();*/
 		}
 		
 		/**
@@ -278,6 +295,11 @@ package game.objects
 			}
 		}
 		
+		public function set state(state:LuigiState):void
+		{
+			_state = state;
+		}
+		
 		override public function get animation():String
 		{
 			return _animation;
@@ -300,5 +322,6 @@ package game.objects
 		{
 			_dead = dead;
 		}
+		
 	}
 }
