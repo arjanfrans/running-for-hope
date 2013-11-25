@@ -48,7 +48,6 @@ package game.objects
 		private var _safe_respawn:Vec2;
 		
 		private var _touchingWall:Boolean = false;
-		private var _jump_triggered:Boolean = false;
 		private var _dead:Boolean = false;		
 		
 		private var texture_height:Number;
@@ -107,15 +106,6 @@ package game.objects
 			_ducking_shape = value;
 		}
 
-		public function get jump_triggered():Boolean
-		{
-			return _jump_triggered;
-		}
-
-		public function set jump_triggered(value:Boolean):void
-		{
-			_jump_triggered = value;
-		}
 
 		public function get safe_respawn():Vec2
 		{

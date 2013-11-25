@@ -4,17 +4,20 @@ package game.objects.hero
 	
 	import game.objects.Luigi;
 	
+	import model.Model;
+	
 	import nape.geom.Vec2;
+	import nape.phys.Body;
 	
 	import starling.animation.DelayedCall;
 	import starling.core.Starling;
-	import nape.phys.Body;
-	import model.Model;
+	
 	import ui.menus.MenuState;
 	
 	public class JumpState implements LuigiState
 	{
 		private var _hero:Luigi;
+		private var jump_triggered:Boolean;
 		
 		public function JumpState(hero:Luigi)
 		{
@@ -35,7 +38,7 @@ package game.objects.hero
 				
 				_hero.ducking = (input.isDoing("duck", _hero.inputChannel) && _hero.onGround && _hero.canDuck);
 				
-				if(input.justDid("jump", _hero.inputChannel)) _hero.jump_triggered = false;
+				if(input.justDid("jump", _hero.inputChannel)) jump_triggered = false;
 				
 				if (input.isDoing("right", _hero.inputChannel)  && !_hero.ducking)
 				{
@@ -68,16 +71,16 @@ package game.objects.hero
 				{
 					velocity.y = -_hero.jumpHeight;
 					_hero.onJump.dispatch();
-					_hero.jump_triggered = true;
+					jump_triggered = true;
 				}
 				
 				//Wall jumping
-				if (_hero.touchingWall && input.isDoing("jump", _hero.inputChannel) && !_hero.onGround && velocity.y < 50 && Math.abs(_hero.oldVelocity.x) > 50 && !_hero.jump_triggered)
+				if (_hero.touchingWall && input.isDoing("jump", _hero.inputChannel) && !_hero.onGround && velocity.y < 50 && Math.abs(_hero.oldVelocity.x) > 50 && !jump_triggered)
 				{
 					velocity.y = Math.max(velocity.y - 200, -_hero.jumpHeight);
 					velocity.x = (_hero.oldVelocity.x > 0) ? -150 : 150;
 					_hero.touchingWall = false;
-					_hero.jump_triggered = true;
+					jump_triggered = true;
 				}
 				
 				if(_hero.onGround && !input.isDoing("jump", _hero.inputChannel)) {
