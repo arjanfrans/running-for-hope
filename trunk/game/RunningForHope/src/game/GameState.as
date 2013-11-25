@@ -22,7 +22,7 @@ package game {
 	import starling.core.Starling;
 	import starling.events.ResizeEvent;
 	
-	import ui.hud.PlayerStatsUi;
+	import ui.PlayerStatsUi;
 	
 	/**
 	 * The main game state, this is where the gameplay happens. The level gets setup here.
@@ -34,8 +34,6 @@ package game {
 		private const ASPECT_RATIO:Number = VIRTUAL_WIDTH / VIRTUAL_HEIGHT;
 		
 		private var hero:Luigi;
-		private var background:SizableSprite;
-		private var playerStatsUi:PlayerStatsUi;
 		
 		public function GameState() {
 			super();
@@ -58,8 +56,7 @@ package game {
 
 
 			Main.getModel().getLevel().load(initFlash, true);
-			playerStatsUi = new PlayerStatsUi();
-			this.addChild(playerStatsUi); //Add the HUD
+			this.addChild(new PlayerStatsUi()); //Add the HUD
 		}
 		
 		private function initFlash(flashLevel:MovieClip):void
@@ -135,7 +132,6 @@ package game {
 		{
 			if(!Main.getModel().pause) Main.getModel().time += timeDelta;
 			super.update(timeDelta);
-			playerStatsUi.updateUi();
 		}
 	}
 }
