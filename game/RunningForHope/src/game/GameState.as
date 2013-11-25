@@ -34,7 +34,7 @@ package game {
 		private const ASPECT_RATIO:Number = VIRTUAL_WIDTH / VIRTUAL_HEIGHT;
 		
 		private var hero:Luigi;
-		private var background:Background;
+		private var background:SizableSprite;
 		
 		public function GameState() {
 			super();
@@ -65,6 +65,7 @@ package game {
 			var level:Level = Main.getModel().getLevel();
 			ObjectMakerStarling.FromMovieClip(flashLevel, Assets.getAtlas("Spritesheet"));
 			hero = getObjectByName("Hero") as Luigi;
+			
 			view.camera.allowZoom = true;
 			view.camera.easing = new Point(1, 1);
 			view.camera.setUp(hero, new Point(_ce.stage.width/2, _ce.stage.height/2), new Rectangle(0, 0, level.width, level.height));

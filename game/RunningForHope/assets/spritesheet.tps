@@ -167,6 +167,7 @@
             <filename>tiles</filename>
             <filename>objects</filename>
             <filename>characters</filename>
+            <filename>backgrounds</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

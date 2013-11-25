@@ -11,7 +11,7 @@ package utils
 	import flash.utils.getDefinitionByName;
 	
 	import game.GameState;
-	import game.objects.Background;
+	import game.objects.SizableSprite;
 	import game.objects.BackgroundLayer;
 
 	/**
@@ -24,7 +24,7 @@ package utils
 		/**
 		 * Load the background data from the object named "background" in the tmx file.
 		 */
-		public static function loadBackground(state:GameState, tmx:TmxMap):Background {
+		public static function loadBackground(state:GameState, tmx:TmxMap):SizableSprite {
 			var bgLayers:Vector.<BackgroundLayer> = new Vector.<BackgroundLayer>();
 			for each (var group:TmxObjectGroup in tmx.objectGroups) {
 				for each (var objectTmx:TmxObject in group.objects) {
@@ -35,7 +35,7 @@ package utils
 				}
 				
 			}
-			return new Background(state, bgLayers);
+			return new SizableSprite(state, bgLayers);
 		}
 		
 		/**
