@@ -31,8 +31,6 @@ package game.objects.hero
 				var moveKeyPressed:Boolean = false;
 				
 				_hero.ducking = (input.isDoing("duck", _hero.inputChannel) && _hero.onGround && _hero.canDuck);
-			
-				if(input.justDid("jump", _hero.inputChannel)) _hero.jump_triggered = false;
 				
 				if (input.isDoing("right", _hero.inputChannel)  && !_hero.ducking)
 				{
@@ -65,7 +63,6 @@ package game.objects.hero
 				{
 					velocity.y = -_hero.jumpHeight;
 					_hero.onJump.dispatch();
-					_hero.jump_triggered = true;
 					_hero.state = _hero.jumpState;
 				}
 				
