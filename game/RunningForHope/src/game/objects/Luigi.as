@@ -154,6 +154,7 @@ package game.objects
 			//var velocity:Vec2 = _body.velocity;
 			
 			_state.update(timeDelta, _body.velocity, _ce.input);
+			trace(_state);
 			// If on a safe ground tile (static), save it for possible respawns
 /*			var groundBody:Body =  this._groundContacts[0] as Body;
 			if(_onGround && groundBody != null && groundBody.isStatic()) {
@@ -236,8 +237,9 @@ package game.objects
 				oldVelocity.y = y;
 			}, 0.3, [_body.velocity.x, _body.velocity.y]));
 			*/
+		
 			
-			// Handle being dead
+			// Handle being dead			
 			if(_dead) {
 				var m:Model = Main.getModel();
 				if(m.lifes-- < 1) {
@@ -312,7 +314,7 @@ package game.objects
 		override protected function updateAnimation():void 
 		{
 			var prevAnimation:String = _animation;
-			_inverted =  _body.velocity.x < -acceleration ? true : false;
+			_inverted = _body.velocity.x < -acceleration ? true : false;
 			_state.updateAnimation();
 
 			if (prevAnimation != _animation) {
