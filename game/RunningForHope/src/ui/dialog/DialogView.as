@@ -53,7 +53,14 @@ package ui.dialog
 			addChild(Assets.getImage("Interface", "FadedBackground"));
 			
 			// Player and conversation partner
-			var player:Image = Assets.getImage("Dialog", "Char1");
+			var player:Image;
+			if(Main.getModel().player().gender == "Male") {
+				player = Assets.getImage("Characters", "Max_Male");
+			}
+			else {
+				// TODO: Female
+				player = Assets.getImage("Characters", "Max_Male");
+			}
 			var other:Image = new Image(chat.partner_asset);
 			other.scaleX = -1;
 			

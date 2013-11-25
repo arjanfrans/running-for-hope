@@ -18,7 +18,7 @@ package levels.dialog
 			var library:DialogLibrary = Main.getModel().getLevel(2).dialog;
 			if (loaded) return;
 			
-			var chat:Dialog = new Dialog(Assets.getTexture("Dialog", "Char1"), "Hope", "Hey [playerName]! How are you?");
+			var chat:Dialog = new Dialog(Assets.getTexture("Characters", "Hope"), "Hope", "Hey [playerName]! How are you?");
 			var qrs1:QuestionResponseSet = new QuestionResponseSet();
 			qrs1.add(new QuestionResponse("I'm doing great! How about you?", "I'm actually not feeling too well."));
 			qrs1.add(new QuestionResponse("I'm fine. You?", "I'm actually not feeling too well."));

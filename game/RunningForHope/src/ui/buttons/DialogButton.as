@@ -43,7 +43,6 @@ package ui.buttons
 		{
 			stage.addEventListener(KeyboardEvent.KEY_UP, keyboardHandler);
 			stage.addEventListener(Event.REMOVED, destroy);
-			trace("DialogButton INIT", btn, stage.hasEventListener(KeyboardEvent.KEY_UP));
 		}
 		
 		private function destroy(e:Event):void

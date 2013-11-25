@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker http://www.codeandweb.com/texturepacker-->
+<!-- $TexturePacker:SmartUpdate:b255b644b1b466362116e3b7be113c53:1/1$ -->
+<TextureAtlas imagePath="StaticCharacters.png">
+    <SubTexture name="Hope" x="2" y="2" width="150" height="500"/>
+    <SubTexture name="Hope_Small" x="306" y="2" width="28" height="95"/>
+    <SubTexture name="Max_Male" x="154" y="2" width="150" height="454" frameX="0" frameY="-19" frameWidth="150" frameHeight="500"/>
+</TextureAtlas>
