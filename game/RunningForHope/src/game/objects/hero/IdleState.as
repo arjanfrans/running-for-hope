@@ -73,12 +73,7 @@ package game.objects.hero
 		
 		public function updateAnimation():void
 		{
-			if((Math.round(_hero.body.velocity.x) > 1) || (Math.round(_hero.body.velocity.x) < -1)) {
-				_hero.animation = "walk";
-			}
-			else {
-				_hero.animation = "idle";
-			}
+			_hero.animation = "idle";
 		}
 	}
 }
