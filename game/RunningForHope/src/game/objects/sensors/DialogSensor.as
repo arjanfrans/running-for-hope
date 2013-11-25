@@ -1,6 +1,8 @@
 package game.objects.sensors
 {
+	import citrus.core.CitrusEngine;
 	import citrus.objects.NapePhysicsObject;
+	import citrus.objects.platformer.nape.Coin;
 	import citrus.objects.platformer.nape.Sensor;
 	import citrus.physics.nape.NapeUtils;
 	
@@ -9,9 +11,10 @@ package game.objects.sensors
 	
 	import nape.callbacks.InteractionCallback;
 	
+	import ui.dialog.DialogView;
 	import ui.menus.MainMenu;
 	import ui.menus.MenuState;
-	import citrus.objects.platformer.nape.Coin;
+	import citrus.core.starling.StarlingState;
 	
 	public class DialogSensor extends Coin
 	{
@@ -33,6 +36,14 @@ package game.objects.sensors
 			
 			if (collider is Luigi) {
 				Main.getModel().pause = true;
+				Main.getModel().getLevel().initDialog();
+				var state:StarlingState = (Main.getState() as GameState);
+				
+				var dialogView:DialogView = new DialogView(dialogName, function():void {
+					state.removeChild(dialogView);
+					Main.getModel().pause = false;
+				});
+				state.addChild(dialogView);
 			}
 		}
 	}

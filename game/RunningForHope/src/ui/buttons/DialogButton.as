@@ -13,7 +13,7 @@ package ui.buttons
 		private var btn:int;
 		private var callback:Function;
 		
-		public function DialogOption(text:String, btn:int, callback:Function) 
+		public function DialogButton(text:String, btn:int, callback:Function) 
 		{
 			this.btn = btn;
 			this.callback = callback;
@@ -33,10 +33,30 @@ package ui.buttons
 			actionText.y = 0;
 			addChild(actionText);
 			
-			addEventListener(Event.TRIGGERED, function():void { callback(btn); } );
-			addEventListener(KeyboardEvent.KEY_UP, function(e:KeyboardEvent):void {
-				if (e.keyCode == (48 + btn)) callback(btn);
-			} );
+			if(callback != null) {
+				addEventListener(Event.ADDED_TO_STAGE, init);
+				addEventListener(Event.TRIGGERED, function():void { callback(btn); } );
+			}
+		}
+		
+		private function init():void
+		{
+			stage.addEventListener(KeyboardEvent.KEY_UP, keyboardHandler);
+			stage.addEventListener(Event.REMOVED, destroy);
+		}
+		
+		private function destroy():void
+		{
+			stage.removeEventListener(KeyboardEvent.KEY_UP, keyboardHandler);
+			stage.removeEventListener(Event.REMOVED, destroy);
+		}
+		
+		private function keyboardHandler(e:KeyboardEvent):void
+		{
+			if (e.keyCode == (48 + btn) || e.keyCode == (96 + btn)) {
+				if (callback.length > 0) callback(btn);
+				else callback();
+			}
 		}
 	}
 }
