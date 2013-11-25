@@ -314,7 +314,13 @@ package game.objects
 		override protected function updateAnimation():void 
 		{
 			var prevAnimation:String = _animation;
-			_inverted = _body.velocity.x < -acceleration ? true : false;
+			var walkingSpeed:Number = _body.velocity.x;
+			
+			if (walkingSpeed < -acceleration)
+				_inverted = true;
+			else if (walkingSpeed > acceleration)
+				_inverted = false;
+			
 			_state.updateAnimation();
 
 			if (prevAnimation != _animation) {
