@@ -1,5 +1,6 @@
 package game {
 	
+	import citrus.CustomSprite;
 	import citrus.core.starling.StarlingState;
 	import citrus.objects.platformer.nape.*;
 	import citrus.physics.nape.Nape;
@@ -16,12 +17,14 @@ package game {
 	import game.objects.sensors.*;
 	
 	import model.Level;
-	import citrus.CustomSprite;
+	
 	import nape.geom.Vec2;
 	
 	import starling.core.Starling;
+	import starling.display.DisplayObject;
 	import starling.events.ResizeEvent;
 	
+	import ui.dialog.DialogView;
 	import ui.hud.PlayerStatsUi;
 	import ui.menus.PauseMenu;
 	
@@ -66,6 +69,11 @@ package game {
 		private function openPauseMenu():void
 		{
 			if(pauseMenu != null) return;
+			for(var i:int = 0; i < numChildren; i++) {
+				var obj:DisplayObject = getChildAt(i);
+				if(obj is DialogView) return;
+			}
+			
 			Main.getModel().pause = true;
 			pauseMenu = new PauseMenu(this);
 			addChild(pauseMenu);
