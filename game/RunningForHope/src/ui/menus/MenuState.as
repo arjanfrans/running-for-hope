@@ -12,6 +12,7 @@ package ui.menus
 	import starling.core.Starling;
 	import starling.events.ResizeEvent;
 	import flash.geom.Rectangle;
+	import nape.geom.Vec2;
 
 	public class MenuState extends StarlingState
 	{
@@ -61,13 +62,37 @@ package ui.menus
 			this.width = newWidth;
 			this.height = newHeight;
 	
+			if(Config.KEEP_SCALING_RATIO) {
+				var aspectRatio:Number = width / height;
+				var scale:Number = 1;
+				var crop:Vec2 = new Vec2(0, 0);
+				if(aspectRatio > Config.ASPECT_RATIO)
+				{
+					scale = height / Config.VIRTUAL_HEIGHT;
+					crop.x = (width - Config.VIRTUAL_WIDTH * scale) / 2;
+				}
+				else if(aspectRatio < Config.ASPECT_RATIO)
+				{
+					scale = width / Config.VIRTUAL_WIDTH;
+					crop.y = (height - Config.VIRTUAL_HEIGHT*scale) / 2;
+				}
+				else
+				{
+					scale = width / Config.VIRTUAL_WIDTH;
+				}
+				newWidth = Config.VIRTUAL_WIDTH * scale;
+				newHeight = Config.VIRTUAL_HEIGHT * scale;
+			}
+			
 			var viewPortRectangle:Rectangle = new Rectangle();
 			viewPortRectangle.width = newWidth;
 			viewPortRectangle.height = newHeight;
-			
-			Starling.current.stage.stageWidth = newWidth;
+			if(!Config.DEBUG_MODE) viewPortRectangle.x = (width - newWidth) / 2;
+			Starling.current.stage.stageWidth = newWidth + (width - newWidth);
 			Starling.current.stage.stageHeight = newHeight;
 			Starling.current.viewPort = viewPortRectangle;
 		}
+		
+	
 	}
 }

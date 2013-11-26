@@ -33,11 +33,7 @@ package game {
 	 * The main game state, this is where the gameplay happens. The level gets setup here.
 	 */
 	public class GameState extends StarlingState {
-		
-		private const VIRTUAL_WIDTH:int = 800;
-		private const VIRTUAL_HEIGHT:int = 600;
-		private const ASPECT_RATIO:Number = VIRTUAL_WIDTH / VIRTUAL_HEIGHT;
-		
+	
 		private var hero:Luigi;
 		private var playerStatsUi:PlayerStatsUi;
 		private var pauseMenu:PauseMenu = null;
@@ -89,6 +85,8 @@ package game {
 			Main.getModel().pause = true;
 			pauseMenu = new PauseMenu(this);
 			addChild(pauseMenu);
+			//Adjust size of pause menu to game size
+			onResize(new ResizeEvent("init", Starling.current.nativeStage.stageWidth, Starling.current.nativeStage.stageHeight));
 		}
 		
 		public function closePauseMenu():void
@@ -126,22 +124,22 @@ package game {
 				var aspectRatio:Number = width / height;
 				var scale:Number = 1;
 				var crop:Vec2 = new Vec2(0, 0);
-				if(aspectRatio > ASPECT_RATIO)
+				if(aspectRatio > Config.ASPECT_RATIO)
 				{
-					scale = height / VIRTUAL_HEIGHT;
-					crop.x = (width - VIRTUAL_WIDTH * scale) / 2;
+					scale = height / Config.VIRTUAL_HEIGHT;
+					crop.x = (width - Config.VIRTUAL_WIDTH * scale) / 2;
 				}
-				else if(aspectRatio < ASPECT_RATIO)
+				else if(aspectRatio < Config.ASPECT_RATIO)
 				{
-					scale = width / VIRTUAL_WIDTH;
-					crop.y = (height - VIRTUAL_HEIGHT*scale) / 2;
+					scale = width / Config.VIRTUAL_WIDTH;
+					crop.y = (height - Config.VIRTUAL_HEIGHT*scale) / 2;
 				}
 				else
 				{
-					scale = width / VIRTUAL_WIDTH;
+					scale = width / Config.VIRTUAL_WIDTH;
 				}
-				newWidth = VIRTUAL_WIDTH * scale;
-				newHeight = VIRTUAL_HEIGHT * scale;
+				newWidth = Config.VIRTUAL_WIDTH * scale;
+				newHeight = Config.VIRTUAL_HEIGHT * scale;
 			}
 			
 			var viewPortRectangle:Rectangle = new Rectangle();
@@ -151,20 +149,23 @@ package game {
 			//To center the view calculate an offset, Nape debug view is not in sync with the view!
 			if(!Config.DEBUG_MODE) viewPortRectangle.x = (width - newWidth) / 2;
 			
-			playerStatsUi.width = newWidth;
 			
 			Starling.current.stage.stageWidth = newWidth;
 			Starling.current.stage.stageHeight = newHeight;
 			Starling.current.viewPort = viewPortRectangle;
 			
-			//TODO background scaling doesn't work properly
-			//background.updateSize();
 			
 			view.camera.cameraLensWidth = newWidth;
 			view.camera.cameraLensHeight = newHeight;
 			view.camera.offset = new Point(newWidth/2, newHeight/2);
 			view.camera.zoomFit(newWidth, newHeight);
 			view.camera.reset();
+			
+			playerStatsUi.width = newWidth;
+			if(pauseMenu != null) {
+				pauseMenu.width = newWidth;
+				pauseMenu.height = newHeight;
+			}
 			
 			//TODO scaling down too small will cause the game to crash/not work as it should
 		}	
