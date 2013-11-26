@@ -115,7 +115,6 @@ package ui.dialog
 		
 		private function showOptions():void
 		{
-			
 			if (dialog_progress < chat.length) {
 				var choices:QuestionResponseSet = chat.load(dialog_progress);
 				for (var i:int = 0; i < choices.length; i++) {

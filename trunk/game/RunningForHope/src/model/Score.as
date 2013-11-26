@@ -24,8 +24,9 @@ package model
 			return new Score(name, points, time, score);
 		}
 		
-		public static function calculate(time:Number, points:int, level:Level):int
+		public static function calculate(time:Number, points:int, level:Level = null):int
 		{
+			if(level = null) level = Main.getModel().getLevel();
 			return 10000 / (time * (1 - ((points as Number) / (level.maxPoints() as Number) * 0.6)));			
 		}
 		
