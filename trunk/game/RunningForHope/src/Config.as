@@ -13,6 +13,10 @@ package
 		 * Note: Only effective when DEBUG_MODE = false.
 		 */
 		public static const KEEP_SCALING_RATIO:Boolean = DEBUG_MODE ? false : true;
+		
+		public static const VIRTUAL_WIDTH:int = 800;
+		public static const VIRTUAL_HEIGHT:int = 600;
+		public static const ASPECT_RATIO:Number = VIRTUAL_WIDTH / VIRTUAL_HEIGHT;
 
 	}
 }

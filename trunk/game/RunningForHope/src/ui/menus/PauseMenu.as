@@ -47,23 +47,7 @@ package ui.menus
 			btnMainMenu.x = 256;
 			btnMainMenu.y = 402;
 			addChild(btnMainMenu);
-			
-			addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
-		}
-		
-		private function onAddedToStage(event:Event):void
-		{
-			stage.addEventListener(Event.RESIZE, onResize);
-			onResize(new ResizeEvent("init", Starling.current.nativeStage.stageWidth, Starling.current.nativeStage.stageHeight));
-		}
-		
-		/**
-		 * Resize the sprite to window
-		 */
-		private function onResize(event:ResizeEvent):void
-		{
-			this.width = event.width;
-			this.height =  event.height;
+
 		}
 		
 		
