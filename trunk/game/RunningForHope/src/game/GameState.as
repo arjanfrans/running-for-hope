@@ -27,6 +27,7 @@ package game {
 	import ui.dialog.DialogView;
 	import ui.hud.PlayerStatsUi;
 	import ui.menus.PauseMenu;
+	import model.Model;
 	
 	/**
 	 * The main game state, this is where the gameplay happens. The level gets setup here.
@@ -43,6 +44,7 @@ package game {
 		
 		public function GameState() {
 			super();
+			
 			//Objects which can be found in a map
 			var objects:Array = [Luigi, CustomSprite, FallSensor, EndLevelSensor, DialogSensor, Platform, Box, MovingPlatform, Token, Water];
 
@@ -52,6 +54,13 @@ package game {
 		
 		override public function initialize():void {	
 			super.initialize();
+			
+			// Reset model for this level
+			var m:Model = Main.getModel();
+			m.pause = false;
+			m.points = 0;
+			m.time = 0;
+			m.lifes = Config.LIFES;
 			
 			var napePhysics:Nape = new Nape("nape");
 			if(Config.DEBUG_MODE) napePhysics.visible = true;
@@ -68,12 +77,15 @@ package game {
 		
 		private function openPauseMenu():void
 		{
+			// Don't open a pause menu upon another pause menu
 			if(pauseMenu != null) return;
+			// Don't open a pause menu on top of dialog
 			for(var i:int = 0; i < numChildren; i++) {
 				var obj:DisplayObject = getChildAt(i);
 				if(obj is DialogView) return;
 			}
 			
+			// Show pause menu
 			Main.getModel().pause = true;
 			pauseMenu = new PauseMenu(this);
 			addChild(pauseMenu);

@@ -27,9 +27,6 @@ package model
 		public function set level(level:int):void
 		{
 			_level = level;
-			_points = 0;
-			_time = 0;
-			_lifes = Config.LIFES;
 		}
 		
 		public function numLevels():int
