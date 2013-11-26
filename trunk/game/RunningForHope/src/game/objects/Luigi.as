@@ -150,20 +150,20 @@ package game.objects
 		 */
 		override public function update(timeDelta:Number):void
 		{
-			super.update(timeDelta);
-			//var velocity:Vec2 = _body.velocity;
-			
 			_state.update(timeDelta, _body.velocity, _ce.input);
-			//trace(_state);
+			super.update(timeDelta);
+			
 			// If on a safe ground tile (static), save it for possible respawns
-/*			var groundBody:Body =  this._groundContacts[0] as Body;
-			if(_onGround && groundBody != null && groundBody.isStatic()) {
-				Starling.juggler.add(new DelayedCall(function(x:Number, y:Number):void {
-					safe_respawn = new Vec2(x, y);
-				}, 1, [x, y]));
+			var groundBody:Body =  groundContacts[0] as Body;
+			if(onGround && groundBody != null && groundBody.isStatic()) {
+				if(Math.abs(x - groundBody.bounds.x) > 30 && Math.abs(x - (groundBody.bounds.x + groundBody.bounds.width)) > 30) {
+					Starling.juggler.add(new DelayedCall(function(x:Number, y:Number):void {
+						_safe_respawn = new Vec2(x, y);
+					}, 1, [x, y]));
+				}
 			}
 			
-			if (controlsEnabled) {
+/*			if (controlsEnabled) {
 				var moveKeyPressed:Boolean = false;
 				
 				_ducking = (_ce.input.isDoing("duck", inputChannel) && _onGround && canDuck);

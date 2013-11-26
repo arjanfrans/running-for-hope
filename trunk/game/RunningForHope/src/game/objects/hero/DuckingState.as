@@ -29,14 +29,6 @@ package game.objects.hero
 		
 		public function update(timeDelta:Number, velocity:Vec2, input:Input):void
 		{
-			var groundBody:Body =  _hero.groundContacts[0] as Body;
-			
-			if(_hero.onGround && groundBody != null && groundBody.isStatic()) {
-				Starling.juggler.add(new DelayedCall(function(x:Number, y:Number):void {
-					_hero.safe_respawn = new Vec2(x, y);
-				}, 1, [_hero.x, _hero.y]));
-			}
-			
 			var moveKeyPressed:Boolean = false;
 			
 			if (input.justDid("right", _hero.inputChannel) || input.justDid("left", _hero.inputChannel)) {

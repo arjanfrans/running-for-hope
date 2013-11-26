@@ -18,6 +18,7 @@ package game.objects.hero
 	{
 		private var _hero:Luigi;
 		private var jump_triggered:Boolean;
+		private var _onGround:Boolean = false;
 		
 		public function JumpState(hero:Luigi)
 		{
@@ -28,17 +29,11 @@ package game.objects.hero
 		{
 			_hero.onJump.dispatch();
 			jump_triggered = true;
+			_onGround = false;
 		}
 		
 		public function update(timeDelta:Number, velocity:Vec2, input:Input):void
 		{
-			var groundBody:Body =  _hero.groundContacts[0] as Body;
-			if(_hero.onGround && groundBody != null && groundBody.isStatic()) {
-				Starling.juggler.add(new DelayedCall(function(x:Number, y:Number):void {
-					_hero.safe_respawn = new Vec2(x, y);
-				}, 1, [_hero.x, _hero.y]));
-			}
-			
 			var moveKeyPressed:Boolean = false;
 			
 			if(input.justDid("jump", _hero.inputChannel)) jump_triggered = false;
@@ -55,14 +50,15 @@ package game.objects.hero
 				moveKeyPressed = true;
 			}
 			
-			if (_hero.onGround && !input.isDoing("jump", _hero.inputChannel) && (input.isDoing("right", _hero.inputChannel) || input.isDoing("left", _hero.inputChannel))) {
-				_hero.state = _hero.walkState;
-				moveKeyPressed = true;
+			if(_onGround && _hero.onGround) {
+				if(input.isDoing("right", _hero.inputChannel) || input.isDoing("left", _hero.inputChannel)) {
+					_hero.state = _hero.walkState;
+					moveKeyPressed = true;
+				}
+				else {
+					_hero.state = _hero.idleState;
+				}
 			}
-			else if(_hero.onGround && !input.isDoing("jump", _hero.inputChannel)) {
-				_hero.state = _hero.idleState;
-			}
-			
 			
 			//If player just started moving the hero this tick.
 			if (moveKeyPressed && !_hero.playerMovingHero)
@@ -102,6 +98,8 @@ package game.objects.hero
 				_hero.oldVelocity.x = x;
 				_hero.oldVelocity.y = y;
 			}, 0.3, [_hero.body.velocity.x, _hero.body.velocity.y]));
+			
+			_onGround = _hero.onGround;
 		}
 		
 		public function updateAnimation():void
