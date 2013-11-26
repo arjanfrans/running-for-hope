@@ -139,6 +139,8 @@ package game {
 			//To center the view calculate an offset, Nape debug view is not in sync with the view!
 			if(!Config.DEBUG_MODE) viewPortRectangle.x = (width - newWidth) / 2;
 			
+			playerStatsUi.width = newWidth;
+			
 			Starling.current.stage.stageWidth = newWidth;
 			Starling.current.stage.stageHeight = newHeight;
 			Starling.current.viewPort = viewPortRectangle;

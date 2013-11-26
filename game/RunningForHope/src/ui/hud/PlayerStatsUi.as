@@ -2,17 +2,21 @@ package ui.hud {
 	
 	import citrus.core.starling.StarlingState;
 	
-	import game.PlayerStats;
+	import flash.geom.Rectangle;
 	
-	import starling.display.Quad;
-	import starling.text.TextField;
-	
-	import ui.buttons.NumberButton;
-	import ui.menus.MenuState;
 	import model.Level;
 	import model.Score;
 	
-	public class PlayerStatsUi extends StarlingState {
+	import starling.core.Starling;
+	import starling.display.Quad;
+	import starling.events.ResizeEvent;
+	import starling.text.TextField;
+	
+	import ui.buttons.NumberButton;
+	import starling.display.Sprite;
+	import starling.events.Event;
+	
+	public class PlayerStatsUi extends Sprite {
 
 		private var scoreLabel:TextField;
 		private var healthLabel:TextField;
@@ -85,6 +89,8 @@ package ui.hud {
 			this.addChild(heartsBar);
 		}
 		
+
+		
 		/**
 		 * Update de HUD.
 		 */
@@ -114,5 +120,7 @@ package ui.hud {
 			
 			return minutesString+":"+secondsString;
 		}
+		
+		
 	}
 }
