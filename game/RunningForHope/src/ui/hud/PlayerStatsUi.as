@@ -2,32 +2,41 @@ package ui.hud {
 	
 	import citrus.core.starling.StarlingState;
 	
-	import flash.geom.Rectangle;
 	
 	import model.Level;
 	import model.Score;
-	
-	import starling.core.Starling;
+
 	import starling.display.Quad;
 	import starling.events.ResizeEvent;
 	import starling.text.TextField;
 	
 	import ui.buttons.NumberButton;
-	import starling.display.Sprite;
-	import starling.events.Event;
-	
-	public class PlayerStatsUi extends Sprite {
 
-		private var scoreLabel:TextField;
+	import ui.menus.MenuState;
+
+	
+
+	/**
+	 * A ingame interface that displays all information the player should know during gameplay.
+	 */
+	public class PlayerStatsUi extends StarlingState {
+
+
+		private var pointsLabel:TextField;
 		private var healthLabel:TextField;
 		private var timeLabel:TextField;
 		private var heartsBar:HeartsBar;
 		private var menuCallback:Function;
 		private var level:Level;
 		private var highScore:Score;
-		private var recordScoreLabel:TextField;
+		private var recordPointsLabel:TextField;
 		private var RecordTimeLabel:TextField;
 		
+		/**
+		 * This creates a ingame interface that displays all information the player should know during gameplay.
+		 * 
+		 * @param Function menuCallback The function the menubutton calls to open a pauzemenu.
+		 */
 		public function PlayerStatsUi(menuCallback:Function) {
 			super();
 			
@@ -51,17 +60,18 @@ package ui.hud {
 			menuButton.y = 0;
 			this.addChild(menuButton);
 			
-			//scoreLabel
-			scoreLabel = new TextField(160, 40, "Score: " + Main.getModel().points, "Verdana", 20, 0x000000, true);
-			scoreLabel.x = 30;
-			scoreLabel.y = 10;
-			this.addChild(scoreLabel);
+			//pointsLabel
+			pointsLabel = new TextField(160, 40, " ", "Verdana", 20, 0x000000, true);
+			updatePoints();
+			pointsLabel.x = 30;
+			pointsLabel.y = 10;
+			this.addChild(pointsLabel);
 			
-			//bestScoreLabel
-			recordScoreLabel = new TextField(250, 40, "Record Score: " + highScore.score.toString(), "Verdana", 20, 0x000000, true);
-			recordScoreLabel.x = 200;
-			recordScoreLabel.y = 10;
-			this.addChild(recordScoreLabel);
+			//recordPointsLabel
+			recordPointsLabel = new TextField(250, 40, "Record Points: " + highScore.points.toString(), "Verdana", 20, 0x000000, true);
+			recordPointsLabel.x = 200;
+			recordPointsLabel.y = 10;
+			this.addChild(recordPointsLabel);
 			
 			//healthLabel
 			/*healthLabel = new TextField(80, 20, "Health: " + Main.getModel().lifes);
@@ -70,7 +80,8 @@ package ui.hud {
 			this.addChild(healthLabel);*/
 			
 			//timeLabel
-			timeLabel = new TextField(160, 40, "Time: " + timeToClock(Main.getModel().time), "Verdana", 20, 0x000000, true);
+			timeLabel = new TextField(160, 40, " ", "Verdana", 20, 0x000000, true);
+			updateTime();
 			timeLabel.x = 30;
 			timeLabel.y = 60;
 			this.addChild(timeLabel);
@@ -83,9 +94,9 @@ package ui.hud {
 			
 			//heartsBar
 			heartsBar = new HeartsBar();
+			heartsBar.update();
 			heartsBar.x = 550;
 			heartsBar.y = 60;
-			heartsBar.update();
 			this.addChild(heartsBar);
 		}
 		
@@ -95,14 +106,63 @@ package ui.hud {
 		 * Update de HUD.
 		 */
 		public function updateUi():void {
-			scoreLabel.text = "Score: " + Main.getModel().points;
-			timeLabel.text = "Time: " + timeToClock(Main.getModel().time);
-			//healthLabel.text = "Health: " + Main.getModel().lifes;
+			updatePoints();
+			updateTime();
 			heartsBar.update();
 		}
 		
+		/**
+		 * Get the current elapsed playtime.
+		 * @return Number The current elapsed playtime.
+		 */
+		private function getTime():Number {
+			return Main.getModel().time;
+			
+		}
 		
-		private function timeToClock(time:Number):String{
+		/**
+		 * Get the current score.
+		 * @return int The current score.
+		 */
+		private function getScore():int {
+			return Score.calculate(getTime(), getPoints());
+		}
+		
+		/**
+		 * Get the current amount of points.
+		 * @return int The current amount of points.
+		 */
+		private function getPoints():int {
+			return Main.getModel().points;
+		}
+		
+		/**
+		 * Update the scoreLabel in the hud.
+		 */
+		private function updateScore():void {
+			//scoreLabel.text = "Score: " + getScore();
+		}
+		
+		/**
+		 * Update the pointsLabel in the hud.
+		 */
+		private function updatePoints():void {
+			pointsLabel.text = "Points: " + getPoints();
+		}
+		
+		/**
+		 * Update the timeLabel in the hud.
+		 */
+		private function updateTime():void {
+			timeLabel.text = "Time: " + timeToClock(getTime());
+		}
+		
+		/**
+		 * Generate a clock from an amount of seconds.
+		 * @param Number time An amount of seconds.
+		 * @return String A clock with minutes and seconds(mm:ss)
+		 */
+		private function timeToClock(time:Number):String {
 			var minutes:Number = Math.floor(time/60);
 			var seconds:Number = Math.floor(time%60);
 			var minutesString:String;
