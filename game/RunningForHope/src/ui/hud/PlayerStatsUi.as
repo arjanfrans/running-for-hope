@@ -12,6 +12,7 @@ package ui.hud {
 	import starling.text.TextField;
 	
 	import ui.buttons.NumberButton;
+	import starling.display.Image;
 	
 
 	/**
@@ -31,6 +32,7 @@ package ui.hud {
 		private var RecordTimeLabel:TextField;
 		public var originalHeight:Number = 100;
 		public var originalWidth:Number = 800;
+		private var highscoreText:TextField;
 		
 		/**
 		 * This creates a ingame interface that displays all information the player should know during gameplay.
@@ -45,6 +47,11 @@ package ui.hud {
 			
 			//background
 			this.addChild(new Quad(originalWidth, originalHeight));
+			var img:Image = new Image(Assets.getTexture("Spritesheet", "HUDBackground"));
+			img.x = 0;
+			img.y = 0;
+			img.width = originalWidth;
+			this.addChild(img);
 			trace(this.height);
 			
 			//menu button
@@ -61,18 +68,26 @@ package ui.hud {
 			menuButton.y = 0;
 			this.addChild(menuButton);
 			
+			//highscoreText
+			
+			highscoreText = new TextField(300, 40, "Points: "+highScore.points.toString()+" | "+"Time: "+timeToClock(highScore.time), "Arial", 15, 0x000000, true);
+			//updatePoints();
+			highscoreText.x = -40;
+			highscoreText.y = 40;
+			this.addChild(highscoreText);
+			
 			//pointsLabel
-			pointsLabel = new TextField(160, 40, " ", "Ariel", 20, 0x000000, true);
+			pointsLabel = new TextField(160, 40, " ", "Arial", 20, 0x000000, true);
 			updatePoints();
 			pointsLabel.x = 30;
 			pointsLabel.y = 10;
-			this.addChild(pointsLabel);
+			//this.addChild(pointsLabel);
 			
 			//recordPointsLabel
-			recordPointsLabel = new TextField(250, 40, "Record Points: " + highScore.points.toString(), "Ariel", 20, 0x000000, true);
-			recordPointsLabel.x = 200;
+			recordPointsLabel = new TextField(250, 40, "Points: " + highScore.points.toString(), "Arial", 20, 0x000000, true);
+			recordPointsLabel.x = 20;
 			recordPointsLabel.y = 10;
-			this.addChild(recordPointsLabel);
+			//this.addChild(recordPointsLabel);
 			
 			//healthLabel
 			/*healthLabel = new TextField(80, 20, "Health: " + Main.getModel().lifes);
@@ -81,17 +96,17 @@ package ui.hud {
 			this.addChild(healthLabel);*/
 			
 			//timeLabel
-			timeLabel = new TextField(160, 40, " ", "Ariel", 20, 0x000000, true);
+			timeLabel = new TextField(160, 40, " ", "Arial", 20, 0x000000, true);
 			updateTime();
 			timeLabel.x = 30;
 			timeLabel.y = 60;
-			this.addChild(timeLabel);
+			//this.addChild(timeLabel);
 			
 			//bestTimeLabel
-			RecordTimeLabel = new TextField(250, 40, "Record Time:  " + timeToClock(highScore.time), "Ariel", 20, 0x000000, true);
+			RecordTimeLabel = new TextField(250, 40, "Time:  " + timeToClock(highScore.time), "Arial", 20, 0x000000, true);
 			RecordTimeLabel.x = 200;
 			RecordTimeLabel.y = 60;
-			this.addChild(RecordTimeLabel);
+			//this.addChild(RecordTimeLabel);
 			
 			//heartsBar
 			heartsBar = new HeartsBar();
@@ -156,6 +171,10 @@ package ui.hud {
 		 */
 		private function updateTime():void {
 			timeLabel.text = "Time: " + timeToClock(getTime());
+		}
+		
+		private function updateHighscore():void {
+			
 		}
 		
 		/**
