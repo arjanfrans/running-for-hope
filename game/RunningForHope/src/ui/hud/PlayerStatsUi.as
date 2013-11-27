@@ -55,21 +55,21 @@ package ui.hud {
 				, "Menu"
 				, menuCallback
 				, 190
-				, 0x000000
+				, 0xFF000000
 			);
 			menuButton.x = 550;
 			menuButton.y = 0;
 			this.addChild(menuButton);
 			
 			//pointsLabel
-			pointsLabel = new TextField(160, 40, " ", "Verdana", 20, 0x000000, true);
+			pointsLabel = new TextField(160, 40, " ", "Ariel", 20, 0x000000, true);
 			updatePoints();
 			pointsLabel.x = 30;
 			pointsLabel.y = 10;
 			this.addChild(pointsLabel);
 			
 			//recordPointsLabel
-			recordPointsLabel = new TextField(250, 40, "Record Points: " + highScore.points.toString(), "Verdana", 20, 0x000000, true);
+			recordPointsLabel = new TextField(250, 40, "Record Points: " + highScore.points.toString(), "Ariel", 20, 0x000000, true);
 			recordPointsLabel.x = 200;
 			recordPointsLabel.y = 10;
 			this.addChild(recordPointsLabel);
@@ -81,14 +81,14 @@ package ui.hud {
 			this.addChild(healthLabel);*/
 			
 			//timeLabel
-			timeLabel = new TextField(160, 40, " ", "Verdana", 20, 0x000000, true);
+			timeLabel = new TextField(160, 40, " ", "Ariel", 20, 0x000000, true);
 			updateTime();
 			timeLabel.x = 30;
 			timeLabel.y = 60;
 			this.addChild(timeLabel);
 			
 			//bestTimeLabel
-			RecordTimeLabel = new TextField(250, 40, "Record Time:  " + timeToClock(highScore.time), "Verdana", 20, 0x000000, true);
+			RecordTimeLabel = new TextField(250, 40, "Record Time:  " + timeToClock(highScore.time), "Ariel", 20, 0x000000, true);
 			RecordTimeLabel.x = 200;
 			RecordTimeLabel.y = 60;
 			this.addChild(RecordTimeLabel);
