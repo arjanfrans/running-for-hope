@@ -24,6 +24,8 @@ package ui.buttons
 			textHAlign = HAlign.LEFT;
 			textBounds = new Rectangle(20, 0, 400, 45);
 			
+			fontBold = true;
+			
 			var actionText:TextField = new TextField(45, 45, "" + btn, "Arial");
 			actionText.color = 0xFFFFFFFF;
 			actionText.bold = true;

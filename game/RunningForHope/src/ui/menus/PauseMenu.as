@@ -65,7 +65,7 @@ package ui.menus
 				if(item["className"] == "game.objects.Box") {
 					// The objects in state are direct references to the objects actually in our level
 					// We can cross reference these to the same objects from our blueprint, and place them back in their original position
-					var obj:NapePhysicsObject = state.objects[i + 1] as NapePhysicsObject;
+					var obj:NapePhysicsObject = state.objects[i + (state.objects.length - level.numChildren)] as NapePhysicsObject;
 					obj.x = item.x;
 					obj.y = item.y;
 					obj.rotation = item.rotation;
