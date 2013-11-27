@@ -193,17 +193,17 @@ package ui.dialog
 		
 		private function setText():void
 		{
-			textArea.htmlText = "<FONT FACE=\"Arial\" LETTERSPACING=\"0\" KERNING=\"1\">" + text + "</FONT>";
+			textArea.htmlText = "<FONT FACE=\"Arial\" SIZE=\"20\">" + text + "</FONT>";
 			textArea.scrollV = textArea.maxScrollV;
 		}
 		
 		private function addMessage(message:String, from:String = null):void
 		{
 			if (from == null) {
-				text += "<P ALIGN=\"LEFT\"><FONT SIZE=\"16\" COLOR=\"#990000\">You</FONT><br>";
+				text += "<P ALIGN=\"LEFT\"><FONT SIZE=\"28\" COLOR=\"#990000\">You</FONT><br>";
 			}
 			else {
-				text += "<P ALIGN=\"RIGHT\"><FONT SIZE=\"16\" COLOR=\"#336699\">" + from + "</FONT><br>";
+				text += "<P ALIGN=\"RIGHT\"><FONT SIZE=\"28\" COLOR=\"#336699\">" + from + "</FONT><br>";
 			}
 			text += message.replace(/\[playerName\]/gi, Main.getModel().player().name) + "</P><br>";
 			setText();
