@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with TexturePacker http://www.codeandweb.com/texturepacker-->
-<!-- $TexturePacker:SmartUpdate:fd40c8eca8062de6e326e24f511e5d6d:1/1$ -->
+<!-- $TexturePacker:SmartUpdate:5aef31b0efcfc1f3129c4efc61436bcd:1/1$ -->
 <TextureAtlas imagePath="spritesheet.png">
     <SubTexture name="0" x="2" y="2" width="32" height="32"/>
     <SubTexture name="1" x="38" y="2" width="32" height="32"/>
@@ -14,26 +14,29 @@
     <SubTexture name="dialog" x="1410" y="2" width="154" height="476" frameX="-1" frameY="-2" frameWidth="256" frameHeight="512"/>
     <SubTexture name="goomba" x="1568" y="2" width="16" height="16"/>
     <SubTexture name="grass_center" x="1588" y="2" width="32" height="32"/>
-    <SubTexture name="hope_small" x="1624" y="2" width="28" height="95"/>
-    <SubTexture name="luig_walk_2" x="1656" y="2" width="50" height="96"/>
-    <SubTexture name="luig_walk_3" x="1710" y="2" width="51" height="96"/>
-    <SubTexture name="luigi" x="1765" y="2" width="96" height="240" frameX="0" frameY="0" frameWidth="128" frameHeight="256"/>
-    <SubTexture name="luigi_duck_1" x="1865" y="2" width="35" height="48"/>
-    <SubTexture name="luigi_jump_1" x="1710" y="2" width="51" height="96"/>
-    <SubTexture name="luigi_walk_1" x="1904" y="2" width="43" height="96"/>
-    <SubTexture name="moving_platform" x="2" y="506" width="96" height="32"/>
-    <SubTexture name="slope_left_1" x="102" y="506" width="32" height="16" frameX="0" frameY="-16" frameWidth="32" frameHeight="32"/>
-    <SubTexture name="slope_left_2" x="138" y="506" width="32" height="32"/>
-    <SubTexture name="slope_right_1" x="174" y="506" width="32" height="16" frameX="0" frameY="-16" frameWidth="32" frameHeight="32"/>
-    <SubTexture name="slope_right_2" x="210" y="506" width="32" height="32"/>
-    <SubTexture name="small_cloud" x="246" y="506" width="64" height="48"/>
-    <SubTexture name="small_mountain" x="314" y="506" width="160" height="68"/>
-    <SubTexture name="small_mountain_2" x="478" y="506" width="192" height="84"/>
-    <SubTexture name="small_mountain_3" x="674" y="506" width="159" height="68"/>
-    <SubTexture name="small_mountain_4" x="837" y="506" width="160" height="68"/>
-    <SubTexture name="three_mountains" x="1001" y="506" width="336" height="116"/>
-    <SubTexture name="token" x="1341" y="506" width="32" height="32"/>
-    <SubTexture name="water" x="1377" y="506" width="32" height="32"/>
-    <SubTexture name="water_wave_1" x="1413" y="506" width="32" height="32"/>
-    <SubTexture name="water_wave_2" x="1449" y="506" width="32" height="32"/>
+    <SubTexture name="heart" x="1624" y="2" width="36" height="32"/>
+    <SubTexture name="heart_empty" x="1664" y="2" width="36" height="32"/>
+    <SubTexture name="heart_empty" x="1704" y="2" width="36" height="32"/>
+    <SubTexture name="hope_small" x="1744" y="2" width="28" height="95"/>
+    <SubTexture name="luig_walk_2" x="1776" y="2" width="50" height="96"/>
+    <SubTexture name="luig_walk_3" x="1830" y="2" width="51" height="96"/>
+    <SubTexture name="luigi" x="1885" y="2" width="96" height="240" frameX="0" frameY="0" frameWidth="128" frameHeight="256"/>
+    <SubTexture name="luigi_duck_1" x="1985" y="2" width="35" height="48"/>
+    <SubTexture name="luigi_jump_1" x="1830" y="2" width="51" height="96"/>
+    <SubTexture name="luigi_walk_1" x="2" y="506" width="43" height="96"/>
+    <SubTexture name="moving_platform" x="49" y="506" width="96" height="32"/>
+    <SubTexture name="slope_left_1" x="149" y="506" width="32" height="16" frameX="0" frameY="-16" frameWidth="32" frameHeight="32"/>
+    <SubTexture name="slope_left_2" x="185" y="506" width="32" height="32"/>
+    <SubTexture name="slope_right_1" x="221" y="506" width="32" height="16" frameX="0" frameY="-16" frameWidth="32" frameHeight="32"/>
+    <SubTexture name="slope_right_2" x="257" y="506" width="32" height="32"/>
+    <SubTexture name="small_cloud" x="293" y="506" width="64" height="48"/>
+    <SubTexture name="small_mountain" x="361" y="506" width="160" height="68"/>
+    <SubTexture name="small_mountain_2" x="525" y="506" width="192" height="84"/>
+    <SubTexture name="small_mountain_3" x="721" y="506" width="159" height="68"/>
+    <SubTexture name="small_mountain_4" x="884" y="506" width="160" height="68"/>
+    <SubTexture name="three_mountains" x="1048" y="506" width="336" height="116"/>
+    <SubTexture name="token" x="1388" y="506" width="32" height="32"/>
+    <SubTexture name="water" x="1424" y="506" width="32" height="32"/>
+    <SubTexture name="water_wave_1" x="1460" y="506" width="32" height="32"/>
+    <SubTexture name="water_wave_2" x="1496" y="506" width="32" height="32"/>
 </TextureAtlas>
