@@ -11,8 +11,8 @@ package ui.hud {
 		var numLife:int;
 		
 		public function HeartsBar() {
-			fullHeart =  Assets.getTexture("Spritesheet", "heart");
-			emptyHeart = Assets.getTexture("Spritesheet", "heart_empty");
+			fullHeart =  Assets.getTexture("Spritesheet", "FullHeart");
+			emptyHeart = Assets.getTexture("Spritesheet", "EmptyHeart");
 			numLife = 0;
 			update();
 		}
