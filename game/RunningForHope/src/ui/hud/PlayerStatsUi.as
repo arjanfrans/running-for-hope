@@ -2,18 +2,16 @@ package ui.hud {
 	
 	import citrus.core.starling.StarlingState;
 	
-	
 	import model.Level;
 	import model.Score;
-
+	
 	import starling.display.Quad;
+	import starling.display.Sprite;
+	import starling.events.Event;
 	import starling.events.ResizeEvent;
 	import starling.text.TextField;
 	
 	import ui.buttons.NumberButton;
-
-	import ui.menus.MenuState;
-
 	
 
 	/**
@@ -31,6 +29,8 @@ package ui.hud {
 		private var highScore:Score;
 		private var recordPointsLabel:TextField;
 		private var RecordTimeLabel:TextField;
+		public var originalHeight:Number = 100;
+		public var originalWidth:Number = 800;
 		
 		/**
 		 * This creates a ingame interface that displays all information the player should know during gameplay.
@@ -44,7 +44,8 @@ package ui.hud {
 			highScore = level.highscores().getHighScore(0);
 			
 			//background
-			this.addChild(new Quad(800, 100));
+			this.addChild(new Quad(originalWidth, originalHeight));
+			trace(this.height);
 			
 			//menu button
 			this.menuCallback = menuCallback;
@@ -180,7 +181,6 @@ package ui.hud {
 			
 			return minutesString+":"+secondsString;
 		}
-		
 		
 	}
 }

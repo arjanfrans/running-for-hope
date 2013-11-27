@@ -161,7 +161,9 @@ package game {
 			view.camera.zoomFit(newWidth, newHeight);
 			view.camera.reset();
 			
-			playerStatsUi.width = newWidth;
+			playerStatsUi.width = (newWidth / Config.VIRTUAL_WIDTH) * playerStatsUi.originalWidth;
+			playerStatsUi.height = (newWidth / Config.VIRTUAL_WIDTH) * playerStatsUi.originalHeight;
+
 			if(pauseMenu != null) {
 				pauseMenu.width = newWidth;
 				pauseMenu.height = newHeight;
