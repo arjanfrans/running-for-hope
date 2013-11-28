@@ -2,12 +2,15 @@ package ui.dialog
 {
 	import citrus.core.starling.StarlingState;
 	
+	import flash.geom.Rectangle;
 	import flash.text.StyleSheet;
 	import flash.text.TextField;
 	
 	import model.dialog.Dialog;
 	import model.dialog.QuestionResponse;
 	import model.dialog.QuestionResponseSet;
+	
+	import nape.geom.Vec2;
 	
 	import starling.core.Starling;
 	import starling.display.Image;
@@ -18,8 +21,6 @@ package ui.dialog
 	import starling.utils.VAlign;
 	
 	import ui.buttons.DialogButton;
-	import nape.geom.Vec2;
-	import flash.geom.Rectangle;
 	
 	/**
 	 * ...
@@ -52,6 +53,11 @@ package ui.dialog
 			 * - message area
 			 * - dialog options
 			 */
+			
+			addChild(Assets.getImage("Interface", "DialogBackground"));
+			
+			var dm:DialogMessage = new DialogMessage(0xFF336699, "Bla bla!", "Bla bla bla");
+			/*
 			
 			// Background
 			addChild(Assets.getImage("Interface", "FadedBackground"));
@@ -102,6 +108,9 @@ package ui.dialog
 			addChild(options);
 			showOptions();
 			
+			*/
+			
+			// Resize
 			stage.addEventListener(Event.RESIZE, onResize);
 			onResize(new ResizeEvent("init", Starling.current.nativeStage.stageWidth, Starling.current.nativeStage.stageHeight));
 		}
