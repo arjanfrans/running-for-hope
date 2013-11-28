@@ -76,16 +76,13 @@ package game.objects.hero
 			}
 			
 			//Wall jumping
-			if (_hero.touchingWall && input.isDoing("jump", _hero.inputChannel) && !_hero.onGround && velocity.y < 50 && Math.abs(_hero.oldVelocity.x) > 50 && !jump_triggered)
+			if (_hero.touchingWall && input.isDoing("jump", _hero.inputChannel) && !_hero.onGround && velocity.y < 100 && Math.abs(_hero.oldVelocity.x) > 100 && !jump_triggered)
 			{
-				velocity.y = Math.max(velocity.y - 200, -_hero.jumpHeight);
-				velocity.x = (_hero.oldVelocity.x > 0) ? -150 : 150;
+				velocity.y = -_hero.jumpHeight;//Math.max(velocity.y - 200, -_hero.jumpHeight);
+				velocity.x = (_hero.oldVelocity.x > 0) ? -250 : 250;
 				_hero.touchingWall = false;
 				jump_triggered = true;
 			}
-			
-			
-			
 			
 			//Cap velocities
 			if (velocity.x > (_hero.maxVelocity))
