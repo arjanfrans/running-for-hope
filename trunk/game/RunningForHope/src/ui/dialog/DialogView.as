@@ -68,11 +68,11 @@ package ui.dialog
 			other.scaleX = -1;
 			
 			player.x = 10;
-			player.y = 500 - player.height;
+			player.y = 10;
 			addChild(player);
 			
 			other.x = 790;
-			other.y = 500 - other.height;
+			other.y = 10;
 			addChild(other);
 			
 			dialogArea = new DialogArea();
