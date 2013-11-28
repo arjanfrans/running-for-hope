@@ -104,7 +104,7 @@ package game {
 			
 			view.camera.allowZoom = true;
 			view.camera.easing = new Point(1, 1);
-			view.camera.setUp(hero, new Point(_ce.stage.width/2, _ce.stage.height/2), new Rectangle(0, 0, level.width, level.height));
+			view.camera.setUp(hero, new Point(_ce.stage.width/2, _ce.stage.height/1.5), new Rectangle(0, 0, level.width, level.height));
 			
 			stage.addEventListener(starling.events.ResizeEvent.RESIZE, onResize);
 			onResize(new ResizeEvent("init", Starling.current.nativeStage.stageWidth, Starling.current.nativeStage.stageHeight));

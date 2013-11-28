@@ -58,6 +58,7 @@ package game.objects
 		public var jumpState:JumpState;
 		public var walkState:WalkState;
 		public var duckingState:LuigiState;
+		public var faceRight:Boolean = true;
 		
 		public function Luigi(name:String, params:Object=null)
 		{
@@ -98,6 +99,13 @@ package game.objects
 		{
 			_state.update(timeDelta, _body.velocity, _ce.input);
 			super.update(timeDelta);
+			
+			if(faceRight && _body.velocity.x < 0) {
+				faceRight = false;
+			}
+			else if(!faceRight && _body.velocity.x > 0) {
+				faceRight = true;
+			}
 			
 			// If on a safe ground tile (static), save it for possible respawns
 			var groundBody:Body =  groundContacts[0] as Body;
