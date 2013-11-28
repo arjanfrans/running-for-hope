@@ -1,5 +1,6 @@
 package {
 	
+	import citrus.core.IState;
 	import citrus.core.citrus_internal;
 	import citrus.core.starling.StarlingCitrusEngine;
 	import citrus.core.starling.StarlingState;
@@ -13,9 +14,9 @@ package {
 	import starling.display.Sprite;
 	import starling.textures.Texture;
 	
+	import ui.dialog.DialogMessage;
 	import ui.hud.PlayerStatsUi;
 	import ui.menus.MenuState;
-	import citrus.core.IState;
 	
 	[SWF(backgroundColor="#000000", width="800", height="600", frameRate="30")]
 	public class Main extends StarlingCitrusEngine {
