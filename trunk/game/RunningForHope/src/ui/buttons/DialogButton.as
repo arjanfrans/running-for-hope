@@ -7,6 +7,7 @@ package ui.buttons
 	import starling.text.TextField;
 	import starling.textures.Texture;
 	import starling.utils.HAlign;
+	import starling.utils.VAlign;
 
 	public class DialogButton extends Button 
 	{
@@ -18,27 +19,31 @@ package ui.buttons
 			this.btn = btn;
 			this.callback = callback;
 			
-			var texture:Texture = Assets.getTexture("Interface", "DialogOption");
+			var texture:Texture;
+			if(btn == 1) {
+				texture = Assets.getTexture("Interface", "DialogBtnRed");
+			}
+			else if(btn == 2) {
+				texture = Assets.getTexture("Interface", "DialogBtnYellow");
+			}
+			else {
+				texture = Assets.getTexture("Interface", "DialogBtnGreen");
+			}
+			
 			super(texture, text, texture);
 			
 			textHAlign = HAlign.LEFT;
-			textBounds = new Rectangle(20, 0, 400, 45);
-			
-			fontBold = true;
-			
-			var actionText:TextField = new TextField(45, 45, "" + btn, "Arial");
-			actionText.color = 0xFFFFFFFF;
-			actionText.bold = true;
-			actionText.width = 45;
-			actionText.height = 45;
-			actionText.x = 452;
-			actionText.y = 0;
-			addChild(actionText);
+			textVAlign = VAlign.CENTER;
+			textBounds = new Rectangle(10, 0, 700, 52);
+			this.fontSize = 24;
 			
 			if(callback != null) {
 				addEventListener(Event.REMOVED_FROM_STAGE, destroy);
 				addEventListener(Event.ADDED_TO_STAGE, init);
-				addEventListener(Event.TRIGGERED, function():void { callback(btn); } );
+				addEventListener(Event.TRIGGERED, function():void {
+					if (callback.length > 0) callback(btn);
+					else callback();
+				});
 			}
 		}
 		
