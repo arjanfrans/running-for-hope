@@ -38,11 +38,7 @@ package game.objects
 	
 	public class Luigi extends CustomHero
 	{
-		protected static var seq:AnimationSequence;
-		
-		private const angular_dampening:Number = 2;
-		private const linear_dampening:Number = 2;
-		public var air_acceleration:Number =  8;
+		public var air_acceleration:Number;
 		private var _oldVelocity:Vec2 = new Vec2();
 		
 		private var _safe_respawn:Vec2;
@@ -67,7 +63,7 @@ package game.objects
 		{
 			super(name, params);
 			var ta:TextureAtlas = Assets.getAtlas("LuigiAnimation");
-			seq = new AnimationSequence(ta, ["walk", "idle", "duck", "hurt", "jump"], "idle", Config.INTERNAL_FPS);
+			var seq:AnimationSequence = new AnimationSequence(ta, ["walk", "idle", "duck", "hurt", "jump"], "idle", Config.INTERNAL_FPS);
 			view = seq;
 			
 			texture_height = this.height;
@@ -79,63 +75,13 @@ package game.objects
 			
 			_state = idleState;
 			
-			maxVelocity = 130;
-			acceleration = 20;
+			air_acceleration = 7;
+			maxVelocity = 150;
+			acceleration = 30;
 			jumpAcceleration = 10;
-			jumpHeight = 400;
+			jumpHeight = 450;
 			
 		}	
-		
-		public function get normal_shape():Shape
-		{
-			return _normal_shape;
-		}
-
-		public function set normal_shape(value:Shape):void
-		{
-			_normal_shape = value;
-		}
-
-		public function get ducking_shape():Shape
-		{
-			return _ducking_shape;
-		}
-
-		public function set ducking_shape(value:Shape):void
-		{
-			_ducking_shape = value;
-		}
-
-
-		public function get safe_respawn():Vec2
-		{
-			return _safe_respawn;
-		}
-
-		public function set safe_respawn(value:Vec2):void
-		{
-			_safe_respawn = value;
-		}
-
-		public function get oldVelocity():Vec2
-		{
-			return _oldVelocity;
-		}
-
-		public function set oldVelocity(value:Vec2):void
-		{
-			_oldVelocity = value;
-		}
-
-		public function get touchingWall():Boolean
-		{
-			return _touchingWall;
-		}
-
-		public function set touchingWall(value:Boolean):void
-		{
-			_touchingWall = value;
-		}
 
 		override protected function createShape():void
 		{
@@ -163,82 +109,6 @@ package game.objects
 				}
 			}
 			
-/*			if (controlsEnabled) {
-				var moveKeyPressed:Boolean = false;
-				
-				_ducking = (_ce.input.isDoing("duck", inputChannel) && _onGround && canDuck);
-				
-				duckingResize();
-				
-				if(_ce.input.justDid("jump", inputChannel)) jump_triggered = false;
-				
-				if (_ce.input.isDoing("right", inputChannel)  && !_ducking)
-				{
-					velocity.x += _onGround ? acceleration : air_acceleration;
-					moveKeyPressed = true;
-				}
-				
-				if (_ce.input.isDoing("left", inputChannel) && !_ducking)
-				{
-					velocity.x -= _onGround ? acceleration : air_acceleration;
-					moveKeyPressed = true;
-				}
-				
-				//If player just started moving the hero this tick.
-				if (moveKeyPressed && !_playerMovingHero)
-				{
-					_playerMovingHero = true;
-					_material.dynamicFriction = 0; //Take away friction so he can accelerate.
-					_material.staticFriction = 0;
-				}
-				//Player just stopped moving the hero this tick.
-				else if (!moveKeyPressed && _playerMovingHero)
-				{
-					_playerMovingHero = false;
-					_material.dynamicFriction = _dynamicFriction; //Add friction so that he stops running
-					_material.staticFriction = _staticFriction;
-				}
-				
-				if (_onGround && _ce.input.justDid("jump", inputChannel) && !_ducking)
-				{
-					velocity.y = -jumpHeight;
-					onJump.dispatch();
-					jump_triggered = true;
-				}
-				
-				//Wall jumping
-				if (_touchingWall && _ce.input.isDoing("jump", inputChannel) && !_onGround && velocity.y < 50 && Math.abs(oldVelocity.x) > 50 && !jump_triggered)
-				{
-					velocity.y = Math.max(velocity.y - 200, -jumpHeight);
-					velocity.x = (oldVelocity.x > 0) ? -150 : 150;
-					_touchingWall = false;
-					jump_triggered = true;
-				}
-				
-				if (_springOffEnemy != -1)
-				{
-					if (_ce.input.isDoing("jump", inputChannel))
-						velocity.y = -enemySpringJumpHeight;
-					else
-						velocity.y = -enemySpringHeight;
-					_springOffEnemy = -1;
-				}
-				
-				//Cap velocities
-				if (velocity.x > (maxVelocity))
-					velocity.x = maxVelocity;
-				else if (velocity.x < (-maxVelocity))
-					velocity.x = -maxVelocity;
-			}
-			
-			//Track previous velocity, necessary for wall jumping.
-			Starling.juggler.add(new DelayedCall(function(x:Number, y:Number):void {
-				oldVelocity.x = x;
-				oldVelocity.y = y;
-			}, 0.3, [_body.velocity.x, _body.velocity.y]));
-			*/
-		
-			
 			// Handle being dead			
 			if(_dead) {
 				var m:Model = Main.getModel();
@@ -253,27 +123,6 @@ package game.objects
 			}
 			
 			updateAnimation();
-		}
-		
-		/**
-		 * Change the hero's shape size when ducking, and change it back when done ducking.
-		 */
-		private function duckingResize():void
-		{
-			if(canDuck) {
-				if(_ce.input.isDoing("duck", inputChannel) && _onGround 
-					&& Math.round(_shape.bounds.height) == texture_height) {
-					_shape.scale(1, texture_height_duck / texture_height);
-					this.view.y += texture_height_duck * 0.25;
-				}
-				else if(_ce.input.hasDone("duck", inputChannel)) {
-					if(Math.round(_shape.bounds.height) != texture_height) {
-						_shape.scale(1, texture_height / texture_height_duck);
-						this.view.y -= texture_height_duck * 0.25;
-					}
-				}
-			}
-			//TODO the visual appearance of ducking doesn't look very smooth, some animation 'glitching' occurs
 		}
 		
 		/**
@@ -354,6 +203,57 @@ package game.objects
 		public function set dead(dead:Boolean):void
 		{
 			_dead = dead;
+		}
+		
+		public function get normal_shape():Shape
+		{
+			return _normal_shape;
+		}
+		
+		public function set normal_shape(value:Shape):void
+		{
+			_normal_shape = value;
+		}
+		
+		public function get ducking_shape():Shape
+		{
+			return _ducking_shape;
+		}
+		
+		public function set ducking_shape(value:Shape):void
+		{
+			_ducking_shape = value;
+		}
+		
+		
+		public function get safe_respawn():Vec2
+		{
+			return _safe_respawn;
+		}
+		
+		public function set safe_respawn(value:Vec2):void
+		{
+			_safe_respawn = value;
+		}
+		
+		public function get oldVelocity():Vec2
+		{
+			return _oldVelocity;
+		}
+		
+		public function set oldVelocity(value:Vec2):void
+		{
+			_oldVelocity = value;
+		}
+		
+		public function get touchingWall():Boolean
+		{
+			return _touchingWall;
+		}
+		
+		public function set touchingWall(value:Boolean):void
+		{
+			_touchingWall = value;
 		}
 		
 	}

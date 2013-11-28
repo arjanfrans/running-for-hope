@@ -65,6 +65,7 @@ package ui.menus
 			stage.addEventListener(KeyboardEvent.KEY_UP, keyboardListener);
 			stage.addEventListener(Event.REMOVED, destroy);
 			stage.addEventListener(Event.RESIZE, onResize);
+			onResize(new ResizeEvent("init", Starling.current.nativeStage.stageWidth, Starling.current.nativeStage.stageHeight));
 		}
 		
 		private function onResize(event:ResizeEvent):void
