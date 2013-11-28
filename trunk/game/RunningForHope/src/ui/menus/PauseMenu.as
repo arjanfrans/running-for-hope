@@ -14,6 +14,7 @@ package ui.menus
 	
 	import ui.buttons.NumberButton;
 	import model.Model;
+	import game.objects.Resetable;
 
 	public class PauseMenu extends Sprite
 	{
@@ -59,17 +60,9 @@ package ui.menus
 		private function reset():void
 		{
 			// The movieclip is where our level is loaded from, it defines the blueprint from which our level was built
-			var level:MovieClip = Main.getModel().getLevel().flashLevel;
-			for(var i:int = 0; i < level.numChildren; i++) {
-				var item:DisplayObject = level.getChildAt(i);
-				if(item["className"] == "game.objects.Box") {
-					// The objects in state are direct references to the objects actually in our level
-					// We can cross reference these to the same objects from our blueprint, and place them back in their original position
-					var obj:NapePhysicsObject = state.objects[i + (state.objects.length - level.numChildren)] as NapePhysicsObject;
-					obj.x = item.x;
-					obj.y = item.y;
-					obj.rotation = item.rotation;
-				}
+			for(var i:int = 0; i < state.objects.length; i++) {
+				var obj:Resetable = state.objects[i] as Resetable;
+				if(obj != null) obj.reset();
 			}
 			state.closePauseMenu();
 		}

@@ -12,12 +12,25 @@ package game.objects
 	
 	import starling.textures.Texture;
 		
-	public class Box extends Crate
+	public class Box extends Crate implements Resetable
 	{
+		private var origin:Vec2;
 
 		public function Box(name:String, params:Object = null)
 		{
 			super(name, params);
+			origin = new Vec2(x, y);
+		}
+		
+		public function reset():void
+		{
+			x = origin.x;
+			y = origin.y;
+			body.rotation = 0;
+			body.velocity = new Vec2(0, 0);
+			body.angularVel = 0;
+			body.allowRotation = true;
+			beginContactCallEnabled = true;
 		}
 		
 		override protected function createMaterial():void

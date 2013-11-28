@@ -41,7 +41,6 @@ package ui.dialog
 		
 		private function slideMessageTo(msg:DialogMessage):void
 		{
-			Starling.juggler.removeTweens(msg);
 			Starling.juggler.tween(msg, 1, { y: msg.target_y });
 		}
 		

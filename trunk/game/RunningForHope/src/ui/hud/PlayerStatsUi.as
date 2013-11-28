@@ -5,14 +5,15 @@ package ui.hud {
 	import model.Level;
 	import model.Score;
 	
+	import starling.display.Image;
 	import starling.display.Quad;
 	import starling.display.Sprite;
 	import starling.events.Event;
 	import starling.events.ResizeEvent;
 	import starling.text.TextField;
+	import starling.utils.HAlign;
 	
 	import ui.buttons.NumberButton;
-	import starling.display.Image;
 	
 
 	/**
@@ -21,18 +22,10 @@ package ui.hud {
 	public class PlayerStatsUi extends StarlingState {
 
 
-		private var pointsLabel:TextField;
-		private var healthLabel:TextField;
-		private var timeLabel:TextField;
 		private var heartsBar:HeartsBar;
 		private var menuCallback:Function;
-		private var level:Level;
-		private var highScore:Score;
-		private var recordPointsLabel:TextField;
-		private var RecordTimeLabel:TextField;
-		public var originalHeight:Number = 100;
-		public var originalWidth:Number = 800;
 		private var highscoreText:TextField;
+		private var scoreText:TextField;
 		
 		/**
 		 * This creates a ingame interface that displays all information the player should know during gameplay.
@@ -42,19 +35,15 @@ package ui.hud {
 		public function PlayerStatsUi(menuCallback:Function) {
 			super();
 			
-			level = Main.getModel().getLevel();
-			highScore = level.highscores().getHighScore(0);
+			var level:Level = Main.getModel().getLevel();
+			var highScore:Score = level.highscores().getHighScore(0);
 			
 			//background
-			this.addChild(new Quad(originalWidth, originalHeight));
 			var img:Image = new Image(Assets.getTexture("Spritesheet", "HUDBackground"));
-			img.x = 0;
-			img.y = 0;
-			img.width = originalWidth;
 			this.addChild(img);
-			trace(this.height);
 			
 			//menu button
+			// Remove this
 			this.menuCallback = menuCallback;
 			var menuButton:NumberButton = new NumberButton(
 				Assets.getTexture("Interface", "btnGeneric")
@@ -66,53 +55,28 @@ package ui.hud {
 			);
 			menuButton.x = 550;
 			menuButton.y = 0;
+			menuButton.alpha = 0;
 			this.addChild(menuButton);
 			
 			//highscoreText
-			
-			highscoreText = new TextField(300, 40, "Points: "+highScore.points.toString()+" | "+"Time: "+timeToClock(highScore.time), "Arial", 15, 0x000000, true);
-			//updatePoints();
-			highscoreText.x = -40;
+			highscoreText = new TextField(300, 40, "Points: "+highScore.points.toString()+" | "+"Time: "+timeToClock(highScore.time), "Arial", 15, 0xFFFFFFFF);
+			highscoreText.hAlign = HAlign.LEFT;
+			highscoreText.x = 20;
 			highscoreText.y = 40;
 			this.addChild(highscoreText);
 			
-			//pointsLabel
-			pointsLabel = new TextField(160, 40, " ", "Arial", 20, 0x000000, true);
-			updatePoints();
-			pointsLabel.x = 30;
-			pointsLabel.y = 10;
-			//this.addChild(pointsLabel);
-			
-			//recordPointsLabel
-			recordPointsLabel = new TextField(250, 40, "Points: " + highScore.points.toString(), "Arial", 20, 0x000000, true);
-			recordPointsLabel.x = 20;
-			recordPointsLabel.y = 10;
-			//this.addChild(recordPointsLabel);
-			
-			//healthLabel
-			/*healthLabel = new TextField(80, 20, "Health: " + Main.getModel().lifes);
-			healthLabel.x = 130;
-			healthLabel.y = 50;
-			this.addChild(healthLabel);*/
-			
-			//timeLabel
-			timeLabel = new TextField(160, 40, " ", "Arial", 20, 0x000000, true);
-			updateTime();
-			timeLabel.x = 30;
-			timeLabel.y = 60;
-			//this.addChild(timeLabel);
-			
-			//bestTimeLabel
-			RecordTimeLabel = new TextField(250, 40, "Time:  " + timeToClock(highScore.time), "Arial", 20, 0x000000, true);
-			RecordTimeLabel.x = 200;
-			RecordTimeLabel.y = 60;
-			//this.addChild(RecordTimeLabel);
+			//scoreText
+			scoreText = new TextField(300, 40, "", "Arial", 15, 0xFFFFFFFF);
+			scoreText.hAlign = HAlign.RIGHT;
+			scoreText.x = width - 320;
+			scoreText.y = 40;
+			addChild(scoreText);
 			
 			//heartsBar
 			heartsBar = new HeartsBar();
 			heartsBar.update();
-			heartsBar.x = 550;
-			heartsBar.y = 60;
+			heartsBar.x = (width / 2) - (heartsBar.width / 2);
+			heartsBar.y = 50;
 			this.addChild(heartsBar);
 		}
 		
@@ -122,8 +86,7 @@ package ui.hud {
 		 * Update de HUD.
 		 */
 		public function updateUi():void {
-			updatePoints();
-			updateTime();
+			scoreText.text = "Points: "+ Main.getModel().points +" | "+"Time: "+ timeToClock(Main.getModel().time);
 			heartsBar.update();
 		}
 		
@@ -163,14 +126,14 @@ package ui.hud {
 		 * Update the pointsLabel in the hud.
 		 */
 		private function updatePoints():void {
-			pointsLabel.text = "Points: " + getPoints();
+			//pointsLabel.text = "Points: " + getPoints();
 		}
 		
 		/**
 		 * Update the timeLabel in the hud.
 		 */
 		private function updateTime():void {
-			timeLabel.text = "Time: " + timeToClock(getTime());
+			//timeLabel.text = "Time: " + timeToClock(getTime());
 		}
 		
 		private function updateHighscore():void {
