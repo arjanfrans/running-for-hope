@@ -19,6 +19,8 @@ package game.objects.hero
 		private var _hero:Luigi;
 		private var jump_triggered:Boolean;
 		private var _onGround:Boolean = false;
+		private var _wallJumpFlag:Boolean;
+
 		
 		public function JumpState(hero:Luigi)
 		{
@@ -30,11 +32,18 @@ package game.objects.hero
 			_hero.onJump.dispatch();
 			jump_triggered = true;
 			_onGround = false;
+			_wallJumpFlag = false;
 		}
 		
 		public function update(timeDelta:Number, velocity:Vec2, input:Input):void
 		{
 			var moveKeyPressed:Boolean = false;
+			if(_hero.touchingWall && !_wallJumpFlag) {
+				_wallJumpFlag = true;
+				Starling.juggler.add(new DelayedCall(function():void {
+					_wallJumpFlag = false;
+				}, 0.01));
+			}
 			
 			if(input.justDid("jump", _hero.inputChannel)) jump_triggered = false;
 			
@@ -76,10 +85,12 @@ package game.objects.hero
 			}
 			
 			//Wall jumping
-			if (_hero.touchingWall && input.isDoing("jump", _hero.inputChannel) && !_hero.onGround && velocity.y < 100 && Math.abs(_hero.oldVelocity.x) > 100 && !jump_triggered)
+			//trace(_hero.touchingWall); //velocity.y < 100 && Math.abs(_hero.oldVelocity.x) > 100 && && input.isDoing("jump", _hero.inputChannel) && !_hero.onGround && !jump_triggered
+
+			if ((_hero.touchingWall || _wallJumpFlag) && !jump_triggered && input.isDoing("jump", _hero.inputChannel))
 			{
 				velocity.y = -_hero.jumpHeight;//Math.max(velocity.y - 200, -_hero.jumpHeight);
-				velocity.x = (_hero.oldVelocity.x > 0) ? -250 : 250;
+				velocity.x = !_hero.faceRight ? 200 : -200;
 				_hero.touchingWall = false;
 				jump_triggered = true;
 			}
@@ -91,10 +102,10 @@ package game.objects.hero
 				velocity.x = -_hero.maxVelocity;
 			
 			//Track previous velocity, necessary for wall jumping.
-			Starling.juggler.add(new DelayedCall(function(x:Number, y:Number):void {
+/*			Starling.juggler.add(new DelayedCall(function(x:Number, y:Number):void {
 				_hero.oldVelocity.x = x;
 				_hero.oldVelocity.y = y;
-			}, 0.3, [_hero.body.velocity.x, _hero.body.velocity.y]));
+			}, 0.3, [_hero.body.velocity.x, _hero.body.velocity.y]));*/
 			
 			_onGround = _hero.onGround;
 		}
