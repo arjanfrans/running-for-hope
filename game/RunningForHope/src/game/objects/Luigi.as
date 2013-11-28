@@ -59,6 +59,7 @@ package game.objects
 		public var walkState:WalkState;
 		public var duckingState:LuigiState;
 		public var faceRight:Boolean = true;
+		public var lastWallContact:NapePhysicsObject = null;
 		
 		public function Luigi(name:String, params:Object=null)
 		{
@@ -159,6 +160,7 @@ package game.objects
 				else {
 					//If not, the collision is a wall
 					_touchingWall = true;
+					lastWallContact = collider;
 				}
 			}
 		}		

@@ -90,8 +90,8 @@ package ui.dialog
 			showOptions();
 			
 			// Resize
-			//stage.addEventListener(Event.RESIZE, onResize);
-			//onResize(new ResizeEvent("init", Starling.current.nativeStage.stageWidth, Starling.current.nativeStage.stageHeight));
+			stage.addEventListener(Event.RESIZE, onResize);
+			onResize(new ResizeEvent("init", Starling.current.nativeStage.stageWidth, Starling.current.nativeStage.stageHeight));
 		}
 		
 		/**
@@ -99,41 +99,9 @@ package ui.dialog
 		 */
 		private function onResize(event:ResizeEvent):void
 		{
-			//TODO almost the same as in GameState, MenuState. Double code!!!
-			var newWidth:Number = event.width;
-			var newHeight:Number = event.height;
-			this.width = newWidth;
-			this.height = newHeight;
-			
-			if(Config.KEEP_SCALING_RATIO) {
-				var aspectRatio:Number = width / height;
-				var scale:Number = 1;
-				var crop:Vec2 = new Vec2(0, 0);
-				if(aspectRatio > Config.ASPECT_RATIO)
-				{
-					scale = height / Config.VIRTUAL_HEIGHT;
-					crop.x = (width - Config.VIRTUAL_WIDTH * scale) / 2;
-				}
-				else if(aspectRatio < Config.ASPECT_RATIO)
-				{
-					scale = width / Config.VIRTUAL_WIDTH;
-					crop.y = (height - Config.VIRTUAL_HEIGHT*scale) / 2;
-				}
-				else
-				{
-					scale = width / Config.VIRTUAL_WIDTH;
-				}
-				newWidth = Config.VIRTUAL_WIDTH * scale;
-				newHeight = Config.VIRTUAL_HEIGHT * scale;
-			}
-			
-			var viewPortRectangle:Rectangle = new Rectangle();
-			viewPortRectangle.width = newWidth;
-			viewPortRectangle.height = newHeight;
-			if(!Config.DEBUG_MODE) viewPortRectangle.x = (width - newWidth) / 2;
-			Starling.current.stage.stageWidth = newWidth + (width - newWidth);
-			Starling.current.stage.stageHeight = newHeight;
-			Starling.current.viewPort = viewPortRectangle;
+			var scale:Number = Math.min((event.width / Config.VIRTUAL_WIDTH), (event.height / Config.VIRTUAL_HEIGHT));
+			this.scaleX = scale;
+			this.scaleY = scale;
 		}
 		
 		private function showOptions():void

@@ -1,11 +1,14 @@
 package game.objects.hero
 {
 	import citrus.input.Input;
+	import citrus.objects.NapePhysicsObject;
 	
 	import game.objects.Luigi;
 	
 	import model.Model;
 	
+	import nape.dynamics.Arbiter;
+	import nape.dynamics.ArbiterList;
 	import nape.geom.Vec2;
 	import nape.phys.Body;
 	
@@ -20,7 +23,7 @@ package game.objects.hero
 		private var jump_triggered:Boolean;
 		private var _onGround:Boolean = false;
 		private var _wallJumpFlag:Boolean;
-
+		private var _lastWallJumped:NapePhysicsObject = null;
 		
 		public function JumpState(hero:Luigi)
 		{
@@ -33,6 +36,7 @@ package game.objects.hero
 			jump_triggered = true;
 			_onGround = false;
 			_wallJumpFlag = false;
+			_lastWallJumped = null;
 		}
 		
 		public function update(timeDelta:Number, velocity:Vec2, input:Input):void
@@ -86,13 +90,17 @@ package game.objects.hero
 			
 			//Wall jumping
 			//trace(_hero.touchingWall); //velocity.y < 100 && Math.abs(_hero.oldVelocity.x) > 100 && && input.isDoing("jump", _hero.inputChannel) && !_hero.onGround && !jump_triggered
-
-			if ((_hero.touchingWall || _wallJumpFlag) && !jump_triggered && input.isDoing("jump", _hero.inputChannel))
+			
+			if (_wallJumpFlag && !jump_triggered && input.isDoing("jump", _hero.inputChannel) && velocity.y < 100)
 			{
-				velocity.y = -_hero.jumpHeight;//Math.max(velocity.y - 200, -_hero.jumpHeight);
-				velocity.x = !_hero.faceRight ? 200 : -200;
-				_hero.touchingWall = false;
-				jump_triggered = true;
+				
+				if(_lastWallJumped == null || _lastWallJumped != _hero.lastWallContact) {
+					velocity.y = -_hero.jumpHeight; //Math.max(velocity.y - 200, -_hero.jumpHeight);
+					velocity.x = !_hero.faceRight ? 200 : -200;
+					_hero.touchingWall = false;
+					jump_triggered = true;
+					_lastWallJumped = _hero.lastWallContact;
+				}
 			}
 			
 			//Cap velocities
@@ -100,12 +108,6 @@ package game.objects.hero
 				velocity.x = _hero.maxVelocity;
 			else if (velocity.x < (-_hero.maxVelocity))
 				velocity.x = -_hero.maxVelocity;
-			
-			//Track previous velocity, necessary for wall jumping.
-/*			Starling.juggler.add(new DelayedCall(function(x:Number, y:Number):void {
-				_hero.oldVelocity.x = x;
-				_hero.oldVelocity.y = y;
-			}, 0.3, [_hero.body.velocity.x, _hero.body.velocity.y]));*/
 			
 			_onGround = _hero.onGround;
 		}
