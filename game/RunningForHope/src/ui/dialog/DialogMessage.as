@@ -19,10 +19,17 @@ package ui.dialog
 	
 	public class DialogMessage extends Sprite
 	{
+		public var real_width:Number;
+		public var target_y:Number = 0;
+		public var side:String;
+		
 		public function DialogMessage(nameColor:uint, name:String, message:String, direction:String = "left")
 		{
 			super();
+			this.side = direction;
+			
 			var size:Vec2 = getTextSize(message);
+			real_width = size.x + 30;
 			
 			// Background, simply plain white
 			var head:Quad = new Quad(size.x, 10);
@@ -100,7 +107,7 @@ package ui.dialog
 			var ele:flash.text.TextField = new flash.text.TextField();
 			ele.multiline = true;
 			ele.wordWrap = true;
-			ele.width = 450;
+			ele.width = 410;
 			ele.defaultTextFormat = format;
 			ele.text = text;
 			
