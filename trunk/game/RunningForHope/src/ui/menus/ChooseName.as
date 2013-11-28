@@ -12,6 +12,7 @@ package ui.menus
 	import starling.display.Sprite;
 	import starling.events.Event;
 	import starling.events.KeyboardEvent;
+	import starling.events.ResizeEvent;
 	import starling.text.TextField;
 	import starling.textures.Texture;
 	import starling.utils.HAlign;
@@ -54,6 +55,8 @@ package ui.menus
 			name_input.setSelection(1, 1);
 			name_input.text = "test";
 			
+			
+			
 			addEventListener(Event.ADDED_TO_STAGE, init);
 		}
 		
@@ -61,6 +64,18 @@ package ui.menus
 		{
 			stage.addEventListener(KeyboardEvent.KEY_UP, keyboardListener);
 			stage.addEventListener(Event.REMOVED, destroy);
+			stage.addEventListener(Event.RESIZE, onResize);
+		}
+		
+		private function onResize(event:ResizeEvent):void
+		{
+			name_input.x = 147 * (event.width / Config.VIRTUAL_WIDTH);
+			name_input.y = 253 * (event.height / Config.VIRTUAL_HEIGHT);
+			name_input.defaultTextFormat = new TextFormat("Arial", Math.round(25 *(event.height / Config.VIRTUAL_HEIGHT)), 0x000000);
+			name_input.height = 34 * (event.height / Config.VIRTUAL_HEIGHT);
+			name_input.height = 508 * (event.width / Config.VIRTUAL_WIDTH);
+			name_input.text = name_input.text;
+			name_input.setSelection(name_input.length, name_input.length);
 		}
 		
 		private function destroy():void
