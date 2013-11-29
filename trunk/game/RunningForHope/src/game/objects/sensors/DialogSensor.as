@@ -4,7 +4,6 @@ package game.objects.sensors
 	import citrus.core.starling.StarlingState;
 	import citrus.objects.CitrusSprite;
 	import citrus.objects.NapePhysicsObject;
-	import citrus.objects.platformer.nape.Coin;
 	import citrus.objects.platformer.nape.Sensor;
 	import citrus.physics.nape.NapeUtils;
 	
@@ -16,31 +15,36 @@ package game.objects.sensors
 	import ui.dialog.DialogView;
 	import ui.menus.MainMenu;
 	import ui.menus.MenuState;
+	import citrus.CustomCoin;
 	
-	public class DialogSensor extends Coin
+	public class DialogSensor extends CustomCoin
 	{
-		private var dialogName:String; 
-		public function DialogSensor(name:String, params:Object=null)
+		private var dialogName:String;
+		private var parameters:Object = null;
+		
+		public function DialogSensor(name:String, params:Object = null)
 		{
 			super(name, params);
 			this.collectorClass = "game.objects.Luigi";
 			
 			if(params != null) {
+				parameters = params;
 				if(params["dialogName"] != null) dialogName = params["dialogName"];
 			}
 		}
 		
 		/**
-		 * Function when the Hero gets in contact with this a FallSensor, he is set to dead.
+		 * Function for when the Hero gets in contact with this DialogSensor.
 		 */
 		override public function handleBeginContact(interactionCallback:InteractionCallback):void
 		{
 			super.handleBeginContact(interactionCallback);
 			var collider:NapePhysicsObject = NapeUtils.CollisionGetOther(this, interactionCallback);
 			
+			
 			if (collider is Luigi) {
-				Main.getModel().pause = true;
-				Main.getModel().getLevel().initDialog();
+				Main.getModel().pause = true; //pause the game
+				Main.getModel().getLevel().initDialog(); //initialize dialog scene
 				var state:StarlingState = (Main.getState() as GameState);
 				
 				var dialogView:DialogView = new DialogView(dialogName, function():void {
@@ -48,6 +52,7 @@ package game.objects.sensors
 					Main.getModel().pause = false;
 				});
 				state.addChild(dialogView);
+				
 			}
 		}
 	}

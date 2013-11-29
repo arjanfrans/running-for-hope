@@ -22,7 +22,9 @@ package game.objects.sensors
 			super.handleBeginContact(interactionCallback);
 			var collider:NapePhysicsObject = NapeUtils.CollisionGetOther(this, interactionCallback);
 			
+			//check whether the contact is the player.
 			if (collider is Luigi) {
+				//set the player to dead.
 				(collider as Luigi).dead = true;
 			}
 		}		
