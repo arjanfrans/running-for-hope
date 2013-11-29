@@ -18,6 +18,7 @@ package model
 		private var _file:String;
 		private var _maxPoints:int = -1;
 		private var _highscores:Highscores;
+		private var _objective:String;
 		
 		private var _width:int;
 		private var _height:int;
@@ -26,6 +27,13 @@ package model
 		private var _dialogInit:Function = null;
 		private var _flashLevel:MovieClip;
 		
+		/**
+		 * The modelof a level.
+		 * 
+		 * @param String name The name of the level.
+		 * @param String file The .swf file of the level.
+		 * @param Function dialogInit
+		 */
 		public function Level(name:String, file:String, dialogInit:Function = null)
 		{
 			_name = name;
@@ -36,6 +44,9 @@ package model
 			initMetadata();
 		}
 		
+		/**
+		 * initial loading of the metadata of the level.
+		 */
 		private function initMetadata():void
 		{
 			// We need to load our level once to get some metadata of our level
@@ -56,16 +67,29 @@ package model
 			loader.load(new URLRequest("levels/" + _file + ".swf"));
 		}
 		
+		/**
+		 * getter for the flash level object.
+		 * @return MovieClip The flash level object.
+		 */
 		public function get flashLevel():MovieClip
 		{
 			return _flashLevel;
 		}
 		
+		/**
+		 * The initialization of a dialog scene.
+		 */
 		public function initDialog():void
 		{
 			if(_dialogInit != null) _dialogInit();
 		}
 		
+		/**
+		 * Loads the level.
+		 * 
+		 * @param Function callback
+		 * @param Boolean reload
+		 */
 		public function load(callback:Function = null, reload:Boolean = false):void
 		{
 			var loader:Loader = new Loader();
@@ -79,41 +103,91 @@ package model
 			loader.load(new URLRequest("levels/" + _file + ".swf"));
 		}
 		
+		/**
+		 * The getter for the width of the level.
+		 * @return int The width of the level.
+		 */
 		public function get width():int
 		{
 			return _width;
 		}
 		
+		/**
+		 * The getter for the height of the level.
+		 * @return int The height of the level.
+		 */
 		public function get height():int
 		{
 			return _height;
 		}
 		
+		/**
+		 * The getter for the name of the level.
+		 * @return String The name of the level.
+		 */
 		public function get name():String
 		{
 			return _name;
 		}
 		
+		/**
+		 * The setter of the name of the level.
+		 * @param String name The name of the level.
+		 */
 		public function set name(name:String):void
 		{
 			_name = name;
 		}
 		
+		/**
+		 * The getter for the dialog library of the level.
+		 * @return DialogLibrary The dialog library of the level.
+		 */
 		public function get dialog():DialogLibrary
 		{
 			return _dialog;
 		}
 		
+		/**
+		 * The setter of the dialog library of the level.
+		 * @param DialogLibrary dialog The dialog library of the level.
+		 */
 		public function set dialog(dialog:DialogLibrary):void
 		{
 			_dialog = dialog;
 		}
 		
+		/**
+		 * The getter for the currently set objective.
+		 * @return int The currently set objective.
+		 */
+		public function get objective():String
+		{
+			return _objective;
+		}
+		
+		/**
+		 * The setter of the currently set objective.
+		 * @param String value The currently set objective.
+		 */
+		public function set objective(objective:String):void
+		{
+			_objective = objective;
+		}
+		
+		/**
+		 * returns the highscores of this level.
+		 * @return The highscores of this level.
+		 */
 		public function highscores():Highscores
 		{
 			return _highscores;
 		}
 		
+		/**
+		 * returns the maximum amount of points you can get in this level.
+		 * @return The maximum amount of points you can get in this level.
+		 */
 		public function maxPoints():int
 		{
 			return _maxPoints;
