@@ -1,7 +1,6 @@
 package game.objects.sensors
 {
 	import citrus.objects.NapePhysicsObject;
-	import citrus.objects.platformer.nape.Sensor;
 	import citrus.physics.nape.NapeUtils;
 	
 	import game.GameState;
@@ -11,8 +10,10 @@ package game.objects.sensors
 	
 	import ui.menus.MainMenu;
 	import ui.menus.MenuState;
+	import citrus.CustomSensor;
+	import citrus.objects.platformer.nape.Sensor;
 	
-	public class EndLevelSensor extends Sensor
+	public class EndLevelSensor extends CustomSensor
 	{
 		private var nextLevel:Number;
 		
@@ -30,13 +31,16 @@ package game.objects.sensors
 			var collider:NapePhysicsObject = NapeUtils.CollisionGetOther(this, interactionCallback);
 			
 			if (collider is Luigi) {
-				Main.getModel().getLevel().highscores().submitScore();
-				
-				if(++Main.getModel().level >= Main.getModel().numLevels()) {
+				Main.getModel().getLevel().highscores().submitScore(); //submit score to highscorelist
+				Main.getModel().getLevel().objective = ""; //set objective to nothing.
+				//check whether there are any levels left after this one and increase level counter.
+				if(Main.getModel().level + 1 >= Main.getModel().numLevels()) {
+					//go to main menu
 					Main.setState(new MenuState());
 					return;
 				}
-				
+				//load next level.
+				Main.getModel().level++;
 				Main.setState(new GameState());
 			}
 		}

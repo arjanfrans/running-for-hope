@@ -28,19 +28,21 @@ package model
 		private var _flashLevel:MovieClip;
 		
 		/**
-		 * The modelof a level.
+		 * The datamodel of a level.
 		 * 
 		 * @param String name The name of the level.
 		 * @param String file The .swf file of the level.
+		 * @param String defaultObjective The default objective of the level.
 		 * @param Function dialogInit
 		 */
-		public function Level(name:String, file:String, dialogInit:Function = null)
+		public function Level(name:String, file:String, defaultObjective:String, dialogInit:Function = null)
 		{
 			_name = name;
 			_file = file;
 			_dialog = new DialogLibrary();
 			_dialogInit = dialogInit;
 			_highscores = new Highscores(this);
+			_objective = defaultObjective;
 			initMetadata();
 		}
 		

@@ -15,7 +15,6 @@ package ui.hud {
 	
 	import ui.buttons.NumberButton;
 	
-
 	/**
 	 * A ingame interface that displays all information the player should know during gameplay.
 	 */
@@ -26,6 +25,7 @@ package ui.hud {
 		private var menuCallback:Function;
 		private var highscoreText:TextField;
 		private var scoreText:TextField;
+		private var objectiveText:TextField;
 		
 		/**
 		 * This creates a ingame interface that displays all information the player should know during gameplay.
@@ -74,6 +74,13 @@ package ui.hud {
 			scoreText.y = 40;
 			addChild(scoreText);
 			
+			//objectiveText
+			objectiveText = new TextField(300, 40, "Objective", "Arial", 15, 0xFF000000);
+			objectiveText.hAlign = HAlign.CENTER;
+			objectiveText.x = width/2 - 150;
+			objectiveText.y = 0;
+			addChild(objectiveText);
+			
 			//heartsBar
 			heartsBar = new HeartsBar();
 			heartsBar.update();
@@ -89,6 +96,7 @@ package ui.hud {
 		 */
 		public function updateUi():void {
 			updateText();
+			updateObjective();
 			heartsBar.update();
 		}
 		
@@ -148,6 +156,10 @@ package ui.hud {
 				points = ''+getPoints();
 			}
 			scoreText.text = "Points: "+points+" | "+"Time: "+timeToClock(getTime());
+		}
+		
+		private function updateObjective():void {
+			objectiveText.text = Main.getModel().getLevel().objective;;
 		}
 		
 		/**
