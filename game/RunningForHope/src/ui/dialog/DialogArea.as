@@ -24,6 +24,7 @@ package ui.dialog
 				var dm:DialogMessage = getChildAt(i) as DialogMessage;
 				dm.target_y += msg.height + 10;
 				slideMessageTo(dm);
+				
 				if((dm.target_y + dm.height) > MAX_HEIGHT) {
 					removeMessage(dm);
 				}
