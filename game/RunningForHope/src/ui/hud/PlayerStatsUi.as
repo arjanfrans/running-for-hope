@@ -50,11 +50,11 @@ package ui.hud {
 				, 0
 				, "Menu"
 				, menuCallback
-				, 190
+				, 135
 				, 0xFF000000
 			);
-			menuButton.x = 550;
-			menuButton.y = 0;
+			menuButton.x = 400-(130/2);
+			menuButton.y = 30;
 			menuButton.alpha = 0;
 			this.addChild(menuButton);
 			
@@ -63,8 +63,10 @@ package ui.hud {
 			highscoreText.hAlign = HAlign.LEFT;
 			highscoreText.x = 20;
 			highscoreText.y = 40;
+
 			this.addChild(highscoreText);
 			
+
 			//scoreText
 			scoreText = new TextField(300, 40, "", "Arial", 15, 0xFFFFFFFF);
 			scoreText.hAlign = HAlign.RIGHT;
@@ -86,7 +88,7 @@ package ui.hud {
 		 * Update de HUD.
 		 */
 		public function updateUi():void {
-			scoreText.text = "Points: "+ Main.getModel().points +" | "+"Time: "+ timeToClock(Main.getModel().time);
+			updateText();
 			heartsBar.update();
 		}
 		
@@ -136,8 +138,16 @@ package ui.hud {
 			//timeLabel.text = "Time: " + timeToClock(getTime());
 		}
 		
-		private function updateHighscore():void {
-			
+		private function updateText():void {
+			var points:String;
+			if (getPoints()<100) {
+				points = '  '+getPoints();
+			} else if (getPoints()<10) {
+				points = ' '+getPoints();
+			} else {
+				points = ''+getPoints();
+			}
+			scoreText.text = "Points: "+points+" | "+"Time: "+timeToClock(getTime());
 		}
 		
 		/**
@@ -151,7 +161,8 @@ package ui.hud {
 			var minutesString:String;
 			var secondsString:String;
 			if (minutes<10) {
-				minutesString = '0'+minutes.toString();
+				minutesString = ' '+minutes.toString();
+				
 			} else {
 				minutesString = minutes.toString();
 			}
