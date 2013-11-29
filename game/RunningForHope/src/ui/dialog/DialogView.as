@@ -62,7 +62,7 @@ package ui.dialog
 			}
 			else {
 				// TODO: Female
-				player = Assets.getImage("Characters", "Max_Male");
+				player = Assets.getImage("Characters", "Max_Female");
 			}
 			var other:Image = new Image(chat.partner_asset);
 			other.scaleX = -1;
