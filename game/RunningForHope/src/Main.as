@@ -4,6 +4,7 @@ package {
 	import citrus.core.citrus_internal;
 	import citrus.core.starling.StarlingCitrusEngine;
 	import citrus.core.starling.StarlingState;
+	import citrus.sounds.SoundManager;
 	
 	import game.GameState;
 	
@@ -24,13 +25,14 @@ package {
 		private static var _this:Main;
 		private var _level:int = 0;
 		private var _model:Model;
-		
+
 		public function Main() {
 			_this = this;
 			_model = new Model();
 			this.stage.frameRate = Config.INTERNAL_FPS;
 			setUpStarling(true);
 			state = new MenuState();
+			initSound();
 		}
 		
 		public static function getModel():Model
@@ -52,6 +54,18 @@ package {
 		{
 			if(level >= 0) _this._level = level;
 			return _this._level;
+			
+		}
+		
+		private function initSound():void
+		{
+/*			sound.addSound("Collect", {sound:"sounds/collect.mp3",group:CitrusSoundGroup.SFX});
+			sound.addSound("Hurt", {sound:"sounds/hurt.mp3",group:CitrusSoundGroup.SFX});
+			sound.addSound("Jump", {sound:"sounds/jump.mp3",group:CitrusSoundGroup.SFX});
+			sound.addSound("Kill", {sound:"sounds/kill.mp3",group:CitrusSoundGroup.SFX});
+			sound.addSound("Skid", {sound:"sounds/skid.mp3",group:CitrusSoundGroup.SFX});
+			sound.addSound("Song", {sound:"sounds/song.mp3",timesToPlay:-1,group:CitrusSoundGroup.BGM});
+			sound.addSound("Walk", { sound:"sounds/walk.mp3",timesToPlay: -1, volume:1, group:CitrusSoundGroup.SFX } );*/
 		}
 	}
 }
