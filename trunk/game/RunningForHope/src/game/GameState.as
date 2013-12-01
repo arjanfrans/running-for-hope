@@ -15,8 +15,9 @@ package game {
 	import game.objects.*;
 	import game.objects.platforms.*;
 	import game.objects.sensors.*;
-	
+
 	import model.Level;
+	import model.Model;
 	
 	import nape.geom.Vec2;
 	
@@ -27,7 +28,6 @@ package game {
 	import ui.dialog.DialogView;
 	import ui.hud.PlayerStatsUi;
 	import ui.menus.PauseMenu;
-	import model.Model;
 	
 	/**
 	 * The main game state, this is where the gameplay happens. The level gets setup here.
@@ -104,7 +104,11 @@ package game {
 			
 			view.camera.allowZoom = true;
 			view.camera.easing = new Point(1, 1);
-			view.camera.setUp(hero, new Point(_ce.stage.width/2, _ce.stage.height/1.5), new Rectangle(0, 0, level.width, level.height));
+			view.camera.target = hero;
+			view.camera.offset = new Point(_ce.stage.width/2, _ce.stage.height/1.5);
+			view.camera.bounds = new Rectangle(0, 0, level.width, level.height);
+			
+			//view.camera.setUp(hero, new Point(_ce.stage.width/2, _ce.stage.height/1.5), new Rectangle(0, 0, level.width, level.height));
 			
 			stage.addEventListener(starling.events.ResizeEvent.RESIZE, onResize);
 			onResize(new ResizeEvent("init", Starling.current.nativeStage.stageWidth, Starling.current.nativeStage.stageHeight));
