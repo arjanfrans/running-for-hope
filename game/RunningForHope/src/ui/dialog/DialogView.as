@@ -7,6 +7,7 @@ package ui.dialog
 	import flash.text.TextField;
 	
 	import model.dialog.Dialog;
+	import model.dialog.DialogEntry;
 	import model.dialog.QuestionResponse;
 	import model.dialog.QuestionResponseSet;
 	
@@ -87,7 +88,7 @@ package ui.dialog
 			options.x = 15;
 			options.y = 395;
 			addChild(options);
-			showOptions();
+			continueDialog();
 			
 			// Resize
 			stage.addEventListener(Event.RESIZE, onResize);
@@ -104,51 +105,71 @@ package ui.dialog
 			this.scaleY = scale;
 		}
 		
-		private function showOptions():void
+		private function continueDialog():void
 		{
 			if (dialog_progress < chat.length) {
-				var choices:QuestionResponseSet = chat.load(dialog_progress);
-				for (var i:int = 0; i < choices.length; i++) {
-					var qr:QuestionResponse = choices.load(i);
-					var btn:DialogButton = new DialogButton(qr.question(), i + 1, dialogChoice );
-					btn.y = i * 70;
-					options.addChild(btn);
+				var dialogEntry:Object = chat.load(dialog_progress);
+				var choices:QuestionResponseSet = dialogEntry as QuestionResponseSet;
+				if(choices !== null) {
+					// It's a questionResponseSet
+					showOptions(choices);
+				}
+				else {
+					// It's a regular message
+					var entry:DialogEntry = dialogEntry as DialogEntry;
+					showContinue(entry);
 				}
 			}
 			else {
 				// End of dialog
-				options.addChild(new DialogButton("Continue", 1, endDialogCallback ));
+				options.addChild(new DialogButton("Continue game", 1, endDialogCallback ));
 			}
 		}
 		
 		private function dialogChoice(btn:int):void
 		{
+			// Buttons go from upwards, the index of the choices starts at 0. So, -1
+			btn--;
+			// Remove buttons from options panel
 			while (options.numChildren > 0) options.removeChildAt(0);
 			
-			var choices:QuestionResponseSet = chat.load(dialog_progress++);
-			var qr:QuestionResponse = choices.load(btn - 1);
+			// Get the QuestionResponseSet linked to the chosen dialog option
+			var choices:QuestionResponseSet = chat.load(dialog_progress) as QuestionResponseSet;
+			var qr:QuestionResponse = choices.load(btn);
 			addMessage(qr.question());
 			
-			if (qr.answer() == null) {
-				showOptions();
-			}
-			else {
-				Starling.juggler.delayCall(function():void {
-					addMessage(qr.answer(), chat.partner_name);
-					showOptions();
-				}, 1);
+			dialog_progress++;
+			showContinue(qr.answer());
+		}
+		
+		private function showContinue(entry:DialogEntry):void
+		{
+			options.addChild(new DialogButton("Continue dialog", 1, function():void {
+				addMessage(entry.message, entry.from, entry.side);
+				continueDialog();
+			}));
+		}
+		
+		private function showOptions(choices:QuestionResponseSet):void
+		{
+			for (var i:int = 0; i < choices.length; i++) {
+				var qr:QuestionResponse = choices.load(i);
+				var btn:DialogButton = new DialogButton(qr.question(), i + 1, dialogChoice );
+				btn.y = i * 70;
+				options.addChild(btn);
 			}
 		}
 		
-		private function addMessage(message:String, from:String = null):void
+		private function addMessage(message:String, from:String = null, side:String = null):void
 		{
 			message = message.replace(/\[playerName\]/gi, Main.getModel().player().name);
 			if (from == null) {
-				//text += "<P ALIGN=\"LEFT\"><FONT SIZE=\"28\" COLOR=\"#990000\">You</FONT><br>";
-				dialogArea.addMessage(new DialogMessage(0xFF990000, "You", message));
+				if(side === null) side = "left";
+				dialogArea.addMessage(new DialogMessage(0xFF990000, "You", message, side));
 			}
 			else {
-				dialogArea.addMessage(new DialogMessage(0xFF336699, from, message, "right"));
+				if(side === null) side = "right";
+				dialogArea.addMessage(new DialogMessage(0xFF336699, from, message, side));
 			}
 		}
 	}

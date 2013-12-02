@@ -14,20 +14,21 @@ package ui.buttons
 		private var btn:int;
 		private var callback:Function;
 		
-		public function DialogButton(text:String, btn:int, callback:Function) 
+		public function DialogButton(text:String, btn:int, callback:Function, texture:Texture = null)
 		{
 			this.btn = btn;
 			this.callback = callback;
 			
-			var texture:Texture;
-			if(btn == 1) {
-				texture = Assets.getTexture("Interface", "DialogBtnRed");
-			}
-			else if(btn == 2) {
-				texture = Assets.getTexture("Interface", "DialogBtnYellow");
-			}
-			else {
-				texture = Assets.getTexture("Interface", "DialogBtnGreen");
+			if(texture == null) {
+				if(btn == 1) {
+					texture = Assets.getTexture("Interface", "DialogBtnRed");
+				}
+				else if(btn == 2) {
+					texture = Assets.getTexture("Interface", "DialogBtnYellow");
+				}
+				else {
+					texture = Assets.getTexture("Interface", "DialogBtnGreen");
+				}
 			}
 			
 			super(texture, text, texture);

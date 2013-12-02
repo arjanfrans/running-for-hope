@@ -1,5 +1,7 @@
 package model.dialog 
 {
+	import starling.textures.Texture;
+
 	/**
 	 * ...
 	 * @author Wim Barelds
@@ -7,9 +9,10 @@ package model.dialog
 	public class QuestionResponse 
 	{
 		private var q:String;
-		private var a:String;
+		private var a:DialogEntry;
 		
-		public function QuestionResponse(question:String, answer:String):void
+		
+		public function QuestionResponse(question:String, answer:DialogEntry):void
 		{
 			q = question;
 			a = answer;
@@ -21,7 +24,7 @@ package model.dialog
 			return q;
 		}
 		
-		public function answer(answer:String = null):String
+		public function answer(answer:DialogEntry = null):DialogEntry
 		{
 			if (answer != null) a = answer;
 			return a;
