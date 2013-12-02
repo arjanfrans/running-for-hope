@@ -8,7 +8,7 @@ package model.dialog
 	 */
 	public class Dialog 
 	{
-		private var sets:Vector.<QuestionResponseSet>;
+		private var messages:Array;
 		public var root:String = null;
 		public var partner_asset:Texture = null;
 		public var partner_name:String;
@@ -16,21 +16,21 @@ package model.dialog
 		
 		public function Dialog(partner_asset:Texture, partner_name:String, root:String = null) 
 		{
-			sets = new Vector.<QuestionResponseSet>();
+			messages = new Array();
 			this.partner_asset = partner_asset;
 			this.partner_name = partner_name;
 			this.root = root;
 		}
 		
-		public function add(val:QuestionResponseSet):void
+		public function add(val:Object):void
 		{
-			sets.push(val);
+			messages.push(val);
 			length++;
 		}
 		
-		public function load(index:int):QuestionResponseSet
+		public function load(index:int):Object
 		{
-			return sets[index];
+			return messages[index];
 		}
 	}
 
