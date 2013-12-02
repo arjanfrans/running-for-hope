@@ -19,6 +19,7 @@ package model
 		private var _maxPoints:int = -1;
 		private var _highscores:Highscores;
 		private var _objective:String;
+		private var _initialObjective:String;
 		
 		private var _width:int;
 		private var _height:int;
@@ -42,8 +43,13 @@ package model
 			_dialog = new DialogLibrary();
 			_dialogInit = dialogInit;
 			_highscores = new Highscores(this);
-			_objective = defaultObjective;
+			_initialObjective = defaultObjective;
 			initMetadata();
+		}
+		
+		public function resetObjective():void
+		{
+			_objective = _initialObjective;
 		}
 		
 		/**

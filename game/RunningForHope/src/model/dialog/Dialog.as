@@ -9,17 +9,17 @@ package model.dialog
 	public class Dialog 
 	{
 		private var messages:Array;
-		public var root:String = null;
 		public var partner_asset:Texture = null;
-		public var partner_name:String;
 		public var length:int = 0;
+		public var nextObjective:String;
+		public var endLevel:Boolean = false;
 		
-		public function Dialog(partner_asset:Texture, partner_name:String, root:String = null) 
+		public function Dialog(partner_asset:Texture, nextObjective:String, endLevel:Boolean = false) 
 		{
 			messages = new Array();
 			this.partner_asset = partner_asset;
-			this.partner_name = partner_name;
-			this.root = root;
+			this.nextObjective = nextObjective;
+			this.endLevel = endLevel;
 		}
 		
 		public function add(val:Object):void

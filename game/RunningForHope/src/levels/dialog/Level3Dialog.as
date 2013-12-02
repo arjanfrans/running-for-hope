@@ -21,10 +21,16 @@ package levels.dialog
 		
 		public static function load():void
 		{
+			trace("Test");
 			var library:DialogLibrary = Main.getModel().getLevel(2).dialog;
 			if (loaded) return;
 			
-			var chat:Dialog = new Dialog(Assets.getTexture("Characters", "Hope"), "Hope", "Hey [playerName]! How are you?");
+			var chat:Dialog = new Dialog(
+				Assets.getTexture("Characters", "Hope"),
+				"Reach the end of the level",
+				false
+			);
+			
 			var qrs1:QuestionResponseSet = new QuestionResponseSet();
 			qrs1.add(new QuestionResponse("I'm doing great! How about you?", response("I'm actually not feeling too well.")));
 			qrs1.add(new QuestionResponse("I'm fine. You?", response("I'm actually not feeling too well.")));
@@ -49,7 +55,20 @@ package levels.dialog
 			qrs4.add(new QuestionResponse("I'll race you there.", response("Too funny. Lets go.")));
 			chat.add(qrs4);
 			
+			
+			var chat2:Dialog = new Dialog(
+				Assets.getTexture("Characters", "Hope"),
+				"",
+				true
+			);
+			
+			chat2.add(new DialogEntry("Hope", "You're done", "right"));
+			chat2.add(new DialogEntry("Hope", "Awesome", "right"));
+			chat2.add(new DialogEntry("Hope", "Test", "left"));
+			
 			library.put("Level1Start", chat);
+			library.put("Level1End", chat2);
+			
 			loaded = true;
 		}
 	}
