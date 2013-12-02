@@ -36,7 +36,7 @@ package ui.menus
 			if(menu == null) menu = new MainMenu();
 			
 			while(_this.numChildren > 0) _this.removeChildAt(0);
-			_this.addChild(new Image(Assets.getAtlas("Interface").getTexture("Background")));
+			_this.addChild(Assets.getImage("Interface", "Background"));
 			_this.addChild(menu);
 		}
 		

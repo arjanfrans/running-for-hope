@@ -89,7 +89,9 @@ package  {
 		
 		public static function getImage(atlasName:String, name:String):Image
 		{
-			return new Image(getTexture(atlasName, name));
+			var img:Image = new Image(getTexture(atlasName, name))
+			img.smoothing = Config.SMOOTHING;
+			return img;
 		}
 		
 		private static function create(name:String):Object
