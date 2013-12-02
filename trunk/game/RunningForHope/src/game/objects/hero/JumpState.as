@@ -1,5 +1,6 @@
 package game.objects.hero
 {
+	import citrus.core.CitrusEngine;
 	import citrus.input.Input;
 	import citrus.objects.NapePhysicsObject;
 	
@@ -37,6 +38,7 @@ package game.objects.hero
 			_onGround = false;
 			_wallJumpFlag = false;
 			_lastWallJumped = null;
+			Main.audio.playSound("jump");
 		}
 		
 		public function update(timeDelta:Number, velocity:Vec2, input:Input):void
@@ -113,7 +115,7 @@ package game.objects.hero
 		}
 		
 		public function updateAnimation():void
-		{
+		{			
 			_hero.animation = "jump";
 		}
 		
