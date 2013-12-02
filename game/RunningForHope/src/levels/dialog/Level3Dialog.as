@@ -21,7 +21,6 @@ package levels.dialog
 		
 		public static function load():void
 		{
-			trace("Test");
 			var library:DialogLibrary = Main.getModel().getLevel(2).dialog;
 			if (loaded) return;
 			
@@ -63,6 +62,13 @@ package levels.dialog
 			);
 			
 			chat2.add(new DialogEntry("Hope", "You're done", "right"));
+			
+			var qrs5:QuestionResponseSet = new QuestionResponseSet();
+			qrs5.add(new QuestionResponse("I know", response("Really?")));
+			qrs5.add(new QuestionResponse("Really?", response("Yep")));
+			qrs5.add(new QuestionResponse("Awesome", response("I know, right?")));
+			chat2.add(qrs5);
+			
 			chat2.add(new DialogEntry("Hope", "Awesome", "right"));
 			chat2.add(new DialogEntry("Hope", "Test", "left"));
 			
