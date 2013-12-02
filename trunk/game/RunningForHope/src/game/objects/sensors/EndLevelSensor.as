@@ -32,7 +32,6 @@ package game.objects.sensors
 			
 			if (collider is Luigi) {
 				Main.getModel().getLevel().highscores().submitScore(); //submit score to highscorelist
-				Main.getModel().getLevel().objective = ""; //set objective to nothing.
 				//check whether there are any levels left after this one and increase level counter.
 				if(Main.getModel().level + 1 >= Main.getModel().numLevels()) {
 					//go to main menu

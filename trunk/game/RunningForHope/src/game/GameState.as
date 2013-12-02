@@ -57,6 +57,7 @@ package game {
 			m.points = 0;
 			m.time = 0;
 			m.lifes = Config.LIFES;
+			m.getLevel().resetObjective();
 			
 			var napePhysics:Nape = new Nape("nape");
 			if(Config.DEBUG_MODE) napePhysics.visible = true;

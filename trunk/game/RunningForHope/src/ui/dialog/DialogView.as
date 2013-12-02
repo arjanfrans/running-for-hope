@@ -30,15 +30,15 @@ package ui.dialog
 	public class DialogView extends Sprite 
 	{
 		private var dialogArea:DialogArea;
-		private var chat:Dialog;
+		private var dialog:Dialog;
 		private var options:Sprite;
 		private var dialog_progress:int = 0;
 		private var endDialogCallback:Function;
 		
-		public function DialogView(dialogName:String, callback:Function):void
+		public function DialogView(dialog:Dialog, callback:Function):void
 		{
 			endDialogCallback = callback;
-			chat = Main.getModel().getLevel().dialog.take(dialogName);
+			this.dialog = dialog; 
 			
 			if (stage) init();
 			else addEventListener(Event.ADDED_TO_STAGE, init);
@@ -65,7 +65,7 @@ package ui.dialog
 				// TODO: Female
 				player = Assets.getImage("Characters", "Max_Female");
 			}
-			var other:Image = new Image(chat.partner_asset);
+			var other:Image = new Image(dialog.partner_asset);
 			other.scaleX = -1;
 			
 			player.x = 10;
@@ -78,8 +78,6 @@ package ui.dialog
 			
 			dialogArea = new DialogArea();
 			addChild(dialogArea);
-			
-			if (chat.root != null) addMessage(chat.root, chat.partner_name);
 			
 			// Dialog options
 			options = new Sprite();
@@ -107,8 +105,8 @@ package ui.dialog
 		
 		private function continueDialog():void
 		{
-			if (dialog_progress < chat.length) {
-				var dialogEntry:Object = chat.load(dialog_progress);
+			if (dialog_progress < dialog.length) {
+				var dialogEntry:Object = dialog.load(dialog_progress);
 				var choices:QuestionResponseSet = dialogEntry as QuestionResponseSet;
 				if(choices !== null) {
 					// It's a questionResponseSet
@@ -118,6 +116,7 @@ package ui.dialog
 					// It's a regular message
 					var entry:DialogEntry = dialogEntry as DialogEntry;
 					showContinue(entry);
+					dialog_progress++;
 				}
 			}
 			else {
@@ -134,7 +133,7 @@ package ui.dialog
 			while (options.numChildren > 0) options.removeChildAt(0);
 			
 			// Get the QuestionResponseSet linked to the chosen dialog option
-			var choices:QuestionResponseSet = chat.load(dialog_progress) as QuestionResponseSet;
+			var choices:QuestionResponseSet = dialog.load(dialog_progress) as QuestionResponseSet;
 			var qr:QuestionResponse = choices.load(btn);
 			addMessage(qr.question());
 			
