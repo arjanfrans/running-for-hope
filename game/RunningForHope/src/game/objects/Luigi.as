@@ -14,7 +14,6 @@ package game.objects
 	import flash.utils.describeType;
 	
 	import game.GameState;
-	import game.PlayerStats;
 	import game.objects.hero.DuckingState;
 	import game.objects.hero.IdleState;
 	import game.objects.hero.JumpState;

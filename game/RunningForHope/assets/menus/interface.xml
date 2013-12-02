@@ -1,29 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with TexturePacker http://www.codeandweb.com/texturepacker-->
-<!-- $TexturePacker:SmartUpdate:0dd2d16397972961eaf94cb63d8816bc:1/1$ -->
+<!-- $TexturePacker:SmartUpdate:8658ed8761eb53a2d9273bdc098a1ca7:1/1$ -->
 <TextureAtlas imagePath="interface.png">
     <SubTexture name="A_padding1" x="26" y="2" width="22" height="8" frameX="-4" frameY="0" frameWidth="30" frameHeight="40"/>
     <SubTexture name="A_padding2" x="2" y="2" width="22" height="2" frameX="-4" frameY="0" frameWidth="30" frameHeight="40"/>
-    <SubTexture name="Background" x="2" y="1106" width="800" height="600"/>
-    <SubTexture name="DialogBackground" x="804" y="1036" width="800" height="600"/>
+    <SubTexture name="Background" x="2" y="1162" width="800" height="600"/>
+    <SubTexture name="DialogBackground" x="1190" y="636" width="800" height="600"/>
     <SubTexture name="DialogBtnGreen" x="2" y="56" width="770" height="52"/>
-    <SubTexture name="DialogBtnRed" x="923" y="2" width="770" height="52"/>
-    <SubTexture name="DialogBtnYellow" x="151" y="2" width="770" height="52"/>
+    <SubTexture name="DialogBtnRed" x="1270" y="2" width="770" height="52"/>
+    <SubTexture name="DialogBtnYellow" x="498" y="2" width="770" height="52"/>
     <SubTexture name="DialogMessageCorner" x="50" y="2" width="10" height="10"/>
     <SubTexture name="DialogSideArrow" x="62" y="2" width="9" height="14"/>
-    <SubTexture name="FadedBackground" x="2" y="504" width="800" height="600"/>
+    <SubTexture name="FadedBackground" x="388" y="560" width="800" height="600"/>
+    <SubTexture name="Keyboard" x="970" y="126" width="345" height="137"/>
     <SubTexture name="MedalBronze" x="125" y="2" width="24" height="34" frameX="-3" frameY="-3" frameWidth="30" frameHeight="40"/>
     <SubTexture name="MedalGold" x="99" y="2" width="24" height="34" frameX="-3" frameY="-3" frameWidth="30" frameHeight="40"/>
     <SubTexture name="MedalSilver" x="73" y="2" width="24" height="34" frameX="-3" frameY="-3" frameWidth="30" frameHeight="40"/>
-    <SubTexture name="PauseMenu" x="970" y="434" width="800" height="600"/>
-    <SubTexture name="btnBack" x="486" y="378" width="482" height="124" frameX="-18" frameY="-13" frameWidth="518" frameHeight="150"/>
-    <SubTexture name="btnBlue" x="2" y="362" width="482" height="124" frameX="-18" frameY="-13" frameWidth="518" frameHeight="150"/>
-    <SubTexture name="btnContinueGame" x="1454" y="308" width="482" height="124" frameX="-18" frameY="-13" frameWidth="518" frameHeight="150"/>
-    <SubTexture name="btnContinueGameHover" x="970" y="308" width="482" height="124" frameX="-18" frameY="-13" frameWidth="518" frameHeight="150"/>
-    <SubTexture name="btnGeneric" x="486" y="252" width="482" height="124" frameX="-18" frameY="-13" frameWidth="518" frameHeight="150"/>
-    <SubTexture name="btnNewGame" x="2" y="236" width="482" height="124" frameX="-18" frameY="-13" frameWidth="518" frameHeight="150"/>
-    <SubTexture name="btnNewGameHover" x="1454" y="182" width="482" height="124" frameX="-18" frameY="-13" frameWidth="518" frameHeight="150"/>
-    <SubTexture name="btnPaleBlue" x="970" y="182" width="482" height="124" frameX="-18" frameY="-13" frameWidth="518" frameHeight="150"/>
+    <SubTexture name="PauseMenu" x="2" y="488" width="384" height="434" frameX="-17" frameY="-17" frameWidth="418" frameHeight="468"/>
+    <SubTexture name="TipsAndTricks" x="151" y="2" width="345" height="50"/>
+    <SubTexture name="Walljump" x="1454" y="434" width="345" height="200"/>
+    <SubTexture name="btnBack" x="970" y="434" width="482" height="124" frameX="-18" frameY="-13" frameWidth="518" frameHeight="150"/>
+    <SubTexture name="btnBlue" x="486" y="378" width="482" height="124" frameX="-18" frameY="-13" frameWidth="518" frameHeight="150"/>
+    <SubTexture name="btnContinueGame" x="2" y="362" width="482" height="124" frameX="-18" frameY="-13" frameWidth="518" frameHeight="150"/>
+    <SubTexture name="btnContinueGameHover" x="1454" y="308" width="482" height="124" frameX="-18" frameY="-13" frameWidth="518" frameHeight="150"/>
+    <SubTexture name="btnGeneric" x="970" y="308" width="482" height="124" frameX="-18" frameY="-13" frameWidth="518" frameHeight="150"/>
+    <SubTexture name="btnNewGame" x="486" y="252" width="482" height="124" frameX="-18" frameY="-13" frameWidth="518" frameHeight="150"/>
+    <SubTexture name="btnNewGameHover" x="2" y="236" width="482" height="124" frameX="-18" frameY="-13" frameWidth="518" frameHeight="150"/>
+    <SubTexture name="btnPaleBlue" x="1317" y="182" width="482" height="124" frameX="-18" frameY="-13" frameWidth="518" frameHeight="150"/>
     <SubTexture name="btnPink" x="486" y="126" width="482" height="124" frameX="-18" frameY="-13" frameWidth="518" frameHeight="150"/>
     <SubTexture name="btnViewHighscores" x="2" y="110" width="482" height="124" frameX="-18" frameY="-13" frameWidth="518" frameHeight="150"/>
     <SubTexture name="btnViewHighscoresHover" x="1328" y="56" width="482" height="124" frameX="-18" frameY="-13" frameWidth="518" frameHeight="150"/>

@@ -19,14 +19,13 @@ package game.objects.sensors
 	import model.dialog.Dialog;
 	import model.Level;
 	
-	public class DialogSensor extends CustomCoin
+	public class DialogSensor extends Sensor
 	{
 		private var dialogName:String;
 		
 		public function DialogSensor(name:String, params:Object = null)
 		{
 			super(name, params);
-			this.collectorClass = "game.objects.Luigi";
 			
 			if(name != null) dialogName = name;
 		}
@@ -40,7 +39,8 @@ package game.objects.sensors
 			var collider:NapePhysicsObject = NapeUtils.CollisionGetOther(this, interactionCallback);
 			
 			if (collider is Luigi) {
-				var state:StarlingState = (Main.getState() as GameState);
+				kill = true;
+				var state:GameState = (Main.getState() as GameState);
 				
 				Main.getModel().pause = true; //pause the game
 				
@@ -52,8 +52,7 @@ package game.objects.sensors
 				Audio.setState("dialog");
 				
 				var dialogView:DialogView = new DialogView(dialog, function():void {
-					state.removeChild(dialogView);
-					Main.getModel().pause = false;
+					state.closePopup();
 					if(dialog.endLevel) {
 						// This ends the level
 						// submit score to highscorelist
@@ -75,7 +74,7 @@ package game.objects.sensors
 						level.objective = dialog.nextObjective;
 					}
 				});
-				state.addChild(dialogView);
+				state.openPopup(dialogView, false, false);
 			}
 		}
 	}

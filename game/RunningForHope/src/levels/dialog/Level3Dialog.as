@@ -31,6 +31,8 @@ package levels.dialog
 				false
 			);
 			
+			chat.add(response("Hey [playerName], how are you doing?"));
+			
 			var qrs1:QuestionResponseSet = new QuestionResponseSet();
 			qrs1.add(new QuestionResponse("I'm doing great! How about you?", response("I'm actually not feeling too well.")));
 			qrs1.add(new QuestionResponse("I'm fine. You?", response("I'm actually not feeling too well.")));
