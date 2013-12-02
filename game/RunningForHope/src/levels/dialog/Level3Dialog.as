@@ -25,6 +25,7 @@ package levels.dialog
 			if (loaded) return;
 			
 			var chat:Dialog = new Dialog(
+				null,
 				Assets.getTexture("Characters", "Hope"),
 				"Reach the end of the level",
 				false
@@ -56,9 +57,11 @@ package levels.dialog
 			
 			
 			var chat2:Dialog = new Dialog(
+				null,
 				Assets.getTexture("Characters", "Hope"),
 				"",
-				true
+				true,
+				Assets.getTexture("DialogBackgrounds", "hospital")
 			);
 			
 			chat2.add(new DialogEntry("Hope", "You're done", "right"));

@@ -14,6 +14,8 @@ package ui.hud {
 	import starling.utils.HAlign;
 	
 	import ui.buttons.NumberButton;
+	import model.Model;
+	import starling.events.KeyboardEvent;
 	
 	/**
 	 * A ingame interface that displays all information the player should know during gameplay.
@@ -45,18 +47,6 @@ package ui.hud {
 			//menu button
 			// Remove this
 			this.menuCallback = menuCallback;
-			var menuButton:NumberButton = new NumberButton(
-				Assets.getTexture("Interface", "btnGeneric")
-				, 0
-				, "Menu"
-				, menuCallback
-				, 135
-				, 0xFF000000
-			);
-			menuButton.x = 400-(130/2);
-			menuButton.y = 30;
-			menuButton.alpha = 0;
-			this.addChild(menuButton);
 			
 			//highscoreText
 			highscoreText = new TextField(300, 40, "Points: "+highScore.points.toString()+" | "+"Time: "+timeToClock(highScore.time), "Arial", 15, 0xFFFFFFFF);
@@ -87,79 +77,40 @@ package ui.hud {
 			heartsBar.x = (width / 2) - (heartsBar.width / 2);
 			heartsBar.y = 50;
 			this.addChild(heartsBar);
+			
+			if(stage == null) addEventListener(Event.ADDED_TO_STAGE, addBinding);
+			else addBinding();
+			
+			addEventListener(Event.REMOVED_FROM_STAGE, removeBinding);
 		}
 		
-
+		public function addBinding():void
+		{
+			stage.addEventListener(KeyboardEvent.KEY_UP, keyboardHandler);
+		}
+		
+		public function removeBinding():void
+		{
+			stage.removeEventListener(KeyboardEvent.KEY_UP, keyboardHandler);
+		}
+		
+		private function keyboardHandler(e:KeyboardEvent):void
+		{
+			if (e.keyCode == 27) {
+				menuCallback();
+			}
+			
+		}
 		
 		/**
 		 * Update de HUD.
 		 */
 		public function updateUi():void {
-			updateText();
-			updateObjective();
-			heartsBar.update();
-		}
-		
-		/**
-		 * Get the current elapsed playtime.
-		 * @return Number The current elapsed playtime.
-		 */
-		private function getTime():Number {
-			return Main.getModel().time;
-			
-		}
-		
-		/**
-		 * Get the current score.
-		 * @return int The current score.
-		 */
-		private function getScore():int {
-			return Score.calculate(getTime(), getPoints());
-		}
-		
-		/**
-		 * Get the current amount of points.
-		 * @return int The current amount of points.
-		 */
-		private function getPoints():int {
-			return Main.getModel().points;
-		}
-		
-		/**
-		 * Update the scoreLabel in the hud.
-		 */
-		private function updateScore():void {
-			//scoreLabel.text = "Score: " + getScore();
-		}
-		
-		/**
-		 * Update the pointsLabel in the hud.
-		 */
-		private function updatePoints():void {
-			//pointsLabel.text = "Points: " + getPoints();
-		}
-		
-		/**
-		 * Update the timeLabel in the hud.
-		 */
-		private function updateTime():void {
-			//timeLabel.text = "Time: " + timeToClock(getTime());
-		}
-		
-		private function updateText():void {
-			var points:String;
-			if (getPoints()<100) {
-				points = '  '+getPoints();
-			} else if (getPoints()<10) {
-				points = ' '+getPoints();
-			} else {
-				points = ''+getPoints();
-			}
-			scoreText.text = "Points: "+points+" | "+"Time: "+timeToClock(getTime());
-		}
-		
-		private function updateObjective():void {
+			var m:Model = Main.getModel();
+			scoreText.text = "Points: " + m.points + " | Time: " + timeToClock(m.time);
 			objectiveText.text = Main.getModel().getLevel().objective;;
+			
+			heartsBar.update();
 		}
 		
 		/**
