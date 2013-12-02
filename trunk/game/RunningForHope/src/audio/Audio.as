@@ -11,7 +11,7 @@ package audio
 			if(state == "game") {
 				Main.audio.stopAllPlayingSounds();	
 			}
-			else if(state == "dialog") {
+			else if(state == "dialog" || state == "window") {
 				Main.audio.stopAllPlayingSounds("backgroundMusic"); //TODO make backgroundmusic
 			}
 			else if(state == "menu") {
