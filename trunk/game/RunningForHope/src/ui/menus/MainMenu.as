@@ -5,6 +5,7 @@ package ui.menus
 	
 	import ui.buttons.NumberButton;
 	import ui.dialog.DialogMessage;
+	import ui.windows.InfoWindow;
 	
 	public class MainMenu extends Sprite
 	{
@@ -22,13 +23,6 @@ package ui.menus
 			addChild(btnNewGame);
 			addChild(btnContinueGame);
 			addChild(btnViewHighscores);
-			
-			/*
-			var dm:DialogMessage = new DialogMessage(0xFF336699, "Hope", "Hey Max, how are yf we ewgwetewg wwetwe tewbtweqrv Hey Max, how are yf we ewgwetewg wwetwe tewbtweqrv Hey Max, how are yf we ewgwetewg wwetwe tewbtweqrv Hey Max, how are yf we ewgwetewg wwetwe tewbtweqrv Hey Max, how are yf we ewgwetewg wwetwe tewbtweqrv Hey Max, how are yf we ewgwetewg wwetwe tewbtweqrv qvqwrcqvqvqou doing?", "right");
-			dm.x = 100;
-			dm.y = 100;
-			addChild(dm);
-			*/
 		}
 		
 		private function show():void

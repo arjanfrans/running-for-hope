@@ -15,7 +15,7 @@ package game {
 	import game.objects.*;
 	import game.objects.platforms.*;
 	import game.objects.sensors.*;
-
+	
 	import model.Level;
 	import model.Model;
 	
@@ -23,6 +23,7 @@ package game {
 	
 	import starling.core.Starling;
 	import starling.display.DisplayObject;
+	import starling.display.Sprite;
 	import starling.events.ResizeEvent;
 	
 	import ui.dialog.DialogView;
@@ -37,12 +38,13 @@ package game {
 		private var hero:Luigi;
 		private var playerStatsUi:PlayerStatsUi;
 		private var pauseMenu:PauseMenu = null;
+		private var popup:Sprite = null;
 		
 		public function GameState() {
 			super();
 			
 			//Objects which can be found in a map
-			var objects:Array = [Luigi, CustomSprite, FallSensor, EndLevelSensor, DialogSensor, Platform, Box, MovingPlatform, Token, Water];
+			var objects:Array = [Luigi, CustomSprite, FallSensor, EndLevelSensor, DialogSensor, InfoSensor, Platform, Box, MovingPlatform, Token, Water];
 
 			_ce.stage.align = StageAlign.TOP_LEFT;
 			_ce.stage.scaleMode = StageScaleMode.NO_SCALE;
@@ -64,14 +66,42 @@ package game {
 			add(napePhysics);
 			
 			/* Adjust timeStep to match framerate, so 30 or 60 fps will act the same			*/
-			napePhysics.timeStep = 2*(1/Config.INTERNAL_FPS);
+			napePhysics.timeStep = 2 * (1 / Config.INTERNAL_FPS);
 
 
 			Main.getModel().getLevel().load(initFlash, true);
-			playerStatsUi = new PlayerStatsUi(openPauseMenu);
+			playerStatsUi = new PlayerStatsUi();
 			this.addChild(playerStatsUi); //Add the HUD
 		}
 		
+		public function openPopup(popup:Sprite, autoPosition:Boolean = true, addBackground:Boolean = true):void
+		{
+			if(this.popup != null) return;
+			Main.getModel().pause = true;
+			
+			this.popup = new Sprite();
+			if(addBackground) {
+				this.popup.addChild(Assets.getImage("Interface", "FadedBackground"));
+			}
+			if(autoPosition) {
+				popup.x = (Config.VIRTUAL_WIDTH / 2) - (popup.width / 2); 
+				popup.y = (Config.VIRTUAL_HEIGHT / 2) - (popup.height / 2);
+				
+			}
+			this.popup.addChild(popup);
+			addChild(this.popup);
+		}
+		
+		public function closePopup():void
+		{
+			if(popup == null) return;
+			
+			Main.getModel().pause = false;
+			removeChild(popup);
+			popup = null;
+		}
+		
+		/*
 		private function openPauseMenu():void
 		{
 			// Don't open a pause menu upon another pause menu
@@ -96,6 +126,7 @@ package game {
 			Main.getModel().pause = false;
 			pauseMenu = null;
 		}
+		*/
 		
 		private function initFlash(flashLevel:MovieClip):void
 		{

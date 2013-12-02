@@ -16,6 +16,8 @@ package ui.hud {
 	import ui.buttons.NumberButton;
 	import model.Model;
 	import starling.events.KeyboardEvent;
+	import game.GameState;
+	import ui.menus.PauseMenu;
 	
 	/**
 	 * A ingame interface that displays all information the player should know during gameplay.
@@ -24,7 +26,6 @@ package ui.hud {
 
 
 		private var heartsBar:HeartsBar;
-		private var menuCallback:Function;
 		private var highscoreText:TextField;
 		private var scoreText:TextField;
 		private var objectiveText:TextField;
@@ -34,7 +35,7 @@ package ui.hud {
 		 * 
 		 * @param Function menuCallback The function the menubutton calls to open a pauzemenu.
 		 */
-		public function PlayerStatsUi(menuCallback:Function) {
+		public function PlayerStatsUi() {
 			super();
 			
 			var level:Level = Main.getModel().getLevel();
@@ -44,10 +45,12 @@ package ui.hud {
 			var img:Image = Assets.getImage("Spritesheet", "HUDBackground");
 			this.addChild(img);
 			
+			var footer:Image = Assets.getImage("Spritesheet", "HUDFooter");
+			footer.y = Config.VIRTUAL_HEIGHT - footer.height;
+			addChild(footer);
+			
 			//menu button
 			// Remove this
-			this.menuCallback = menuCallback;
-			
 			//highscoreText
 			highscoreText = new TextField(300, 40, "Points: "+highScore.points.toString()+" | "+"Time: "+timeToClock(highScore.time), "Arial", 15, 0xFFFFFFFF);
 			highscoreText.hAlign = HAlign.LEFT;
@@ -97,9 +100,9 @@ package ui.hud {
 		private function keyboardHandler(e:KeyboardEvent):void
 		{
 			if (e.keyCode == 27) {
-				menuCallback();
+				var state:GameState = Main.getState() as GameState;
+				state.openPopup(new PauseMenu());
 			}
-			
 		}
 		
 		/**

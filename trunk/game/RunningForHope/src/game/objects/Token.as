@@ -3,8 +3,6 @@ package game.objects
 	import citrus.objects.platformer.nape.Coin;
 	import citrus.physics.nape.NapeUtils;
 	
-	import game.PlayerStats;
-	
 	import nape.callbacks.InteractionCallback;
 	
 	import ui.hud.PlayerStatsUi;

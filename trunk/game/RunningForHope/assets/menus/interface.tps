@@ -148,32 +148,35 @@
         </struct>
         <key>fileList</key>
         <array>
-            <filename>D:/Development/Flash/BlockWorld/Assets/Menus/A_padding1.png</filename>
-            <filename>D:/Development/Flash/BlockWorld/Assets/Menus/A_padding2.png</filename>
-            <filename>D:/Development/Flash/BlockWorld/Assets/Menus/Background.png</filename>
-            <filename>D:/Development/Flash/BlockWorld/Assets/Menus/btnBack.png</filename>
-            <filename>D:/Development/Flash/BlockWorld/Assets/Menus/btnBlue.png</filename>
-            <filename>D:/Development/Flash/BlockWorld/Assets/Menus/btnContinueGame.png</filename>
-            <filename>D:/Development/Flash/BlockWorld/Assets/Menus/btnContinueGameHover.png</filename>
-            <filename>D:/Development/Flash/BlockWorld/Assets/Menus/btnGeneric.png</filename>
-            <filename>D:/Development/Flash/BlockWorld/Assets/Menus/btnNewGame.png</filename>
-            <filename>D:/Development/Flash/BlockWorld/Assets/Menus/btnNewGameHover.png</filename>
-            <filename>D:/Development/Flash/BlockWorld/Assets/Menus/btnPaleBlue.png</filename>
-            <filename>D:/Development/Flash/BlockWorld/Assets/Menus/btnPink.png</filename>
-            <filename>D:/Development/Flash/BlockWorld/Assets/Menus/btnViewHighscores.png</filename>
-            <filename>D:/Development/Flash/BlockWorld/Assets/Menus/btnViewHighscoresHover.png</filename>
-            <filename>D:/Development/Flash/BlockWorld/Assets/Menus/DialogBackground.png</filename>
-            <filename>D:/Development/Flash/BlockWorld/Assets/Menus/DialogBtnGreen.png</filename>
-            <filename>D:/Development/Flash/BlockWorld/Assets/Menus/DialogBtnRed.png</filename>
-            <filename>D:/Development/Flash/BlockWorld/Assets/Menus/DialogBtnYellow.png</filename>
-            <filename>D:/Development/Flash/BlockWorld/Assets/Menus/DialogMessageCorner.png</filename>
-            <filename>D:/Development/Flash/BlockWorld/Assets/Menus/FadedBackground.png</filename>
-            <filename>D:/Development/Flash/BlockWorld/Assets/Menus/MedalBronze.png</filename>
-            <filename>D:/Development/Flash/BlockWorld/Assets/Menus/MedalGold.png</filename>
-            <filename>D:/Development/Flash/BlockWorld/Assets/Menus/MedalSilver.png</filename>
-            <filename>D:/Development/Flash/BlockWorld/Assets/Menus/nameInput.png</filename>
-            <filename>D:/Development/Flash/BlockWorld/Assets/Menus/PauseMenu.png</filename>
-            <filename>D:/Development/Flash/BlockWorld/Assets/Menus/DialogSideArrow.png</filename>
+            <filename>A_padding2.png</filename>
+            <filename>Background.png</filename>
+            <filename>btnBack.png</filename>
+            <filename>btnBlue.png</filename>
+            <filename>btnContinueGame.png</filename>
+            <filename>btnContinueGameHover.png</filename>
+            <filename>btnGeneric.png</filename>
+            <filename>btnNewGame.png</filename>
+            <filename>btnNewGameHover.png</filename>
+            <filename>btnPaleBlue.png</filename>
+            <filename>btnPink.png</filename>
+            <filename>btnViewHighscores.png</filename>
+            <filename>btnViewHighscoresHover.png</filename>
+            <filename>DialogBackground.png</filename>
+            <filename>DialogBtnGreen.png</filename>
+            <filename>DialogBtnRed.png</filename>
+            <filename>DialogBtnYellow.png</filename>
+            <filename>DialogMessageCorner.png</filename>
+            <filename>DialogSideArrow.png</filename>
+            <filename>FadedBackground.png</filename>
+            <filename>Keyboard.png</filename>
+            <filename>MedalBronze.png</filename>
+            <filename>MedalGold.png</filename>
+            <filename>MedalSilver.png</filename>
+            <filename>nameInput.png</filename>
+            <filename>PauseMenu.png</filename>
+            <filename>TipsAndTricks.png</filename>
+            <filename>A_padding1.png</filename>
+            <filename>Walljump.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

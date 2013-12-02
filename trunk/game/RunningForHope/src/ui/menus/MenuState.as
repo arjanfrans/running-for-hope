@@ -98,8 +98,6 @@ package ui.menus
 			Starling.current.stage.stageWidth = newWidth + (width - newWidth);
 			Starling.current.stage.stageHeight = newHeight;
 			Starling.current.viewPort = viewPortRectangle;
-			
-			
 		
 		}
 		
