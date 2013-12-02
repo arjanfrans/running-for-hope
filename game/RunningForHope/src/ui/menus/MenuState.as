@@ -1,9 +1,8 @@
 package ui.menus
 {
-	import citrus.core.CitrusEngine;
-	import citrus.core.starling.StarlingCitrusEngine;
+	import audio.Audio;
+	
 	import citrus.core.starling.StarlingState;
-	import citrus.input.Input;
 	
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
@@ -12,13 +11,10 @@ package ui.menus
 	import nape.geom.Vec2;
 	
 	import starling.core.Starling;
-	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.events.ResizeEvent;
 	import starling.text.TextField;
 	import starling.utils.HAlign;
-	import flash.filters.ConvolutionFilter;
-
 	public class MenuState extends StarlingState
 	{
 		private static var _this:MenuState;
@@ -37,6 +33,8 @@ package ui.menus
 			openMenu();
 			stage.addEventListener(starling.events.ResizeEvent.RESIZE, onResize);
 			onResize(new ResizeEvent("init", Starling.current.nativeStage.stageWidth, Starling.current.nativeStage.stageHeight));
+			Audio.setState("menu");
+			Main.audio.playSound("theme_song");
 		};
 		
 		public static function openMenu(menu:Sprite = null):void {
