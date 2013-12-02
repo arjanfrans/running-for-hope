@@ -54,27 +54,34 @@ package ui.dialog
 			 * - dialog options
 			 */
 			
+			if(dialog.background != null) {
+				addChild(new Image(dialog.background));
+			}
 			addChild(Assets.getImage("Interface", "DialogBackground"));
 			
 			// Player and conversation partner
-			var player:Image;
-			if(Main.getModel().player().gender == "Male") {
-				player = Assets.getImage("Characters", "Max_Male");
+			var char1:Image;
+			if(dialog.char1_asset == null) {
+				if(Main.getModel().player().gender == "Male") {
+					char1 = Assets.getImage("Characters", "Max_Male");
+				}
+				else {
+					char1 = Assets.getImage("Characters", "Max_Female");
+				}
 			}
 			else {
-				// TODO: Female
-				player = Assets.getImage("Characters", "Max_Female");
+				char1 = new Image(dialog.char1_asset);
 			}
-			var other:Image = new Image(dialog.partner_asset);
-			other.scaleX = -1;
+			var char2:Image = new Image(dialog.char2_asset);
+			char2.scaleX = -1;
 			
-			player.x = 10;
-			player.y = 10;
-			addChild(player);
+			char1.x = 10;
+			char1.y = 10;
+			addChild(char1);
 			
-			other.x = 790;
-			other.y = 10;
-			addChild(other);
+			char2.x = 790;
+			char2.y = 10;
+			addChild(char2);
 			
 			dialogArea = new DialogArea();
 			addChild(dialogArea);

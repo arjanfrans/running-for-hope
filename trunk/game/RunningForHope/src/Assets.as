@@ -34,6 +34,12 @@ package  {
 		[Embed(source="../assets/characters/StaticCharacters.png")]
 		private static const CharactersPng:Class;
 		
+		[Embed(source="../assets/dialogbackgrounds/DialogBackgrounds.xml", mimeType="application/octet-stream")]
+		private static const DialogBackgroundsXml:Class;
+		
+		[Embed(source="../assets/dialogbackgrounds/DialogBackgrounds.png")]
+		private static const DialogBackgroundsPng:Class;
+		
 		[Embed(source="../assets/menus/interface.xml", mimeType="application/octet-stream")]
 		private static const InterfaceXml:Class;
 		
@@ -48,6 +54,8 @@ package  {
 		
 		[Embed(source="../assets/backgrounds/big_mountain.png")]
 		private static const MountainBg:Class;
+		
+		
 		
 		private static var gameTextures:Dictionary = new Dictionary();
 		private static var gameMaps:Dictionary = new Dictionary();
