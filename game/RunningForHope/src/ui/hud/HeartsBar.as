@@ -2,17 +2,17 @@ package ui.hud {
 	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.textures.Texture;
-
+	
 	public class HeartsBar extends Sprite{
 		
-		private var fullHeart:Image;
-		private var emptyHeart:Image;
+		private var fullHeart:Texture;
+		private var emptyHeart:Texture;
 		private var hearts:Array;
 		private var numLife:int;
 		
 		public function HeartsBar() {
-			fullHeart =  Assets.getImage("Spritesheet", "FullHeart");
-			emptyHeart = Assets.getImage("Spritesheet", "EmptyHeart");
+			fullHeart =  Assets.getTexture("Spritesheet", "FullHeart");
+			emptyHeart = Assets.getTexture("Spritesheet", "EmptyHeart");
 			numLife = 0;
 			update();
 		}
@@ -33,10 +33,10 @@ package ui.hud {
 			for(var i:int = 0; i < 5; i++) {
 				var img:Image;
 				if(lives >= i) {
-					img = fullHeart;
+					img = new Image(fullHeart);
 				}
 				else {
-					img = emptyHeart;
+					img = new Image(emptyHeart);
 				}
 				img.x = i * 40;
 				addChild(img);
