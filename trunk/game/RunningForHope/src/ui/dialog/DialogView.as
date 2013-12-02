@@ -115,8 +115,13 @@ package ui.dialog
 				else {
 					// It's a regular message
 					var entry:DialogEntry = dialogEntry as DialogEntry;
-					showContinue(entry);
-					dialog_progress++;
+					if(dialog_progress++ > 0) {
+						showContinue(entry);
+					}
+					else {
+						addMessage(entry.message, entry.from, entry.side);
+						continueDialog();
+					}
 				}
 			}
 			else {
