@@ -10,7 +10,7 @@ package game.objects.sensors
 	
 	import game.GameState;
 	import game.objects.Luigi;
-	
+	import audio.Audio;
 	import nape.callbacks.InteractionCallback;
 	
 	import ui.dialog.DialogView;
@@ -47,6 +47,9 @@ package game.objects.sensors
 				var level:Level = Main.getModel().getLevel(); 
 				level.initDialog(); //initialize dialog scene
 				var dialog:Dialog = level.dialog.take(dialogName);
+				
+				//Stop game fx sounds
+				Audio.setState("dialog");
 				
 				var dialogView:DialogView = new DialogView(dialog, function():void {
 					state.removeChild(dialogView);
