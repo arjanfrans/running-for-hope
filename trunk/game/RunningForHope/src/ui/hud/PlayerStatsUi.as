@@ -39,7 +39,7 @@ package ui.hud {
 			var highScore:Score = level.highscores().getHighScore(0);
 			
 			//background
-			var img:Image = new Image(Assets.getTexture("Spritesheet", "HUDBackground"));
+			var img:Image = Assets.getImage("Spritesheet", "HUDBackground");
 			this.addChild(img);
 			
 			//menu button

@@ -5,14 +5,14 @@ package ui.hud {
 
 	public class HeartsBar extends Sprite{
 		
-		var fullHeart:Texture;
-		var emptyHeart:Texture;
-		var hearts:Array;
-		var numLife:int;
+		private var fullHeart:Image;
+		private var emptyHeart:Image;
+		private var hearts:Array;
+		private var numLife:int;
 		
 		public function HeartsBar() {
-			fullHeart =  Assets.getTexture("Spritesheet", "FullHeart");
-			emptyHeart = Assets.getTexture("Spritesheet", "EmptyHeart");
+			fullHeart =  Assets.getImage("Spritesheet", "FullHeart");
+			emptyHeart = Assets.getImage("Spritesheet", "EmptyHeart");
 			numLife = 0;
 			update();
 		}
@@ -33,10 +33,10 @@ package ui.hud {
 			for(var i:int = 0; i < 5; i++) {
 				var img:Image;
 				if(lives >= i) {
-					img = new Image(fullHeart);
+					img = fullHeart;
 				}
 				else {
-					img = new Image(emptyHeart);
+					img = emptyHeart;
 				}
 				img.x = i * 40;
 				addChild(img);

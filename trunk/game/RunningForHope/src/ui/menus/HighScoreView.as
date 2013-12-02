@@ -28,9 +28,9 @@ package ui.menus
 		private function init():void
 		{
 			// Add medals
-			var imageGold:Image = new Image(Assets.getTexture("Interface", "MedalGold"));
-			var imageSilver:Image = new Image(Assets.getTexture("Interface", "MedalSilver"));
-			var imageBronze:Image = new Image(Assets.getTexture("Interface", "MedalBronze"));
+			var imageGold:Image = Assets.getImage("Interface", "MedalGold");
+			var imageSilver:Image = Assets.getImage("Interface", "MedalSilver");
+			var imageBronze:Image = Assets.getImage("Interface", "MedalBronze");
 			imageGold.x = imageSilver.x = imageBronze.x = 40;
 			imageGold.y = 175;
 			imageSilver.y = 225;
