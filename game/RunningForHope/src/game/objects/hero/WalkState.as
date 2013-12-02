@@ -18,7 +18,7 @@ package game.objects.hero
 		
 		public function init():void
 		{
-			
+			Main.audio.playSound("walk");
 		}
 		
 		public function update(timeDelta:Number, velocity:Vec2, input:Input):void
@@ -56,11 +56,13 @@ package game.objects.hero
 			if (input.justDid("jump", _hero.inputChannel) && !_hero.ducking)
 			{
 				velocity.y = -_hero.jumpHeight;
+				Main.audio.stopSound("walk");
 				_hero.state = _hero.jumpState;
 			}
 			
 			if(!input.justDid("jump", _hero.inputChannel) && !input.isDoing("left", _hero.inputChannel) && 
 				!input.isDoing("right", _hero.inputChannel)) {
+				Main.audio.stopSound("walk");
 				_hero.state = _hero.idleState;
 			}
 			
