@@ -46,6 +46,7 @@ package {
 		
 		public static function setState(state:StarlingState):void
 		{
+			audio.stopAllPlayingSounds();
 			_this.state = state;
 		}
 		

@@ -1,5 +1,12 @@
 package ui.menus
 {
+	import flash.filters.ConvolutionFilter;
+	import flash.filters.GlowFilter;
+	import flash.geom.Rectangle;
+	
+	import model.Level;
+	import model.Model;
+	
 	import starling.display.Button;
 	import starling.display.Image;
 	import starling.display.Sprite;
@@ -7,10 +14,8 @@ package ui.menus
 	import starling.text.TextField;
 	import starling.textures.Texture;
 	import starling.utils.HAlign;
-	import flash.geom.Rectangle;
+	
 	import ui.buttons.NumberButton;
-	import model.Model;
-	import model.Level;
 	
 	/**
 	 * ...

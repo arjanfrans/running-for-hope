@@ -11,6 +11,7 @@ package ui.menus
 	import starling.utils.HAlign;
 	
 	import ui.buttons.NumberButton;
+	import flash.filters.GlowFilter;
 	
 	public class HighScoreView extends Sprite
 	{

@@ -1,18 +1,23 @@
 package ui.menus
 {
+	import citrus.core.CitrusEngine;
 	import citrus.core.starling.StarlingCitrusEngine;
 	import citrus.core.starling.StarlingState;
+	import citrus.input.Input;
 	
+	import flash.display.StageAlign;
+	import flash.display.StageScaleMode;
+	import flash.geom.Rectangle;
+	
+	import nape.geom.Vec2;
+	
+	import starling.core.Starling;
 	import starling.display.Image;
 	import starling.display.Sprite;
-	import starling.utils.HAlign;
-	import starling.text.TextField;
-	import citrus.core.CitrusEngine;
-	import citrus.input.Input;
-	import starling.core.Starling;
 	import starling.events.ResizeEvent;
-	import flash.geom.Rectangle;
-	import nape.geom.Vec2;
+	import starling.text.TextField;
+	import starling.utils.HAlign;
+	import flash.filters.ConvolutionFilter;
 
 	public class MenuState extends StarlingState
 	{
@@ -22,6 +27,8 @@ package ui.menus
 		{
 			_this = this;
 			super();
+			_ce.stage.align = StageAlign.TOP_LEFT;
+			_ce.stage.scaleMode = StageScaleMode.NO_SCALE;
 		}
 		
 		override public function initialize():void {	
@@ -83,7 +90,7 @@ package ui.menus
 				newWidth = Config.VIRTUAL_WIDTH * scale;
 				newHeight = Config.VIRTUAL_HEIGHT * scale;
 			}
-			
+				
 			var viewPortRectangle:Rectangle = new Rectangle();
 			viewPortRectangle.width = newWidth;
 			viewPortRectangle.height = newHeight;
@@ -91,6 +98,8 @@ package ui.menus
 			Starling.current.stage.stageWidth = newWidth + (width - newWidth);
 			Starling.current.stage.stageHeight = newHeight;
 			Starling.current.viewPort = viewPortRectangle;
+			
+			
 		
 		}
 		
