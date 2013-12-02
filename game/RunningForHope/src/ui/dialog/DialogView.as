@@ -139,14 +139,20 @@ package ui.dialog
 			addMessage(qr.question());
 			
 			dialog_progress++;
-			showContinue(qr.answer());
+			if(qr.answer() == null) {
+				continueDialog();
+			}
+			else {
+				showContinue(qr.answer());
+			}
 		}
 		
 		private function showContinue(entry:DialogEntry):void
 		{
 			options.addChild(new DialogButton("Continue dialog", 1, function():void {
 				addMessage(entry.message, entry.from, entry.side);
-				continueDialog();
+				while (options.numChildren > 0) options.removeChildAt(0);
+				Starling.juggler.delayCall(continueDialog, 1);
 			}));
 		}
 		
