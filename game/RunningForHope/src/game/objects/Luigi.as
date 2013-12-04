@@ -64,7 +64,7 @@ package game.objects
 		{
 			super(name, params);
 			var ta:TextureAtlas = Assets.getAtlas("LuigiAnimation");
-			var seq:AnimationSequence = new AnimationSequence(ta, ["walk", "idle", "duck", "hurt", "jump"], "idle", Config.INTERNAL_FPS);
+			var seq:AnimationSequence = new AnimationSequence(ta, ["walk", "idle", "duck", "hurt", "jump"], "idle", Config.INTERNAL_FPS, false, Config.SMOOTHING);
 			view = seq;
 			
 			texture_height = this.height;
