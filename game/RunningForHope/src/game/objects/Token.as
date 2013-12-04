@@ -1,5 +1,6 @@
 package game.objects
 {
+	import citrus.core.CitrusEngine;
 	import citrus.objects.platformer.nape.Coin;
 	import citrus.physics.nape.NapeUtils;
 	
@@ -24,6 +25,7 @@ package game.objects
 			if (_collectorClass && NapeUtils.CollisionGetOther(this, interactionCallback) is _collectorClass) {
 				kill = true;
 				Main.getModel().points++;
+
 			}
 				
 		}

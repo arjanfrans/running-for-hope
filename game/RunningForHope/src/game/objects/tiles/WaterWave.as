@@ -13,7 +13,7 @@ package game.objects.tiles
 		{
 			super(name, params);
 			var ta:TextureAtlas = Assets.getAtlas("WaterWave");
-			var seq:AnimationSequence = new AnimationSequence(ta, ["water_wave"], "water_wave", Config.INTERNAL_FPS, true, Config.SMOOTHING);
+			var seq:AnimationSequence = new AnimationSequence(ta, ["water_wave"], "water_wave", 30, true, Config.SMOOTHING);
 			view = seq;
 			trace(seq.mcSequences.toString());
 		}
