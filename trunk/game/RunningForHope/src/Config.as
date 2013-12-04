@@ -4,7 +4,7 @@ package
 
 	public class Config
 	{
-		public static const INTERNAL_FPS:int = 30;
+		public static var INTERNAL_FPS:int = 30;
 		public static const DEBUG_MODE:Boolean = false;
 		public static const LIFES:int = 4;	
 		
