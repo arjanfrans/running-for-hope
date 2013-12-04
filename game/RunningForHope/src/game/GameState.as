@@ -180,6 +180,8 @@ package game {
 				newWidth = Config.VIRTUAL_WIDTH * scale;
 				newHeight = Config.VIRTUAL_HEIGHT * scale;
 			}
+			newWidth = Math.round(newWidth);
+			newHeight = Math.round(newHeight);
 			
 			var viewPortRectangle:Rectangle = new Rectangle();
 			viewPortRectangle.width = newWidth;
