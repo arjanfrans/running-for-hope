@@ -56,6 +56,13 @@ package  {
 		private static const MountainBg:Class;
 		
 		
+		//Animated tiles
+		[Embed(source="../assets/tiles/animated/water_wave.png")]
+		private static const WaterWavePng:Class;
+		
+		[Embed(source="../assets/tiles/animated/water_wave.xml", mimeType="application/octet-stream")]
+		private static const WaterWaveXml:Class;
+		
 		
 		private static var gameTextures:Dictionary = new Dictionary();
 		private static var gameMaps:Dictionary = new Dictionary();
