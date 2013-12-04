@@ -30,6 +30,7 @@ package game {
 	import ui.hud.PlayerStatsUi;
 	import ui.menus.PauseMenu;
 	import audio.Audio;
+	import game.objects.tiles.WaterWave;
 	/**
 	 * The main game state, this is where the gameplay happens. The level gets setup here.
 	 */
@@ -44,7 +45,7 @@ package game {
 			super();
 			
 			//Objects which can be found in a map
-			var objects:Array = [Luigi, CustomSprite, FallSensor, EndLevelSensor, DialogSensor, InfoSensor, Platform, Box, MovingPlatform, Token, Water];
+			var objects:Array = [Luigi, WaterWave, CustomSprite, FallSensor, EndLevelSensor, DialogSensor, InfoSensor, Platform, Box, MovingPlatform, Token, Water];
 
 			_ce.stage.align = StageAlign.TOP_LEFT;
 			_ce.stage.scaleMode = StageScaleMode.NO_SCALE;
