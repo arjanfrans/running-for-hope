@@ -1,5 +1,7 @@
 package game {
 	
+	import audio.Audio;
+	
 	import citrus.CustomSprite;
 	import citrus.core.starling.StarlingState;
 	import citrus.objects.platformer.nape.*;
@@ -8,6 +10,7 @@ package game {
 	
 	import flash.display.MovieClip;
 	import flash.display.StageAlign;
+	import flash.display.StageDisplayState;
 	import flash.display.StageScaleMode;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
@@ -15,6 +18,7 @@ package game {
 	import game.objects.*;
 	import game.objects.platforms.*;
 	import game.objects.sensors.*;
+	import game.objects.tiles.WaterWave;
 	
 	import model.Level;
 	import model.Model;
@@ -29,8 +33,8 @@ package game {
 	import ui.dialog.DialogView;
 	import ui.hud.PlayerStatsUi;
 	import ui.menus.PauseMenu;
-	import audio.Audio;
-	import game.objects.tiles.WaterWave;
+
+	import flash.display.StageDisplayState;
 	/**
 	 * The main game state, this is where the gameplay happens. The level gets setup here.
 	 */
@@ -49,6 +53,10 @@ package game {
 
 			_ce.stage.align = StageAlign.TOP_LEFT;
 			_ce.stage.scaleMode = StageScaleMode.NO_SCALE;
+			
+			if(Config.FULLSCREEN) {
+				_ce.stage.displayState = StageDisplayState.FULL_SCREEN_INTERACTIVE;
+			}
 		}
 		
 		override public function initialize():void {	
@@ -180,8 +188,8 @@ package game {
 				newWidth = Config.VIRTUAL_WIDTH * scale;
 				newHeight = Config.VIRTUAL_HEIGHT * scale;
 			}
-			newWidth = Math.round(newWidth);
-			newHeight = Math.round(newHeight);
+			newWidth = Math.floor(newWidth);
+			newHeight = Math.floor(newHeight);
 			
 			var viewPortRectangle:Rectangle = new Rectangle();
 			viewPortRectangle.width = newWidth;

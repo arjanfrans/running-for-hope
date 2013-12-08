@@ -18,7 +18,7 @@ package ui.hud {
 	import starling.events.KeyboardEvent;
 	import game.GameState;
 	import ui.menus.PauseMenu;
-	
+	import flash.display.StageDisplayState;
 	/**
 	 * A ingame interface that displays all information the player should know during gameplay.
 	 */
@@ -99,6 +99,7 @@ package ui.hud {
 		
 		private function keyboardHandler(e:KeyboardEvent):void
 		{
+			//TODO Game goes out of full screen when escape is pressed
 			if (e.keyCode == 27) {
 				var state:GameState = Main.getState() as GameState;
 				state.openPopup(new PauseMenu());

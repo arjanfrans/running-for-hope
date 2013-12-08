@@ -5,6 +5,7 @@ package ui.menus
 	import citrus.core.starling.StarlingState;
 	
 	import flash.display.StageAlign;
+	import flash.display.StageDisplayState;
 	import flash.display.StageScaleMode;
 	import flash.geom.Rectangle;
 	
@@ -15,6 +16,7 @@ package ui.menus
 	import starling.events.ResizeEvent;
 	import starling.text.TextField;
 	import starling.utils.HAlign;
+	
 	public class MenuState extends StarlingState
 	{
 		private static var _this:MenuState;
@@ -25,6 +27,10 @@ package ui.menus
 			super();
 			_ce.stage.align = StageAlign.TOP_LEFT;
 			_ce.stage.scaleMode = StageScaleMode.NO_SCALE;
+			
+			if(Config.FULLSCREEN) {
+				_ce.stage.displayState = StageDisplayState.FULL_SCREEN_INTERACTIVE;
+			}
 		}
 		
 		override public function initialize():void {	
