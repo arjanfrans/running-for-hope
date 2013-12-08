@@ -26,6 +26,8 @@ package
 		public static const VIRTUAL_WIDTH:int = 800;
 		public static const VIRTUAL_HEIGHT:int = 600;
 		public static const ASPECT_RATIO:Number = VIRTUAL_WIDTH / VIRTUAL_HEIGHT;
+		
+		public static const FULLSCREEN:Boolean = true;
 
 	}
 }
