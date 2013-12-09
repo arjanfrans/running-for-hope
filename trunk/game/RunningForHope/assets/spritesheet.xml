@@ -1,61 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with TexturePacker http://www.codeandweb.com/texturepacker-->
-<!-- $TexturePacker:SmartUpdate:26eead5e8566322b3b97646578480b03:1/1$ -->
+<!-- $TexturePacker:SmartUpdate:28a4a052c1aeaba2d8b7ee79cc185046:1/1$ -->
 <TextureAtlas imagePath="spritesheet.png">
     <SubTexture name="EmptyHeart" x="134" y="2" width="24" height="20"/>
     <SubTexture name="FullHeart" x="106" y="2" width="24" height="20"/>
-    <SubTexture name="HUDBackground" x="2" y="138" width="800" height="123" frameX="0" frameY="0" frameWidth="800" frameHeight="125"/>
-    <SubTexture name="HUDFooter" x="982" y="2" width="800" height="35"/>
-    <SubTexture name="Hope" x="1066" y="161" width="138" height="370" frameX="-2" frameY="0" frameWidth="142" frameHeight="370"/>
-    <SubTexture name="Info" x="1786" y="2" width="48" height="48"/>
-    <SubTexture name="Max_Female" x="1362" y="238" width="150" height="370"/>
-    <SubTexture name="Max_Male" x="1208" y="161" width="150" height="370"/>
-    <SubTexture name="StaticCharacters" x="2" y="265" width="388" height="742" frameX="-2" frameY="-2" frameWidth="512" frameHeight="1024"/>
-    <SubTexture name="animated/water_wave" x="2" y="22" width="64" height="64"/>
-    <SubTexture name="big_mountain" x="1465" y="54" width="384" height="180"/>
-    <SubTexture name="blue_sky" x="806" y="158" width="256" height="256"/>
-    <SubTexture name="brick" x="946" y="2" width="32" height="32"/>
-    <SubTexture name="brick" x="946" y="2" width="32" height="32"/>
-    <SubTexture name="brick_empty" x="910" y="2" width="32" height="32"/>
-    <SubTexture name="clouds" x="913" y="41" width="208" height="113"/>
-    <SubTexture name="crate" x="1945" y="2" width="64" height="64"/>
-    <SubTexture name="dialog" x="1516" y="238" width="154" height="476" frameX="-1" frameY="-2" frameWidth="256" frameHeight="512"/>
-    <SubTexture name="earth" x="874" y="2" width="32" height="32"/>
-    <SubTexture name="earth" x="874" y="2" width="32" height="32"/>
-    <SubTexture name="earth_left" x="480" y="2" width="26" height="32" frameX="-6" frameY="0" frameWidth="32" frameHeight="32"/>
-    <SubTexture name="earth_left" x="480" y="2" width="26" height="32" frameX="-6" frameY="0" frameWidth="32" frameHeight="32"/>
-    <SubTexture name="earth_right" x="450" y="2" width="26" height="32" frameX="0" frameY="0" frameWidth="32" frameHeight="32"/>
-    <SubTexture name="earth_right" x="450" y="2" width="26" height="32" frameX="0" frameY="0" frameWidth="32" frameHeight="32"/>
+    <SubTexture name="HUDBackground" x="2" y="126" width="800" height="123" frameX="0" frameY="0" frameWidth="800" frameHeight="125"/>
+    <SubTexture name="HUDFooter" x="1090" y="2" width="800" height="35"/>
+    <SubTexture name="Hope" x="1166" y="161" width="138" height="370" frameX="-2" frameY="0" frameWidth="142" frameHeight="370"/>
+    <SubTexture name="Info" x="1894" y="2" width="48" height="48"/>
+    <SubTexture name="Max_Female" x="2" y="253" width="150" height="370"/>
+    <SubTexture name="Max_Male" x="1308" y="161" width="150" height="370"/>
+    <SubTexture name="StaticCharacters" x="314" y="253" width="388" height="742" frameX="-2" frameY="-2" frameWidth="512" frameHeight="1024"/>
+    <SubTexture name="animated/water_wave" x="70" y="26" width="64" height="62" frameX="0" frameY="-2" frameWidth="64" frameHeight="64"/>
+    <SubTexture name="big_mountain" x="1601" y="101" width="384" height="180"/>
+    <SubTexture name="blue_sky" x="906" y="158" width="256" height="256"/>
+    <SubTexture name="brick" x="1054" y="2" width="32" height="32"/>
+    <SubTexture name="brick" x="1054" y="2" width="32" height="32"/>
+    <SubTexture name="brick_empty" x="1018" y="2" width="32" height="32"/>
+    <SubTexture name="brick_red" x="982" y="2" width="32" height="32"/>
+    <SubTexture name="brick_red" x="982" y="2" width="32" height="32"/>
+    <SubTexture name="brick_red_left" x="946" y="2" width="32" height="32"/>
+    <SubTexture name="brick_red_left" x="946" y="2" width="32" height="32"/>
+    <SubTexture name="brick_red_right" x="690" y="2" width="32" height="32"/>
+    <SubTexture name="brick_red_right" x="946" y="2" width="32" height="32"/>
+    <SubTexture name="clouds" x="1049" y="41" width="208" height="113"/>
+    <SubTexture name="crate" x="138" y="36" width="64" height="64"/>
+    <SubTexture name="dialog" x="156" y="253" width="154" height="476" frameX="-1" frameY="-2" frameWidth="256" frameHeight="512"/>
+    <SubTexture name="earth" x="654" y="2" width="32" height="32"/>
+    <SubTexture name="earth" x="654" y="2" width="32" height="32"/>
+    <SubTexture name="earth_left" x="588" y="2" width="26" height="32" frameX="-6" frameY="0" frameWidth="32" frameHeight="32"/>
+    <SubTexture name="earth_left" x="588" y="2" width="26" height="32" frameX="-6" frameY="0" frameWidth="32" frameHeight="32"/>
+    <SubTexture name="earth_right" x="558" y="2" width="26" height="32" frameX="0" frameY="0" frameWidth="32" frameHeight="32"/>
+    <SubTexture name="earth_right" x="558" y="2" width="26" height="32" frameX="0" frameY="0" frameWidth="32" frameHeight="32"/>
     <SubTexture name="filler1" x="8" y="2" width="2" height="2"/>
     <SubTexture name="filler2" x="2" y="2" width="2" height="2"/>
     <SubTexture name="goomba" x="14" y="2" width="16" height="16"/>
-    <SubTexture name="grass_center" x="838" y="2" width="32" height="32"/>
-    <SubTexture name="grass_center" x="838" y="2" width="32" height="32"/>
-    <SubTexture name="grass_left" x="582" y="2" width="32" height="32"/>
-    <SubTexture name="grass_left" x="582" y="2" width="32" height="32"/>
-    <SubTexture name="grass_right" x="546" y="2" width="32" height="32"/>
-    <SubTexture name="grass_right" x="546" y="2" width="32" height="32"/>
-    <SubTexture name="heart" x="698" y="2" width="36" height="32"/>
-    <SubTexture name="heart_empty" x="658" y="2" width="36" height="32"/>
-    <SubTexture name="heart_empty" x="618" y="2" width="36" height="32"/>
-    <SubTexture name="hope_small" x="2013" y="2" width="28" height="95"/>
-    <SubTexture name="luig_walk_2" x="757" y="38" width="50" height="96"/>
-    <SubTexture name="luig_walk_3" x="811" y="38" width="51" height="96"/>
-    <SubTexture name="luigi" x="1853" y="70" width="96" height="240" frameX="0" frameY="0" frameWidth="128" frameHeight="256"/>
-    <SubTexture name="luigi_duck_1" x="1838" y="2" width="35" height="48"/>
-    <SubTexture name="luigi_jump_1" x="811" y="38" width="51" height="96"/>
-    <SubTexture name="luigi_walk_1" x="866" y="38" width="43" height="96"/>
-    <SubTexture name="moving_platform" x="738" y="2" width="96" height="32"/>
+    <SubTexture name="grass_center" x="618" y="2" width="32" height="32"/>
+    <SubTexture name="grass_center" x="618" y="2" width="32" height="32"/>
+    <SubTexture name="grass_left" x="522" y="2" width="32" height="32"/>
+    <SubTexture name="grass_left" x="522" y="2" width="32" height="32"/>
+    <SubTexture name="grass_right" x="486" y="2" width="32" height="32"/>
+    <SubTexture name="grass_right" x="486" y="2" width="32" height="32"/>
+    <SubTexture name="heart" x="806" y="2" width="36" height="32"/>
+    <SubTexture name="heart_empty" x="766" y="2" width="36" height="32"/>
+    <SubTexture name="heart_empty" x="726" y="2" width="36" height="32"/>
+    <SubTexture name="hope_small" x="1985" y="2" width="28" height="95"/>
+    <SubTexture name="luig_walk_2" x="893" y="38" width="50" height="96"/>
+    <SubTexture name="luig_walk_3" x="947" y="38" width="51" height="96"/>
+    <SubTexture name="luigi" x="806" y="138" width="96" height="240" frameX="0" frameY="0" frameWidth="128" frameHeight="256"/>
+    <SubTexture name="luigi_duck_1" x="1946" y="2" width="35" height="48"/>
+    <SubTexture name="luigi_jump_1" x="947" y="38" width="51" height="96"/>
+    <SubTexture name="luigi_walk_1" x="1002" y="38" width="43" height="96"/>
+    <SubTexture name="moving_platform" x="846" y="2" width="96" height="32"/>
     <SubTexture name="slope_left_1" x="70" y="2" width="32" height="16" frameX="0" frameY="-16" frameWidth="32" frameHeight="32"/>
-    <SubTexture name="slope_left_2" x="510" y="2" width="32" height="32"/>
+    <SubTexture name="slope_left_2" x="450" y="2" width="32" height="32"/>
     <SubTexture name="slope_right_1" x="34" y="2" width="32" height="16" frameX="0" frameY="-16" frameWidth="32" frameHeight="32"/>
     <SubTexture name="slope_right_2" x="414" y="2" width="32" height="32"/>
-    <SubTexture name="small_cloud" x="1877" y="2" width="64" height="48"/>
-    <SubTexture name="small_mountain" x="397" y="38" width="160" height="68"/>
-    <SubTexture name="small_mountain_2" x="561" y="38" width="192" height="84"/>
-    <SubTexture name="small_mountain_3" x="234" y="38" width="159" height="68"/>
-    <SubTexture name="small_mountain_4" x="70" y="36" width="160" height="68"/>
-    <SubTexture name="three_mountains" x="1125" y="41" width="336" height="116"/>
+    <SubTexture name="small_cloud" x="2" y="22" width="64" height="48"/>
+    <SubTexture name="small_mountain" x="533" y="38" width="160" height="68"/>
+    <SubTexture name="small_mountain_2" x="697" y="38" width="192" height="84"/>
+    <SubTexture name="small_mountain_3" x="370" y="38" width="159" height="68"/>
+    <SubTexture name="small_mountain_4" x="206" y="38" width="160" height="68"/>
+    <SubTexture name="three_mountains" x="1261" y="41" width="336" height="116"/>
     <SubTexture name="token" x="378" y="2" width="32" height="32"/>
     <SubTexture name="water" x="342" y="2" width="32" height="32"/>
     <SubTexture name="water" x="342" y="2" width="32" height="32"/>
