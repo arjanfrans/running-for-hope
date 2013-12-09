@@ -33,8 +33,6 @@ package game {
 	import ui.dialog.DialogView;
 	import ui.hud.PlayerStatsUi;
 	import ui.menus.PauseMenu;
-
-	import flash.display.StageDisplayState;
 	/**
 	 * The main game state, this is where the gameplay happens. The level gets setup here.
 	 */
@@ -83,6 +81,7 @@ package game {
 			this.addChild(playerStatsUi); //Add the HUD
 			
 			Audio.setState("game");
+			Main.audio.playSound("level1");
 		}
 		
 		public function openPopup(popup:Sprite, autoPosition:Boolean = true, addBackground:Boolean = true):void
