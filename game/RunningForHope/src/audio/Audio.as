@@ -1,5 +1,9 @@
 package audio
 {
+	/**
+	 * Sources for audio:
+	 * jump: http://www.sounddogs.com/results.asp?Type=1,&CategoryID=1023&SubcategoryID=27
+	 * */
 	public class Audio
 	{
 		public function Audio()
