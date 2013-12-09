@@ -25,6 +25,7 @@ package game.objects.hero
 		private var _onGround:Boolean = false;
 		private var _wallJumpFlag:Boolean;
 		private var _lastWallJumped:NapePhysicsObject = null;
+		private var wallJumpCount:int = 0;
 		
 		public function JumpState(hero:Luigi)
 		{
@@ -38,6 +39,7 @@ package game.objects.hero
 			_onGround = false;
 			_wallJumpFlag = false;
 			_lastWallJumped = null;
+			wallJumpCount = 0;
 			Main.audio.playSound("jump");
 		}
 		
@@ -97,11 +99,16 @@ package game.objects.hero
 			{
 				
 				if(_lastWallJumped == null || _lastWallJumped != _hero.lastWallContact) {
+					if(wallJumpCount == 0) Main.audio.playSound("wall_jump");
+					else if(wallJumpCount == 1) Main.audio.playSound("wall_jump_1");
+					else Main.audio.playSound("wall_jump_2");
+					
 					velocity.y = -_hero.jumpHeight; //Math.max(velocity.y - 200, -_hero.jumpHeight);
 					velocity.x = !_hero.faceRight ? 200 : -200;
 					_hero.touchingWall = false;
 					jump_triggered = true;
 					_lastWallJumped = _hero.lastWallContact;
+					wallJumpCount++;
 				}
 			}
 			
