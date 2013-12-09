@@ -16,7 +16,7 @@ package audio
 				Main.audio.stopAllPlayingSounds();	
 			}
 			else if(state == "dialog" || state == "window") {
-				Main.audio.stopAllPlayingSounds("backgroundMusic"); //TODO make backgroundmusic
+				Main.audio.stopAllPlayingSounds("level1");
 			}
 			else if(state == "menu") {
 				Main.audio.stopAllPlayingSounds();
