@@ -1,5 +1,7 @@
 package ui.windows
 {
+	import game.GameState;
+	
 	import starling.display.DisplayObject;
 	import starling.display.Image;
 	import starling.display.Quad;
@@ -7,7 +9,6 @@ package ui.windows
 	import starling.events.Event;
 	import starling.events.KeyboardEvent;
 	import starling.utils.deg2rad;
-	import game.GameState;
 	
 	public class InfoWindow extends Sprite
 	{
@@ -23,6 +24,7 @@ package ui.windows
 		private var bottomRight:Image;
 		
 		private var closeKey:int;
+		protected var closeFunc:Function = null;
 		
 		public function InfoWindow(closeKey:int = 13)
 		{
@@ -79,7 +81,8 @@ package ui.windows
 		
 		private function keyboardHandler(e:KeyboardEvent):void {
 			if(e.keyCode == closeKey) {
-				(Main.getState() as GameState).closePopup();
+				if(closeFunc !== null) closeFunc();
+				else (Main.getState() as GameState).closePopup();
 			}
 		}
 		

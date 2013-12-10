@@ -41,8 +41,7 @@ package ui.menus
 			addChild(imageBronze);
 			
 			// Add scores
-			var numLevels:int = Main.getModel().numLevels();
-			for (var i:int = 0; i < numLevels; i++) {
+			for (var i:int = 0; i < 5; i++) {
 				var score:Score = level.highscores().getHighScore(i); 
 				var highscoreTextField:TextField = new TextField(700, 50, score.toString(), "Arial", 20);
 				highscoreTextField.hAlign = HAlign.LEFT;

@@ -1,8 +1,13 @@
 package  {
 	
 	import flash.display.Bitmap;
+	import flash.display.BitmapData;
 	import flash.display.Loader;
 	import flash.display.MovieClip;
+	import flash.filters.BitmapFilter;
+	import flash.filters.ColorMatrixFilter;
+	import flash.geom.ColorTransform;
+	import flash.geom.Point;
 	import flash.utils.Dictionary;
 	
 	import starling.display.Image;
@@ -55,7 +60,6 @@ package  {
 		[Embed(source="../assets/backgrounds/big_mountain.png")]
 		private static const MountainBg:Class;
 		
-		
 		//Animated tiles
 		[Embed(source="../assets/tiles/animated/water_wave.png")]
 		private static const WaterWavePng:Class;
@@ -67,44 +71,38 @@ package  {
 		private static var gameTextures:Dictionary = new Dictionary();
 		private static var gameMaps:Dictionary = new Dictionary();
 				
-		
-		public static function getTmxMap(name:String):XML
-		{
-			if(gameMaps[name] == null) {
-				gameMaps[name] = XML(create(name + "Map"));
-			}
-			return gameMaps[name];
-		}
-		
-		
-		
 		public static function getBackground(name:String):Texture
 		{
 			var t:Texture = Texture.fromBitmap(create(name) as Bitmap);
 			return t;
 		}
 
-		public static function getAtlas(name:String):TextureAtlas
+		public static function getAtlas(name:String, filter:ColorMatrixFilter = null):TextureAtlas
 		{
-			if(gameTextures[name] == null)
+			if(gameTextures[name] == null || filter != null)
 			{
 				var obj:Object = create(name + "Png");
 				var bmp:Bitmap = obj as Bitmap;
+				if(filter != null){
+					var data:BitmapData = bmp.bitmapData;
+					data.applyFilter(data, data.rect, new Point(0, 0), filter);
+				}
 				var texture:Texture = Texture.fromBitmap(bmp);
 				var xml:XML = XML(create(name + "Xml"));
+				if(filter != null) return new TextureAtlas(texture, xml);
 				gameTextures[name] = new TextureAtlas(texture, xml);
 			}
 			return gameTextures[name];
 		}
 		
-		public static function getTexture(atlasName:String, name:String):Texture
+		public static function getTexture(atlasName:String, name:String, filter:ColorMatrixFilter = null):Texture
 		{
-			return getAtlas(atlasName).getTexture(name);
+			return getAtlas(atlasName, filter).getTexture(name);
 		}
 		
-		public static function getImage(atlasName:String, name:String):Image
+		public static function getImage(atlasName:String, name:String, filter:ColorMatrixFilter = null):Image
 		{
-			var img:Image = new Image(getTexture(atlasName, name))
+			var img:Image = new Image(getTexture(atlasName, name, filter))
 			img.smoothing = Config.SMOOTHING;
 			return img;
 		}

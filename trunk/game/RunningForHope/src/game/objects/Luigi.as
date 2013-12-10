@@ -34,6 +34,7 @@ package game.objects
 	
 	import ui.hud.PlayerStatsUi;
 	import ui.menus.MenuState;
+	import ui.windows.GameOverWindow;
 	
 	public class Luigi extends CustomHero
 	{
@@ -121,7 +122,8 @@ package game.objects
 			if(_dead) {
 				var m:Model = Main.getModel();
 				if(m.lifes-- < 1) {
-					Main.setState(new MenuState());
+					(Main.getState() as GameState).openPopup(new GameOverWindow());
+					return;
 				}
 				velocity.x = 0;
 				velocity.y = 0;
