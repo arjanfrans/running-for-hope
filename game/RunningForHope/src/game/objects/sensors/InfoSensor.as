@@ -6,8 +6,7 @@ package game.objects.sensors
 	import nape.callbacks.InteractionCallback;
 	import game.objects.Luigi;
 	import game.GameState;
-	import ui.windows.ControlsInfo;
-	import ui.windows.WalljumpInfo;
+	import ui.windows.*;
 	
 	public class InfoSensor extends Sensor
 	{

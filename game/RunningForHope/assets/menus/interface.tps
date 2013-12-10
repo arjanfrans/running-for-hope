@@ -177,6 +177,10 @@
             <filename>TipsAndTricks.png</filename>
             <filename>A_padding1.png</filename>
             <filename>Walljump.png</filename>
+            <filename>btnRed.png</filename>
+            <filename>LevelCompleted.png</filename>
+            <filename>GameOver.png</filename>
+            <filename>GameOver2.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
