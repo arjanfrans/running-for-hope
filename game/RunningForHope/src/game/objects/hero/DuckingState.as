@@ -25,7 +25,7 @@ package game.objects.hero
 		{
 			_hero.body.shapes.remove(_hero.normal_shape);
 			_hero.body.shapes.add(_hero.ducking_shape);
-			_hero.view.y += (_hero.texture_height - _hero.texture_height_duck);
+			_hero.view.y += _hero.texture_height_duck/2;
 			_hero.view.pivotX = 0;
 		}
 		
@@ -37,7 +37,7 @@ package game.objects.hero
 				_hero.body.shapes.remove(_hero.ducking_shape);
 				_hero.body.shapes.add(_hero.normal_shape);
 				_hero.state = _hero.walkState;
-				_hero.view.y -= (_hero.texture_height - _hero.texture_height_duck); // Restore size
+				_hero.view.y -= _hero.texture_height_duck/2; // Restore size
 				moveKeyPressed = true;
 			}
 			else if(!input.isDoing("duck", _hero.inputChannel)) {
@@ -45,7 +45,7 @@ package game.objects.hero
 					_hero.body.shapes.add(_hero.normal_shape);
 					
 					_hero.state = _hero.idleState;
-					_hero.view.y -= (_hero.texture_height - _hero.texture_height_duck); // Restore size
+					_hero.view.y -= _hero.texture_height_duck/2; // Restore size
 			}
 			
 			//If player just started moving the hero this tick.

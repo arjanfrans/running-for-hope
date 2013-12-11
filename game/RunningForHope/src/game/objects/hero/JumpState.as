@@ -14,6 +14,7 @@ package game.objects.hero
 	import nape.phys.Body;
 	
 	import starling.animation.DelayedCall;
+	import starling.animation.Tween;
 	import starling.core.Starling;
 	
 	import ui.menus.MenuState;
@@ -123,7 +124,8 @@ package game.objects.hero
 		}
 		
 		public function updateAnimation():void
-		{			
+		{		
+			
 			_hero.animation = "jump";
 		}
 		
