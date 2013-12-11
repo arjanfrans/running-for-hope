@@ -33,6 +33,12 @@ package  {
 		[Embed(source="../assets/characters/luigi.png")]
 		private static const LuigiAnimationPng:Class;
 		
+		[Embed(source="../assets/characters/max.xml", mimeType="application/octet-stream")]
+		private static const MaxAnimationXml:Class;
+		
+		[Embed(source="../assets/characters/max.png")]
+		private static const MaxAnimationPng:Class;
+		
 		[Embed(source="../assets/characters/StaticCharacters.xml", mimeType="application/octet-stream")]
 		private static const CharactersXml:Class;
 		
