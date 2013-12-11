@@ -18,7 +18,7 @@ package game.objects.hero
 		
 		public function init():void
 		{
-			
+			_hero.view.pivotX = 0;
 		}
 		
 		public function update(timeDelta:Number, velocity:Vec2, input:Input):void

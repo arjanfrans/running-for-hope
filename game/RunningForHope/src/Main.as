@@ -79,7 +79,7 @@ package {
 			sound.addSound("wall_jump_2", {sound: "audio/wall_jump_2.mp3",group:CitrusSoundGroup.SFX});
 			sound.addSound("walk", {sound:"audio/walk1.mp3", timesToPlay: 0, group:CitrusSoundGroup.SFX } );
 			sound.addSound("theme_song", {sound:"audio/main_theme.mp3",timesToPlay:-1,group:CitrusSoundGroup.BGM});
-			sound.addSound("level1", {sound:"audio/level1.mp3", volume: 0.7, timesToPlay:-1,group:CitrusSoundGroup.BGM});
+			sound.addSound("level1", {sound:"audio/level1.mp3", timesToPlay:-1,group:CitrusSoundGroup.BGM});
 /*			sound.addSound("Kill", {sound:"sounds/kill.mp3",group:CitrusSoundGroup.SFX});
 			sound.addSound("Skid", {sound:"sounds/skid.mp3",group:CitrusSoundGroup.SFX});
 			sound.addSound("Song", {sound:"sounds/song.mp3",timesToPlay:-1,group:CitrusSoundGroup.BGM});
