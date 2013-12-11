@@ -20,7 +20,7 @@ package ui.dialog
 	import starling.events.ResizeEvent;
 	import starling.utils.HAlign;
 	import starling.utils.VAlign;
-	
+	import audio.Audio;
 	import ui.buttons.DialogButton;
 	
 	/**
@@ -134,6 +134,9 @@ package ui.dialog
 			else {
 				// End of dialog
 				options.addChild(new DialogButton("Continue game", 1, endDialogCallback ));
+				
+				//Set the audio state to "continue"
+				Audio.setState("continue");
 			}
 		}
 		
