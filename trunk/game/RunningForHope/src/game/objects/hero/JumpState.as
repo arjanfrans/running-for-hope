@@ -41,6 +41,7 @@ package game.objects.hero
 			_lastWallJumped = null;
 			wallJumpCount = 0;
 			Main.audio.playSound("jump");
+			_hero.view.pivotX = 25;
 		}
 		
 		public function update(timeDelta:Number, velocity:Vec2, input:Input):void

@@ -46,8 +46,8 @@ package game.objects
 		private var _touchingWall:Boolean = false;
 		private var _dead:Boolean = false;		
 		
-		private var texture_height:Number;
-		private var texture_height_duck:Number;
+		public var texture_height:Number;
+		public var texture_height_duck:Number;
 		private var duck_trigger:Boolean;
 		
 		private var _normal_shape:Shape;
@@ -66,9 +66,13 @@ package game.objects
 			super(name, params);
 			var ta:TextureAtlas = Assets.getAtlas("MaxAnimation");
 			//var seq:AnimationSequence = new AnimationSequence(ta, ["walk", "idle", "duck", "hurt", "jump"], "idle", 30, false, Config.SMOOTHING);
-			var seq:AnimationSequence = new AnimationSequence(ta, ["walk", "idle", "jump"], "idle", 60, false, Config.SMOOTHING);
+			var seq:AnimationSequence = new AnimationSequence(ta, ["walk", "idle", "jump", "duck"], "idle", 40, false, Config.SMOOTHING);
 			view = seq;
+			view.width = 40;
+			view.height = 96;
 			
+			texture_height = this.height;
+			texture_height_duck = seq.mcSequences["duck"].height;
 			idleState = new IdleState(this);
 			jumpState = new JumpState(this);
 			walkState = new WalkState(this);
@@ -82,13 +86,24 @@ package game.objects
 			jumpAcceleration = 10;
 			jumpHeight = 450;
 			
-		}	
+			
+			
+		}
+
+		override protected function createShape():void
+		{
+			super.createShape();
+			normal_shape = _shape;
+			ducking_shape = new Polygon(Polygon.box(_width, texture_height_duck), _material);
+		}
+			
 		
 		/**
 		 * Update function is overrided to add wall-jumping. Most of the code below is a copy of the super class.
 		 */
 		override public function update(timeDelta:Number):void
 		{
+			
 			_state.update(timeDelta, _body.velocity, _ce.input);
 			super.update(timeDelta);
 			
@@ -163,6 +178,7 @@ package game.objects
 		 */
 		override protected function updateAnimation():void 
 		{
+			
 			var prevAnimation:String = _animation;
 			var walkingSpeed:Number = _body.velocity.x;
 			
