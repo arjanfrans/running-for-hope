@@ -111,32 +111,6 @@ package game {
 			popup = null;
 		}
 		
-		/*
-		private function openPauseMenu():void
-		{
-			// Don't open a pause menu upon another pause menu
-			if(pauseMenu != null) return;
-			// Don't open a pause menu on top of dialog
-			for(var i:int = 0; i < numChildren; i++) {
-				var obj:DisplayObject = getChildAt(i);
-				if(obj is DialogView) return;
-			}
-			
-			// Show pause menu
-			Main.getModel().pause = true;
-			pauseMenu = new PauseMenu(this);
-			addChild(pauseMenu);
-			//Adjust size of pause menu to game size
-			onResize(new ResizeEvent("init", Starling.current.nativeStage.stageWidth, Starling.current.nativeStage.stageHeight));
-		}
-		
-		public function closePauseMenu():void
-		{
-			if(pauseMenu != null) removeChild(pauseMenu);
-			Main.getModel().pause = false;
-			pauseMenu = null;
-		}
-		*/
 		
 		private function initFlash(flashLevel:MovieClip):void
 		{
