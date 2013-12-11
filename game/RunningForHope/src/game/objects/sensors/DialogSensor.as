@@ -77,5 +77,7 @@ package game.objects.sensors
 				state.openPopup(dialogView, false, false);
 			}
 		}
+		
+		
 	}
 }

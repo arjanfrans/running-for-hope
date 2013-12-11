@@ -124,8 +124,7 @@ package game.objects.hero
 		}
 		
 		public function updateAnimation():void
-		{		
-			
+		{
 			_hero.animation = "jump";
 		}
 		
