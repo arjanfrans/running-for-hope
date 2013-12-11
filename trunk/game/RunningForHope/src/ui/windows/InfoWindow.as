@@ -2,12 +2,14 @@ package ui.windows
 {
 	import game.GameState;
 	
+	import starling.core.Starling;
 	import starling.display.DisplayObject;
 	import starling.display.Image;
 	import starling.display.Quad;
 	import starling.display.Sprite;
 	import starling.events.Event;
 	import starling.events.KeyboardEvent;
+	import starling.events.ResizeEvent;
 	import starling.utils.deg2rad;
 	
 	public class InfoWindow extends Sprite
@@ -72,6 +74,19 @@ package ui.windows
 		private function init():void
 		{
 			stage.addEventListener(KeyboardEvent.KEY_UP, keyboardHandler);
+			// Resize
+			stage.addEventListener(Event.RESIZE, onResize);
+			onResize(new ResizeEvent("init", Starling.current.nativeStage.stageWidth, Starling.current.nativeStage.stageHeight));
+		}
+		
+		/**
+		 * Resize the sprite to window
+		 */
+		private function onResize(event:ResizeEvent):void
+		{
+			var scale:Number = Math.min((event.width / Config.VIRTUAL_WIDTH), (event.height / Config.VIRTUAL_HEIGHT));
+			this.scaleX = scale;
+			this.scaleY = scale;
 		}
 		
 		private function destroy():void
