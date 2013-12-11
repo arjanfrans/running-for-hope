@@ -64,12 +64,11 @@ package game.objects
 		public function Luigi(name:String, params:Object=null)
 		{
 			super(name, params);
-			var ta:TextureAtlas = Assets.getAtlas("LuigiAnimation");
-			var seq:AnimationSequence = new AnimationSequence(ta, ["walk", "idle", "duck", "hurt", "jump"], "idle", 30, false, Config.SMOOTHING);
+			var ta:TextureAtlas = Assets.getAtlas("MaxAnimation");
+			//var seq:AnimationSequence = new AnimationSequence(ta, ["walk", "idle", "duck", "hurt", "jump"], "idle", 30, false, Config.SMOOTHING);
+			var seq:AnimationSequence = new AnimationSequence(ta, ["walk", "idle", "jump"], "idle", 60, false, Config.SMOOTHING);
 			view = seq;
 			
-			texture_height = this.height;
-			texture_height_duck = seq.mcSequences["duck"].height;
 			idleState = new IdleState(this);
 			jumpState = new JumpState(this);
 			walkState = new WalkState(this);
@@ -84,14 +83,6 @@ package game.objects
 			jumpHeight = 450;
 			
 		}	
-
-		override protected function createShape():void
-		{
-			super.createShape();
-			normal_shape = _shape;
-			ducking_shape = new Polygon(Polygon.box(_width, texture_height_duck), _material);
-		}
-		
 		
 		/**
 		 * Update function is overrided to add wall-jumping. Most of the code below is a copy of the super class.
