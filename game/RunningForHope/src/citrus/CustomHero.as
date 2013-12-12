@@ -40,14 +40,14 @@ package citrus {
 		/**
 		 * This is the rate at which the hero speeds up when you move him left and right. 
 		 */
-		[Inspectable(defaultValue="30")]
-		public var acceleration:Number = 30;
+		[Inspectable(defaultValue="80")]
+		public var acceleration:Number = 80;
 		
 		/**
 		 * This is the fastest speed that the hero can move left or right. 
 		 */
-		[Inspectable(defaultValue="240")]
-		public var maxVelocity:Number = 240;
+		[Inspectable(defaultValue="450")]
+		public var maxVelocity:Number = 450;
 		
 		/**
 		 * This is the initial velocity that the hero will move at when he jumps.
