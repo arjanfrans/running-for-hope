@@ -1,0 +1,11 @@
+1: backup the layer with the tiles (set the copy as a guide layer)
+
+2: create a layer with 2048x2048 squares, these are used as a guide for you selection area
+
+3: select the (the original, not the copy) tile layer objects inside the first square
+	3.1: convert selection to symbol, call it: map1_tiles1
+	3.2: edit the symbol, select all objects, convert to bitmap
+	3.3: go to actions in the symbol, className = "citrus.objects.CitrusSprite". params = { view: "../levels/map1_tiles1"}
+	3.4: right click on the symbol in the library, export png sequence. Save it in ../levels/map1_tiles1.png
+
+Repeat step 3 until you have all tiles converted to symbol/bitmaps
