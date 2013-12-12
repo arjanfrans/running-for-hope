@@ -5,6 +5,7 @@ package game.objects
 	
 	import citrus.CustomHero;
 	import citrus.objects.NapePhysicsObject;
+	import citrus.objects.platformer.nape.MovingPlatform;
 	import citrus.objects.platformer.nape.Platform;
 	import citrus.objects.platformer.simple.StaticObject;
 	import citrus.physics.nape.NapeUtils;
@@ -153,7 +154,7 @@ package game.objects
 			if (callback.arbiters.length > 0 && callback.arbiters.at(0).collisionArbiter) {
 				var collisionAngle:Number = callback.arbiters.at(0).collisionArbiter.normal.angle * 180 / Math.PI;
 		
-				if ((collisionAngle > 45 && collisionAngle < 135) || collisionAngle == -90)
+				if ((collisionAngle > 45 && collisionAngle < 135)) //|| collisionAngle == -90
 				{
 					if (collisionAngle > 1 || collisionAngle < -1) {
 						//we don't want the Hero to be set up as onGround if it touches a cloud.
@@ -163,6 +164,10 @@ package game.objects
 						_groundContacts.push(collider.body);
 						_onGround = true;
 					}
+				}
+				else if(collider is MovingPlatform) {
+					_groundContacts.push(collider.body);
+					_onGround = true;
 				}
 				else {
 					//If not, the collision is a wall
