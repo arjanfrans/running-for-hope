@@ -26,6 +26,9 @@ package game.objects.hero
 		{
 			var moveKeyPressed:Boolean = false;
 			
+			//don't play sound when walking / "fly-walk" off a platform
+			if(!_hero.onGround) Main.audio.stopSound("walk");
+			else if(!Main.audio.soundIsPlaying("walk")) Main.audio.playSound("walk");
 			
 			if (input.isDoing("right", _hero.inputChannel))
 			{
@@ -54,7 +57,7 @@ package game.objects.hero
 				_hero.material.staticFriction = _hero.staticFriction;
 			}
 			
-			if (input.justDid("jump", _hero.inputChannel) && !_hero.ducking)
+			if (input.justDid("jump", _hero.inputChannel) && _hero.onGround && !_hero.ducking)
 			{
 				velocity.y = -_hero.jumpHeight;
 				Main.audio.stopSound("walk");
