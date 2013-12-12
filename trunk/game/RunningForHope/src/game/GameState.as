@@ -2,15 +2,12 @@ package game {
 	
 	import audio.Audio;
 	
-	import citrus.CustomObjectMaker;
 	import citrus.CustomSprite;
 	import citrus.core.starling.StarlingState;
-	import citrus.objects.CitrusSprite;
 	import citrus.objects.platformer.nape.*;
 	import citrus.physics.nape.Nape;
 	import citrus.utils.objectmakers.ObjectMakerStarling;
 	import citrus.view.spriteview.SpriteArt;
-	import citrus.view.starlingview.StarlingTileSystem;
 	
 	import flash.display.MovieClip;
 	import flash.display.StageAlign;
@@ -30,12 +27,9 @@ package game {
 	import nape.geom.Vec2;
 	
 	import starling.core.Starling;
-	import starling.display.BlendMode;
-	import starling.display.DisplayObject;
 	import starling.display.Sprite;
 	import starling.events.ResizeEvent;
 	
-	import ui.dialog.DialogView;
 	import ui.hud.PlayerStatsUi;
 	import ui.menus.PauseMenu;
 
@@ -121,7 +115,7 @@ package game {
 		private function initFlash(flashLevel:MovieClip):void
 		{
 			var level:Level = Main.getModel().getLevel();
-			CustomObjectMaker.FromMovieClip(flashLevel, Assets.getAtlas("Spritesheet"));
+			ObjectMakerStarling.FromMovieClip(flashLevel, Assets.getAtlas("Spritesheet"));
 			hero = getObjectByName("Hero") as Luigi;
 					
 			view.camera.allowZoom = true;
@@ -130,34 +124,8 @@ package game {
 			view.camera.offset = new Point(_ce.stage.width/2, _ce.stage.height/1.5);
 			view.camera.bounds = new Rectangle(0, 0, level.width, level.height);
 			
-			//view.camera.setUp(hero, new Point(_ce.stage.width/2, _ce.stage.height/1.5), new Rectangle(0, 0, level.width, level.height));
-			
-			
-			//tileSystem(flashLevel);
-			
 			stage.addEventListener(starling.events.ResizeEvent.RESIZE, onResize);
 			onResize(new ResizeEvent("init", Starling.current.nativeStage.stageWidth, Starling.current.nativeStage.stageHeight));
-		}
-		
-		private function tileSystem(level:MovieClip):void
-		{
-			var tileSprite:CitrusSprite = new CitrusSprite("tile_sprite", { x:0, y:0} );
-			trace(level.getChildByName("tile_background"));
-			var tileSystem:StarlingTileSystem = new StarlingTileSystem(MovieClip(level.getChildByName("tile_background")));
-			for(var i:int = 0; i < level.numChildren; i++) {
-				trace(level.getChildAt(i).name);
-			}
-			//tileSystem.parallax = 0.6;
-			tileSystem.name = "tile_background";
-			tileSystem.tileWidth = 2048;
-			tileSystem.tileHeight = 1024;
-			tileSystem.blendMode = BlendMode.NONE;
-			tileSystem.touchable = false;
-			tileSystem.init();
-			
-			tileSprite.view = tileSystem;
-			tileSprite.group = 0;
-			add(tileSprite);
 		}
 		
 		/**
