@@ -68,11 +68,12 @@ package game.objects.hero
 				velocity.x -= _hero.air_acceleration;
 				moveKeyPressed = true;
 			}
-			
+
 			if(_onGround && _hero.onGround) {
 				if(input.isDoing("right", _hero.inputChannel) || input.isDoing("left", _hero.inputChannel)) {
 					_hero.state = _hero.walkState;
 					moveKeyPressed = true;
+					
 				}
 				else {
 					_hero.state = _hero.idleState;
