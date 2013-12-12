@@ -25,6 +25,7 @@ package game.objects.hero
 		{
 			_hero.body.shapes.remove(_hero.normal_shape);
 			_hero.body.shapes.add(_hero.ducking_shape);
+			_hero.body.position.y += _hero.texture_height_duck/2;
 			_hero.view.y += _hero.texture_height_duck/2;
 			_hero.view.pivotX = 0;
 		}
@@ -46,6 +47,7 @@ package game.objects.hero
 					
 					_hero.state = _hero.idleState;
 					_hero.view.y -= _hero.texture_height_duck/2; // Restore size
+					_hero.body.position.y -= _hero.texture_height_duck/2;
 			}
 			
 			//If player just started moving the hero this tick.
