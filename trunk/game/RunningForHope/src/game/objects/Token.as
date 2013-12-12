@@ -23,6 +23,7 @@ package game.objects
 			super.handleBeginContact(interactionCallback);
 			
 			if (_collectorClass && NapeUtils.CollisionGetOther(this, interactionCallback) is _collectorClass) {
+				Main.audio.playSound("token");
 				kill = true;
 				Main.getModel().points++;
 
