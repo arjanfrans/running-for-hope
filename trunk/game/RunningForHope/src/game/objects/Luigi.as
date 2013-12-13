@@ -169,6 +169,9 @@ package game.objects
 					_groundContacts.push(collider.body);
 					_onGround = true;
 				}
+				else if(collisionAngle == -90) {
+					
+				}
 				else {
 					//If not, the collision is a wall
 					_touchingWall = true;
