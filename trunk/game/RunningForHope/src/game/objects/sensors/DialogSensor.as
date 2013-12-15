@@ -1,7 +1,10 @@
 package game.objects.sensors
 {
+	import audio.Audio;
+	
 	import citrus.CustomCoin;
 	import citrus.core.CitrusEngine;
+	import citrus.core.CitrusObject;
 	import citrus.core.starling.StarlingState;
 	import citrus.objects.CitrusSprite;
 	import citrus.objects.NapePhysicsObject;
@@ -10,24 +13,29 @@ package game.objects.sensors
 	
 	import game.GameState;
 	import game.objects.Luigi;
-	import audio.Audio;
+	
+	import model.Level;
+	import model.dialog.Dialog;
+	
 	import nape.callbacks.InteractionCallback;
 	
 	import ui.dialog.DialogView;
 	import ui.menus.MainMenu;
 	import ui.menus.MenuState;
-	import model.dialog.Dialog;
-	import model.Level;
 	
 	public class DialogSensor extends Sensor
 	{
-		private var dialogName:String;
+		public var dialogName:String;
 		
 		public function DialogSensor(name:String, params:Object = null)
 		{
+			/*
+			if(texture.length > 0) {
+				if(params == null) params = { view: texture };
+				else params["view"] = texture;
+			}
+			*/
 			super(name, params);
-			
-			if(name != null) dialogName = name;
 		}
 		
 		/**
@@ -35,47 +43,55 @@ package game.objects.sensors
 		 */
 		override public function handleBeginContact(interactionCallback:InteractionCallback):void
 		{
+			
 			super.handleBeginContact(interactionCallback);
 			var collider:NapePhysicsObject = NapeUtils.CollisionGetOther(this, interactionCallback);
 			
-			if (collider is Luigi) {
-				kill = true;
-				var state:GameState = (Main.getState() as GameState);
-				
-				Main.getModel().pause = true; //pause the game
-				
-				var level:Level = Main.getModel().getLevel(); 
-				level.initDialog(); //initialize dialog scene
-				var dialog:Dialog = level.dialog.take(dialogName);
-				
-				//Stop game fx sounds
-				Audio.setState("dialog");
-				
-				var dialogView:DialogView = new DialogView(dialog, function():void {
-					state.closePopup();
-					if(dialog.endLevel) {
-						// This ends the level
-						// submit score to highscorelist
-						level.highscores().submitScore();
-						
-						// check whether there are any levels left
-						if(Main.getModel().level + 1 >= Main.getModel().numLevels()) {
-							// go to main menu
-							Main.setState(new MenuState());
+			try {
+				if (collider is Luigi) {
+					kill = true;
+					var state:GameState = (Main.getState() as GameState);
+					
+					var level:Level = Main.getModel().getLevel(); 
+					level.initDialog(); //initialize dialog scene
+					var dialog:Dialog = level.dialog.take(dialogName);
+					
+					if(dialog == null) return;
+					Main.getModel().pause = true; //pause the game
+					
+					//Stop game fx sounds
+					Audio.setState("dialog");
+					
+					var dialogView:DialogView = new DialogView(dialog, function():void {
+						state.closePopup();
+						if(dialog.endLevel) {
+							// This ends the level
+							// submit score to highscorelist
+							level.highscores().submitScore();
+							
+							// check whether there are any levels left
+							if(Main.getModel().level + 1 >= Main.getModel().numLevels()) {
+								// go to main menu
+								Main.setState(new MenuState());
+							}
+							else {
+								// load next level.
+								Main.getModel().level++;
+								Main.setState(new GameState());
+							}
 						}
 						else {
-							// load next level.
-							Main.getModel().level++;
-							Main.setState(new GameState());
+							// This isnt the end of the level
+							level.objective = dialog.nextObjective;
 						}
-					}
-					else {
-						// This isnt the end of the level
-						level.objective = dialog.nextObjective;
-					}
-				});
-				state.openPopup(dialogView, false, false);
+					});
+					state.openPopup(dialogView, false, false);
+				}
 			}
+			catch(e:Error) {
+				
+			}
+			
 		}
 		
 		

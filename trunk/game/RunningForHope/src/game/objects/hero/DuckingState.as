@@ -65,8 +65,6 @@ package game.objects.hero
 				_hero.material.staticFriction = _hero.staticFriction;
 			}
 			
-			
-			
 			//Cap velocities
 			if (velocity.x > (_hero.maxVelocity))
 				velocity.x = _hero.maxVelocity;

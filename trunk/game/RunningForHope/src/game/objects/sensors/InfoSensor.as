@@ -1,11 +1,14 @@
 package game.objects.sensors
 {
-	import citrus.objects.platformer.nape.Sensor;
 	import citrus.objects.NapePhysicsObject;
+	import citrus.objects.platformer.nape.Sensor;
 	import citrus.physics.nape.NapeUtils;
-	import nape.callbacks.InteractionCallback;
-	import game.objects.Luigi;
+	
 	import game.GameState;
+	import game.objects.Luigi;
+	
+	import nape.callbacks.InteractionCallback;
+	
 	import ui.windows.*;
 	
 	public class InfoSensor extends Sensor
@@ -35,6 +38,9 @@ package game.objects.sensors
 						break;
 					case "WalljumpInfo":
 						state.openPopup(new WalljumpInfo());
+						break;
+					case "CoinInfo":
+						state.openPopup(new CoinInfo());
 						break;
 				}
 			}

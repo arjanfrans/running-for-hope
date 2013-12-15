@@ -1,7 +1,7 @@
 package model
 {
 	import citrus.core.CitrusEngine;
-	import levels.dialog.Level3Dialog;
+	import levels.dialog.*;
 	
 	/**
 	 * The general datamodel.
@@ -24,7 +24,7 @@ package model
 		{
 			_player = new Player();
 			
-			var level1:Level = new Level("Level 1", "map0", "Go to the right.");
+			var level1:Level = new Level("Level 1", "map0", "Go to the right.", Level1Dialog.load);
 			var level2:Level = new Level("Level 2", "map1", "Get to the right, now.");
 			var level3:Level = new Level("Level 3", "map2", "Meet Hope.", Level3Dialog.load);
 			
