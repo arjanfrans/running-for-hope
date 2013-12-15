@@ -26,12 +26,7 @@ package  {
 		
 		[Embed(source="../assets/spritesheet.png")]
 		public static const SpritesheetPng:Class;
-		
-		[Embed(source="../assets/characters/luigi.xml", mimeType="application/octet-stream")]
-		private static const LuigiAnimationXml:Class;
-		
-		[Embed(source="../assets/characters/luigi.png")]
-		private static const LuigiAnimationPng:Class;
+
 		
 		[Embed(source="../assets/characters/max.xml", mimeType="application/octet-stream")]
 		private static const MaxAnimationXml:Class;
@@ -39,10 +34,10 @@ package  {
 		[Embed(source="../assets/characters/max.png")]
 		private static const MaxAnimationPng:Class;
 		
-		[Embed(source="../assets/characters/StaticCharacters.xml", mimeType="application/octet-stream")]
+		[Embed(source="../assets/static_characters/StaticCharacters.xml", mimeType="application/octet-stream")]
 		private static const CharactersXml:Class;
 		
-		[Embed(source="../assets/characters/StaticCharacters.png")]
+		[Embed(source="../assets/static_characters/StaticCharacters.png")]
 		private static const CharactersPng:Class;
 		
 		[Embed(source="../assets/dialogbackgrounds/DialogBackgrounds.xml", mimeType="application/octet-stream")]
@@ -57,11 +52,9 @@ package  {
 		[Embed(source="../assets/menus/interface.png")]
 		private static const InterfacePng:Class;
 		
-		[Embed(source="../assets/backgrounds/blue_sky.png")]
+		[Embed(source="../assets/backgrounds/sky.png")]
 		private static const SkyBg:Class;
 		
-		[Embed(source="../assets/backgrounds/small_mountain.png")]
-		private static const SmallMountainBg:Class;
 		
 		[Embed(source="../assets/backgrounds/big_mountain.png")]
 		private static const MountainBg:Class;

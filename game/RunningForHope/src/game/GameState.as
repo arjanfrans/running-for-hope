@@ -7,7 +7,6 @@ package game {
 	import citrus.objects.platformer.nape.*;
 	import citrus.physics.nape.Nape;
 	import citrus.utils.objectmakers.ObjectMakerStarling;
-	import citrus.view.spriteview.SpriteArt;
 	
 	import flash.display.MovieClip;
 	import flash.display.StageAlign;
@@ -32,7 +31,6 @@ package game {
 	
 	import ui.hud.PlayerStatsUi;
 	import ui.menus.PauseMenu;
-
 	/**
 	 * The main game state, this is where the gameplay happens. The level gets setup here.
 	 */
@@ -47,7 +45,7 @@ package game {
 			super();
 			
 			//Objects which can be found in a map
-			var objects:Array = [SpriteArt, Luigi, WaterWave, CustomSprite, FallSensor, EndLevelSensor, DialogSensor, InfoSensor, Platform, Box, MovingPlatform, Token, Water];
+			var objects:Array = [Luigi, WaterWave, CustomSprite, FallSensor, EndLevelSensor, DialogSensor, InfoSensor, Platform, Box, MovingPlatform, Token, Water];
 
 			_ce.stage.align = StageAlign.TOP_LEFT;
 			_ce.stage.scaleMode = StageScaleMode.NO_SCALE;
@@ -116,6 +114,7 @@ package game {
 		{
 			var level:Level = Main.getModel().getLevel();
 			ObjectMakerStarling.FromMovieClip(flashLevel, Assets.getAtlas("Spritesheet"));
+
 			hero = getObjectByName("Hero") as Luigi;
 					
 			view.camera.allowZoom = true;
