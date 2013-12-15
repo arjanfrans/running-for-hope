@@ -12,6 +12,7 @@ package citrus
 			super(name, params);
 			this.view.width = this.width;
 			this.view.height = this.height;
+
 		}		
 	}
 }

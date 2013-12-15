@@ -181,9 +181,10 @@
         <array>
             <filename>tiles</filename>
             <filename>objects</filename>
-            <filename>characters</filename>
-            <filename>backgrounds</filename>
             <filename>ui</filename>
+            <filename>backgrounds/sky.png</filename>
+            <filename>background_objects</filename>
+            <filename>characters/hope</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
