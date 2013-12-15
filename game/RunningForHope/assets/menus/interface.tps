@@ -181,6 +181,7 @@
             <filename>LevelCompleted.png</filename>
             <filename>GameOver.png</filename>
             <filename>GameOver2.png</filename>
+            <filename>CoinsInfo.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

@@ -148,14 +148,12 @@
         </struct>
         <key>fileList</key>
         <array>
-            <filename>C:/Users/Arjan/Google Drive/GameOn/Assets/Characters/Hope.png</filename>
-            <filename>C:/Users/Arjan/Google Drive/GameOn/Assets/Characters/Hope_Small.png</filename>
-            <filename>C:/Users/Arjan/Google Drive/GameOn/Assets/Characters/Max_Female.png</filename>
-            <filename>C:/Users/Arjan/Google Drive/GameOn/Assets/Characters/Max_Male.png</filename>
-            <filename>../tiles/0.png</filename>
-            <filename>../tiles/1.png</filename>
-            <filename>../tiles/0.png</filename>
-            <filename>../tiles/1.png</filename>
+            <filename>Hope.png</filename>
+            <filename>Hope_Small.png</filename>
+            <filename>Max_Female.png</filename>
+            <filename>Max_Male.png</filename>
+            <filename>filler1.png</filename>
+            <filename>filler2.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
