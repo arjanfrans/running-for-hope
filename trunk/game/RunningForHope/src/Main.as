@@ -41,7 +41,6 @@ package {
 			setUpStarling(true);
 			state = new MenuState();
 			audio = this.sound;
-			sound.masterVolume = 0;
 			initSound();
 
 		}
