@@ -79,11 +79,6 @@ package game {
 			openPopup(new LoadingWindow());
 
 			Main.getModel().getLevel().load(initFlash, true);
-			playerStatsUi = new PlayerStatsUi();
-			this.addChild(playerStatsUi); //Add the HUD
-			
-			Audio.setState("game");
-			Main.audio.playSound("level1");
 		}
 		
 		public function openPopup(popup:Sprite, autoPosition:Boolean = true, addBackground:Boolean = true):void
@@ -118,6 +113,13 @@ package game {
 		{
 			// Close the loading window
 			closePopup();
+			
+			// Add regular UI
+			playerStatsUi = new PlayerStatsUi();
+			this.addChild(playerStatsUi); //Add the HUD
+			
+			Audio.setState("game");
+			Main.audio.playSound("level1");
 			
 			var level:Level = Main.getModel().getLevel();
 			ObjectMakerStarling.FromMovieClip(flashLevel, Assets.getAtlas("Spritesheet"));
