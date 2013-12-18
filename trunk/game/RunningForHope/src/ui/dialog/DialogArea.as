@@ -24,9 +24,15 @@ package ui.dialog
 			if(numChildren > 0) {
 				var lastChild:DialogMessage = getChildAt(numChildren - 1) as DialogMessage;
 				while(lastChild.target_y + lastChild.height + 10 + msg.height > MAX_HEIGHT) {
-					removeMessage(getChildAt(0) as DialogMessage);
-					for(var i:int = 1; i < numChildren; i++) {
+					var removed:Boolean = false;
+					for(var i:int = 0; i < numChildren; i++) {
 						var dm:DialogMessage = getChildAt(i) as DialogMessage;
+						if(dm.removed) continue;
+						if(!removed) {
+							removeMessage(getChildAt(0) as DialogMessage);
+							removed = true;
+							continue;
+						}
 						if(i === 1) {
 							dm.target_y = 0;
 						}
@@ -39,18 +45,6 @@ package ui.dialog
 				}
 			}
 			showMessage(msg);
-			/*
-			for(var i:int = 0; i < numChildren; i++) {
-				var dm:DialogMessage = getChildAt(i) as DialogMessage;
-				dm.target_y += msg.height + 10;
-				slideMessageTo(dm);
-				
-				if((dm.target_y + dm.height) > MAX_HEIGHT) {
-					removeMessage(dm);
-				}
-			}
-			showMessage(msg);
-			*/
 		}
 		
 		private function showMessage(msg:DialogMessage):void
@@ -67,7 +61,6 @@ package ui.dialog
 			if(msg.side !== "left") msg.x = (MAX_WIDTH - msg.real_width);
 			msg.alpha = 0;
 			addChild(msg);
-			
 			Starling.juggler.tween(msg, 0.5, { alpha: 1 });
 		}
 		
@@ -78,6 +71,7 @@ package ui.dialog
 		
 		private function removeMessage(msg:DialogMessage):void
 		{
+			msg.removed = true;
 			Starling.juggler.tween(msg, 0.5, { alpha: 0 });
 			Starling.juggler.delayCall(function():void {
 				removeChild(msg);

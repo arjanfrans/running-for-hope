@@ -23,6 +23,7 @@ package ui.dialog
 	{
 		public var real_width:Number;
 		public var target_y:Number = 0;
+		public var removed:Boolean = false;
 		public var side:String;
 		
 		public function DialogMessage(name:String, message:String, direction:String = "left")
