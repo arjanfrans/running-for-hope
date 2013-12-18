@@ -134,9 +134,6 @@ package ui.dialog
 			else {
 				// End of dialog
 				options.addChild(new DialogButton("Continue game", 1, endDialogCallback ));
-				
-				//Set the audio state to "continue"
-				Audio.setState("continue");
 			}
 		}
 		
@@ -182,10 +179,11 @@ package ui.dialog
 		
 		private function addMessage(message:String, from:String = null, side:String = null):void
 		{
-			message = message.replace(/\[playerName\]/gi, Main.getModel().player().name);
+			var playerName:String = Main.getModel().player().name;
+			message = message.replace(/\[playerName\]/gi, playerName);
 			if (from == null) {
 				if(side === null) side = "left";
-				dialogArea.addMessage(new DialogMessage("You", message, side));
+				dialogArea.addMessage(new DialogMessage(playerName, message, side));
 			}
 			else {
 				if(side === null) side = "right";
