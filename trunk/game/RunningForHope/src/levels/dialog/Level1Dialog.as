@@ -1,5 +1,7 @@
 package levels.dialog
 {
+	import actions.Action;
+	
 	import model.dialog.Dialog;
 	import model.dialog.DialogEntry;
 	import model.dialog.DialogLibrary;
@@ -30,9 +32,9 @@ package levels.dialog
 			*****************************************************************************************************************************/
 			var intro:Dialog = new Dialog(
 				null,
-				Assets.getTexture("Characters", "Hope"),
-				"Bereik het einde van het level"
+				Assets.getTexture("Characters", "Hope")
 			);
+			intro.addClosingAction(new Action("NextObjective", "Bereik het einde van het level"));
 			
 			intro.add(response("Hey [playerName], hoe is het?"));
 			
@@ -63,28 +65,38 @@ package levels.dialog
 			
 			var doctor:Dialog = new Dialog(
 				Assets.getTexture("Characters", "Hope"),
-				Assets.getTexture("Characters", "PlaceHolderDoctor"),
-				"Ga naar de dokter"
+				Assets.getTexture("Characters", "PlaceHolderDoctor")
 			);
-			
+			doctor.addClosingAction(new Action("NextObjective", "Ga naar de doctor"));
+			doctor.addClosingAction(new Action("Dialog", "Doctor2"));
+				
 			doctor.add(new DialogEntry("Dokter", "Hallo Hope, hoe is het?", "right"));
 			doctor.add(new DialogEntry("Hope", "Ik heb me de afgelopen weken niet zo lekker gevoeld. Ik ben vaak moe en heb een hoge temperatuur.", "left"));
 			doctor.add(new DialogEntry("Doctor", "Hope, Ik denk dat het goed is om naar de kliniek te gaan in het ziekenhuis voor een bloed test.", "right"));
 			doctor.add(new DialogEntry("Hope", "Ok, dan ga ik nu", "left"));
 			
+			
+			var doctor2:Dialog = new Dialog(
+				null,
+				Assets.getTexture("Characters", "Hope")
+			);
+			
+			doctor2.add(response("[playerName], the doctor zegt dat ik naar de kliniek moet."));
+				
 			var qrs5:QuestionResponseSet = new QuestionResponseSet();
 			qrs5.add(new QuestionResponse("Ik ga met je mee", response("Bedankt!")));
 			qrs5.add(new QuestionResponse("Wil je dat ik mee ga?", response("Ja graag.")));
-			qrs5.add(new QuestionResponse("Laten we naar de kliniek gaan,", null));
-			doctor.add(qrs5);
+			qrs5.add(new QuestionResponse("Laten we samen naar de kliniek gaan,", null));
+			doctor2.add(qrs5);
 			library.put("Doctor", doctor);
+			library.put("Doctor2", doctor2);
 			
 			// Puzzle
 			var puzzle:Dialog = new Dialog(
 				null,
-				Assets.getTexture("Characters", "Hope"),
-				"Ga naar de overkant van de rivier"
+				Assets.getTexture("Characters", "Hope")
 			);
+			puzzle.addClosingAction(new Action("NextObjective", "Ga naar de overkant van de rivier"));
 			
 			puzzle.add(response("Oh nee, de brug is kapot! Wat nu?"));
 			var qrs6:QuestionResponseSet = new QuestionResponseSet();
@@ -98,10 +110,9 @@ package levels.dialog
 			var hospital:Dialog = new Dialog(
 				Assets.getTexture("Characters", "Hope"),
 				Assets.getTexture("Characters", "PlaceHolderDoctor"),
-				"",
-				true,
 				Assets.getTexture("DialogBackgrounds", "hospital")
 			);
+			hospital.addClosingAction(new Action("EndLevel"));
 			
 			hospital.add(new DialogEntry("Doctor", "Hallo, kan ik helpen?", "right"));
 			hospital.add(new DialogEntry("Hope", "Ik heb me de afgelopen weken niet zo goed gevoeld. Mijn dokter zou dat ik hier heen moest gaan voor een bloed test.", "left"));
