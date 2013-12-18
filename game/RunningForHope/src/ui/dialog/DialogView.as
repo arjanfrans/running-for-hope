@@ -185,11 +185,11 @@ package ui.dialog
 			message = message.replace(/\[playerName\]/gi, Main.getModel().player().name);
 			if (from == null) {
 				if(side === null) side = "left";
-				dialogArea.addMessage(new DialogMessage(0xFF990000, "You", message, side));
+				dialogArea.addMessage(new DialogMessage("You", message, side));
 			}
 			else {
 				if(side === null) side = "right";
-				dialogArea.addMessage(new DialogMessage(0xFF336699, from, message, side));
+				dialogArea.addMessage(new DialogMessage(from, message, side));
 			}
 		}
 	}

@@ -1,34 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with TexturePacker http://www.codeandweb.com/texturepacker-->
-<!-- $TexturePacker:SmartUpdate:40bec3d2aec5274bf194a384b0ddab44:1/1$ -->
+<!-- $TexturePacker:SmartUpdate:8d604b44c347fa9451dfd1a22366670f:91cd84250e279814df4039c076e08df9:5d9064291e37900a2ef293ecf4c0111d$ -->
 <TextureAtlas imagePath="interface.png">
     <SubTexture name="A_padding1" x="26" y="2" width="22" height="8" frameX="-4" frameY="0" frameWidth="30" frameHeight="40"/>
     <SubTexture name="A_padding2" x="2" y="2" width="22" height="2" frameX="-4" frameY="0" frameWidth="30" frameHeight="40"/>
-    <SubTexture name="Background" x="2" y="1284" width="800" height="600"/>
+    <SubTexture name="Background" x="804" y="1288" width="800" height="600"/>
     <SubTexture name="CoinsInfo" x="1546" y="80" width="345" height="100"/>
-    <SubTexture name="DialogBackground" x="804" y="996" width="800" height="600"/>
+    <SubTexture name="DialogBackground" x="2" y="1118" width="800" height="600"/>
     <SubTexture name="DialogBtnGreen" x="774" y="56" width="770" height="52"/>
     <SubTexture name="DialogBtnRed" x="2" y="54" width="770" height="52"/>
-    <SubTexture name="DialogBtnYellow" x="845" y="2" width="770" height="52"/>
-    <SubTexture name="DialogMessageCorner" x="50" y="2" width="10" height="10"/>
-    <SubTexture name="DialogSideArrow" x="62" y="2" width="9" height="14"/>
-    <SubTexture name="FadedBackground" x="2" y="682" width="800" height="600"/>
-    <SubTexture name="GameOver" x="151" y="2" width="345" height="49"/>
+    <SubTexture name="DialogBtnYellow" x="868" y="2" width="770" height="52"/>
+    <SubTexture name="DialogMessageCorner" x="62" y="2" width="10" height="10"/>
+    <SubTexture name="DialogMessageCorner2" x="50" y="2" width="10" height="10"/>
+    <SubTexture name="DialogSideArrow" x="85" y="2" width="9" height="14"/>
+    <SubTexture name="DialogSideArrow2" x="74" y="2" width="9" height="14"/>
+    <SubTexture name="FadedBackground" x="833" y="686" width="800" height="600"/>
+    <SubTexture name="GameOver" x="174" y="2" width="345" height="49"/>
     <SubTexture name="GameOver2" x="556" y="110" width="345" height="101"/>
+    <SubTexture name="HUDBackground" x="486" y="362" width="800" height="123" frameX="0" frameY="0" frameWidth="800" frameHeight="125"/>
     <SubTexture name="Keyboard" x="486" y="213" width="345" height="137"/>
-    <SubTexture name="LevelCompleted" x="1617" y="2" width="319" height="76" frameX="-12" frameY="0" frameWidth="345" frameHeight="76"/>
-    <SubTexture name="MedalBronze" x="125" y="2" width="24" height="34" frameX="-3" frameY="-3" frameWidth="30" frameHeight="40"/>
-    <SubTexture name="MedalGold" x="99" y="2" width="24" height="34" frameX="-3" frameY="-3" frameWidth="30" frameHeight="40"/>
-    <SubTexture name="MedalSilver" x="73" y="2" width="24" height="34" frameX="-3" frameY="-3" frameWidth="30" frameHeight="40"/>
-    <SubTexture name="PauseMenu" x="1317" y="560" width="384" height="434" frameX="-17" frameY="-17" frameWidth="418" frameHeight="468"/>
-    <SubTexture name="TipsAndTricks" x="498" y="2" width="345" height="50"/>
-    <SubTexture name="Walljump" x="970" y="560" width="345" height="200"/>
-    <SubTexture name="btnBack" x="2" y="556" width="482" height="124" frameX="-18" frameY="-13" frameWidth="518" frameHeight="150"/>
-    <SubTexture name="btnBlue" x="486" y="488" width="482" height="124" frameX="-18" frameY="-13" frameWidth="518" frameHeight="150"/>
-    <SubTexture name="btnContinueGame" x="1454" y="434" width="482" height="124" frameX="-18" frameY="-13" frameWidth="518" frameHeight="150"/>
-    <SubTexture name="btnContinueGameHover" x="970" y="434" width="482" height="124" frameX="-18" frameY="-13" frameWidth="518" frameHeight="150"/>
-    <SubTexture name="btnGeneric" x="2" y="430" width="482" height="124" frameX="-18" frameY="-13" frameWidth="518" frameHeight="150"/>
-    <SubTexture name="btnNewGame" x="486" y="362" width="482" height="124" frameX="-18" frameY="-13" frameWidth="518" frameHeight="150"/>
+    <SubTexture name="LevelCompleted" x="1640" y="2" width="319" height="76" frameX="-12" frameY="0" frameWidth="345" frameHeight="76"/>
+    <SubTexture name="MedalBronze" x="148" y="2" width="24" height="34" frameX="-3" frameY="-3" frameWidth="30" frameHeight="40"/>
+    <SubTexture name="MedalGold" x="122" y="2" width="24" height="34" frameX="-3" frameY="-3" frameWidth="30" frameHeight="40"/>
+    <SubTexture name="MedalSilver" x="96" y="2" width="24" height="34" frameX="-3" frameY="-3" frameWidth="30" frameHeight="40"/>
+    <SubTexture name="PauseMenu" x="2" y="682" width="384" height="434" frameX="-17" frameY="-17" frameWidth="418" frameHeight="468"/>
+    <SubTexture name="TipsAndTricks" x="521" y="2" width="345" height="50"/>
+    <SubTexture name="Walljump" x="486" y="613" width="345" height="200"/>
+    <SubTexture name="btnBack" x="1454" y="560" width="482" height="124" frameX="-18" frameY="-13" frameWidth="518" frameHeight="150"/>
+    <SubTexture name="btnBlue" x="970" y="560" width="482" height="124" frameX="-18" frameY="-13" frameWidth="518" frameHeight="150"/>
+    <SubTexture name="btnContinueGame" x="2" y="556" width="482" height="124" frameX="-18" frameY="-13" frameWidth="518" frameHeight="150"/>
+    <SubTexture name="btnContinueGameHover" x="486" y="487" width="482" height="124" frameX="-18" frameY="-13" frameWidth="518" frameHeight="150"/>
+    <SubTexture name="btnGeneric" x="1288" y="434" width="482" height="124" frameX="-18" frameY="-13" frameWidth="518" frameHeight="150"/>
+    <SubTexture name="btnNewGame" x="2" y="430" width="482" height="124" frameX="-18" frameY="-13" frameWidth="518" frameHeight="150"/>
     <SubTexture name="btnNewGameHover" x="1317" y="308" width="482" height="124" frameX="-18" frameY="-13" frameWidth="518" frameHeight="150"/>
     <SubTexture name="btnPaleBlue" x="2" y="304" width="482" height="124" frameX="-18" frameY="-13" frameWidth="518" frameHeight="150"/>
     <SubTexture name="btnPink" x="833" y="236" width="482" height="124" frameX="-18" frameY="-13" frameWidth="518" frameHeight="150"/>
