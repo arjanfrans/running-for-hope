@@ -17,78 +17,55 @@ package ui.dialog
 	import starling.utils.HAlign;
 	import starling.utils.deg2rad;
 	
-	public class DialogMessage extends Sprite
+	import ui.windows.InfoWindow;
+	
+	public class DialogMessage extends InfoWindow
 	{
 		public var real_width:Number;
 		public var target_y:Number = 0;
 		public var side:String;
 		
-		public function DialogMessage(nameColor:uint, name:String, message:String, direction:String = "left")
+		public function DialogMessage(name:String, message:String, direction:String = "left")
 		{
-			super();
+			super(-1, direction === "left");
 			this.side = direction;
 			
+			var nameColor:uint = (direction === "left") ? 0xFF990000 : 0xFF336699;
+			
+			var nameSize:Vec2 = getTextSize(name, 24);
 			var size:Vec2 = getTextSize(message);
-			real_width = size.x + 30;
-			
-			// Background, simply plain white
-			var head:Quad = new Quad(size.x, 10);
-			var body:Quad = new Quad(size.x + 20, size.y + 30);
-			var foot:Quad = new Quad(size.x, 10);
-			
-			head.x = foot.x = 10;
-			body.y = 10;
-			foot.y = 40 + size.y;
-			this.addChild(head);
-			this.addChild(body);
-			this.addChild(foot);
+			real_width = Math.max(size.x, nameSize.x) + 30;
 			
 			// Title / Name
-			var nameEle:starling.text.TextField = new starling.text.TextField(450, 40, name, "Arial", 24, nameColor, true);
+			var nameEle:starling.text.TextField = new starling.text.TextField(nameSize.x + 15, 40, name, "Arial", 24, nameColor, true);
 			nameEle.hAlign = HAlign.LEFT;
-			nameEle.x = 10;
-			nameEle.y = 0;
 			addChild(nameEle);
+			nameEle.y = -2;
 			
 			// Message
 			var textEle:starling.text.TextField = new starling.text.TextField(size.x + 15, size.y + 15, message, "Arial", 16);
 			textEle.hAlign = HAlign.LEFT;
-			textEle.x = 10;
 			textEle.y = 30;
 			addChild(textEle);
 			
-			// Corners
-			var tl:Image = Assets.getImage("Interface", "DialogMessageCorner");
-			var tr:Image = Assets.getImage("Interface", "DialogMessageCorner");
-			var bl:Image = Assets.getImage("Interface", "DialogMessageCorner");
-			var br:Image = Assets.getImage("Interface", "DialogMessageCorner");
-			
-			tl.x = 0; tr.y = 0;
-			tr.x = size.x + 10; tr.y = 0;
-			br.x = size.x + 10; br.y = size.y + 40;
-			bl.x = 0; bl.y = size.y + 40;
-			
-			rotate(tl, 0);
-			rotate(tr, 90);
-			rotate(br, 180);
-			rotate(bl, 270);
-			
-			addChild(tl);
-			addChild(tr);
-			addChild(bl);
-			addChild(br);
-			
 			// Arrow to indicate source
-			var arrow:Image = Assets.getImage("Interface", "DialogSideArrow");
-			arrow.y = (height / 2) - (arrow.height / 2);
+			var arrow:Image;
 			if(direction === "left") {
-				arrow.x = -arrow.width;
+				arrow = Assets.getImage("Interface", "DialogSideArrow2");
+			}
+			else {
+				arrow = Assets.getImage("Interface", "DialogSideArrow");
+			}
+			
+			arrow.y = (height / 2) - (arrow.height / 2);
+			addChild(arrow);
+			if(direction === "left") {
+				arrow.x = -arrow.width - 10;
 				rotate(arrow, 180);
 			}
 			else {
-				arrow.x = size.x + 20;
+				arrow.x = this.width - 10;
 			}
-			addChild(arrow);
 		}
 		
 		private function rotate(img:Image, deg:Number):Image
@@ -101,8 +78,8 @@ package ui.dialog
 			return img;
 		}
 		
-		private function getTextSize(text:String):Vec2 {
-			var format:TextFormat = new TextFormat("Arial", 16);
+		private function getTextSize(text:String, fontSize:int = 16):Vec2 {
+			var format:TextFormat = new TextFormat("Arial", fontSize);
 			
 			var ele:flash.text.TextField = new flash.text.TextField();
 			ele.multiline = true;

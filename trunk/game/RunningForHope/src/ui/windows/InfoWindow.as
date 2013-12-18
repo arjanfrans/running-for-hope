@@ -28,7 +28,7 @@ package ui.windows
 		private var closeKey:int;
 		protected var closeFunc:Function = null;
 		
-		public function InfoWindow(closeKey:int = 13)
+		public function InfoWindow(closeKey:int = 13, secondaryColor:Boolean = false)
 		{
 			super();
 			// Background
@@ -41,10 +41,19 @@ package ui.windows
 			super.addChild(foot);
 			
 			// Corners
-			topLeft = Assets.getImage("Interface", "DialogMessageCorner");
-			topRight = Assets.getImage("Interface", "DialogMessageCorner");
-			bottomLeft = Assets.getImage("Interface", "DialogMessageCorner");
-			bottomRight = Assets.getImage("Interface", "DialogMessageCorner");
+			if(secondaryColor) {
+				head.color = body.color = foot.color = 0xFFFFEFDF;
+				topLeft = Assets.getImage("Interface", "DialogMessageCorner2");
+				topRight = Assets.getImage("Interface", "DialogMessageCorner2");
+				bottomLeft = Assets.getImage("Interface", "DialogMessageCorner2");
+				bottomRight = Assets.getImage("Interface", "DialogMessageCorner2");
+			}
+			else {
+				topLeft = Assets.getImage("Interface", "DialogMessageCorner");
+				topRight = Assets.getImage("Interface", "DialogMessageCorner");
+				bottomLeft = Assets.getImage("Interface", "DialogMessageCorner");
+				bottomRight = Assets.getImage("Interface", "DialogMessageCorner");
+			}
 			rotate(topLeft, 0);
 			rotate(topRight, 90);
 			rotate(bottomRight, 180);
