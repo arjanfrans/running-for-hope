@@ -31,6 +31,9 @@ package game {
 	
 	import ui.hud.PlayerStatsUi;
 	import ui.menus.PauseMenu;
+	import ui.windows.InfoWindow;
+	import ui.windows.LoadingWindow;
+
 	/**
 	 * The main game state, this is where the gameplay happens. The level gets setup here.
 	 */
@@ -72,7 +75,8 @@ package game {
 			
 			/* Adjust timeStep to match framerate, so 30 or 60 fps will act the same			*/
 			napePhysics.timeStep = 2 * (1 / Config.INTERNAL_FPS);
-
+			
+			openPopup(new LoadingWindow());
 
 			Main.getModel().getLevel().load(initFlash, true);
 			playerStatsUi = new PlayerStatsUi();
@@ -112,6 +116,9 @@ package game {
 		
 		private function initFlash(flashLevel:MovieClip):void
 		{
+			// Close the loading window
+			closePopup();
+			
 			var level:Level = Main.getModel().getLevel();
 			ObjectMakerStarling.FromMovieClip(flashLevel, Assets.getAtlas("Spritesheet"));
 
