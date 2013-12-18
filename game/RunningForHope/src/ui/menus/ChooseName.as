@@ -23,8 +23,6 @@ package ui.menus
 		
 		public function ChooseName() 
 		{
-			MenuState.setTitle("What is your name?", 10, 180, HAlign.CENTER);
-			
 			// Background for name input
 			var image:Image = new Image(Assets.getTexture("Interface", "nameInput"));
 			image.x = 124;
@@ -55,17 +53,16 @@ package ui.menus
 			name_input.setSelection(1, 1);
 			name_input.text = "test";
 			
-			
-			
 			addEventListener(Event.ADDED_TO_STAGE, init);
 		}
 		
 		private function init():void
 		{
 			stage.addEventListener(KeyboardEvent.KEY_UP, keyboardListener);
-			stage.addEventListener(Event.REMOVED, destroy);
 			stage.addEventListener(Event.RESIZE, onResize);
 			onResize(new ResizeEvent("init", Starling.current.nativeStage.stageWidth, Starling.current.nativeStage.stageHeight));
+			
+			MenuState.setTitle("What is your name?", 10, 180, HAlign.CENTER);
 		}
 		
 		private function onResize(event:ResizeEvent):void
@@ -79,16 +76,11 @@ package ui.menus
 			name_input.setSelection(name_input.length, name_input.length);
 		}
 		
-		private function destroy():void
-		{
-			stage.removeEventListener(KeyboardEvent.KEY_UP, keyboardListener);
-			stage.removeEventListener(Event.REMOVED, destroy);
-		}
-		
-		
 		private function keyboardListener(e:KeyboardEvent):void
 		{
 			if (e.keyCode == 13 && name_input.text.replace(/\s+/gi, "").length > 0 ) {
+				stage.removeEventListener(KeyboardEvent.KEY_UP, keyboardListener);
+				stage.removeEventListener(Event.RESIZE, onResize);
 				Starling.current.nativeOverlay.removeChild(name_input);
 				Main.getModel().player().name = name_input.text;
 				Main.setState(new GameState());
