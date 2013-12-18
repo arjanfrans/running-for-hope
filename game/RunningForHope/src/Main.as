@@ -38,7 +38,7 @@ package {
 			_this = this;
 			_model = new Model();
 			this.stage.frameRate = Config.INTERNAL_FPS;
-			setUpStarling(true);
+			setUpStarling(Config.DEBUG_MODE);
 			state = new MenuState();
 			audio = this.sound;
 			initSound();

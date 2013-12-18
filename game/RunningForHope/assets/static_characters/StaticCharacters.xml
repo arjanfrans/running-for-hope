@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with TexturePacker http://www.codeandweb.com/texturepacker-->
-<!-- $TexturePacker:SmartUpdate:74579b002686986756748180db09d05b:1/1$ -->
+<!-- $TexturePacker:SmartUpdate:19782a8bab7fceb1d53c16006de7f81b:0a483407a9bd1fdf0d91330318d742f6:5e0fdf24fc93a3ed3c6cfcbbcd39dce0$ -->
 <TextureAtlas imagePath="StaticCharacters.png">
-    <SubTexture name="Hope" x="37" y="2" width="134" height="370" frameX="-8" frameY="0" frameWidth="150" frameHeight="370"/>
+    <SubTexture name="Clinicdoc" x="154" y="374" width="150" height="370"/>
+    <SubTexture name="Hope" x="341" y="2" width="134" height="370" frameX="-8" frameY="0" frameWidth="150" frameHeight="370"/>
     <SubTexture name="Hope_Small" x="10" y="2" width="25" height="96"/>
-    <SubTexture name="Max_Female" x="2" y="374" width="150" height="370"/>
-    <SubTexture name="Max_Male" x="325" y="2" width="150" height="370"/>
-    <SubTexture name="PlaceHolderDoctor" x="173" y="2" width="150" height="370"/>
+    <SubTexture name="Localdoc" x="37" y="2" width="150" height="364" frameX="0" frameY="-6" frameWidth="150" frameHeight="370"/>
+    <SubTexture name="Max_Female" x="2" y="368" width="150" height="370"/>
+    <SubTexture name="Max_Male" x="189" y="2" width="150" height="370"/>
     <SubTexture name="filler1" x="6" y="2" width="2" height="2"/>
     <SubTexture name="filler2" x="2" y="2" width="2" height="2"/>
 </TextureAtlas>
