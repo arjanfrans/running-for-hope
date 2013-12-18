@@ -123,11 +123,11 @@ package ui.dialog
 					// It's a regular message
 					var entry:DialogEntry = dialogEntry as DialogEntry;
 					if(dialog_progress++ > 0) {
-						showContinue(entry);
+						Starling.juggler.delayCall(function():void { showContinue(entry); }, 0.1);
 					}
 					else {
 						addMessage(entry.message, entry.from, entry.side);
-						continueDialog();
+						Starling.juggler.delayCall(continueDialog, 0.1);
 					}
 				}
 			}
@@ -151,10 +151,11 @@ package ui.dialog
 			
 			dialog_progress++;
 			if(qr.answer() == null) {
-				continueDialog();
+				Starling.juggler.delayCall(continueDialog, 0.1);
 			}
 			else {
-				showContinue(qr.answer());
+				Starling.juggler.delayCall(function():void { showContinue(qr.answer()); }, 1);
+				
 			}
 		}
 		
