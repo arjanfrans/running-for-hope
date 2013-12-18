@@ -97,8 +97,8 @@ package game.objects.hero
 			
 			//Wall jumping
 			//trace(_hero.touchingWall); //velocity.y < 100 && Math.abs(_hero.oldVelocity.x) > 100 && && input.isDoing("jump", _hero.inputChannel) && !_hero.onGround && !jump_triggered
-			
-			if (_wallJumpFlag && !jump_triggered && input.isDoing("jump", _hero.inputChannel) && velocity.y < 100)
+			//&& !jump_triggered 
+			if (_wallJumpFlag && input.isDoing("jump", _hero.inputChannel) && velocity.y < 100)
 			{
 				
 				if(_lastWallJumped == null || _lastWallJumped != _hero.lastWallContact) {
