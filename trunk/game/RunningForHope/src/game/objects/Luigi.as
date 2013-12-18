@@ -45,7 +45,7 @@ package game.objects
 		private var _safe_respawn:Vec2;
 		
 		private var _touchingWall:Boolean = false;
-		private var _dead:Boolean = false;		
+		private var _dead:Boolean = false;	
 		
 		public var texture_height:Number;
 		public var texture_height_duck:Number;
@@ -61,6 +61,7 @@ package game.objects
 		public var duckingState:LuigiState;
 		public var faceRight:Boolean = true;
 		public var lastWallContact:NapePhysicsObject = null;
+		
 		
 		public function Luigi(name:String, params:Object=null)
 		{
@@ -104,7 +105,6 @@ package game.objects
 		 */
 		override public function update(timeDelta:Number):void
 		{
-			
 			_state.update(timeDelta, _body.velocity, _ce.input);
 			super.update(timeDelta);
 			
@@ -150,10 +150,10 @@ package game.objects
 		{
 			var collider:NapePhysicsObject = NapeUtils.CollisionGetOther(this, callback);
 			_touchingWall = false;
-			
+						
 			if (callback.arbiters.length > 0 && callback.arbiters.at(0).collisionArbiter) {
 				var collisionAngle:Number = callback.arbiters.at(0).collisionArbiter.normal.angle * 180 / Math.PI;
-		
+				trace(collisionAngle);
 				if ((collisionAngle > 45 && collisionAngle < 135)) //|| collisionAngle == -90
 				{
 					if (collisionAngle > 1 || collisionAngle < -1) {
@@ -172,7 +172,7 @@ package game.objects
 				else if(collisionAngle == -90) {
 					
 				}
-				else {
+				else if(collider is Platform && (collisionAngle == 0 || collisionAngle == -180)) {
 					//If not, the collision is a wall
 					_touchingWall = true;
 					lastWallContact = collider;
