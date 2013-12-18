@@ -58,15 +58,10 @@ package game.objects.hero
 				var hy:Number = _hero.body.position.y;
 				var hh:Number = _hero.body.bounds.height;
 				var allowJump:Boolean = false;
-				if((wy - wh) > (hy - hh)) {
-					trace(((wy - wh) - (hy - hh)));
-					allowJump = ((wy - wh) - (hy - hh)) > hh ? true : false;
-				}
-				else if((wy - wh) <= (hy - hh)) {
-					allowJump = ((hy - hh) - (wy - wh)) > hh ? true : false;
-				}
-				
-				if(allowJump) {
+
+				allowJump = wy - wh < hy - hh ? true : false;
+
+				if(allowJump && wh > 64) {
 					_wallJumpFlag = true;
 					Starling.juggler.add(new DelayedCall(function():void {
 						_wallJumpFlag = false;
