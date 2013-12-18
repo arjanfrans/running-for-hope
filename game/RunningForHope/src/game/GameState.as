@@ -29,6 +29,7 @@ package game {
 	import starling.display.Sprite;
 	import starling.events.ResizeEvent;
 	
+	import ui.SoundGlyph;
 	import ui.hud.PlayerStatsUi;
 	import ui.menus.PauseMenu;
 	import ui.windows.InfoWindow;
@@ -77,7 +78,7 @@ package game {
 			napePhysics.timeStep = 2 * (1 / Config.INTERNAL_FPS);
 			
 			openPopup(new LoadingWindow());
-
+			
 			Main.getModel().getLevel().load(initFlash, true);
 		}
 		
@@ -117,6 +118,7 @@ package game {
 			// Add regular UI
 			playerStatsUi = new PlayerStatsUi();
 			this.addChild(playerStatsUi); //Add the HUD
+			addChild(new SoundGlyph());
 			
 			Audio.setState("game");
 			Main.audio.playSound("level1");

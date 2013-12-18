@@ -7,6 +7,7 @@ package {
 	import citrus.sounds.CitrusSoundGroup;
 	import citrus.sounds.SoundManager;
 	
+	import flash.display.StageDisplayState;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	
@@ -25,7 +26,8 @@ package {
 	import ui.dialog.DialogMessage;
 	import ui.hud.PlayerStatsUi;
 	import ui.menus.MenuState;
-	import flash.display.StageDisplayState;	
+	import flash.events.KeyboardEvent;
+
 	[SWF(backgroundColor="#000000", width="800", height="600", frameRate="30")]
 	public class Main extends StarlingCitrusEngine {
 		
@@ -42,9 +44,7 @@ package {
 			state = new MenuState();
 			audio = this.sound;
 			initSound();
-
 		}
-	
 		
 		public static function getModel():Model
 		{

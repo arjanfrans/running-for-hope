@@ -1,6 +1,9 @@
 package model
 {
+	import audio.Audio;
+	
 	import citrus.core.CitrusEngine;
+	
 	import levels.dialog.*;
 	
 	/**
@@ -87,6 +90,21 @@ package model
 		public function get pause():Boolean
 		{
 			return !CitrusEngine.getInstance().playing;
+		}
+		
+		public function toggleSound():Boolean
+		{
+			Main.audio.masterMute = !Main.audio.masterMute;
+			return Main.audio.masterMute;
+		}
+		
+		/**
+		 * returns whether the game is pauzed.
+		 * @return Boolean Whether the game is pauzed.
+		 */
+		public function get soundMuted():Boolean
+		{
+			return Main.audio.masterMute;
 		}
 		
 		/**

@@ -209,6 +209,8 @@
             <filename>HUDBackground.png</filename>
             <filename>DialogSideArrow2.png</filename>
             <filename>HUDFooter.png</filename>
+            <filename>SoundOn.png</filename>
+            <filename>SoundOff.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
