@@ -145,7 +145,7 @@ package game.objects
 						
 			if (callback.arbiters.length > 0 && callback.arbiters.at(0).collisionArbiter) {
 				var collisionAngle:Number = callback.arbiters.at(0).collisionArbiter.normal.angle * 180 / Math.PI;
-				trace(collisionAngle);
+
 				if ((collisionAngle > 45 && collisionAngle < 135)) //|| collisionAngle == -90
 				{
 					if (collisionAngle > 1 || collisionAngle < -1) {
