@@ -22,6 +22,7 @@ package game.objects.sensors
 	import ui.dialog.DialogView;
 	import ui.menus.MainMenu;
 	import ui.menus.MenuState;
+	import actions.Action;
 	
 	public class DialogSensor extends Sensor
 	{
@@ -29,12 +30,6 @@ package game.objects.sensors
 		
 		public function DialogSensor(name:String, params:Object = null)
 		{
-			/*
-			if(texture.length > 0) {
-				if(params == null) params = { view: texture };
-				else params["view"] = texture;
-			}
-			*/
 			super(name, params);
 		}
 		
@@ -47,49 +42,9 @@ package game.objects.sensors
 			super.handleBeginContact(interactionCallback);
 			var collider:NapePhysicsObject = NapeUtils.CollisionGetOther(this, interactionCallback);
 			
-			try {
-				if (collider is Luigi) {
-					kill = true;
-					var state:GameState = (Main.getState() as GameState);
-					
-					var level:Level = Main.getModel().getLevel(); 
-					level.initDialog(); //initialize dialog scene
-					var dialog:Dialog = level.dialog.take(dialogName);
-					
-					if(dialog == null) return;
-					Main.getModel().pause = true; //pause the game
-					
-					//Stop game fx sounds
-					Audio.setState("dialog");
-					
-					var dialogView:DialogView = new DialogView(dialog, function():void {
-						state.closePopup();
-						if(dialog.endLevel) {
-							// This ends the level
-							// submit score to highscorelist
-							level.highscores().submitScore();
-							
-							// check whether there are any levels left
-							if(Main.getModel().level + 1 >= Main.getModel().numLevels()) {
-								// go to main menu
-								Main.setState(new MenuState());
-							}
-							else {
-								// load next level.
-								Main.getModel().level++;
-								Main.setState(new GameState());
-							}
-						}
-						else {
-							// This isnt the end of the level
-							level.objective = dialog.nextObjective;
-						}
-					});
-					state.openPopup(dialogView, false, false);
-				}
-			}
-			catch(e:Error) {
-				
+			if (collider is Luigi) {
+				kill = true;
+				(new Action("Dialog", dialogName)).trigger();
 			}
 			
 		}
