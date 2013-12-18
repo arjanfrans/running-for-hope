@@ -12,14 +12,18 @@ package ui.menus
 	import nape.geom.Vec2;
 	
 	import starling.core.Starling;
+	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.events.ResizeEvent;
 	import starling.text.TextField;
 	import starling.utils.HAlign;
 	
+	import ui.SoundGlyph;
+	
 	public class MenuState extends StarlingState
 	{
 		private static var _this:MenuState;
+		private var soundGlyph:Image;
 		
 		public function MenuState()
 		{
@@ -41,13 +45,14 @@ package ui.menus
 			onResize(new ResizeEvent("init", Starling.current.nativeStage.stageWidth, Starling.current.nativeStage.stageHeight));
 			Audio.setState("menu");
 			Main.audio.playSound("theme_song");
-		};
+		}
 		
 		public static function openMenu(menu:Sprite = null):void {
 			if(menu == null) menu = new MainMenu();
 			
 			while(_this.numChildren > 0) _this.removeChildAt(0);
 			_this.addChild(Assets.getImage("Interface", "Background"));
+			_this.addChild(new SoundGlyph(menu is ChooseName));
 			_this.addChild(menu);
 		}
 		
