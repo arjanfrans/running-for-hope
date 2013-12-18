@@ -1,18 +1,11 @@
 package game.objects
 {
-	import avmplus.getQualifiedClassName;
-	import avmplus.getQualifiedSuperclassName;
-	
 	import citrus.CustomHero;
 	import citrus.objects.NapePhysicsObject;
 	import citrus.objects.platformer.nape.MovingPlatform;
 	import citrus.objects.platformer.nape.Platform;
-	import citrus.objects.platformer.simple.StaticObject;
 	import citrus.physics.nape.NapeUtils;
 	import citrus.view.starlingview.AnimationSequence;
-	
-	import flash.ui.Keyboard;
-	import flash.utils.describeType;
 	
 	import game.GameState;
 	import game.objects.hero.DuckingState;
@@ -33,8 +26,6 @@ package game.objects
 	import starling.core.Starling;
 	import starling.textures.TextureAtlas;
 	
-	import ui.hud.PlayerStatsUi;
-	import ui.menus.MenuState;
 	import ui.windows.GameOverWindow;
 	
 	public class Luigi extends CustomHero
@@ -140,6 +131,7 @@ package game.objects
 			}
 			
 			updateAnimation();
+			//trace(Math.abs(_body.velocity.x));
 		}
 		
 		/**
