@@ -59,6 +59,7 @@ package ui.menus
 			titleTextField.x = title_x;
 			titleTextField.y = title_y;
 			titleTextField.color = 0xFFFFFFFF;
+			trace(titleTextField.x, titleTextField.y, titleTextField.height, titleTextField.width, title);
 			_this.addChild(titleTextField);
 		}
 		
