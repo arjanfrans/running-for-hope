@@ -49,9 +49,9 @@ package ui.menus
 			
 			// Focus on the name input
 			Starling.current.nativeStage.focus = name_input;
-			name_input.text = "test ";
+			name_input.text = " ";
 			name_input.setSelection(1, 1);
-			name_input.text = "test";
+			name_input.text = "";
 			
 			addEventListener(Event.ADDED_TO_STAGE, init);
 		}

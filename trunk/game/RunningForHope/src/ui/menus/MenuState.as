@@ -53,13 +53,12 @@ package ui.menus
 		
 		public static function setTitle(title:String, title_x:int = 65, title_y:int = 110, align:String = HAlign.LEFT):void
 		{
-			var titleTextField:TextField = new TextField(780 - title_x, 50, title , "Arial", 25);
+			var titleTextField:TextField = new TextField(800 - (title_x * 2), 50, title , "Arial", 25);
 			titleTextField.bold = true;
 			titleTextField.hAlign = align;
 			titleTextField.x = title_x;
 			titleTextField.y = title_y;
 			titleTextField.color = 0xFFFFFFFF;
-			trace(titleTextField.x, titleTextField.y, titleTextField.height, titleTextField.width, title);
 			_this.addChild(titleTextField);
 		}
 		

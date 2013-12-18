@@ -27,9 +27,10 @@ package levels.dialog
 			if (loaded) return;
 			
 			
+			
 			/****************************************************************************************************************************
 			DUTCH TRANSLATION
-			*****************************************************************************************************************************/
+			*****************************************************************************************************************************
 			var intro:Dialog = new Dialog(
 				null,
 				Assets.getTexture("Characters", "Hope")
@@ -65,7 +66,7 @@ package levels.dialog
 			
 			var doctor:Dialog = new Dialog(
 				Assets.getTexture("Characters", "Hope"),
-				Assets.getTexture("Characters", "PlaceHolderDoctor")
+				Assets.getTexture("Characters", "Localdoc")
 			);
 			doctor.addClosingAction(new Action("NextObjective", "Ga naar de doctor"));
 			doctor.addClosingAction(new Action("Dialog", "Doctor2"));
@@ -109,7 +110,7 @@ package levels.dialog
 			// Hospital
 			var hospital:Dialog = new Dialog(
 				Assets.getTexture("Characters", "Hope"),
-				Assets.getTexture("Characters", "PlaceHolderDoctor"),
+				Assets.getTexture("Characters", "Clinicdoc"),
 				Assets.getTexture("DialogBackgrounds", "hospital")
 			);
 			hospital.addClosingAction(new Action("EndLevel"));
@@ -121,17 +122,17 @@ package levels.dialog
 			hospital.add(new DialogEntry("Doctor", "Ok. Je kunt in deze kamer gaan voor een test zodat we het probleem kunnen uitzoeken.", "right"));
 			library.put("Hospital", hospital);
 			
-			loaded = true;
+			loaded = true; */
 			/****************************************************************************************************************************
 			 ///////////////////////////////
 			 *****************************************************************************************************************************/
 			
 			
-			/*var intro:Dialog = new Dialog(
+			var intro:Dialog = new Dialog(
 				null,
-				Assets.getTexture("Characters", "Hope"),
-				"Reach the end of the level"
+				Assets.getTexture("Characters", "Hope")
 			);
+			intro.addClosingAction(new Action("NextObjective", "Reach the end of the level"));
 			
 			intro.add(response("Hey [playerName], how are you doing?"));
 			
@@ -162,28 +163,36 @@ package levels.dialog
 			
 			var doctor:Dialog = new Dialog(
 				Assets.getTexture("Characters", "Hope"),
-				Assets.getTexture("Characters", "PlaceHolderDoctor"),
-				"Go to the hospital"
+				Assets.getTexture("Characters", "Localdoc")
 			);
+			doctor.addClosingAction(new Action("Dialog", "Doctor2"));
 			
 			doctor.add(new DialogEntry("Doctor", "Hello Hope, how are you doing?", "right"));
 			doctor.add(new DialogEntry("Hope", "I have been feeling very unwell the past few weeks. I’ve been tired all the time and have had a high temperature.", "left"));
 			doctor.add(new DialogEntry("Doctor", "Hope, I think it is best if you go to the Clinic to do some blood tests.", "right"));
 			doctor.add(new DialogEntry("Hope", "Okay, I will go now", "left"));
 			
+			var doctor2:Dialog = new Dialog(
+				null,
+				Assets.getTexture("Characters", "Hope")
+			);
+			doctor2.addClosingAction(new Action("NextObjective", "Go to the hospital"));
+			doctor2.add(response("[playerName], the doctor says I should go to the hospital for blood tests."));
+			
 			var qrs5:QuestionResponseSet = new QuestionResponseSet();
 			qrs5.add(new QuestionResponse("I'll come too", response("Thanks!")));
 			qrs5.add(new QuestionResponse("Want me to come with you?", response("Please do.")));
 			qrs5.add(new QuestionResponse("Lets get you to the clinic", null));
-			doctor.add(qrs5);
+			doctor2.add(qrs5);
 			library.put("Doctor", doctor);
+			library.put("Doctor2", doctor2);
 			
 			// Puzzle
 			var puzzle:Dialog = new Dialog(
 				null,
-				Assets.getTexture("Characters", "Hope"),
-				"Throw boxes into the river to cross it"
-				);
+				Assets.getTexture("Characters", "Hope")				
+			);
+			puzzle.addClosingAction(new Action("NextObjective", "Throw boxes into the river to cross it"));
 			
 			puzzle.add(response("Oh no, there is no bridge! What do we do?"));
 			var qrs6:QuestionResponseSet = new QuestionResponseSet();
@@ -196,11 +205,11 @@ package levels.dialog
 			// Hospital
 			var hospital:Dialog = new Dialog(
 				Assets.getTexture("Characters", "Hope"),
-				Assets.getTexture("Characters", "PlaceHolderDoctor"),
-				"",
-				true,
+				Assets.getTexture("Characters", "Clinicdoc"),
 				Assets.getTexture("DialogBackgrounds", "hospital")
 				);
+			
+			hospital.addClosingAction(new Action("EndLevel"));
 			
 			hospital.add(new DialogEntry("Doctor", "Hello, how can I help you?", "right"));
 			hospital.add(new DialogEntry("Hope", "I haven't been feeling very well over the past few weeks. My doctor told me to come here to see you for blood tests.", "left"));
@@ -209,7 +218,7 @@ package levels.dialog
 			hospital.add(new DialogEntry("Doctor", "Ok. You can step into the next room and we will do some tests on you. We need to find out what the problem is.", "right"));
 			library.put("Hospital", hospital);
 			
-			loaded = true;*/
+			loaded = true;
 		}
 	}
 }
