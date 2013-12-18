@@ -2,6 +2,7 @@ package model.dialog
 {
 	import starling.textures.Texture;
 	import actions.Action;
+	import audio.Audio;
 
 	/**
 	 * One dialog instance
@@ -42,6 +43,9 @@ package model.dialog
 		
 		public function close():void
 		{
+			//Set the audio state to "continue"
+			Audio.setState("continue");
+			
 			for(var i:int = 0; i < closingActions.length; i++) {
 				closingActions[i].trigger();
 			}
