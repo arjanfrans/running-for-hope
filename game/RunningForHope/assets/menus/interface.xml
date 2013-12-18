@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with TexturePacker http://www.codeandweb.com/texturepacker-->
-<!-- $TexturePacker:SmartUpdate:f24819a4412008c68b2e3f2c4d43a92e:b3cae99cd92bb189d532217f1ebac815:5d9064291e37900a2ef293ecf4c0111d$ -->
+<!-- $TexturePacker:SmartUpdate:caf2c1ef48180f25020f3f80f114d3cc:fdcdb194494c03a6f809810da90671ae:5d9064291e37900a2ef293ecf4c0111d$ -->
 <TextureAtlas imagePath="interface.png">
     <SubTexture name="A_padding1" x="26" y="2" width="22" height="8" frameX="-4" frameY="0" frameWidth="30" frameHeight="40"/>
     <SubTexture name="A_padding2" x="2" y="2" width="22" height="2" frameX="-4" frameY="0" frameWidth="30" frameHeight="40"/>
