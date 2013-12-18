@@ -4,6 +4,8 @@ package game.objects.hero
 	import citrus.input.Input;
 	import citrus.objects.NapePhysicsObject;
 	
+	import flash.globalization.LastOperationStatus;
+	
 	import game.objects.Luigi;
 	
 	import model.Model;
@@ -27,6 +29,7 @@ package game.objects.hero
 		private var _wallJumpFlag:Boolean;
 		private var _lastWallJumped:NapePhysicsObject = null;
 		private var wallJumpCount:int = 0;
+		private var oldVelocity:Number;
 		
 		public function JumpState(hero:Luigi)
 		{
@@ -41,6 +44,7 @@ package game.objects.hero
 			_wallJumpFlag = false;
 			_lastWallJumped = null;
 			wallJumpCount = 0;
+			oldVelocity = _hero.body.velocity.x;
 			Main.audio.playSound("jump");
 			_hero.view.pivotX = 25;
 		}
@@ -49,17 +53,32 @@ package game.objects.hero
 		{
 			var moveKeyPressed:Boolean = false;
 			if(_hero.touchingWall && !_wallJumpFlag) {
-				_wallJumpFlag = true;
-				Starling.juggler.add(new DelayedCall(function():void {
-					_wallJumpFlag = false;
-				}, 0.01));
+				var wh:Number = _hero.lastWallContact.body.bounds.height;
+				var wy:Number = _hero.lastWallContact.body.position.y;
+				var hy:Number = _hero.body.position.y;
+				var hh:Number = _hero.body.bounds.height;
+				var allowJump:Boolean = false;
+				if((wy - wh) > (hy - hh)) {
+					trace(((wy - wh) - (hy - hh)));
+					allowJump = ((wy - wh) - (hy - hh)) > hh ? true : false;
+				}
+				else if((wy - wh) <= (hy - hh)) {
+					allowJump = ((hy - hh) - (wy - wh)) > hh ? true : false;
+				}
+				
+				if(allowJump) {
+					_wallJumpFlag = true;
+					Starling.juggler.add(new DelayedCall(function():void {
+						_wallJumpFlag = false;
+					}, 0.01));
+				}
 			}
 			
 			if(input.justDid("jump", _hero.inputChannel)) jump_triggered = false;
 			
 			if (input.isDoing("right", _hero.inputChannel))
 			{
-				velocity.x += _hero.acceleration;
+				velocity.x += _hero.air_acceleration;
 				moveKeyPressed = true;
 			}
 			
@@ -98,16 +117,16 @@ package game.objects.hero
 			//Wall jumping
 			//trace(_hero.touchingWall); //velocity.y < 100 && Math.abs(_hero.oldVelocity.x) > 100 && && input.isDoing("jump", _hero.inputChannel) && !_hero.onGround && !jump_triggered
 			//&& !jump_triggered 
-			if (_wallJumpFlag && input.isDoing("jump", _hero.inputChannel) && velocity.y < 100)
-			{
-				
+			//trace(Math.abs(oldVelocity));
+			if (_wallJumpFlag && input.isDoing("jump", _hero.inputChannel) && velocity.y < 100 && Math.abs(oldVelocity) > 170)
+			{			
 				if(_lastWallJumped == null || _lastWallJumped != _hero.lastWallContact) {
 					if(wallJumpCount == 0) Main.audio.playSound("wall_jump");
 					else if(wallJumpCount == 1) Main.audio.playSound("wall_jump_1");
 					else Main.audio.playSound("wall_jump_2");
 					
 					velocity.y = -_hero.jumpHeight; //Math.max(velocity.y - 200, -_hero.jumpHeight);
-					velocity.x = !_hero.faceRight ? 200 : -200;
+					velocity.x = _hero.faceRight ? -180 : 180;
 					_hero.touchingWall = false;
 					jump_triggered = true;
 					_lastWallJumped = _hero.lastWallContact;
