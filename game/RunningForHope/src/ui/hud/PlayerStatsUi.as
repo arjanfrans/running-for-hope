@@ -42,30 +42,29 @@ package ui.hud {
 			var highScore:Score = level.highscores().getHighScore(0);
 			
 			//background
-			var img:Image = Assets.getImage("Spritesheet", "HUDBackground");
+			var img:Image = Assets.getImage("Interface", "HUDBackground");
 			this.addChild(img);
 			
-			var footer:Image = Assets.getImage("Spritesheet", "HUDFooter");
+			var footer:Image = Assets.getImage("Interface", "HUDFooter");
 			footer.y = Config.VIRTUAL_HEIGHT - footer.height;
 			addChild(footer);
 			
 			//menu button
 			// Remove this
 			//highscoreText
-			highscoreText = new TextField(300, 40, "Points: "+highScore.points.toString()+" | "+"Time: "+timeToClock(highScore.time), "Arial", 15, 0xFFFFFFFF);
-			highscoreText.hAlign = HAlign.LEFT;
-			highscoreText.x = 20;
-			highscoreText.y = 40;
-
-			this.addChild(highscoreText);
+			scoreText = new TextField(300, 40, "", "Arial", 15, 0xFFFFFFFF);
+			scoreText.hAlign = HAlign.LEFT;
+			scoreText.x = 20;
+			scoreText.y = 40;
+			this.addChild(scoreText);
 			
 
 			//scoreText
-			scoreText = new TextField(300, 40, "", "Arial", 15, 0xFFFFFFFF);
-			scoreText.hAlign = HAlign.RIGHT;
-			scoreText.x = width - 320;
-			scoreText.y = 40;
-			addChild(scoreText);
+			highscoreText = new TextField(300, 40, "Points: "+highScore.points.toString()+" | "+"Time: "+timeToClock(highScore.time), "Arial", 15, 0xFFFFFFFF);
+			highscoreText.hAlign = HAlign.RIGHT;
+			highscoreText.x = width - 320;
+			highscoreText.y = 40;
+			addChild(highscoreText);
 			
 			//objectiveText
 			objectiveText = new TextField(300, 40, "Objective", "Arial", 15, 0xFF000000);

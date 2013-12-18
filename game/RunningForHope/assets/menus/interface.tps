@@ -208,6 +208,7 @@
             <filename>DialogMessageCorner2.png</filename>
             <filename>HUDBackground.png</filename>
             <filename>DialogSideArrow2.png</filename>
+            <filename>HUDFooter.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
