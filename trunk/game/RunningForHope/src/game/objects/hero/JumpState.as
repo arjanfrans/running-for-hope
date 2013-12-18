@@ -59,6 +59,7 @@ package game.objects.hero
 				var hh:Number = _hero.body.bounds.height;
 				var allowJump:Boolean = false;
 
+				//TODO fix walljumping
 				allowJump = wy - wh < hy - hh ? true : false;
 
 				if(allowJump && wh > 64) {
