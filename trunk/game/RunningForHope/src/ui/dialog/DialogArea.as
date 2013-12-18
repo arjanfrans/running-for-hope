@@ -1,5 +1,7 @@
 package ui.dialog
 {
+	import model.dialog.Dialog;
+	
 	import starling.core.Starling;
 	import starling.display.DisplayObject;
 	import starling.display.Sprite;
@@ -15,11 +17,29 @@ package ui.dialog
 			width = 460;
 			x = 170;
 			y = 10;
-			height = MAX_HEIGHT;
 		}
 		
 		public function addMessage(msg:DialogMessage):void
 		{
+			if(numChildren > 0) {
+				var lastChild:DialogMessage = getChildAt(numChildren - 1) as DialogMessage;
+				while(lastChild.target_y + lastChild.height + 10 + msg.height > MAX_HEIGHT) {
+					removeMessage(getChildAt(0) as DialogMessage);
+					for(var i:int = 1; i < numChildren; i++) {
+						var dm:DialogMessage = getChildAt(i) as DialogMessage;
+						if(i === 1) {
+							dm.target_y = 0;
+						}
+						else {
+							var lastDm:DialogMessage = getChildAt(i - 1) as DialogMessage;
+							dm.target_y = lastDm.target_y + lastDm.height + 10;
+						}
+						slideMessageTo(dm);
+					}
+				}
+			}
+			showMessage(msg);
+			/*
 			for(var i:int = 0; i < numChildren; i++) {
 				var dm:DialogMessage = getChildAt(i) as DialogMessage;
 				dm.target_y += msg.height + 10;
@@ -30,13 +50,24 @@ package ui.dialog
 				}
 			}
 			showMessage(msg);
+			*/
 		}
 		
 		private function showMessage(msg:DialogMessage):void
 		{
+			if(numChildren > 0) {
+				var lastChild:DialogMessage = getChildAt(numChildren - 1) as DialogMessage;
+				msg.y = lastChild.y + lastChild.height + 10;
+				msg.target_y = lastChild.target_y + lastChild.height + 10;
+				slideMessageTo(msg);
+			}
+			else {
+				msg.y = msg.target_y = 0;
+			}
 			if(msg.side !== "left") msg.x = (MAX_WIDTH - msg.real_width);
 			msg.alpha = 0;
 			addChild(msg);
+			
 			Starling.juggler.tween(msg, 0.5, { alpha: 1 });
 		}
 		
