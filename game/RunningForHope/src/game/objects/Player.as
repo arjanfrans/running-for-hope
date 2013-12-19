@@ -59,7 +59,7 @@ package game.objects
 			super(name, params);
 			var ta:TextureAtlas = Assets.getAtlas("MaxAnimation");
 			//var seq:AnimationSequence = new AnimationSequence(ta, ["walk", "idle", "duck", "hurt", "jump"], "idle", 30, false, Config.SMOOTHING);
-			var seq:AnimationSequence = new AnimationSequence(ta, ["walk", "idle", "jump", "duck", "walljump"], "idle", 40, false, Config.SMOOTHING);
+			var seq:AnimationSequence = new AnimationSequence(ta, ["walk", "idle", "jump", "duck"], "idle", 40, false, Config.SMOOTHING);
 			view = seq;
 			view.width = 40;
 			view.height = 96;
@@ -159,6 +159,7 @@ package game.objects
 				}
 				else if(collider is MovingPlatform) {
 					_groundContacts.push(collider.body);
+					this.y += 2;
 					_onGround = true;
 				}
 				else if(collisionAngle == -90) {
