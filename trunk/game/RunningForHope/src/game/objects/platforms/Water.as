@@ -7,7 +7,7 @@ package game.objects.platforms
 	import nape.callbacks.InteractionCallback;
 	import nape.phys.FluidProperties;
 	
-	import game.objects.Luigi;
+	import game.objects.Player;
 
 	/**
 	 * A water platform which is fluid. It is deadly to the hero
@@ -28,9 +28,9 @@ package game.objects.platforms
 			super.handleBeginContact(callback);
 			var collider:NapePhysicsObject = NapeUtils.CollisionGetOther(this, callback);
 			
-			if (collider is Luigi)
+			if (collider is Player)
 			{
-				(collider as Luigi).dead = true;
+				(collider as Player).dead = true;
 			}
 		}
 		

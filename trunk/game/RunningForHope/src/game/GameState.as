@@ -40,7 +40,7 @@ package game {
 	 */
 	public class GameState extends StarlingState {
 	
-		private var hero:Luigi;
+		private var hero:Player;
 		private var playerStatsUi:PlayerStatsUi;
 		private var pauseMenu:PauseMenu = null;
 		private var popup:Sprite = null;
@@ -49,7 +49,7 @@ package game {
 			super();
 			
 			//Objects which can be found in a map
-			var objects:Array = [Luigi, WaterWave, CustomSprite, FallSensor, EndLevelSensor, DialogSensor, InfoSensor, Platform, Box, MovingPlatform, Token, Water];
+			var objects:Array = [Player, WaterWave, CustomSprite, FallSensor, EndLevelSensor, DialogSensor, InfoSensor, Platform, Box, MovingPlatform, Token, Water];
 
 			_ce.stage.align = StageAlign.TOP_LEFT;
 			_ce.stage.scaleMode = StageScaleMode.NO_SCALE;
@@ -126,7 +126,7 @@ package game {
 			var level:Level = Main.getModel().getLevel();
 			ObjectMakerStarling.FromMovieClip(flashLevel, Assets.getAtlas("Spritesheet"));
 
-			hero = getObjectByName("Hero") as Luigi;
+			hero = getObjectByName("Hero") as Player;
 					
 			view.camera.allowZoom = true;
 			view.camera.easing = new Point(1, 1);

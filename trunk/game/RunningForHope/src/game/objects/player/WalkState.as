@@ -1,17 +1,17 @@
-package game.objects.hero
+package game.objects.player
 {
-	import game.objects.Luigi;
+	import game.objects.Player;
 	import citrus.input.Input;
 	import nape.geom.Vec2;
 	import starling.animation.DelayedCall;
 	import starling.core.Starling;
 	import nape.phys.Body;
 	
-	public class WalkState implements LuigiState
+	public class WalkState implements PlayerState
 	{
-		private var _hero:Luigi;
+		private var _hero:Player;
 		
-		public function WalkState(hero:Luigi)
+		public function WalkState(hero:Player)
 		{
 			_hero = hero;
 		}

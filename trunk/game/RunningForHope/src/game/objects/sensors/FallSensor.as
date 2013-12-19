@@ -4,7 +4,7 @@ package game.objects.sensors
 	import citrus.objects.platformer.nape.Sensor;
 	import citrus.physics.nape.NapeUtils;
 	
-	import game.objects.Luigi;
+	import game.objects.Player;
 	
 	import nape.callbacks.InteractionCallback;
 	public class FallSensor extends Sensor
@@ -23,9 +23,9 @@ package game.objects.sensors
 			var collider:NapePhysicsObject = NapeUtils.CollisionGetOther(this, interactionCallback);
 			
 			//check whether the contact is the player.
-			if (collider is Luigi) {
+			if (collider is Player) {
 				//set the player to dead.
-				(collider as Luigi).dead = true;
+				(collider as Player).dead = true;
 			}
 		}		
 		

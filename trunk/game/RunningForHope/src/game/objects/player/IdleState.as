@@ -1,32 +1,23 @@
-package game.objects.hero
+package game.objects.player
 {
 	import citrus.input.Input;
 	
-	import nape.geom.Vec2;
-	import game.objects.Luigi;
-	import citrus.input.Input;
-	
-	import game.objects.Luigi;
+	import game.objects.Player;
 	import nape.geom.Vec2;
 	import starling.animation.DelayedCall;
 	import starling.core.Starling;
 	import nape.phys.Body;
 	
-	public class DuckingState implements LuigiState
-	{
-		private var _hero:Luigi;
+	public class IdleState implements PlayerState {
+		private var _hero:Player;
 		
-		public function DuckingState(hero:Luigi)
+		public function IdleState(hero:Player)
 		{
 			_hero = hero;
 		}
 		
 		public function init():void
 		{
-			_hero.body.shapes.remove(_hero.normal_shape);
-			_hero.body.shapes.add(_hero.ducking_shape);
-			_hero.body.position.y += _hero.texture_height_duck/2;
-			_hero.view.y += _hero.texture_height_duck/2;
 			_hero.view.pivotX = 0;
 		}
 		
@@ -35,20 +26,21 @@ package game.objects.hero
 			var moveKeyPressed:Boolean = false;
 			
 			if (input.justDid("right", _hero.inputChannel) || input.justDid("left", _hero.inputChannel)) {
-				_hero.body.shapes.remove(_hero.ducking_shape);
-				_hero.body.shapes.add(_hero.normal_shape);
 				_hero.state = _hero.walkState;
-				_hero.view.y -= _hero.texture_height_duck/2; // Restore size
 				moveKeyPressed = true;
 			}
-			else if(!input.isDoing("duck", _hero.inputChannel)) {
-					_hero.body.shapes.remove(_hero.ducking_shape);
-					_hero.body.shapes.add(_hero.normal_shape);
-					
-					_hero.state = _hero.idleState;
-					_hero.view.y -= _hero.texture_height_duck/2; // Restore size
-					_hero.body.position.y -= _hero.texture_height_duck/2;
+			
+			if (input.isDoing("duck", _hero.inputChannel))
+			{
+				_hero.state = _hero.duckingState;
+				moveKeyPressed = true;
 			}
+			
+			if (_hero.onGround && input.justDid("jump", _hero.inputChannel))
+			{
+				velocity.y = -_hero.jumpHeight;
+				_hero.state = _hero.jumpState;
+			}			
 			
 			//If player just started moving the hero this tick.
 			if (moveKeyPressed && !_hero.playerMovingHero)
@@ -74,7 +66,7 @@ package game.objects.hero
 		
 		public function updateAnimation():void
 		{
-			_hero.animation = "duck";
+			_hero.animation = "idle";
 		}
 	}
 }

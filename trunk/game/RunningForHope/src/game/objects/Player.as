@@ -8,11 +8,11 @@ package game.objects
 	import citrus.view.starlingview.AnimationSequence;
 	
 	import game.GameState;
-	import game.objects.hero.DuckingState;
-	import game.objects.hero.IdleState;
-	import game.objects.hero.JumpState;
-	import game.objects.hero.LuigiState;
-	import game.objects.hero.WalkState;
+	import game.objects.player.DuckingState;
+	import game.objects.player.IdleState;
+	import game.objects.player.JumpState;
+	import game.objects.player.PlayerState;
+	import game.objects.player.WalkState;
 	
 	import model.Model;
 	
@@ -28,7 +28,7 @@ package game.objects
 	
 	import ui.windows.GameOverWindow;
 	
-	public class Luigi extends CustomHero
+	public class Player extends CustomHero
 	{
 		public var air_acceleration:Number;
 		private var _oldVelocity:Vec2 = new Vec2();
@@ -44,17 +44,17 @@ package game.objects
 		
 		private var _normal_shape:Shape;
 		private var _ducking_shape:Shape;
-		private var _state:LuigiState;
+		private var _state:PlayerState;
 		
 		public var idleState:IdleState;
 		public var jumpState:JumpState;
 		public var walkState:WalkState;
-		public var duckingState:LuigiState;
+		public var duckingState:PlayerState;
 		public var faceRight:Boolean = true;
 		public var lastWallContact:NapePhysicsObject = null;
 		
 		
-		public function Luigi(name:String, params:Object=null)
+		public function Player(name:String, params:Object=null)
 		{
 			super(name, params);
 			var ta:TextureAtlas = Assets.getAtlas("MaxAnimation");
@@ -73,7 +73,7 @@ package game.objects
 			
 			_state = idleState;
 			
-			air_acceleration = 7;
+			air_acceleration = 10;
 			maxVelocity = 150;
 			acceleration = 30;
 			jumpAcceleration = 10;
@@ -194,7 +194,7 @@ package game.objects
 			}
 		}
 		
-		public function set state(state:LuigiState):void
+		public function set state(state:PlayerState):void
 		{
 			_state = state;
 			_state.init();
