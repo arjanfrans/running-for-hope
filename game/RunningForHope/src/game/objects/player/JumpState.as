@@ -1,4 +1,4 @@
-package game.objects.hero
+package game.objects.player
 {
 	import citrus.core.CitrusEngine;
 	import citrus.input.Input;
@@ -6,7 +6,7 @@ package game.objects.hero
 	
 	import flash.globalization.LastOperationStatus;
 	
-	import game.objects.Luigi;
+	import game.objects.Player;
 	
 	import model.Model;
 	
@@ -21,9 +21,9 @@ package game.objects.hero
 	
 	import ui.menus.MenuState;
 	
-	public class JumpState implements LuigiState
+	public class JumpState implements PlayerState
 	{
-		private var _hero:Luigi;
+		private var _hero:Player;
 		private var jump_triggered:Boolean;
 		private var _onGround:Boolean = false;
 		private var _wallJumpFlag:Boolean;
@@ -31,7 +31,7 @@ package game.objects.hero
 		private var wallJumpCount:int = 0;
 		private var oldVelocity:Number;
 		
-		public function JumpState(hero:Luigi)
+		public function JumpState(hero:Player)
 		{
 			_hero = hero;
 		}
@@ -147,12 +147,7 @@ package game.objects.hero
 		
 		public function updateAnimation():void
 		{
-			if(_wallJumpFlag) {
-				_hero.animation = "walljump";
-			}
-			else {
-				_hero.animation = "jump";
-			}
+			_hero.animation = "jump";
 		}
 		
 		

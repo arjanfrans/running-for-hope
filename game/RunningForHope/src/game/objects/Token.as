@@ -13,7 +13,7 @@ package game.objects
 		public function Token(name:String, params:Object=null)
 		{
 			super(name, params);
-			this.collectorClass = "game.objects.Luigi";
+			this.collectorClass = "game.objects.Player";
 		}
 		
 		/**

@@ -1,9 +1,9 @@
-package game.objects.hero
+package game.objects.player
 {
 	import citrus.input.Input;
 	import nape.geom.Vec2;
 
-	public interface LuigiState
+	public interface PlayerState
 	{
 		function update(timeDelta:Number, velocity:Vec2, input:Input):void;
 		

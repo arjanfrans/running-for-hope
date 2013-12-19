@@ -5,7 +5,7 @@ package game.objects.sensors
 	import citrus.physics.nape.NapeUtils;
 	
 	import game.GameState;
-	import game.objects.Luigi;
+	import game.objects.Player;
 	
 	import nape.callbacks.InteractionCallback;
 	
@@ -29,7 +29,7 @@ package game.objects.sensors
 			super.handleBeginContact(interactionCallback);
 			var collider:NapePhysicsObject = NapeUtils.CollisionGetOther(this, interactionCallback);
 			
-			if (collider is Luigi) {
+			if (collider is Player) {
 				kill = true;
 				var state:GameState = (Main.getState() as GameState);
 				switch(infoName){

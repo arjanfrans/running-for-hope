@@ -12,7 +12,7 @@ package game.objects.sensors
 	import citrus.physics.nape.NapeUtils;
 	
 	import game.GameState;
-	import game.objects.Luigi;
+	import game.objects.Player;
 	
 	import model.Level;
 	import model.dialog.Dialog;
@@ -42,7 +42,7 @@ package game.objects.sensors
 			super.handleBeginContact(interactionCallback);
 			var collider:NapePhysicsObject = NapeUtils.CollisionGetOther(this, interactionCallback);
 			
-			if (collider is Luigi) {
+			if (collider is Player) {
 				kill = true;
 				(new Action("Dialog", dialogName)).trigger();
 			}
