@@ -159,7 +159,14 @@ package game.objects
 				}
 				else if(collider is MovingPlatform) {
 					_groundContacts.push(collider.body);
+					var mp:MovingPlatform = collider as MovingPlatform;
+					var yTopOffset:Number = y - _body.bounds.y;
+					trace(y, mp.body.bounds.y, _body.bounds.height, yTopOffset);
+					this.y = mp.body.bounds.y - _body.bounds.height + yTopOffset + 0.3;
+					/*
+					trace(this._body.bounds, mp.body.bounds);
 					this.y += 2;
+					*/
 					_onGround = true;
 				}
 				else if(collisionAngle == -90) {
