@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with TexturePacker http://www.codeandweb.com/texturepacker-->
-<!-- $TexturePacker:SmartUpdate:72b769056d7da37f73526b8124ce87fe:1/1$ -->
+<!-- $TexturePacker:SmartUpdate:063c508e63f43b869256b0d73056445b:1/1$ -->
 <TextureAtlas imagePath="max.png">
     <SubTexture name="duck/MaxforAE 3_00000" x="8" y="0" width="50" height="47"/>
+    <SubTexture name="filler1" x="4" y="0" width="2" height="2"/>
+    <SubTexture name="filler2" x="0" y="0" width="2" height="2"/>
     <SubTexture name="idle/MaxforAE_00000" x="0" y="223" width="33" height="90"/>
-    <SubTexture name="jump/MaxforAE_00000" x="189" y="254" width="68" height="90"/>
+    <SubTexture name="jump/MaxforAE_00000" x="259" y="254" width="68" height="90"/>
     <SubTexture name="walk/Max Running_00000" x="278" y="0" width="74" height="82" frameX="-6" frameY="-6" frameWidth="96" frameHeight="96"/>
     <SubTexture name="walk/Max Running_00001" x="322" y="84" width="68" height="82" frameX="-9" frameY="-7" frameWidth="96" frameHeight="96"/>
     <SubTexture name="walk/Max Running_00002" x="424" y="0" width="58" height="82" frameX="-14" frameY="-7" frameWidth="96" frameHeight="96"/>
@@ -31,4 +33,5 @@
     <SubTexture name="walk/Max Running_00023" x="258" y="84" width="62" height="82" frameX="-12" frameY="-8" frameWidth="96" frameHeight="96"/>
     <SubTexture name="walk/Max Running_00024" x="354" y="0" width="68" height="82" frameX="-8" frameY="-6" frameWidth="96" frameHeight="96"/>
     <SubTexture name="walk/Max Running_00025" x="130" y="0" width="72" height="80" frameX="-7" frameY="-6" frameWidth="96" frameHeight="96"/>
+    <SubTexture name="walljump/walljump_00000" x="189" y="254" width="68" height="90"/>
 </TextureAtlas>

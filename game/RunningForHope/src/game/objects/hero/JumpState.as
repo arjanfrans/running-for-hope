@@ -54,19 +54,25 @@ package game.objects.hero
 			var moveKeyPressed:Boolean = false;
 			if(_hero.touchingWall && !_wallJumpFlag) {
 				var wh:Number = _hero.lastWallContact.body.bounds.height;
-				var wy:Number = _hero.lastWallContact.body.position.y;
-				var hy:Number = _hero.body.position.y;
+				var wy:Number = _hero.lastWallContact.body.position.y + wh/2;
+				var hy:Number = _hero.body.bounds.y;
 				var hh:Number = _hero.body.bounds.height;
 				var allowJump:Boolean = false;
-
+				
 				//TODO fix walljumping
-				allowJump = wy - wh < hy - hh ? true : false;
-
-				if(allowJump && wh > 64) {
-					_wallJumpFlag = true;
-					Starling.juggler.add(new DelayedCall(function():void {
-						_wallJumpFlag = false;
-					}, 0.01));
+				allowJump = hy > (wy - wh) + (hh/2) ? true : false;
+				trace(_wallJumpFlag);
+				trace(wy - wh, hy, wh, wy);
+				
+				if(allowJump && wh > 64 && velocity.y < 100 && Math.abs(oldVelocity) > 170) {
+					if((_hero.faceRight && _hero.lastWallContact.body.position.x >= _hero.body.position.x) 
+						|| (!_hero.faceRight && _hero.lastWallContact.body.position.x <= _hero.body.position.x)) {
+						
+						_wallJumpFlag = true;
+						Starling.juggler.add(new DelayedCall(function():void {
+							_wallJumpFlag = false;
+						}, 0.1));
+					}
 				}
 			}
 			
@@ -83,7 +89,7 @@ package game.objects.hero
 				velocity.x -= _hero.air_acceleration;
 				moveKeyPressed = true;
 			}
-
+			
 			if(_onGround && _hero.onGround) {
 				if(input.isDoing("right", _hero.inputChannel) || input.isDoing("left", _hero.inputChannel)) {
 					_hero.state = _hero.walkState;
@@ -114,7 +120,7 @@ package game.objects.hero
 			//trace(_hero.touchingWall); //velocity.y < 100 && Math.abs(_hero.oldVelocity.x) > 100 && && input.isDoing("jump", _hero.inputChannel) && !_hero.onGround && !jump_triggered
 			//&& !jump_triggered 
 			//trace(Math.abs(oldVelocity));
-			if (_wallJumpFlag && input.isDoing("jump", _hero.inputChannel) && velocity.y < 100 && Math.abs(oldVelocity) > 170)
+			if (_wallJumpFlag && input.isDoing("jump", _hero.inputChannel))
 			{			
 				if(_lastWallJumped == null || _lastWallJumped != _hero.lastWallContact) {
 					if(wallJumpCount == 0) Main.audio.playSound("wall_jump");
@@ -141,7 +147,12 @@ package game.objects.hero
 		
 		public function updateAnimation():void
 		{
-			_hero.animation = "jump";
+			if(_wallJumpFlag) {
+				_hero.animation = "walljump";
+			}
+			else {
+				_hero.animation = "jump";
+			}
 		}
 		
 		
