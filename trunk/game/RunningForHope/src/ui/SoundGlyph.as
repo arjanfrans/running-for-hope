@@ -31,7 +31,7 @@ package ui
 				stage.addEventListener(KeyboardEvent.KEY_UP, keyboardListener);
 			}
 			redrawSoundGlyph();
-			x = stage.width - img.width - 10;
+			x = 10;
 			y = stage.height - img.height - 10;
 		}
 		
