@@ -34,12 +34,12 @@ package game {
 	import ui.menus.PauseMenu;
 	import ui.windows.InfoWindow;
 	import ui.windows.LoadingWindow;
-
+	
 	/**
 	 * The main game state, this is where the gameplay happens. The level gets setup here.
 	 */
 	public class GameState extends StarlingState {
-	
+		
 		private var hero:Player;
 		private var playerStatsUi:PlayerStatsUi;
 		private var pauseMenu:PauseMenu = null;
@@ -50,7 +50,7 @@ package game {
 			
 			//Objects which can be found in a map
 			var objects:Array = [Player, WaterWave, CustomSprite, FallSensor, EndLevelSensor, DialogSensor, InfoSensor, Platform, Box, MovingPlatform, Token, Water];
-
+			
 			_ce.stage.align = StageAlign.TOP_LEFT;
 			_ce.stage.scaleMode = StageScaleMode.NO_SCALE;
 			
@@ -120,14 +120,24 @@ package game {
 			this.addChild(playerStatsUi); //Add the HUD
 			addChild(new SoundGlyph());
 			
-			Audio.setState("game");
-			Main.audio.playSound("level1");
+			
 			
 			var level:Level = Main.getModel().getLevel();
 			ObjectMakerStarling.FromMovieClip(flashLevel, Assets.getAtlas("Spritesheet"));
-
+			
+			Audio.setState("game");
+			if(Main.getModel().level == 0) {
+				Main.audio.playSound("level1");
+			}
+			else if(Main.getModel().level == 1) {
+				Main.audio.playSound("level2");
+			}
+			else {
+				Main.audio.playSound("level1");
+			}
+			
 			hero = getObjectByName("Hero") as Player;
-					
+			
 			view.camera.allowZoom = true;
 			view.camera.easing = new Point(1, 1);
 			view.camera.target = hero;
@@ -195,7 +205,7 @@ package game {
 			playerStatsUi.scaleY = playerStatsUi.scaleX;
 			//playerStatsUi.width = (newWidth / Config.VIRTUAL_WIDTH) * playerStatsUi.originalWidth;
 			//playerStatsUi.height = (newWidth / Config.VIRTUAL_WIDTH) * playerStatsUi.originalHeight;
-
+			
 			if(pauseMenu != null) {
 				pauseMenu.width = newWidth;
 				pauseMenu.height = newHeight;
