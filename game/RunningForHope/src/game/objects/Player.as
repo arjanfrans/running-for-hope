@@ -1,13 +1,17 @@
 package game.objects
 {
+	import audio.Audio;
+	
 	import citrus.CustomHero;
 	import citrus.objects.NapePhysicsObject;
 	import citrus.objects.platformer.nape.MovingPlatform;
 	import citrus.objects.platformer.nape.Platform;
 	import citrus.physics.nape.NapeUtils;
 	import citrus.view.starlingview.AnimationSequence;
+	import citrus.view.starlingview.StarlingArt;
 	
 	import game.GameState;
+	import game.objects.platforms.Water;
 	import game.objects.player.DuckingState;
 	import game.objects.player.IdleState;
 	import game.objects.player.JumpState;
@@ -53,17 +57,18 @@ package game.objects
 		public var faceRight:Boolean = true;
 		public var lastWallContact:NapePhysicsObject = null;
 		
+		public var respawn:Boolean;
+		
 		
 		public function Player(name:String, params:Object=null)
 		{
 			super(name, params);
 			var ta:TextureAtlas = Assets.getAtlas("MaxAnimation");
 			//var seq:AnimationSequence = new AnimationSequence(ta, ["walk", "idle", "duck", "hurt", "jump"], "idle", 30, false, Config.SMOOTHING);
-			var seq:AnimationSequence = new AnimationSequence(ta, ["walk", "idle", "jump", "duck"], "idle", 40, false, Config.SMOOTHING);
+			var seq:AnimationSequence = new AnimationSequence(ta, ["walk", "idle", "jump", "duck", "respawn"], "idle", 40, false, Config.SMOOTHING);
 			view = seq;
 			view.width = 40;
 			view.height = 96;
-			
 			texture_height = this.height;
 			texture_height_duck = seq.mcSequences["duck"].height;
 			idleState = new IdleState(this);
@@ -71,6 +76,9 @@ package game.objects
 			walkState = new WalkState(this);
 			duckingState = new DuckingState(this);
 			
+			
+			StarlingArt.setLoopAnimations(["respawn"]); //Set respawn animation as a looping animation
+				
 			_state = idleState;
 			
 			air_acceleration = 10;
@@ -78,9 +86,8 @@ package game.objects
 			acceleration = 30;
 			jumpAcceleration = 10;
 			jumpHeight = 450;
-			
-			
-			
+
+			respawn = false;
 		}
 
 		override protected function createShape():void
@@ -98,6 +105,12 @@ package game.objects
 		{
 			_state.update(timeDelta, _body.velocity, _ce.input);
 			super.update(timeDelta);
+			
+			if(respawn) {
+				Starling.juggler.add(new DelayedCall(function():void {
+					respawn = false;
+				}, 2, null));
+			}
 			
 			if(faceRight && _body.velocity.x < 0) {
 				faceRight = false;
@@ -118,16 +131,29 @@ package game.objects
 			
 			// Handle being dead			
 			if(_dead) {
-				var m:Model = Main.getModel();
-				if(m.lifes-- < 1) {
-					(Main.getState() as GameState).openPopup(new GameOverWindow());
-					return;
-				}
-				velocity.x = 0;
-				velocity.y = 0;
-				x = safe_respawn.x;
-				y = safe_respawn.y;
 				dead = false;
+				Main.audio.playSound("dead");
+				var m:Model = Main.getModel();
+
+				Main.getModel().pause = true;
+
+				//Delay before respawning
+				Starling.juggler.add(new DelayedCall(function():void {
+					
+					if(m.lifes-- < 1) {
+						(Main.getState() as GameState).openPopup(new GameOverWindow());
+						return;
+					}
+					velocity.x = 0;
+					velocity.y = 0;
+					x = safe_respawn.x;
+					y = safe_respawn.y;
+					respawn = true;
+					Main.getModel().pause = false;
+					
+				}, 2, null));
+				
+				
 			}
 			
 			updateAnimation();
