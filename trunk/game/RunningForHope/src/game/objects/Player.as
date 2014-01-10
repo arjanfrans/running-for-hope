@@ -88,6 +88,7 @@ package game.objects
 			jumpHeight = 450;
 
 			respawn = false;
+			Audio.setState("unmute_background");
 		}
 
 		override protected function createShape():void
@@ -109,6 +110,7 @@ package game.objects
 			if(respawn) {
 				Starling.juggler.add(new DelayedCall(function():void {
 					respawn = false;
+					Audio.setState("unmute_background");
 				}, 2, null));
 			}
 			
@@ -132,6 +134,7 @@ package game.objects
 			// Handle being dead			
 			if(_dead) {
 				dead = false;
+				Audio.setState("mute_background");
 				Main.audio.playSound("dead");
 				var m:Model = Main.getModel();
 
