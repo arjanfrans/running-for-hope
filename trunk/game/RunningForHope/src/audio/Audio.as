@@ -30,6 +30,12 @@ package audio
 				Main.audio.getGroup(CitrusSoundGroup.BGM).volume = 0.8;
 				Main.audio.getGroup(CitrusSoundGroup.SFX).mute = false;
 			}
+			else if(state == "mute_background") {
+				Main.audio.getGroup(CitrusSoundGroup.BGM).mute = true;
+			}
+			else if(state == "unmute_background") {
+				Main.audio.getGroup(CitrusSoundGroup.BGM).mute = false;
+			}
 		}
 	}
 }

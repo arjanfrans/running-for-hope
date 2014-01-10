@@ -66,7 +66,11 @@ package game.objects.player
 		
 		public function updateAnimation():void
 		{
-			_hero.animation = "idle";
+			if(_hero.respawn) {
+				_hero.animation = "respawn";
+			} else {
+				_hero.animation = "idle";
+			}
 		}
 	}
 }

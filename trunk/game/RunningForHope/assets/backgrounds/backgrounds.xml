@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with TexturePacker http://www.codeandweb.com/texturepacker-->
-<!-- $TexturePacker:SmartUpdate:e67cb6de920f058ce04013b9bc0d48e7:1/1$ -->
+<!-- $TexturePacker:SmartUpdate:3996674407e5bc63b6556aa7df51b54d:1/1$ -->
 <TextureAtlas imagePath="backgrounds.png">
-    <SubTexture name="big_mountain" x="1303" y="2" width="384" height="180"/>
-    <SubTexture name="blue_sky" x="1689" y="2" width="256" height="256"/>
+    <SubTexture name="big_mountain" x="340" y="88" width="384" height="180"/>
+    <SubTexture name="blue_sky" x="726" y="117" width="256" height="256"/>
     <SubTexture name="clouds" x="755" y="2" width="208" height="113"/>
     <SubTexture name="filler1" x="6" y="2" width="2" height="2"/>
     <SubTexture name="filler2" x="2" y="2" width="2" height="2"/>
-    <SubTexture name="mountains" x="2" y="690" width="2024" height="436" frameX="0" frameY="-64" frameWidth="2024" frameHeight="500"/>
-    <SubTexture name="sky" x="2" y="88" width="600" height="600"/>
+    <SubTexture name="sky" x="2" y="270" width="600" height="600"/>
     <SubTexture name="small_cloud" x="10" y="2" width="64" height="48"/>
     <SubTexture name="small_mountain" x="399" y="2" width="160" height="68"/>
     <SubTexture name="small_mountain_2" x="561" y="2" width="192" height="84"/>
     <SubTexture name="small_mountain_3" x="238" y="2" width="159" height="68"/>
     <SubTexture name="small_mountain_4" x="76" y="2" width="160" height="68"/>
-    <SubTexture name="three_mountains" x="965" y="2" width="336" height="116"/>
+    <SubTexture name="three_mountains" x="2" y="72" width="336" height="116"/>
 </TextureAtlas>

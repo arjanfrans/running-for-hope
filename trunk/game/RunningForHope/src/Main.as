@@ -78,6 +78,7 @@ package {
 			sound.addSound("wall_jump_1", {sound: "audio/wall_jump_1.mp3",group:CitrusSoundGroup.SFX});
 			sound.addSound("wall_jump_2", {sound: "audio/wall_jump_2.mp3",group:CitrusSoundGroup.SFX});
 			sound.addSound("token", {sound: "audio/token.mp3",group:CitrusSoundGroup.SFX});
+			sound.addSound("dead", {sound: "audio/dead.mp3",group:CitrusSoundGroup.SFX});
 			sound.addSound("walk", {sound:"audio/walk1.mp3", timesToPlay: 0, group:CitrusSoundGroup.SFX } );
 			sound.addSound("theme_song", {sound:"audio/main_theme.mp3",timesToPlay:-1,group:CitrusSoundGroup.BGM});
 			sound.addSound("level1", {sound:"audio/level1.mp3", timesToPlay:-1,group:CitrusSoundGroup.BGM});

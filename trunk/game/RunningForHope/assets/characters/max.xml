@@ -1,12 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with TexturePacker http://www.codeandweb.com/texturepacker-->
-<!-- $TexturePacker:SmartUpdate:063c508e63f43b869256b0d73056445b:1/1$ -->
+<!-- $TexturePacker:SmartUpdate:c2d4eec42153b90d53e1a89fec613b6e:1/1$ -->
 <TextureAtlas imagePath="max.png">
     <SubTexture name="duck/MaxforAE 3_00000" x="8" y="0" width="50" height="47"/>
     <SubTexture name="filler1" x="4" y="0" width="2" height="2"/>
     <SubTexture name="filler2" x="0" y="0" width="2" height="2"/>
-    <SubTexture name="idle/MaxforAE_00000" x="0" y="223" width="33" height="90"/>
-    <SubTexture name="jump/MaxforAE_00000" x="259" y="254" width="68" height="90"/>
+    <SubTexture name="idle/MaxforAE_00000" x="259" y="254" width="33" height="90"/>
+    <SubTexture name="jump/MaxforAE_00000" x="294" y="254" width="68" height="90"/>
+    <SubTexture name="respawn/MaxforAE_00000" x="259" y="254" width="33" height="90"/>
+    <SubTexture name="respawn/MaxforAE_00001" x="259" y="254" width="33" height="90"/>
+    <SubTexture name="respawn/MaxforAE_00002" x="259" y="254" width="33" height="90"/>
+    <SubTexture name="respawn/MaxforAE_00003" x="259" y="254" width="33" height="90"/>
+    <SubTexture name="respawn/MaxforAE_00004" x="259" y="254" width="33" height="90"/>
+    <SubTexture name="respawn/MaxforAE_00005" x="259" y="254" width="33" height="90"/>
+    <SubTexture name="respawn/MaxforAE_00006" x="259" y="254" width="33" height="90"/>
+    <SubTexture name="respawn/MaxforAE_00007" x="259" y="254" width="33" height="90"/>
+    <SubTexture name="respawn/MaxforAE_00008" x="259" y="254" width="33" height="90"/>
+    <SubTexture name="respawn/MaxforAE_00009" x="259" y="254" width="33" height="90"/>
+    <SubTexture name="respawn/MaxforAE_00010" x="0" y="223" width="33" height="90"/>
+    <SubTexture name="respawn/MaxforAE_00011" x="0" y="223" width="33" height="90"/>
+    <SubTexture name="respawn/MaxforAE_00012" x="0" y="223" width="33" height="90"/>
+    <SubTexture name="respawn/MaxforAE_00013" x="0" y="223" width="33" height="90"/>
+    <SubTexture name="respawn/MaxforAE_00014" x="0" y="223" width="33" height="90"/>
+    <SubTexture name="respawn/MaxforAE_00015" x="0" y="223" width="33" height="90"/>
+    <SubTexture name="respawn/MaxforAE_00016" x="0" y="223" width="33" height="90"/>
+    <SubTexture name="respawn/MaxforAE_00017" x="0" y="223" width="33" height="90"/>
+    <SubTexture name="respawn/MaxforAE_00018" x="0" y="223" width="33" height="90"/>
+    <SubTexture name="respawn/MaxforAE_00019" x="0" y="223" width="33" height="90"/>
     <SubTexture name="walk/Max Running_00000" x="278" y="0" width="74" height="82" frameX="-6" frameY="-6" frameWidth="96" frameHeight="96"/>
     <SubTexture name="walk/Max Running_00001" x="322" y="84" width="68" height="82" frameX="-9" frameY="-7" frameWidth="96" frameHeight="96"/>
     <SubTexture name="walk/Max Running_00002" x="424" y="0" width="58" height="82" frameX="-14" frameY="-7" frameWidth="96" frameHeight="96"/>
