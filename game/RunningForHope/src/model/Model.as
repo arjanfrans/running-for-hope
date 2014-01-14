@@ -17,6 +17,8 @@ package model
 		private var _lifes:int = 4;
 		private var _player:Player;
 		
+		private var _items:int = 0;
+		
 		private var _levels:Vector.<Level>;
 		
 		/**
@@ -33,7 +35,8 @@ package model
 			
 			_levels = new <Level>[ level1, level2, level3 ];
 		}
-		
+
+
 		/**
 		 * Sets the current level.
 		 * @param int level The current level.
@@ -176,6 +179,17 @@ package model
 		public function player():Player
 		{
 			return _player;
+		}
+		
+		
+		public function get items():int
+		{
+			return _items;
+		}
+		
+		public function set items(value:int):void
+		{
+			_items = value;
 		}
 		
 	}

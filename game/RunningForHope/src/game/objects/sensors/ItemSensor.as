@@ -11,11 +11,11 @@ package game.objects.sensors
 	
 	import ui.windows.*;
 	
-	public class InfoSensor extends Sensor
+	public class ItemSensor extends Sensor
 	{
 		private var infoName:String;
 		
-		public function InfoSensor(name:String, params:Object=null)
+		public function ItemSensor(name:String, params:Object=null)
 		{
 			super(name, params);
 			
@@ -23,7 +23,7 @@ package game.objects.sensors
 		}
 		
 		/**
-		 * Function for when the Hero gets in contact with this DialogSensor.
+		 * Function for when the Hero gets in contact with this item.
 		 */
 		override public function handleBeginContact(interactionCallback:InteractionCallback):void
 		{
@@ -32,21 +32,7 @@ package game.objects.sensors
 			
 			if (collider is Player) {
 				kill = true;
-				var state:GameState = (Main.getState() as GameState);
-				switch(infoName){
-					case "ControlsInfo":
-						state.openPopup(new ControlsInfo());
-						break;
-					case "WalljumpInfo":
-						state.openPopup(new WalljumpInfo());
-						break;
-					case "CoinInfo":
-						state.openPopup(new CoinInfo());
-						break;
-					case "LocationInfo":
-						state.openPopup(new LocationInfo());
-						break;
-				}
+				Main.getModel().items++;
 			}
 		}
 	}
