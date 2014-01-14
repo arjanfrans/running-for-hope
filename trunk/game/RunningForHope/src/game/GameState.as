@@ -49,7 +49,7 @@ package game {
 			super();
 			
 			//Objects which can be found in a map
-			var objects:Array = [Player, WaterWave, CustomSprite, FallSensor, EndLevelSensor, DialogSensor, InfoSensor, Platform, Box, MovingPlatform, Token, Water];
+			var objects:Array = [Player, WaterWave, CustomSprite, ItemSensor, FallSensor, EndLevelSensor, DialogSensor, InfoSensor, Platform, Box, MovingPlatform, Token, Water];
 			
 			_ce.stage.align = StageAlign.TOP_LEFT;
 			_ce.stage.scaleMode = StageScaleMode.NO_SCALE;
@@ -132,8 +132,8 @@ package game {
 			else if(Main.getModel().level == 1) {
 				Main.audio.playSound("level2");
 			}
-			else {
-				Main.audio.playSound("level1");
+			else if(Main.getModel().level == 2) {
+				Main.audio.playSound("level3");
 			}
 			
 			hero = getObjectByName("Hero") as Player;
