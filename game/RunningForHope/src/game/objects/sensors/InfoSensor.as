@@ -42,6 +42,9 @@ package game.objects.sensors
 					case "CoinInfo":
 						state.openPopup(new CoinInfo());
 						break;
+					case "LocationInfo":
+						state.openPopup(new LocationInfo());
+						break;
 				}
 			}
 		}

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with TexturePacker http://www.codeandweb.com/texturepacker-->
-<!-- $TexturePacker:SmartUpdate:ccacddf247178165f09870c62ed01010:8ddbfc558951da982927e97ee7a2f5b7:5d9064291e37900a2ef293ecf4c0111d$ -->
+<!-- $TexturePacker:SmartUpdate:a73ac637ab13afb9114c04f987e45531:1/1$ -->
 <TextureAtlas imagePath="interface.png">
     <SubTexture name="A_padding1" x="26" y="2" width="22" height="8" frameX="-4" frameY="0" frameWidth="30" frameHeight="40"/>
     <SubTexture name="A_padding2" x="2" y="2" width="22" height="2" frameX="-4" frameY="0" frameWidth="30" frameHeight="40"/>
     <SubTexture name="Background" x="2" y="1354" width="800" height="600"/>
     <SubTexture name="CoinsInfo" x="1328" y="132" width="345" height="100"/>
-    <SubTexture name="DialogBackground" x="1190" y="815" width="800" height="600"/>
+    <SubTexture name="DialogBackground" x="1190" y="895" width="800" height="600"/>
     <SubTexture name="DialogBtnGreen" x="2" y="93" width="770" height="52"/>
     <SubTexture name="DialogBtnRed" x="774" y="54" width="770" height="52"/>
     <SubTexture name="DialogBtnYellow" x="2" y="39" width="770" height="52"/>
@@ -14,6 +14,7 @@
     <SubTexture name="DialogMessageCorner2" x="50" y="2" width="10" height="10"/>
     <SubTexture name="DialogSideArrow" x="85" y="2" width="9" height="14"/>
     <SubTexture name="DialogSideArrow2" x="74" y="2" width="9" height="14"/>
+    <SubTexture name="Explore" x="1664" y="613" width="280" height="280"/>
     <SubTexture name="FadedBackground" x="388" y="752" width="800" height="600"/>
     <SubTexture name="GameOver" x="1040" y="2" width="345" height="49"/>
     <SubTexture name="GameOver2" x="1675" y="132" width="345" height="101"/>
