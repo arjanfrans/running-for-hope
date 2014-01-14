@@ -11,7 +11,8 @@ package ui.windows
 			
 			addChild(Assets.getImage("Interface", "TipsAndTricks"));
 			
-			var infoText:TextField = new TextField(345, 50, "Use the arrow buttons to move.\nUse the spacebar or up-key to jump!", "Arial", 16, 0, true);
+			var infoText:TextField = new TextField(345, 50, "Use the arrow buttons to move.\nUse the spacebar or up-key to jump! \nTip for jumping: " +
+				"keep using the arrow keys while jumping to steer in the air.", "Arial", 16, 0, true);
 			appendChild(infoText, 10);
 			
 			appendChild(Assets.getImage("Interface", "Keyboard"), 10);
