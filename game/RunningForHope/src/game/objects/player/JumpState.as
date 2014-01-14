@@ -76,7 +76,7 @@ package game.objects.player
 				}
 			}
 			
-			if(input.justDid("jump", _hero.inputChannel)) jump_triggered = false;
+			if((input.justDid("jump", _hero.inputChannel) || input.justDid("up", _hero.inputChannel))) jump_triggered = false;
 			
 			if (input.isDoing("right", _hero.inputChannel))
 			{
@@ -120,7 +120,7 @@ package game.objects.player
 			//trace(_hero.touchingWall); //velocity.y < 100 && Math.abs(_hero.oldVelocity.x) > 100 && && input.isDoing("jump", _hero.inputChannel) && !_hero.onGround && !jump_triggered
 			//&& !jump_triggered 
 			//trace(Math.abs(oldVelocity));
-			if (_wallJumpFlag && input.isDoing("jump", _hero.inputChannel))
+			if (_wallJumpFlag && (input.isDoing("jump", _hero.inputChannel) || input.isDoing("up", _hero.inputChannel)))
 			{			
 				if(_lastWallJumped == null || _lastWallJumped != _hero.lastWallContact) {
 					if(wallJumpCount == 0) Main.audio.playSound("wall_jump");

@@ -1,12 +1,15 @@
 package game.objects.player
 {
 	import citrus.input.Input;
+	import citrus.input.InputController;
 	
 	import game.objects.Player;
+	
 	import nape.geom.Vec2;
+	import nape.phys.Body;
+	
 	import starling.animation.DelayedCall;
 	import starling.core.Starling;
-	import nape.phys.Body;
 	
 	public class IdleState implements PlayerState {
 		private var _hero:Player;
@@ -24,7 +27,7 @@ package game.objects.player
 		public function update(timeDelta:Number, velocity:Vec2, input:Input):void
 		{
 			var moveKeyPressed:Boolean = false;
-			
+
 			if (input.justDid("right", _hero.inputChannel) || input.justDid("left", _hero.inputChannel)) {
 				_hero.state = _hero.walkState;
 				moveKeyPressed = true;
@@ -36,7 +39,7 @@ package game.objects.player
 				moveKeyPressed = true;
 			}
 			
-			if (_hero.onGround && input.justDid("jump", _hero.inputChannel))
+			if (_hero.onGround && (input.justDid("jump", _hero.inputChannel) || input.justDid("up", _hero.inputChannel)))
 			{
 				velocity.y = -_hero.jumpHeight;
 				_hero.state = _hero.jumpState;
