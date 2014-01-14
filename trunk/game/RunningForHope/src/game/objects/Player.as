@@ -3,6 +3,7 @@ package game.objects
 	import audio.Audio;
 	
 	import citrus.CustomHero;
+	import citrus.input.InputAction;
 	import citrus.objects.NapePhysicsObject;
 	import citrus.objects.platformer.nape.MovingPlatform;
 	import citrus.objects.platformer.nape.Platform;
@@ -31,6 +32,8 @@ package game.objects
 	import starling.textures.TextureAtlas;
 	
 	import ui.windows.GameOverWindow;
+	import citrus.input.controllers.Keyboard;
+	import citrus.core.CitrusEngine;
 	
 	public class Player extends CustomHero
 	{
@@ -89,7 +92,11 @@ package game.objects
 
 			respawn = false;
 			Audio.setState("unmute_background");
-			
+				
+			//Add action to use UP key for jumping
+			var keyboard:Keyboard = CitrusEngine.getInstance().input.keyboard as Keyboard;
+			keyboard.addKeyAction("up", Keyboard.UP);
+
 		}
 
 		override protected function createShape():void

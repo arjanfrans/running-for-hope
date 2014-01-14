@@ -57,14 +57,14 @@ package game.objects.player
 				_hero.material.staticFriction = _hero.staticFriction;
 			}
 			
-			if (input.justDid("jump", _hero.inputChannel) && _hero.onGround && !_hero.ducking)
+			if ((input.justDid("jump", _hero.inputChannel) || input.justDid("up", _hero.inputChannel)) && _hero.onGround && !_hero.ducking)
 			{
 				velocity.y = -_hero.jumpHeight;
 				Main.audio.stopSound("walk");
 				_hero.state = _hero.jumpState;
 			}
 			
-			if(!input.justDid("jump", _hero.inputChannel) && !input.isDoing("left", _hero.inputChannel) && 
+			if(!input.justDid("jump", _hero.inputChannel) && !input.justDid("up", _hero.inputChannel) && !input.isDoing("left", _hero.inputChannel) && 
 				!input.isDoing("right", _hero.inputChannel)) {
 				Main.audio.stopSound("walk");
 				_hero.state = _hero.idleState;
