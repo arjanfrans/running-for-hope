@@ -33,6 +33,7 @@ package game.objects.sensors
 			if (collider is Player) {
 				kill = true;
 				Main.getModel().items++;
+				trace(Main.getModel().items);
 			}
 		}
 	}
