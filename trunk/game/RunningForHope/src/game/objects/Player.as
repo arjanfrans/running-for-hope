@@ -89,6 +89,7 @@ package game.objects
 
 			respawn = false;
 			Audio.setState("unmute_background");
+			
 		}
 
 		override protected function createShape():void
@@ -139,7 +140,10 @@ package game.objects
 				var m:Model = Main.getModel();
 
 				Main.getModel().pause = true;
-
+				velocity.x = 0;
+				velocity.y = 0;
+				this._body.velocity.x = 0;
+				this._body.velocity.y = 0;
 				//Delay before respawning
 				Starling.juggler.add(new DelayedCall(function():void {
 					
