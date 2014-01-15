@@ -68,6 +68,10 @@ package model
 			return _levels[num];
 		}
 		
+		public function getCurrentLevel():Level {
+			return getLevel(_level);
+		}
+		
 		/**
 		 * Returns the number of the current level.
 		 * @return int The number of the current level.
