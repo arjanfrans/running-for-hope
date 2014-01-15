@@ -12,7 +12,7 @@ package ui.windows
 			
 			var infoText:TextField = new TextField(345, 50, "Try taking a different route and explore the level, you might find something valuable!", "Arial", 16, 0, true);
 			appendChild(infoText, 10);
-				21
+
 			appendChild(Assets.getImage("Interface", "Explore"), 10);
 			
 			var closeText:TextField = new TextField(345, 20, "Press Enter to continue", "Arial", 12);

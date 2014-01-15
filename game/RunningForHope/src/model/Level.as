@@ -17,6 +17,7 @@ package model
 		private var _name:String;
 		private var _file:String;
 		private var _maxPoints:int = -1;
+		private var _maxItems:int = 0;
 		private var _highscores:Highscores;
 		private var _objective:String;
 		private var _initialObjective:String;
@@ -25,6 +26,8 @@ package model
 		private var _height:int;
 		private var _objects:Vector.<String>;
 		private var _dialog:DialogLibrary;
+
+
 		private var _dialogInit:Function = null;
 		private var _flashLevel:MovieClip;
 		
@@ -68,6 +71,7 @@ package model
 				for(var i:int = 0; i < _flashLevel.numChildren; i++) {
 					var obj:Object = _flashLevel.getChildAt(i);
 					if(obj != null && obj["className"] == "game.objects.Token") _maxPoints++;
+					else if(obj != null && obj["className"] == "game.objects.sensors.ItemSensor") _maxItems++;
 				}
 				
 				loader.unloadAndStop(true);
@@ -199,6 +203,14 @@ package model
 		public function maxPoints():int
 		{
 			return _maxPoints;
+		}
+		
+		/**
+		 * @return The number of items in the level
+		 */
+		public function get maxItems():int
+		{
+			return _maxItems;
 		}
 	}
 }

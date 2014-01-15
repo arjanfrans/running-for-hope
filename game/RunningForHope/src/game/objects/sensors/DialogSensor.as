@@ -1,5 +1,7 @@
 package game.objects.sensors
 {
+	import actions.Action;
+	
 	import audio.Audio;
 	
 	import citrus.CustomCoin;
@@ -22,7 +24,6 @@ package game.objects.sensors
 	import ui.dialog.DialogView;
 	import ui.menus.MainMenu;
 	import ui.menus.MenuState;
-	import actions.Action;
 	
 	public class DialogSensor extends Sensor
 	{
@@ -31,7 +32,23 @@ package game.objects.sensors
 		public function DialogSensor(name:String, params:Object = null)
 		{
 			super(name, params);
+			if(params["visibleAtStart"] != null) {
+				if(params["visibleAtStart"] == "false") this.visible = false;
+			}
+		}		
+		
+		override public function get visible():Boolean
+		{
+			// TODO Auto Generated method stub
+			return super.visible;
 		}
+		
+		override public function set visible(value:Boolean):void
+		{
+			// TODO Auto Generated method stub
+			super.visible = value;
+		}
+		
 		
 		/**
 		 * Function for when the Hero gets in contact with this DialogSensor.
