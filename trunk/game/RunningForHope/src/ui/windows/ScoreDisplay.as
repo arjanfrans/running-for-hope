@@ -2,6 +2,8 @@ package ui.windows
 {
 	import actions.Action;
 	
+	import audio.Audio;
+	
 	import citrus.core.CitrusEngine;
 	
 	import flash.display.BitmapData;
@@ -25,6 +27,8 @@ package ui.windows
 		{
 			super();
 			super.closeFunc = close;
+			Audio.setState("mute_background");
+			
 			// Add the title last
 			var title:Image = Assets.getImage("Interface", "LevelCompleted");
 			addChild(title);
@@ -34,6 +38,7 @@ package ui.windows
 			var text:TextField;
 			if(rank === -1) {
 				text = new TextField(345, 40, "You didn't manage to get a high-score.", "Arial", 16);
+				Main.audio.playSound("win_no_hs");
 			}
 			else {
 				var rankTxt:String = "" + rank;
@@ -44,6 +49,7 @@ package ui.windows
 					default: rankTxt += "th"; break;
 				}
 				text = new TextField(345, 40, "You ranked " + rankTxt, "Arial", 24);
+				Main.audio.playSound("win_hs");
 			}
 			appendChild(text, 10);
 			if(rank > 1) {
@@ -56,18 +62,19 @@ package ui.windows
 		
 		private function close():void
 		{		
+			(Main.getState() as GameState).closePopup();
 			(Main.getState() as GameState).openPopup(new LevelSummary());
 			
 			// Change level
 			//check whether there are any levels left after this one and increase level counter.
-			if(Main.getModel().level + 1 >= Main.getModel().numLevels()) {
+/*			if(Main.getModel().level + 1 >= Main.getModel().numLevels()) {
 				//go to main menu
 				Main.setState(new MenuState());
 				return;
 			}
 			//load next level.
 			Main.getModel().level++;
-			Main.setState(new GameState());
+			Main.setState(new GameState());*/
 		}
 		
 	}
