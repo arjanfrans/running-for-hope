@@ -1,11 +1,15 @@
 package actions
 {
+	import audio.Audio;
+	
+	import game.GameState;
+	
 	import model.Level;
 	import model.Model;
-	import game.GameState;
 	import model.dialog.Dialog;
-	import audio.Audio;
+	
 	import ui.dialog.DialogView;
+	import ui.windows.LevelSummary;
 	import ui.windows.ScoreDisplay;
 
 	public class Action
@@ -52,13 +56,17 @@ package actions
 							_state.closePopup();
 							dialog.close();
 						});
-						_state.openPopup(dialogView, false, false);					}
+						_state.openPopup(dialogView, false, false);					
+					}
 					catch(e:Error) {
 						trace(e);
 					}
 					break;
 				case "EndLevel":
 					_state.openPopup(new ScoreDisplay());
+					break;
+				case "LevelSummary":
+					_state.openPopup(new LevelSummary());
 					break;
 				case "NextObjective":
 					_level.objective = param;

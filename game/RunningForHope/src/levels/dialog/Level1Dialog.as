@@ -210,6 +210,7 @@ package levels.dialog
 				);
 			
 			hospital.addClosingAction(new Action("EndLevel"));
+			hospital.addClosingAction(new Action("LevelSummary"));
 			
 			hospital.add(new DialogEntry("Doctor", "Hello, how can I help you?", "right"));
 			hospital.add(new DialogEntry("Hope", "I haven't been feeling very well over the past few weeks. My doctor told me to come here to see you for blood tests.", "left"));

@@ -1,5 +1,9 @@
 package ui.windows
 {
+	import actions.Action;
+	
+	import citrus.core.CitrusEngine;
+	
 	import flash.display.BitmapData;
 	import flash.display.Shader;
 	import flash.display3D.textures.Texture;
@@ -17,11 +21,10 @@ package ui.windows
 
 	public class ScoreDisplay extends InfoWindow
 	{
-		public function ScoreDisplay(closeKey:int=13)
+		public function ScoreDisplay()
 		{
-			super(closeKey);
-			this.closeFunc = close;
-			
+			super();
+			super.closeFunc = close;
 			// Add the title last
 			var title:Image = Assets.getImage("Interface", "LevelCompleted");
 			addChild(title);
@@ -52,7 +55,9 @@ package ui.windows
 		}
 		
 		private function close():void
-		{
+		{		
+			(Main.getState() as GameState).openPopup(new LevelSummary());
+			
 			// Change level
 			//check whether there are any levels left after this one and increase level counter.
 			if(Main.getModel().level + 1 >= Main.getModel().numLevels()) {
@@ -64,5 +69,6 @@ package ui.windows
 			Main.getModel().level++;
 			Main.setState(new GameState());
 		}
+		
 	}
 }
