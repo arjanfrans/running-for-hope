@@ -1,24 +1,27 @@
 package ui.windows
 {
-	import starling.text.TextField;
-	import ui.menus.MenuState;
 	import game.GameState;
+	
+	import starling.text.TextField;
+	import starling.utils.HAlign;
+	
+	import ui.menus.MenuState;
 
 	public class LevelSummary extends InfoWindow
 	{
 		public function LevelSummary()
 		{
 			super();
-	/*		super.closeFunc = close;*/
+			super.closeFunc = close;
 			var text:String;
 			
 			var player:String = Main.getModel().player().name;
 			switch(Main.getModel().level) {
 				case 0:
-					text = "- Hope wasn't feeling very well. " + player + " went with Hope to the local doctor. \n" +
-						"- The local doctor told Hope to go to a clinic to get her blood tested.\n" +
-						"- The bridge to the clinic was broken. " + player + " used boxes to get to the other side.\n" +
-						"- Hope got tested at the clinic. The doctor came back with the result that Hope has HIV.\n" +
+					text = "- Hope wasn't feeling very well. " + player + " went with Hope to the local doctor. \n\n" +
+						"- The local doctor told Hope to go to a clinic to get her blood tested.\n\n" +
+						"- The bridge to the clinic was broken. " + player + " used boxes to get to the other side.\n\n" +
+						"- Hope got tested at the clinic. The doctor came back with the result that Hope has HIV.\n\n" +
 						"- Hope has to use medicine as prescribed every day in her life. With medicine she can live a normal life. \n";
 					break;
 				case 1:
@@ -29,7 +32,8 @@ package ui.windows
 					break;
 			}
 			
-			var infoText:TextField = new TextField(345, 400, text, "Arial", 16, 0, true);		
+			var infoText:TextField = new TextField(600, 400, text, "Arial", 16, 0, true);	
+			infoText.hAlign = HAlign.LEFT;
 			appendChild(infoText, 10);
 			var closeText:TextField = new TextField(345, 20, "Press Enter to continue", "Arial", 12);
 			appendChild(closeText, 10);

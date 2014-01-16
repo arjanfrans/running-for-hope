@@ -32,6 +32,7 @@ package audio
 			}
 			else if(state == "mute_background") {
 				Main.audio.getGroup(CitrusSoundGroup.BGM).mute = true;
+				Main.audio.stopAllPlayingSounds();
 			}
 			else if(state == "unmute_background") {
 				Main.audio.getGroup(CitrusSoundGroup.BGM).mute = false;
