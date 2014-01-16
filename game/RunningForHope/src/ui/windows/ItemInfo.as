@@ -10,6 +10,7 @@ package ui.windows
 			
 			
 			var infoText:TextField = new TextField(345, 400, text, "Arial", 16, 0, true);		
+			appendChild(infoText, 10);
 			var closeText:TextField = new TextField(345, 20, "Press Enter to continue", "Arial", 12);
 			appendChild(closeText, 10);
 		}
