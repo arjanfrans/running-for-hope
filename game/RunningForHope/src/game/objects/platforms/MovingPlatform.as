@@ -18,17 +18,12 @@ package game.objects.platforms
 		public var endX:Number = 0;
 		public var endY:Number = 0;
 		public var animationTime:Number = 5;
-		public var speed:Number = 10;
 		private var animationIndex:Number = 0;
-		
-		protected var _passengers:Vector.<Body> = new Vector.<Body>();
 		
 		public function MovingPlatform(name:String, params:Object=null)
 		{
 			super(name, params);
 			updateCallEnabled = true;
-			_beginContactCallEnabled = true;
-			_endContactCallEnabled = true;			
 		}
 		
 		private function get half_way():Number
@@ -56,17 +51,5 @@ package game.objects.platforms
 			super.defineBody();
 			_bodyType = BodyType.KINEMATIC;
 		}
-		
-		override public function handleBeginContact(callback:InteractionCallback):void
-		{
-			var other:NapePhysicsObject = NapeUtils.CollisionGetOther(this, callback);
-			_passengers.push(other.body);
-		}
-		
-		override public function handleEndContact(callback:InteractionCallback):void
-		{
-			var other:NapePhysicsObject = NapeUtils.CollisionGetOther(this, callback);
-			_passengers.splice(_passengers.indexOf(other.body), 1);
-		}		
 	}
 }
