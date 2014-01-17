@@ -21,6 +21,7 @@ package game.objects.player
 		
 		public function init():void
 		{
+			Main.audio.stopSound("walk");
 			_hero.view.pivotX = 0;
 		}
 		
