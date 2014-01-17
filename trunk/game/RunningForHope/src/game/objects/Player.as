@@ -91,7 +91,7 @@ package game.objects
 			acceleration = 30;
 			jumpAcceleration = 10;
 			jumpHeight = 450;
-
+			
 			respawn = false;
 			Audio.setState("unmute_background");
 				
