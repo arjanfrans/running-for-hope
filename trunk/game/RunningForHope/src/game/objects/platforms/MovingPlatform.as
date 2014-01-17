@@ -18,7 +18,7 @@ package game.objects.platforms
 		public var endX:Number = 0;
 		public var endY:Number = 0;
 		public var animationTime:Number = 5;
-		private var animationIndex:Number = 0;
+		public var animationIndex:Number = 0;
 		
 		public function MovingPlatform(name:String, params:Object=null)
 		{
