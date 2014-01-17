@@ -15,14 +15,11 @@ package game.objects.sensors
 	
 	public class ItemSensor extends Sensor
 	{
-		private var itemName:String;
+		public var itemName:String;
 		
 		public function ItemSensor(name:String, params:Object=null)
 		{
 			super(name, params);
-			
-			if(params["itemName"] != null) itemName = params["itemName"];
-
 		}
 		
 		/**
