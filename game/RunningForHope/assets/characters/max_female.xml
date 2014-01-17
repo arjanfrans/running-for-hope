@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker http://www.codeandweb.com/texturepacker-->
+<!-- $TexturePacker:SmartUpdate:83b15914286b6eba7234038f90cfdd4d:1/1$ -->
+<TextureAtlas imagePath="max_female.png">
+    <SubTexture name="duck/Maxfemale_00000" x="8" y="0" width="54" height="60"/>
+    <SubTexture name="filler1" x="4" y="0" width="2" height="2"/>
+    <SubTexture name="filler2" x="0" y="0" width="2" height="2"/>
+    <SubTexture name="idle/Maxfemale_00000" x="463" y="0" width="22" height="96"/>
+    <SubTexture name="jump/Maxfemale_00000" x="64" y="0" width="61" height="86"/>
+    <SubTexture name="respawn/Maxfemale_00000" x="463" y="0" width="22" height="96"/>
+    <SubTexture name="walk/Maxfemale_00000" x="127" y="0" width="87" height="94"/>
+    <SubTexture name="walk/Maxfemale_00001" x="324" y="386" width="83" height="94"/>
+    <SubTexture name="walk/Maxfemale_00002" x="241" y="384" width="81" height="94"/>
+    <SubTexture name="walk/Maxfemale_00003" x="310" y="192" width="77" height="94"/>
+    <SubTexture name="walk/Maxfemale_00004" x="410" y="290" width="71" height="94"/>
+    <SubTexture name="walk/Maxfemale_00005" x="276" y="288" width="63" height="94"/>
+    <SubTexture name="walk/Maxfemale_00006" x="301" y="96" width="55" height="94"/>
+    <SubTexture name="walk/Maxfemale_00007" x="248" y="96" width="51" height="94"/>
+    <SubTexture name="walk/Maxfemale_00008" x="195" y="96" width="51" height="94"/>
+    <SubTexture name="walk/Maxfemale_00009" x="0" y="62" width="55" height="94"/>
+    <SubTexture name="walk/Maxfemale_00010" x="358" y="96" width="59" height="94"/>
+    <SubTexture name="walk/Maxfemale_00011" x="419" y="98" width="63" height="94"/>
+    <SubTexture name="walk/Maxfemale_00012" x="0" y="184" width="69" height="94"/>
+    <SubTexture name="walk/Maxfemale_00013" x="0" y="384" width="75" height="94"/>
+    <SubTexture name="walk/Maxfemale_00014" x="77" y="384" width="79" height="94"/>
+    <SubTexture name="walk/Maxfemale_00015" x="229" y="192" width="79" height="94"/>
+    <SubTexture name="walk/Maxfemale_00016" x="384" y="0" width="77" height="94"/>
+    <SubTexture name="walk/Maxfemale_00017" x="389" y="194" width="75" height="94"/>
+    <SubTexture name="walk/Maxfemale_00018" x="69" y="288" width="71" height="94"/>
+    <SubTexture name="walk/Maxfemale_00019" x="341" y="290" width="67" height="94"/>
+    <SubTexture name="walk/Maxfemale_00020" x="209" y="288" width="65" height="94"/>
+    <SubTexture name="walk/Maxfemale_00021" x="142" y="288" width="65" height="94"/>
+    <SubTexture name="walk/Maxfemale_00022" x="57" y="88" width="63" height="94"/>
+    <SubTexture name="walk/Maxfemale_00023" x="0" y="280" width="67" height="94"/>
+    <SubTexture name="walk/Maxfemale_00024" x="122" y="96" width="71" height="94"/>
+    <SubTexture name="walk/Maxfemale_00025" x="71" y="192" width="75" height="94"/>
+    <SubTexture name="walk/Maxfemale_00026" x="148" y="192" width="79" height="94"/>
+    <SubTexture name="walk/Maxfemale_00027" x="158" y="384" width="81" height="94"/>
+    <SubTexture name="walk/Maxfemale_00028" x="301" y="0" width="81" height="94"/>
+    <SubTexture name="walk/Maxfemale_00029" x="216" y="0" width="83" height="94"/>
+</TextureAtlas>

@@ -34,6 +34,12 @@ package  {
 		[Embed(source="../assets/characters/max.png")]
 		private static const MaxAnimationPng:Class;
 		
+		[Embed(source="../assets/characters/max_female.xml", mimeType="application/octet-stream")]
+		private static const MaxAnimation_femaleXml:Class;
+		
+		[Embed(source="../assets/characters/max_female.png")]
+		private static const MaxAnimation_femalePng:Class;
+		
 		[Embed(source="../assets/static_characters/StaticCharacters.xml", mimeType="application/octet-stream")]
 		private static const CharactersXml:Class;
 		
