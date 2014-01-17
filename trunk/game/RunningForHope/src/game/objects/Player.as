@@ -66,12 +66,14 @@ package game.objects
 		public function Player(name:String, params:Object=null)
 		{
 			super(name, params);
-			var ta:TextureAtlas = Assets.getAtlas("MaxAnimation_female");
+			var ta:TextureAtlas = Main.getModel().player().gender == "Male" ? Assets.getAtlas("MaxAnimation") : Assets.getAtlas("MaxAnimation_female");
 			//var seq:AnimationSequence = new AnimationSequence(ta, ["walk", "idle", "duck", "hurt", "jump"], "idle", 30, false, Config.SMOOTHING);
 			var seq:AnimationSequence = new AnimationSequence(ta, ["walk", "idle", "jump", "duck", "respawn"], "idle", 40, false, Config.SMOOTHING);
 			view = seq;
-		/*	view.width = 40;
-			view.height = 96;*/
+
+				view.width = 40;
+				view.height = 96;
+
 			texture_height = this.height;
 			texture_height_duck = seq.mcSequences["duck"].height;
 			idleState = new IdleState(this);
