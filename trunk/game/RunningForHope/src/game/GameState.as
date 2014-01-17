@@ -4,7 +4,7 @@ package game {
 	
 	import citrus.CustomSprite;
 	import citrus.core.starling.StarlingState;
-	import citrus.objects.platformer.nape.*;
+	import citrus.objects.platformer.nape.Platform;
 	import citrus.physics.nape.Nape;
 	import citrus.utils.objectmakers.ObjectMakerStarling;
 	

@@ -32,10 +32,12 @@ package game.objects.sensors
 		public function DialogSensor(name:String, params:Object = null)
 		{
 			super(name, params);
-			if(params["visibleAtStart"] != null) {
-				if(params["visibleAtStart"] == "false") this.visible = false;
-			}
-		}		
+		}
+		
+		public function set visibleAtStart(b:Boolean):void
+		{
+			this.visible = b;
+		}
 		
 		override public function get visible():Boolean
 		{

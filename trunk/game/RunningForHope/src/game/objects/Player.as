@@ -5,7 +5,6 @@ package game.objects
 	import citrus.CustomHero;
 	import citrus.input.InputAction;
 	import citrus.objects.NapePhysicsObject;
-	import citrus.objects.platformer.nape.MovingPlatform;
 	import citrus.objects.platformer.nape.Platform;
 	import citrus.physics.nape.NapeUtils;
 	import citrus.view.starlingview.AnimationSequence;
@@ -13,6 +12,7 @@ package game.objects
 	
 	import game.GameState;
 	import game.objects.platforms.Water;
+	import game.objects.platforms.MovingPlatform;
 	import game.objects.player.DuckingState;
 	import game.objects.player.IdleState;
 	import game.objects.player.JumpState;
