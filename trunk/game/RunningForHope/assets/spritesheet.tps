@@ -185,6 +185,8 @@
             <filename>backgrounds/sky.png</filename>
             <filename>background_objects</filename>
             <filename>characters/hope</filename>
+            <filename>characters/mrabasi</filename>
+            <filename>characters/adin</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
