@@ -43,12 +43,17 @@ package game.objects.sensors
 					
 				switch(itemName) {
 					case "CondomsInfo":
-						state.openPopup(new ItemInfo("To prevent HIV always use a condom."));
+						state.openPopup(new ItemInfo("To prevent HIV always use a condom during sexual intercourse."));
 						break;
 					case "Newspaper":
 						state.openPopup(new ItemInfo("A newspaper from last week: \n\n" +
 							"HIGH HIV/AIDS DEATH RATE IN KENYA: \n" +
 							"Thousands of people die from HIV each year."));
+						break;
+					case "MedicineInfo":
+						state.openPopup(new ItemInfo("There is no cure HIV at this moment. A lot of research on HIV and AIDS is being done, \n" +
+							" but a cure has not been found. \n\n" +
+							"You can live a normal life with HIV if you take medicine every day."));
 						break;
 				}
 			}

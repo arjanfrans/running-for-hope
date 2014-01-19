@@ -25,7 +25,11 @@ package ui.windows
 						"- Hope has to use medicine as prescribed every day in her life. With medicine she can live a normal life. \n";
 					break;
 				case 1:
-					text = "";
+					text = "- " + player + " was looking for the school teacher, Mr. Abasi.\n\n" +
+						"- " + player + " wanted to give a presentation about HIV prevention. Mr. Abasi thought it was a good idea." +
+						"- " + player + " searched for information in books and newspapers.";
+						"- When " + player + " found all the information " + (Main.getModel().player().gender == "Male" ? "he" : "she") + " went to the school " +
+						"and gave the presentation. The class thanked " + player + " for the important information";
 					break;
 				case 2:
 					text = "";
