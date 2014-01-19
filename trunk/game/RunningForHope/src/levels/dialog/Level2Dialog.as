@@ -75,12 +75,10 @@ package levels.dialog
 			mrabasi.add(new DialogEntry("Mr. Abasi", "I have a tip for you: You try to find books and newspapers to get information.", "right"));
 			
 			var qrs5:QuestionResponseSet = new QuestionResponseSet();
-			qrs5.add(new QuestionResponse("Ok, I will start searching!", null));
-			qrs5.add(new QuestionResponse("Thanks for the tip!", null));
-			qrs5.add(new QuestionResponse("Where can I find books and newspapers?", response("Try exploring! You can find them in the area.", "Mr. Abasi")));
+			qrs5.add(new QuestionResponse("Ok, I will start searching!", response("Meet me at the school when you have found all the information!", "Mr. Abasi")));
+			qrs5.add(new QuestionResponse("Thanks for the tip!", response("You're welcome, meet me at the school when you have found all the information!", "Mr. Abasi")));
+			qrs5.add(new QuestionResponse("Where can I find books and newspapers?", response("Try exploring! You can find them in the area. Meet me at the school when you have found all the information!", "Mr. Abasi")));
 			mrabasi.add(qrs5);
-			
-			mrabasi.add(new DialogEntry("Mr. Abasi", "Meet me at the school when you have found all the information!", "right"));
 			
 			library.put("MrAbasi", mrabasi);
 			
