@@ -19,7 +19,7 @@ package audio
 			}
 			else if(state == "dialog" || state == "window") {
 				Main.audio.getGroup(CitrusSoundGroup.SFX).mute = true;
-				Main.audio.stopAllPlayingSounds("level1");
+				Main.audio.stopAllPlayingSounds("level1", "level2", "level3");
 				Main.audio.getGroup(CitrusSoundGroup.BGM).volume = 0.3;
 			}
 			else if(state == "menu") {
