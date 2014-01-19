@@ -30,7 +30,7 @@ package model
 			_player = new Player();
 			
 			var level1:Level = new Level("Level 1", "map0", "Go to the right.", Level1Dialog.load);
-			var level2:Level = new Level("Level 2", "map1", "Get to the right, now.");
+			var level2:Level = new Level("Level 2", "map1", "Get to the right, now." ,Level2Dialog.load);
 			var level3:Level = new Level("Level 3", "map2", "Meet Hope.", Level3Dialog.load);
 			
 			_levels = new <Level>[ level1, level2, level3 ];
