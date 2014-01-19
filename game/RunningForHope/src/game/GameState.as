@@ -67,6 +67,7 @@ package game {
 			m.pause = false;
 			m.points = 0;
 			m.time = 0;
+			m.items = 0;
 			m.lifes = Config.LIFES;
 			m.getLevel().resetObjective();
 			

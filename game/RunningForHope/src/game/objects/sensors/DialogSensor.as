@@ -62,8 +62,10 @@ package game.objects.sensors
 			var collider:NapePhysicsObject = NapeUtils.CollisionGetOther(this, interactionCallback);
 			
 			if (collider is Player) {
-				kill = true;
-				(new Action("Dialog", dialogName)).trigger();
+				if(this.visible) {
+					kill = true;
+					(new Action("Dialog", dialogName)).trigger();
+				}
 			}
 			
 		}
