@@ -72,16 +72,19 @@ package ui.dialog
 			else {
 				char1 = new Image(dialog.char1_asset);
 			}
-			var char2:Image = new Image(dialog.char2_asset);
-			char2.scaleX = -1;
 			
 			char1.x = 10;
 			char1.y = 10;
 			addChild(char1);
 			
-			char2.x = 790;
-			char2.y = 10;
-			addChild(char2);
+			if(dialog.char2_asset !== null) {
+				var char2:Image = new Image(dialog.char2_asset);
+				char2.scaleX = -1;
+				
+				char2.x = 790;
+				char2.y = 10;
+				addChild(char2);
+			}
 			
 			dialogArea = new DialogArea();
 			addChild(dialogArea);
