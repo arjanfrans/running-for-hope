@@ -12,6 +12,7 @@ package game.objects.sensors
 	import nape.callbacks.InteractionCallback;
 	
 	import ui.windows.*;
+	import actions.Action;
 	
 	public class ItemSensor extends Sensor
 	{
@@ -38,6 +39,7 @@ package game.objects.sensors
 				//If Player has all the items, the final dialog which finishes the level will become visible
 				if(Main.getModel().items >= Main.getModel().getCurrentLevel().maxItems) {
 					var sensor:DialogSensor = state.getObjectByName("FinalDialog") as DialogSensor;
+					new Action("NextObjective", "Meet Mr. Abasi at the school.").trigger();
 					sensor.visible = true;
 				}
 					

@@ -26,10 +26,10 @@ package ui.windows
 					break;
 				case 1:
 					text = "- " + player + " was looking for the school teacher, Mr. Abasi.\n\n" +
-						"- " + player + " wanted to give a presentation about HIV prevention. Mr. Abasi thought it was a good idea." +
-						"- " + player + " searched for information in books and newspapers.";
+						"- " + player + " wanted to give a presentation about HIV prevention. Mr. Abasi thought it was a good idea.\n\n" +
+						"- " + player + " searched for information in books and newspapers.\n\n";
 						"- When " + player + " found all the information " + (Main.getModel().player().gender == "Male" ? "he" : "she") + " went to the school " +
-						"and gave the presentation. The class thanked " + player + " for the important information";
+						"and gave the presentation. The class thanked " + player + " for the important information\n";
 					break;
 				case 2:
 					text = "";

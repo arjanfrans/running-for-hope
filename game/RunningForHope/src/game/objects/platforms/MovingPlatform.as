@@ -24,6 +24,7 @@ package game.objects.platforms
 		{
 			super(name, params);
 			updateCallEnabled = true;
+			
 		}
 		
 		private function get half_way():Number
@@ -48,6 +49,7 @@ package game.objects.platforms
 		
 		override protected function defineBody():void
 		{
+			
 			super.defineBody();
 			_bodyType = BodyType.KINEMATIC;
 		}
