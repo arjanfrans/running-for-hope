@@ -33,8 +33,8 @@ package ui.dialog
 			
 			var nameColor:uint = (direction === "left") ? 0xFF990000 : 0xFF336699;
 			
-			var nameSize:Vec2 = getTextSize(name, 24);
-			var size:Vec2 = getTextSize(message);
+			var nameSize:Vec2 = TextHelper.getTextSize(name, 410, 24);
+			var size:Vec2 = TextHelper.getTextSize(message);
 			real_width = Math.max(size.x, nameSize.x) + 30;
 			
 			// Title / Name
@@ -77,19 +77,6 @@ package ui.dialog
 			img.x += img.width / 2;
 			img.y += img.height / 2;
 			return img;
-		}
-		
-		private function getTextSize(text:String, fontSize:int = 16):Vec2 {
-			var format:TextFormat = new TextFormat("Arial", fontSize);
-			
-			var ele:flash.text.TextField = new flash.text.TextField();
-			ele.multiline = true;
-			ele.wordWrap = true;
-			ele.width = 410;
-			ele.defaultTextFormat = format;
-			ele.text = text;
-			
-			return new Vec2(ele.textWidth, ele.textHeight);
 		}
 	}
 }
