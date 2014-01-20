@@ -38,6 +38,9 @@ package ui.windows
 			}
 			
 			var textsize:Vec2 = TextHelper.getTextSize(text, 470);
+			
+			addChild(Assets.getImage("Interface", "Summary"));
+			
 			var infoText:TextField = new TextField(500, textsize.y + 30, text, "Arial", 16, 0, true);	
 			infoText.hAlign = HAlign.LEFT;
 			appendChild(infoText, 10);
