@@ -126,7 +126,7 @@ package levels.dialog
 			);
 			presentation3.addClosingAction(new Action("EndLevel"));
 			presentation3.addClosingAction(new Action("LevelSummary"));
-			presentation3.add(new DialogEntry("Mr. Abasi", "Thank you very much [playerName]! This information can save many lives.", "left"));
+			presentation3.add(new DialogEntry("Mr. Abasi", "Thank you very much [playerName]! This information can save many lives.", "right"));
 			
 			library.put("Presentation3", presentation3);
 			loaded = true;
