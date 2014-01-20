@@ -6,6 +6,7 @@ package ui.windows
 	import starling.utils.HAlign;
 	
 	import ui.menus.MenuState;
+	import nape.geom.Vec2;
 
 	public class LevelSummary extends InfoWindow
 	{
@@ -19,27 +20,28 @@ package ui.windows
 			switch(Main.getModel().level) {
 				case 0:
 					text = "- Hope wasn't feeling very well. " + player + " went with Hope to the local doctor. \n\n" +
-						"- The local doctor told Hope to go to a clinic to get her blood tested.\n\n" +
-						"- The bridge to the clinic was broken. " + player + " used boxes to get to the other side.\n\n" +
-						"- Hope got tested at the clinic. The doctor came back with the result that Hope has HIV.\n\n" +
-						"- Hope has to use medicine as prescribed every day in her life. With medicine she can live a normal life. \n";
+						   "- The local doctor told Hope to go to a clinic to get her blood tested.\n\n" +
+						   "- The bridge to the clinic was broken. " + player + " used boxes to get to the other side.\n\n" +
+						   "- Hope got tested at the clinic. The doctor came back with the result that Hope has HIV.\n\n" +
+						   "- Hope has to use medicine as prescribed every day in her life. With medicine she can live a normal life. \n";
 					break;
 				case 1:
 					text = "- " + player + " was looking for the school teacher, Mr. Abasi.\n\n" +
-						"- " + player + " wanted to give a presentation about HIV prevention. Mr. Abasi thought it was a good idea.\n\n" +
-						"- " + player + " searched for information in books and newspapers.\n\n";
-						"- When " + player + " found all the information " + (Main.getModel().player().gender == "Male" ? "he" : "she") + " went to the school " +
-						"and gave the presentation. The class thanked " + player + " for the important information\n";
+						   "- " + player + " wanted to give a presentation about HIV prevention. Mr. Abasi thought it was a good idea.\n\n" +
+						   "- " + player + " searched for information in books and newspapers.\n\n";
+						   "- When " + player + " found all the information " + (Main.getModel().player().gender == "Male" ? "he" : "she") + " went to the school " +
+						   "and gave the presentation. The class thanked " + player + " for the important information\n";
 					break;
 				case 2:
 					text = "";
 					break;
 			}
 			
-			var infoText:TextField = new TextField(600, 400, text, "Arial", 16, 0, true);	
+			var textsize:Vec2 = TextHelper.getTextSize(text, 470);
+			var infoText:TextField = new TextField(500, textsize.y + 30, text, "Arial", 16, 0, true);	
 			infoText.hAlign = HAlign.LEFT;
 			appendChild(infoText, 10);
-			var closeText:TextField = new TextField(345, 20, "Press Enter to continue", "Arial", 12);
+			var closeText:TextField = new TextField(500, 20, "Press Enter to continue", "Arial", 12);
 			appendChild(closeText, 10);
 
 		}
