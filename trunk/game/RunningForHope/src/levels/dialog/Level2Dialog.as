@@ -103,7 +103,7 @@ package levels.dialog
 				null
 			);
 			presentation.addClosingAction(new Action("Dialog", "Presentation2"));
-			presentation.add(new DialogEntry("Mr. Abasi", "Ok class, Max will be having a presentation about prevention of HIV. Max you can start now.", "right"));
+			presentation.add(new DialogEntry("Mr. Abasi", "Ok class, Max will be having a presentation about prevention of HIV. Max you can start now.", "left"));
 			library.put("Presentation", presentation);
 			
 			var presentation2:Dialog = new Dialog(
