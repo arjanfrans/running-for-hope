@@ -64,7 +64,7 @@ package game.objects.player
 				//trace(_wallJumpFlag);
 				//trace(wy - wh, hy, wh, wy);
 				
-				if(allowJump && wh > 64 && velocity.y < 100 && Math.abs(oldVelocity) > 170) {
+				if(allowJump && wh > 64 && velocity.y < 100 && Math.abs(oldVelocity) > 150) {
 					if((_hero.faceRight && _hero.lastWallContact.body.position.x >= _hero.body.position.x) 
 						|| (!_hero.faceRight && _hero.lastWallContact.body.position.x <= _hero.body.position.x)) {
 						
