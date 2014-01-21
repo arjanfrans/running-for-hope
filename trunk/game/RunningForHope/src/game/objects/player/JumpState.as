@@ -78,13 +78,13 @@ package game.objects.player
 			
 			if((input.justDid("jump", _hero.inputChannel) || input.justDid("up", _hero.inputChannel))) jump_triggered = false;
 			
-			if (input.isDoing("right", _hero.inputChannel))
+			if (wallJumpCount == 0 && input.isDoing("right", _hero.inputChannel))
 			{
 				velocity.x += _hero.air_acceleration;
 				moveKeyPressed = true;
 			}
 			
-			if (input.isDoing("left", _hero.inputChannel))
+			if (wallJumpCount == 0 && input.isDoing("left", _hero.inputChannel))
 			{
 				velocity.x -= _hero.air_acceleration;
 				moveKeyPressed = true;
