@@ -208,6 +208,7 @@
             <filename>Summary.png</filename>
             <filename>Information.png</filename>
             <filename>Summary.png</filename>
+            <filename>Explore.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
