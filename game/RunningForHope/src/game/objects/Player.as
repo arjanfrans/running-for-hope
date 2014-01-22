@@ -209,7 +209,7 @@ package game.objects
 				else if(collisionAngle == -90) {
 					
 				}
-				else if(collider is Platform && (collisionAngle == 0 || collisionAngle == -180)) {
+				else if(collider is Platform && (collisionAngle == 0 || collisionAngle == -180 || collisionAngle == 180)) {
 					//If not, the collision is a wall
 					_touchingWall = true;
 					lastWallContact = collider;

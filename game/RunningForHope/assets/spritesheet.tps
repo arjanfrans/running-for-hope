@@ -187,6 +187,7 @@
             <filename>characters/hope</filename>
             <filename>characters/mrabasi</filename>
             <filename>characters/adin</filename>
+            <filename>menus/switchInfo.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
