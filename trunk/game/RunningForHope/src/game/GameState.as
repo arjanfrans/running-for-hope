@@ -49,7 +49,7 @@ package game {
 			super();
 			
 			//Objects which can be found in a map
-			var objects:Array = [Player, WaterWave, CustomSprite, ItemSensor, FallSensor, EndLevelSensor, DialogSensor, InfoSensor, Platform, Box, MovingPlatform, Token, Water];
+			var objects:Array = [Player, WaterWave, CustomSprite, SwitchSensor, ItemSensor, FallSensor, EndLevelSensor, DialogSensor, InfoSensor, Platform, Box, MovingPlatform, Token, Water];
 			
 			_ce.stage.align = StageAlign.TOP_LEFT;
 			_ce.stage.scaleMode = StageScaleMode.NO_SCALE;
