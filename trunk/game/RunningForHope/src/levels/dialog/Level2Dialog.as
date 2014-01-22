@@ -60,7 +60,7 @@ package levels.dialog
 			var qrs3:QuestionResponseSet = new QuestionResponseSet();
 			qrs3.add(new QuestionResponse("I am good, thanks you. The sad news is that my friend Hope is HIV positive.", response("Oh no, that's terrible!", "Mr. Abasi")));
 			qrs3.add(new QuestionResponse("I'm feeling perfect. But my friend Hope is HIV positive.", response("Oh my! Is she okay?", "Mr. Abasi")));
-			qrs3.add(new QuestionResponse("I am fine, thank you.", response("Oh no, that is so awful!", "Mr. Abasi")));
+			qrs3.add(new QuestionResponse("Not so good. I just heard that Hope has HIV.", response("Oh no, that is so awful!", "Mr. Abasi")));
 			mrabasi.add(qrs3);
 			
 			var qrs4:QuestionResponseSet = new QuestionResponseSet();
