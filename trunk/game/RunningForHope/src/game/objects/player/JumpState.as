@@ -52,6 +52,7 @@ package game.objects.player
 		public function update(timeDelta:Number, velocity:Vec2, input:Input):void
 		{
 			var moveKeyPressed:Boolean = false;
+	
 			if(_hero.touchingWall && !_wallJumpFlag) {
 				var wh:Number = _hero.lastWallContact.body.bounds.height;
 				var wy:Number = _hero.lastWallContact.body.position.y + wh/2;
@@ -63,7 +64,7 @@ package game.objects.player
 				allowJump = hy > (wy - wh) + (hh/2) ? true : false;
 				//trace(_wallJumpFlag);
 				//trace(wy - wh, hy, wh, wy);
-				
+
 				if(allowJump && wh > 64 && velocity.y < 100 && Math.abs(oldVelocity) > 100) {
 					if((_hero.faceRight && _hero.lastWallContact.body.position.x >= _hero.body.position.x) 
 						|| (!_hero.faceRight && _hero.lastWallContact.body.position.x <= _hero.body.position.x)) {
