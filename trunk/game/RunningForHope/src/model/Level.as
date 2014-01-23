@@ -70,6 +70,7 @@ package model
 				_maxPoints = 0;
 				for(var i:int = 0; i < _flashLevel.numChildren; i++) {
 					var obj:Object = _flashLevel.getChildAt(i);
+					if(!obj.hasOwnProperty("className")) continue;
 					if(obj != null && obj["className"] == "game.objects.Token") _maxPoints++;
 					else if(obj != null && obj["className"] == "game.objects.sensors.ItemSensor") _maxItems++;
 				}
