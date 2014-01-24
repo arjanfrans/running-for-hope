@@ -83,7 +83,7 @@ package levels.dialog
 				Assets.getTexture("Characters", "Adin")
 			);
 			meeting.addClosingAction((new Action("Dialog", "Meeting2")));
-			meeting.add(new DialogEntry("Adin", "Hey, you are just in time. We are about to start. Let's go inside.", "left"));
+			meeting.add(new DialogEntry("Adin", "Hey, you are just in time. We are about to start. Let's go inside.", "right"));
 			library.put("Meeting", meeting);
 			
 			
