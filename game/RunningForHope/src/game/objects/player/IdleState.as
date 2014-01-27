@@ -34,7 +34,7 @@ package game.objects.player
 				moveKeyPressed = true;
 			}
 			
-			if (input.isDoing("duck", _hero.inputChannel))
+			if (_hero.canDuck && input.isDoing("duck", _hero.inputChannel))
 			{
 				_hero.state = _hero.duckingState;
 				moveKeyPressed = true;
