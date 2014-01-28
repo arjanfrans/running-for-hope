@@ -81,6 +81,8 @@ package {
 			sound.addSound("win_no_hs", {sound: "audio/win_no_highscore.mp3",group:CitrusSoundGroup.SFX});
 			sound.addSound("win_hs", {sound: "audio/win_highscore.mp3",group:CitrusSoundGroup.SFX});
 			sound.addSound("dead", {sound: "audio/dead.mp3",group:CitrusSoundGroup.SFX});
+			sound.addSound("game_over", {sound: "audio/game_over.mp3",group:CitrusSoundGroup.SFX});
+			
 			sound.addSound("walk", {sound:"audio/walk1.mp3", timesToPlay: 0, group:CitrusSoundGroup.SFX } );
 			sound.addSound("theme_song", {sound:"audio/main_theme.mp3",timesToPlay:-1,group:CitrusSoundGroup.BGM});
 			sound.addSound("level1", {sound:"audio/level1.mp3", timesToPlay:-1,group:CitrusSoundGroup.BGM});
