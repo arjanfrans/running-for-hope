@@ -144,7 +144,7 @@ package game.objects
 			// Handle being dead			
 			if(_dead) {
 				dead = false;
-				Audio.setState("mute_background");
+				Audio.setState("dead");
 				Main.audio.playSound("dead");
 				var m:Model = Main.getModel();
 

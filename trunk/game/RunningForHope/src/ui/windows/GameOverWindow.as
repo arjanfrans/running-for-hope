@@ -6,13 +6,15 @@ package ui.windows
 	
 	import ui.buttons.NumberButton;
 	import ui.menus.MenuState;
-
+	import audio.Audio;
+	
 	public class GameOverWindow extends InfoWindow
 	{
 		public function GameOverWindow()
 		{
 			super(-1);
-			
+			Audio.setState("menu");
+			Main.audio.playSound("game_over");
 			addChild(Assets.getImage("Interface", "GameOver"));
 			
 			appendChild(new TextField(345, 20, "You've lost all of your lifes", "Arial", 16), 10);

@@ -26,6 +26,10 @@ package audio
 				Main.audio.stopAllPlayingSounds();
 				Main.audio.getGroup(CitrusSoundGroup.BGM).volume = 1;
 			}
+			else if(state == "dead") {
+				Main.audio.stopAllPlayingSounds("dead");
+				Main.audio.getGroup(CitrusSoundGroup.BGM).mute = true;
+			}
 			else if(state == "continue") {
 				Main.audio.getGroup(CitrusSoundGroup.BGM).volume = 0.8;
 				Main.audio.getGroup(CitrusSoundGroup.SFX).mute = false;
