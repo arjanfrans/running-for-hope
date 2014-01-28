@@ -91,8 +91,8 @@ package levels.dialog
 				Assets.getTexture("Characters", "Adin"),
 				null
 			);
-			meeting2.addClosingAction(new Action("EndLevel"));
-			meeting2.addClosingAction(new Action("LevelSummary"));
+			
+			meeting2.addClosingAction(new Action("Dialog", "Ending"));
 			meeting2.add(new DialogEntry("Adin", "Hello everyone, I will start with a short story.", "left"));
 			meeting2.add(new DialogEntry("Adin", "I got HIV because I was using my friends razor and accidentally cut myself. My friend was HIV positive and had used the razor already.", "left"));
 			meeting2.add(new DialogEntry("Adin", "The HIV transferred to me through the blood.", "left"));
@@ -100,7 +100,24 @@ package levels.dialog
 			meeting2.add(new DialogEntry("Adin", "When I developed HIV I had sores all over my body and my muscles were painful.", "left"));
 			meeting2.add(new DialogEntry("Adin", "This was my story. Thanks for attending this meeting!", "left"));
 			library.put("Meeting2", meeting2);
-
+			
+			var ending:Dialog = new Dialog(
+				Assets.getTexture("Characters", "Max"),
+				Assets.getTexture("Characters", "Hope")
+			); 
+			ending.addClosingAction(new Action("EndLevel"));
+			ending.addClosingAction(new Action("LevelSummary"));
+			ending.add(new DialogEntry("Hope", "You have a lot of information now, [playerName]", "right"));
+			
+			var qrs5:QuestionResponseSet = new QuestionResponseSet();
+			qrs5.add(new QuestionResponse("Let's go back home and tell all our friends and family about HIV.", response("Yes, we have to tell them!", "Hope")));
+			qrs5.add(new QuestionResponse("I am going to tell everyone about HIV prevention.", response("Let's go home and tell our friends and family!", "Hope")));
+			qrs5.add(new QuestionResponse("HIV prevention is what everyone should know about, I will tell all my friends and family.", response("Yes, they should all know about it!", "Hope")));
+			ending.add(qrs5);
+			
+			ending.add(new DialogEntry("Hope", "Thanks for helping me with spreading information about HIV!", "right"));
+			ending.add(new DialogEntry("Hope", "With this information we can save many lives! Thank you!", "right"));
+			library.put("Ending", ending);
 			loaded = true;
 		}
 	}
