@@ -110,7 +110,8 @@ package levels.dialog
 			
 			var presentation2:Dialog = new Dialog(
 				Assets.getTexture("Characters", "Max"),
-				null
+				null,
+				Assets.getTexture("DialogBackgrounds", "classroom")
 			);
 			presentation2.addClosingAction((new Action("Dialog", "Presentation3")));
 			presentation2.add(new DialogEntry(Main.getModel().player().name, "Hello everybody! My friend Hope has just found out that she is HIV positive.", "left"));
