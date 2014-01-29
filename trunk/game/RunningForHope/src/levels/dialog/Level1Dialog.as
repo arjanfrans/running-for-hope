@@ -206,7 +206,7 @@ package levels.dialog
 			var hospital:Dialog = new Dialog(
 				Assets.getTexture("Characters", "Hope"),
 				Assets.getTexture("Characters", "Clinicdoc"),
-				Assets.getTexture("DialogBackgrounds", "hospital")
+				Assets.getTexture("DialogBackgrounds", "Hospital")
 				);
 			
 			hospital.addClosingAction(new Action("EndLevel"));

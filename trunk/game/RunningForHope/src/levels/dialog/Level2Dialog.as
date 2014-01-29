@@ -28,7 +28,8 @@ package levels.dialog
 			
 			var intro:Dialog = new Dialog(
 				null,
-				Assets.getTexture("Characters", "Basha")
+				Assets.getTexture("Characters", "Basha"),
+				Assets.getTexture("DialogBackgrounds", "LivingRoom")
 			);
 			intro.addClosingAction(new Action("NextObjective", "Find Mr. Abasi, your teacher"));
 			
@@ -100,7 +101,8 @@ package levels.dialog
 			
 			var presentation:Dialog = new Dialog(
 				Assets.getTexture("Characters", "MrAbasi"),
-				null
+				null,
+				Assets.getTexture("DialogBackgrounds", "classroom")
 			);
 			presentation.addClosingAction(new Action("Dialog", "Presentation2"));
 			presentation.add(new DialogEntry("Mr. Abasi", "Ok class, Max will be having a presentation about prevention of HIV. Max you can start now.", "left"));

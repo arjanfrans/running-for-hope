@@ -89,7 +89,8 @@ package levels.dialog
 			
 			var meeting2:Dialog = new Dialog(
 				Assets.getTexture("Characters", "Adin"),
-				null
+				null,
+				Assets.getTexture("DialogBackgrounds", "Meeting")
 			);
 			
 			meeting2.addClosingAction(new Action("Dialog", "Ending"));
