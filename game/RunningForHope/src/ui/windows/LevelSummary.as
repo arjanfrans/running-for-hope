@@ -33,7 +33,12 @@ package ui.windows
 						   "and gave the presentation. The class thanked " + player + " for the important information\n";
 					break;
 				case 2:
-					text = "";
+					text = "- " + player + " and Hope had gone out to town. Hope was feeling better. \n\n" +
+						"- A man, named Adin told " + player + " and Hope about a meeting about HIV. \n\n" +
+						"- The road was blocked so " + player + " found another way by pressing a switch which opened the cave underground. \n\n" +
+						"- " + player + " and Hope arrived at the meeting. Adin told them about how he got HIV through blood transmission. \n\n" +
+						"- HIV through blood transmission can happen if you use a razor from someone who has HIV. It can contain a tiny bit of blood. \n\n"
+						"- It can happen with other sharp objects too, like needles. Always be careful!"
 					break;
 			}
 			
