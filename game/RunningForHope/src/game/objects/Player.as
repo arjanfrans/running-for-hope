@@ -3,7 +3,9 @@ package game.objects
 	import audio.Audio;
 	
 	import citrus.CustomHero;
+	import citrus.core.CitrusEngine;
 	import citrus.input.InputAction;
+	import citrus.input.controllers.Keyboard;
 	import citrus.objects.NapePhysicsObject;
 	import citrus.objects.platformer.nape.Platform;
 	import citrus.physics.nape.NapeUtils;
@@ -11,8 +13,8 @@ package game.objects
 	import citrus.view.starlingview.StarlingArt;
 	
 	import game.GameState;
-	import game.objects.platforms.Water;
 	import game.objects.platforms.MovingPlatform;
+	import game.objects.platforms.Water;
 	import game.objects.player.DuckingState;
 	import game.objects.player.IdleState;
 	import game.objects.player.JumpState;
@@ -32,8 +34,6 @@ package game.objects
 	import starling.textures.TextureAtlas;
 	
 	import ui.windows.GameOverWindow;
-	import citrus.input.controllers.Keyboard;
-	import citrus.core.CitrusEngine;
 	
 	public class Player extends CustomHero
 	{
@@ -67,12 +67,13 @@ package game.objects
 		{
 			super(name, params);
 			var ta:TextureAtlas = Main.getModel().player().gender == "Male" ? Assets.getAtlas("MaxAnimation") : Assets.getAtlas("MaxAnimation_female");
-			//var seq:AnimationSequence = new AnimationSequence(ta, ["walk", "idle", "duck", "hurt", "jump"], "idle", 30, false, Config.SMOOTHING);
-			var seq:AnimationSequence = new AnimationSequence(ta, ["walk", "idle", "jump", "duck", "respawn"], "idle", 40, false, Config.SMOOTHING);
+			//var seq:AnimationSequence = new AnimationSequence(ta, ["walk", "idle", "duck", "hurt", "jump"], "idle", 30, false, Config.SMOOTHING);.
+			var fps:Number = Main.getModel().player().gender == "Male" ? 40 : 50;
+			var seq:AnimationSequence = new AnimationSequence(ta, ["walk", "idle", "jump", "duck", "respawn"], "idle", fps, false, Config.SMOOTHING);
 			view = seq;
 
-				view.width = 40;
-				view.height = 96;
+			view.width = 40;
+			view.height = 96;
 
 			texture_height = this.height;
 			texture_height_duck = seq.mcSequences["duck"].height;
