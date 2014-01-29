@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with TexturePacker http://www.codeandweb.com/texturepacker-->
-<!-- $TexturePacker:SmartUpdate:7f7d0f869747a9114472ccbc14de9b73:1/1$ -->
+<!-- $TexturePacker:SmartUpdate:315dbffe99d9427fa96be8c4cba60b8a:5bb6ba45887b55e8e241e0fa837e3174:173e2ca9502e47c55cf7f02dbee1eff1$ -->
 <TextureAtlas imagePath="DialogBackgrounds.png">
-    <SubTexture name="filler1" x="6" y="2" width="2" height="2"/>
-    <SubTexture name="filler2" x="2" y="2" width="2" height="2"/>
-    <SubTexture name="hospital" x="10" y="2" width="800" height="380"/>
+    <SubTexture name="Hospital" x="18" y="2" width="804" height="384"/>
+    <SubTexture name="LivingRoom" x="2" y="774" width="804" height="384"/>
+    <SubTexture name="Meeting" x="2" y="1160" width="804" height="384"/>
+    <SubTexture name="classroom" x="2" y="388" width="804" height="384"/>
+    <SubTexture name="filler1" x="10" y="2" width="6" height="6"/>
+    <SubTexture name="filler2" x="2" y="2" width="6" height="6"/>
 </TextureAtlas>
