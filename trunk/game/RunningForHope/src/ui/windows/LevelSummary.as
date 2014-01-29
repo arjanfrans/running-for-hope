@@ -23,7 +23,7 @@ package ui.windows
 						   "- The local doctor told Hope to go to a clinic to get her blood tested.\n\n" +
 						   "- The bridge to the clinic was broken. " + player + " used boxes to get to the other side.\n\n" +
 						   "- Hope got tested at the clinic. The doctor came back with the result that Hope has HIV.\n\n" +
-						   "- Hope has to use medicine as prescribed every day in her life. With medicine she can live a normal life. \n";
+						   "- Hope has to use medicine as prescribed every day, she can live a normal life if she uses the medicine. \n";
 					break;
 				case 1:
 					text = "- " + player + " was looking for the school teacher, Mr. Abasi.\n\n" +
