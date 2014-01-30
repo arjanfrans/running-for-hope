@@ -30,10 +30,10 @@ package ui.windows
 					text = "- " + player + " was looking for the school teacher, Mr. Abasi.\n\n" +
 						   "- " + player + " wanted to give a presentation about HIV prevention. Mr. Abasi thought it was a good idea.\n\n" +
 						   "- " + player + " searched for information in books and newspapers.\n\n" +
-						   "- Information that " + player + " found: \n\n" +
+						   "- Information that " + player + " found: \n" +
 						   "   - HIV is a sexually transmitted disease. You can get HIV from having unprotected sex. \n" +
 						   "   - To prevent HIV it is important to always use a condom if you have sex.\n" +
-						   "   - You can live a normal life with HIV if you take medicine every day.\n" +
+						   "   - You can live a normal life with HIV if you take medicine every day.\n\n" +
 						   "- When " + player + " found all the information " + (Main.getModel().player().gender == "Male" ? "he" : "she") + " went to the school " +
 						   "and gave the presentation. The class thanked " + player + " for the important information\n";
 					break;
