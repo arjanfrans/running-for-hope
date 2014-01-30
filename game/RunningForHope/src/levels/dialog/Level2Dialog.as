@@ -116,7 +116,7 @@ package levels.dialog
 			presentation2.addClosingAction((new Action("Dialog", "Presentation3")));
 			presentation2.add(new DialogEntry(Main.getModel().player().name, "Hello everybody! My friend Hope has just found out that she is HIV positive.", "left"));
 			presentation2.add(new DialogEntry(Main.getModel().player().name, "I would like to give a presentation about HIV prevention.", "left"));
-			presentation2.add(new DialogEntry(Main.getModel().player().name, "HIV is a sexually transmitted discease. You can get HIV from having uprotected sex.", "left"));
+			presentation2.add(new DialogEntry(Main.getModel().player().name, "HIV is a sexually transmitted disease. You can get HIV from having unprotected sex.", "left"));
 			presentation2.add(new DialogEntry(Main.getModel().player().name, "To prevent HIV it is important to always use a condom if you have sex.", "left"));
 			presentation2.add(new DialogEntry(Main.getModel().player().name, "There is no cure for HIV yet, a lot of research is being done to find it.", "left"));
 			presentation2.add(new DialogEntry(Main.getModel().player().name, "Many people die because they take no medicine. If you get HIV you have to use medicine. If you take them every day you can live a normal life.", "left"));

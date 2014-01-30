@@ -27,8 +27,9 @@ package audio
 				Main.audio.getGroup(CitrusSoundGroup.BGM).volume = 1;
 			}
 			else if(state == "dead") {
-				Main.audio.stopAllPlayingSounds("dead");
+				Main.audio.stopAllPlayingSounds("dead", "level1", "level2", "level2");
 				Main.audio.getGroup(CitrusSoundGroup.BGM).mute = true;
+				
 			}
 			else if(state == "continue") {
 				Main.audio.getGroup(CitrusSoundGroup.BGM).volume = 0.8;
