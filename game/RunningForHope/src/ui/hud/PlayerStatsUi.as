@@ -2,23 +2,25 @@ package ui.hud {
 	
 	import citrus.core.starling.StarlingState;
 	
+	import flash.display.StageDisplayState;
+	
+	import game.GameState;
+	
 	import model.Level;
+	import model.Model;
 	import model.Score;
 	
 	import starling.display.Image;
 	import starling.display.Quad;
 	import starling.display.Sprite;
 	import starling.events.Event;
+	import starling.events.KeyboardEvent;
 	import starling.events.ResizeEvent;
 	import starling.text.TextField;
 	import starling.utils.HAlign;
 	
 	import ui.buttons.NumberButton;
-	import model.Model;
-	import starling.events.KeyboardEvent;
-	import game.GameState;
 	import ui.menus.PauseMenu;
-	import flash.display.StageDisplayState;
 	/**
 	 * A ingame interface that displays all information the player should know during gameplay.
 	 */
@@ -28,6 +30,7 @@ package ui.hud {
 		private var heartsBar:HeartsBar;
 		private var highscoreText:TextField;
 		private var scoreText:TextField;
+		private var itemsText:TextField;
 		private var objectiveText:TextField;
 		
 		/**
@@ -65,7 +68,7 @@ package ui.hud {
 			highscoreText.x = width - 320;
 			highscoreText.y = 40;
 			addChild(highscoreText);
-			
+						
 			//objectiveText
 			objectiveText = new TextField(300, 40, "Objective", "Arial", 15, 0xFF000000);
 			objectiveText.hAlign = HAlign.CENTER;
@@ -111,7 +114,18 @@ package ui.hud {
 		public function updateUi():void {
 			var m:Model = Main.getModel();
 			scoreText.text = "Points: " + m.points + " | Time: " + timeToClock(m.time);
-			objectiveText.text = Main.getModel().getLevel().objective;;
+			objectiveText.text = Main.getModel().getLevel().objective;
+			
+			//if in level 2, update the item ui
+			if(m.level == 1) {
+				var itemsLeft:Number = m.getLevel().maxItems - m.items;
+				if(itemsLeft != 0 && itemsLeft < m.getLevel().maxItems) {
+					objectiveText.text = "Find " + itemsLeft + " more item" + (itemsLeft == 1 ? "" : "s") + " with information on HIV.";
+				}
+				else {
+					objectiveText.text = Main.getModel().getLevel().objective;
+				}
+			}
 			
 			heartsBar.update();
 		}
