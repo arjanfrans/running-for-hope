@@ -31,14 +31,17 @@ package ui.menus
 		{
 			this.callback = callback;
 			this.backCallback = backCallback;
+			this.titleText = titleText;
 			
-			MenuState.setTitle(titleText);
 			if (stage) init();
 			else addEventListener(Event.ADDED_TO_STAGE, init);
 		}
 		
 		private function init():void
 		{
+			// Set the title
+			MenuState.setTitle(titleText);
+			
 			// Create button to go back to the main menu
 			var backButton:NumberButton = new NumberButton(Assets.getTexture("Interface", "btnBack"), 0, "", backCallback, 250, 0xFF440000);
 			backButton.x = 540;
