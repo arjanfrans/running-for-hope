@@ -5,9 +5,9 @@ during the 'Game On' minor at the Hanze University of Applied Sciences, Groninge
 
 ## Download
 
-To run the game, install [Adobe Air](https://get.adobe.com/air/).
+To be able to run the game, install [Adobe Air](https://get.adobe.com/air/) first.
 
-Download the game [here](https://github.com/arjanfrans/running-for-hope/releases/download/1.0/RunningForHope.air).
+Download the game [here](https://github.com/arjanfrans/running-for-hope/releases/download/1.0/RunningForHope.air) and install it.
 
 ## Screenshots
 
