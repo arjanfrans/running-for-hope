@@ -38,7 +38,6 @@ jobs:
         working-directory: game/RunningForHope
         run: |
           java -Xmx1g -Dflexlib="$AIR_HOME/frameworks" -jar "$AIR_HOME/lib/mxmlc-cli.jar" \
-            -load-config="$AIR_HOME/frameworks/flex-config.xml" \
             -compiler.float=false \
             -source-path+=src \
             -library-path+=libs \
