@@ -1,0 +1,76 @@
+name: Build and deploy to GitHub Pages
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+env:
+  AIR_VERSION: "51.3.4.3"
+  RUFFLE_VERSION: "0.7.1"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - uses: joshtynjala/setup-adobe-air-action@v2
+        with:
+          air-version: ${{ env.AIR_VERSION }}
+          accept-license: true
+
+      - name: Compile SWF
+        working-directory: game/RunningForHope
+        run: |
+          java -Xmx1g -Dflexlib="$AIR_HOME/frameworks" -jar "$AIR_HOME/lib/mxmlc-cli.jar" \
+            -load-config="$AIR_HOME/frameworks/flex-config.xml" \
+            -compiler.float=false \
+            -source-path+=src \
+            -library-path+=libs \
+            -optimize=true \
+            -output="$GITHUB_WORKSPACE/_site/RunningForHope.swf" \
+            src/Main.as
+
+      - name: Copy runtime assets
+        run: |
+          mkdir -p _site/audio _site/levels
+          cp game/RunningForHope/src/audio/*.mp3 _site/audio/
+          cp game/RunningForHope/src/levels/*.swf _site/levels/
+          cp web/index.html _site/
+
+      - name: Download Ruffle
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release download "v$RUFFLE_VERSION" --repo ruffle-rs/ruffle \
+            --pattern "ruffle-$RUFFLE_VERSION-web-selfhosted.zip" --output ruffle.zip
+          unzip -q ruffle.zip -d _site/ruffle
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
