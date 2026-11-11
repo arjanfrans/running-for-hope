@@ -17,6 +17,7 @@ concurrency:
 env:
   AIR_VERSION: "51.3.4.3"
   RUFFLE_VERSION: "0.7.1"
+  LIBERATION_VERSION: "2.1.5"
 
 jobs:
   build:
@@ -47,9 +48,10 @@ jobs:
 
       - name: Copy runtime assets
         run: |
-          mkdir -p _site/audio _site/levels
+          mkdir -p _site/audio _site/levels _site/backgrounds
           cp game/RunningForHope/src/audio/*.mp3 _site/audio/
-          cp game/RunningForHope/src/levels/*.swf _site/levels/
+          cp game/RunningForHope/src/levels/*.swf game/RunningForHope/src/levels/*.png _site/levels/
+          cp game/RunningForHope/src/backgrounds/*.png _site/backgrounds/
           cp web/index.html _site/
 
       - name: Download Ruffle
@@ -59,6 +61,13 @@ jobs:
           gh release download "v$RUFFLE_VERSION" --repo ruffle-rs/ruffle \
             --pattern "ruffle-$RUFFLE_VERSION-web-selfhosted.zip" --output ruffle.zip
           unzip -q ruffle.zip -d _site/ruffle
+
+      - name: Download Liberation Sans (Arial replacement)
+        run: |
+          curl -sfL -o liberation.tar.gz "https://github.com/liberationfonts/liberation-fonts/files/7261482/liberation-fonts-ttf-$LIBERATION_VERSION.tar.gz"
+          tar -xzf liberation.tar.gz
+          mkdir -p _site/fonts
+          cp liberation-fonts-ttf-$LIBERATION_VERSION/LiberationSans-{Regular,Bold}.ttf liberation-fonts-ttf-$LIBERATION_VERSION/LICENSE _site/fonts/
 
       - uses: actions/upload-pages-artifact@v3
         with:

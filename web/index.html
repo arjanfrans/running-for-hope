@@ -11,6 +11,7 @@
 			background: #000;
 			color: #ccc;
 			font-family: system-ui, sans-serif;
+			overflow: hidden;
 		}
 		body {
 			display: flex;
@@ -19,13 +20,20 @@
 			justify-content: center;
 			gap: 12px;
 		}
+		#frame {
+			position: relative;
+		}
 		#game {
-			width: min(100vw, calc((100vh - 48px) * 4 / 3));
-			aspect-ratio: 4 / 3;
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 800px;
+			height: 600px;
+			transform-origin: 0 0;
 		}
 		#game ruffle-player {
-			width: 100%;
-			height: 100%;
+			width: 800px;
+			height: 600px;
 		}
 		footer {
 			font-size: 13px;
@@ -37,25 +45,52 @@
 	<script src="ruffle/ruffle.js"></script>
 </head>
 <body>
-	<div id="game"></div>
+	<div id="frame"><div id="game"></div></div>
 	<footer>
 		Click the game to give it keyboard focus. Runs via <a href="https://ruffle.rs">Ruffle</a> ·
 		<a href="https://github.com/arjanfrans/running-for-hope">Source</a>
 	</footer>
 	<script>
+		const GAME_WIDTH = 800;
+		const GAME_HEIGHT = 600;
+		const FOOTER_SPACE = 48;
+
+		const frame = document.getElementById("frame");
+		const game = document.getElementById("game");
+
+		function fitToWindow() {
+			const scale = Math.min(
+				window.innerWidth / GAME_WIDTH,
+				(window.innerHeight - FOOTER_SPACE) / GAME_HEIGHT
+			);
+			frame.style.width = GAME_WIDTH * scale + "px";
+			frame.style.height = GAME_HEIGHT * scale + "px";
+			game.style.transform = "scale(" + scale + ")";
+		}
+
+		window.addEventListener("resize", fitToWindow);
+		fitToWindow();
+
 		window.RufflePlayer = window.RufflePlayer || {};
 		window.RufflePlayer.config = {
 			autoplay: "on",
-			letterbox: "on",
+			letterbox: "off",
 			splashScreen: true,
-			allowFullscreen: true,
+			allowFullscreen: false,
 			preferredRenderer: "webgpu",
 			backgroundColor: "#000000",
+			fontSources: [
+				"fonts/LiberationSans-Regular.ttf",
+				"fonts/LiberationSans-Bold.ttf",
+			],
+			defaultFonts: {
+				sans: ["Liberation Sans"],
+			},
 		};
 
 		window.addEventListener("load", () => {
 			const player = window.RufflePlayer.newest().createPlayer();
-			document.getElementById("game").appendChild(player);
+			game.appendChild(player);
 			player.ruffle().load({ url: "RunningForHope.swf", base: "./" });
 		});
 	</script>
