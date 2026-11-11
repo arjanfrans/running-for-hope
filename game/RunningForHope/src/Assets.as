@@ -78,7 +78,7 @@ package  {
 				
 		public static function getBackground(name:String):Texture
 		{
-			var t:Texture = Texture.fromBitmap(create(name) as Bitmap);
+			var t:Texture = Texture.fromBitmap(create(name) as Bitmap, false);
 			return t;
 		}
 
@@ -92,7 +92,7 @@ package  {
 					var data:BitmapData = bmp.bitmapData;
 					data.applyFilter(data, data.rect, new Point(0, 0), filter);
 				}
-				var texture:Texture = Texture.fromBitmap(bmp);
+				var texture:Texture = Texture.fromBitmap(bmp, false);
 				var xml:XML = XML(create(name + "Xml"));
 				if(filter != null) return new TextureAtlas(texture, xml);
 				gameTextures[name] = new TextureAtlas(texture, xml);

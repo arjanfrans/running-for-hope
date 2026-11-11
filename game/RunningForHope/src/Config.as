@@ -12,7 +12,7 @@ package
 		/**
 		 * Set the smoothing filter to be used on images: NONE, BILINEAR, TRILINEAR
 		 */
-		public static const SMOOTHING:String = TextureSmoothing.TRILINEAR;
+		public static const SMOOTHING:String = TextureSmoothing.BILINEAR;
 		
 		/**
 		 * Wheter you keep a ratio on the game view. If true, black borders will be added around the view.

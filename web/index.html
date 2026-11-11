@@ -71,6 +71,23 @@
 		window.addEventListener("resize", fitToWindow);
 		fitToWindow();
 
+		const KEY_REPEAT_INTERVAL_MS = 150;
+		const lastKeyRepeat = new Map();
+
+		window.addEventListener("keydown", (event) => {
+			if (!event.repeat) {
+				lastKeyRepeat.delete(event.code);
+				return;
+			}
+			const now = performance.now();
+			if (now - (lastKeyRepeat.get(event.code) ?? 0) < KEY_REPEAT_INTERVAL_MS) {
+				event.stopImmediatePropagation();
+				event.preventDefault();
+				return;
+			}
+			lastKeyRepeat.set(event.code, now);
+		}, true);
+
 		window.RufflePlayer = window.RufflePlayer || {};
 		window.RufflePlayer.config = {
 			autoplay: "on",
